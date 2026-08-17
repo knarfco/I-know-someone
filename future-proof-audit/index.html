@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Future-Proof Audit V2</title>
+<style>
+  :root {
+    --pass: #1a7f37;
+    --fail: #c92c2c;
+    --nv: #8a6d00;
+    --skip: #666;
+    --border: #ddd;
+    --bg: #fafafa;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 32px 20px 80px;
+    color: #1a1a1a;
+    background: #fff;
+  }
+  h1 { font-size: 1.6rem; margin-bottom: 4px; }
+  p.subtitle { color: #555; margin-top: 0; }
+  form {
+    display: flex;
+    gap: 8px;
+    margin: 24px 0;
+    flex-wrap: wrap;
+  }
+  input[type="url"] {
+    flex: 1;
+    min-width: 240px;
+    padding: 10px 12px;
+    font-size: 1rem;
+    border: 1px solid #bbb;
+    border-radius: 6px;
+  }
+  button {
+    padding: 10px 18px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    background: #1a1a1a;
+    color: #fff;
+    cursor: pointer;
+  }
+  button:disabled { opacity: 0.5; cursor: default; }
+  .intake {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+  }
+  .intake div { margin: 2px 0; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+  }
+  th, td {
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  th { background: #f2f2f2; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.03em; }
+  td.evidence { font-size: 0.85rem; color: #444; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+  .verdict { font-weight: 700; white-space: nowrap; }
+  .verdict.PASS { color: var(--pass); }
+  .verdict.FAIL { color: var(--fail); }
+  .verdict.NOT-VERIFIABLE { color: var(--nv); }
+  .verdict.SKIPPED { color: var(--skip); }
+  #status { margin-top: 10px; font-size: 0.9rem; color: #555; }
+  #error { color: var(--fail); margin-top: 10px; }
+  footer { margin-top: 40px; font-size: 0.8rem; color: #888; }
+  .note {
+    font-size: 0.85rem;
+    color: #555;
+    background: #fff8e6;
+    border: 1px solid #f0dca0;
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-top: 16px;
+  }
+</style>
+</head>
+<body>
+  <h1>Future-Proof Audit V2</h1>
+  <p class="subtitle">A mechanical, zero-interpretation check of a page's raw HTML against 9 machine-legibility criteria. No AI judgment — every verdict is a direct, deterministic read of the HTML source.</p>
+
+  <form id="audit-form">
+    <input type="url" id="url-input" placeholder="https://example.com/page" required />
+    <button type="submit" id="submit-btn">Run Audit</button>
+  </form>
+
+  <div id="status"></div>
+  <div id="error"></div>
+  <div id="report"></div>
+
+  <footer>
+    One run evaluates exactly one URL. Findings on one page must never be assumed to apply to any other page on the same site &mdash; run the audit separately for each page you need checked.
+  </footer>
+
+<script>
+const CRITERIA_LABELS = {
+  h1: 'H1 Present & Unique',
+  heading_hierarchy: 'Heading Hierarchy Logical',
+  canonical: 'Canonical Tag Present',
+  meta_description: 'Meta Description Present',
+  schema: 'Structured Data (Schema) Present & Valid',
+  crawlability: 'Crawlability Baseline',
+  ai_crawler_access: 'AI Crawler Access',
+  org_schema_completeness: 'Organization/LocalBusiness Schema Completeness',
+  faq_schema: 'FAQPage Schema (Conditional)'
+};
+const ORDER = ['h1','heading_hierarchy','canonical','meta_description','schema','crawlability','ai_crawler_access','org_schema_completeness','faq_schema'];
+
+const form = document.getElementById('audit-form');
+const urlInput = document.getElementById('url-input');
+const submitBtn = document.getElementById('submit-btn');
+const statusEl = document.getElementById('status');
+const errorEl = document.getElementById('error');
+const reportEl = document.getElementById('report');
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  errorEl.textContent = '';
+  reportEl.innerHTML = '';
+  const url = urlInput.value.trim();
+  if (!url) return;
+
+  submitBtn.disabled = true;
+  statusEl.textContent = 'Fetching raw HTML and running the 9 checks...';
+
+  try {
+    const res = await fetch('/api/audit?url=' + encodeURIComponent(url));
+    const data = await res.json();
+    statusEl.textContent = '';
+    if (!res.ok) {
+      errorEl.textContent = data.error || 'Something went wrong.';
+      return;
+    }
+    renderReport(data);
+  } catch (err) {
+    statusEl.textContent = '';
+    errorEl.textContent = 'Network error: ' + err.message;
+  } finally {
+    submitBtn.disabled = false;
+  }
+});
+
+function renderReport(data) {
+  const intake = document.createElement('div');
+  intake.className = 'intake';
+  intake.innerHTML = `
+    <div><strong>URL checked:</strong> ${escapeHtml(data.url)}</div>
+    <div><strong>Access method:</strong> ${escapeHtml(data.accessMethod)}</div>
+    <div><strong>Date checked:</strong> ${escapeHtml(new Date(data.dateChecked).toLocaleString())}</div>
+    <div><strong>HTTP status:</strong> ${data.httpStatus === null ? 'N/A (fetch failed)' : data.httpStatus}</div>
+  `;
+  reportEl.appendChild(intake);
+
+  if (data.fetchError) {
+    const note = document.createElement('div');
+    note.className = 'note';
+    note.textContent = 'The tool could not fetch this URL, so every criterion is reported as NOT VERIFIABLE rather than guessed. Error: ' + data.fetchError;
+    reportEl.appendChild(note);
+  }
+
+  const table = document.createElement('table');
+  table.innerHTML = `
+    <thead><tr><th>Criterion</th><th>Verdict</th><th>Evidence</th></tr></thead>
+    <tbody></tbody>
+  `;
+  const tbody = table.querySelector('tbody');
+  for (const id of ORDER) {
+    const result = data.results[id];
+    const tr = document.createElement('tr');
+    const verdictClass = result.verdict.replace(/\s+/g, '-');
+    tr.innerHTML = `
+      <td>${escapeHtml(CRITERIA_LABELS[id])}</td>
+      <td class="verdict ${verdictClass}">${escapeHtml(result.verdict)}</td>
+      <td class="evidence">${escapeHtml(result.evidence)}</td>
+    `;
+    tbody.appendChild(tr);
+  }
+  reportEl.appendChild(table);
+}
+
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+</script>
+</body>
+</html>

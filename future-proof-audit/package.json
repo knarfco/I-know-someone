@@ -1,0 +1,12 @@
+{
+  "name": "future-proof-audit",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Mechanical, zero-interpretation checker for the Future-Proof Audit V2 spec (9 machine-legibility criteria).",
+  "dependencies": {
+    "cheerio": "^1.0.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
