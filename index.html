@@ -1,968 +1,204 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Professional Handyman Services - We Know Someone</title>
-    <meta name="description" content="Expert handyman services for all your home repair and maintenance needs. Licensed, insured, and trusted by thousands.">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary-color: #2563eb;
-            --secondary-color: #1e40af;
-            --accent-color: #f97316;
-            --text-dark: #1f2937;
-            --text-light: #6b7280;
-            --bg-light: #f9fafb;
-            --bg-white: #ffffff;
-            --border-color: #e5e7eb;
-            --success-color: #10b981;
-            --warning-color: #f59e0b;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--text-dark);
-            background-color: var(--bg-white);
-        }
-
-        /* Header & Navigation */
-        header {
-            background-color: var(--bg-white);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        nav {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: var(--primary-color);
-            text-decoration: none;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: var(--text-dark);
-            transition: color 0.3s ease;
-            font-weight: 500;
-        }
-
-        nav a:hover {
-            color: var(--primary-color);
-        }
-
-        .cta-button {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
-            text-decoration: none;
-            font-weight: 600;
-            transition: background-color 0.3s ease;
-        }
-
-        .cta-button:hover {
-            background-color: var(--secondary-color);
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-            color: white;
-            padding: 6rem 2rem;
-            text-align: center;
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            line-height: 1.2;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            margin-bottom: 2rem;
-            opacity: 0.95;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .primary-btn {
-            background-color: var(--accent-color);
-            color: white;
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 0.5rem;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .primary-btn:hover {
-            background-color: #ea580c;
-            transform: translateY(-2px);
-        }
-
-        .secondary-btn {
-            background-color: transparent;
-            color: white;
-            padding: 1rem 2rem;
-            border: 2px solid white;
-            border-radius: 0.5rem;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .secondary-btn:hover {
-            background-color: white;
-            color: var(--primary-color);
-        }
-
-        /* Services Section */
-        .services-section {
-            max-width: 1200px;
-            margin: 4rem auto;
-            padding: 0 2rem;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 1rem;
-            color: var(--text-dark);
-        }
-
-        .section-subtitle {
-            text-align: center;
-            color: var(--text-light);
-            margin-bottom: 3rem;
-            font-size: 1.1rem;
-        }
-
-        /* Service Selector */
-        .service-selector {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-        }
-
-        .service-card {
-            background: var(--bg-light);
-            padding: 1.5rem;
-            border-radius: 0.75rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-            text-align: center;
-        }
-
-        .service-card:hover {
-            border-color: var(--primary-color);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.1);
-        }
-
-        .service-card.active {
-            background-color: var(--primary-color);
-            color: white;
-            border-color: var(--primary-color);
-        }
-
-        .service-card.active .service-description {
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        .service-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .service-card h3 {
-            font-size: 1.25rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .service-description {
-            color: var(--text-light);
-            font-size: 0.9rem;
-            transition: color 0.3s ease;
-        }
-
-        .service-details {
-            background: var(--bg-white);
-            padding: 2rem;
-            border-radius: 0.75rem;
-            margin-top: 2rem;
-            border-left: 4px solid var(--primary-color);
-        }
-
-        .service-details h3 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-
-        .service-details p {
-            color: var(--text-light);
-            margin-bottom: 1rem;
-            line-height: 1.8;
-        }
-
-        .service-features {
-            list-style: none;
-            margin: 1rem 0;
-        }
-
-        .service-features li {
-            padding: 0.5rem 0;
-            padding-left: 1.5rem;
-            position: relative;
-            color: var(--text-dark);
-        }
-
-        .service-features li:before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: var(--success-color);
-            font-weight: bold;
-        }
-
-        /* Trust Section */
-        .trust-section {
-            background-color: var(--bg-light);
-            padding: 4rem 2rem;
-            margin: 4rem 0;
-        }
-
-        .trust-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .trust-badges {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .badge {
-            background: var(--bg-white);
-            padding: 2rem;
-            border-radius: 0.75rem;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .badge:hover {
-            transform: translateY(-5px);
-        }
-
-        .badge-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .badge h3 {
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-        }
-
-        .badge p {
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
-
-        /* Team Section */
-        .team-section {
-            max-width: 1200px;
-            margin: 4rem auto;
-            padding: 0 2rem;
-        }
-
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .team-member {
-            background: var(--bg-light);
-            border-radius: 0.75rem;
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .team-member:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .team-member-photo {
-            width: 100%;
-            height: 250px;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            color: white;
-        }
-
-        .team-member-info {
-            padding: 1.5rem;
-        }
-
-        .team-member h3 {
-            color: var(--text-dark);
-            margin-bottom: 0.25rem;
-        }
-
-        .team-member-role {
-            color: var(--primary-color);
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .team-member-bio {
-            color: var(--text-light);
-            font-size: 0.85rem;
-            line-height: 1.5;
-        }
-
-        /* Contact Form */
-        .contact-section {
-            background-color: var(--bg-light);
-            padding: 4rem 2rem;
-            margin-top: 4rem;
-        }
-
-        .contact-container {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--text-dark);
-            font-weight: 600;
-        }
-
-        input[type="text"],
-        input[type="email"],
-        input[type="tel"],
-        input[type="date"],
-        select,
-        textarea {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid var(--border-color);
-            border-radius: 0.5rem;
-            font-family: inherit;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-        }
-
-        input[type="text"]:focus,
-        input[type="email"]:focus,
-        input[type="tel"]:focus,
-        input[type="date"]:focus,
-        select:focus,
-        textarea:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-        }
-
-        textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-        }
-
-        .form-submit {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 0.5rem;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            width: 100%;
-            transition: background-color 0.3s ease;
-        }
-
-        .form-submit:hover {
-            background-color: var(--secondary-color);
-        }
-
-        .form-message {
-            padding: 1rem;
-            border-radius: 0.5rem;
-            margin-bottom: 1rem;
-            display: none;
-        }
-
-        .form-message.success {
-            background-color: #d1fae5;
-            color: #065f46;
-            border: 1px solid #6ee7b7;
-            display: block;
-        }
-
-        .form-message.error {
-            background-color: #fee2e2;
-            color: #991b1b;
-            border: 1px solid #fca5a5;
-            display: block;
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--text-dark);
-            color: white;
-            padding: 3rem 2rem;
-            margin-top: 4rem;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-section h3 {
-            margin-bottom: 1rem;
-            color: var(--accent-color);
-        }
-
-        .footer-section ul {
-            list-style: none;
-        }
-
-        .footer-section ul li {
-            margin-bottom: 0.5rem;
-        }
-
-        .footer-section a {
-            color: #d1d5db;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-section a:hover {
-            color: var(--accent-color);
-        }
-
-        .footer-contact {
-            margin-bottom: 1rem;
-        }
-
-        .footer-contact p {
-            margin-bottom: 0.5rem;
-            color: #d1d5db;
-        }
-
-        .footer-bottom {
-            border-top: 1px solid #374151;
-            padding-top: 2rem;
-            text-align: center;
-            color: #9ca3af;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            nav ul {
-                gap: 1rem;
-            }
-
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-            }
-
-            .primary-btn,
-            .secondary-btn {
-                width: 100%;
-            }
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .service-card {
-            animation: fadeInUp 0.6s ease-out;
-        }
-
-        .badge {
-            animation: fadeInUp 0.6s ease-out;
-        }
-
-        .team-member {
-            animation: fadeInUp 0.6s ease-out;
-        }
-    </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Future-Proof Audit V2</title>
+<style>
+  :root {
+    --pass: #1a7f37;
+    --fail: #c92c2c;
+    --nv: #8a6d00;
+    --skip: #666;
+    --border: #ddd;
+    --bg: #fafafa;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 32px 20px 80px;
+    color: #1a1a1a;
+    background: #fff;
+  }
+  h1 { font-size: 1.6rem; margin-bottom: 4px; }
+  p.subtitle { color: #555; margin-top: 0; }
+  form {
+    display: flex;
+    gap: 8px;
+    margin: 24px 0;
+    flex-wrap: wrap;
+  }
+  input[type="url"] {
+    flex: 1;
+    min-width: 240px;
+    padding: 10px 12px;
+    font-size: 1rem;
+    border: 1px solid #bbb;
+    border-radius: 6px;
+  }
+  button {
+    padding: 10px 18px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    background: #1a1a1a;
+    color: #fff;
+    cursor: pointer;
+  }
+  button:disabled { opacity: 0.5; cursor: default; }
+  .intake {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+  }
+  .intake div { margin: 2px 0; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+  }
+  th, td {
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  th { background: #f2f2f2; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.03em; }
+  td.evidence { font-size: 0.85rem; color: #444; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+  .verdict { font-weight: 700; white-space: nowrap; }
+  .verdict.PASS { color: var(--pass); }
+  .verdict.FAIL { color: var(--fail); }
+  .verdict.NOT-VERIFIABLE { color: var(--nv); }
+  .verdict.SKIPPED { color: var(--skip); }
+  #status { margin-top: 10px; font-size: 0.9rem; color: #555; }
+  #error { color: var(--fail); margin-top: 10px; }
+  footer { margin-top: 40px; font-size: 0.8rem; color: #888; }
+  .note {
+    font-size: 0.85rem;
+    color: #555;
+    background: #fff8e6;
+    border: 1px solid #f0dca0;
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-top: 16px;
+  }
+</style>
 </head>
 <body>
-    <!-- Header & Navigation -->
-    <header>
-        <nav>
-            <a href="#" class="logo">🔧 We Know Someone</a>
-            <ul>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#team">Team</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <a href="#contact" class="cta-button">Get Quote</a>
-        </nav>
-    </header>
+  <h1>Future-Proof Audit V2</h1>
+  <p class="subtitle">A mechanical, zero-interpretation check of a page's raw HTML against 9 machine-legibility criteria. No AI judgment — every verdict is a direct, deterministic read of the HTML source.</p>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Professional Handyman Services You Can Trust</h1>
-            <p>From small repairs to major renovations, our expert team handles it all with quality and care.</p>
-            <div class="hero-buttons">
-                <button class="primary-btn" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Book Now</button>
-                <button class="secondary-btn" onclick="alert('Call us at (555) 123-4567 for immediate assistance!')">Call Now</button>
-            </div>
-        </div>
-    </section>
+  <form id="audit-form">
+    <input type="url" id="url-input" placeholder="https://example.com/page" required />
+    <button type="submit" id="submit-btn">Run Audit</button>
+  </form>
 
-    <!-- Services Section -->
-    <section id="services" class="services-section">
-        <h2 class="section-title">Our Services</h2>
-        <p class="section-subtitle">Select a service to learn more about what we offer</p>
+  <div id="status"></div>
+  <div id="error"></div>
+  <div id="report"></div>
 
-        <div class="service-selector">
-            <div class="service-card active" onclick="selectService(0)">
-                <div class="service-icon">🔨</div>
-                <h3>General Repairs</h3>
-                <p class="service-description">Common household fixes and maintenance</p>
-            </div>
-            <div class="service-card" onclick="selectService(1)">
-                <div class="service-icon">💧</div>
-                <h3>Plumbing</h3>
-                <p class="service-description">Leak repairs, fixture installation & more</p>
-            </div>
-            <div class="service-card" onclick="selectService(2)">
-                <div class="service-icon">⚡</div>
-                <h3>Electrical</h3>
-                <p class="service-description">Safe and reliable electrical work</p>
-            </div>
-            <div class="service-card" onclick="selectService(3)">
-                <div class="service-icon">🏠</div>
-                <h3>Carpentry</h3>
-                <p class="service-description">Custom woodwork and framing</p>
-            </div>
-            <div class="service-card" onclick="selectService(4)">
-                <div class="service-icon">🎨</div>
-                <h3>Painting</h3>
-                <p class="service-description">Interior and exterior painting</p>
-            </div>
-            <div class="service-card" onclick="selectService(5)">
-                <div class="service-icon">🪟</div>
-                <h3>Installation</h3>
-                <p class="service-description">Windows, doors, fixtures & more</p>
-            </div>
-        </div>
+  <footer>
+    One run evaluates exactly one URL. Findings on one page must never be assumed to apply to any other page on the same site &mdash; run the audit separately for each page you need checked.
+  </footer>
 
-        <!-- Service Details -->
-        <div id="serviceDetails" class="service-details">
-            <h3 id="serviceTitle">General Repairs</h3>
-            <p id="serviceDescription">Our general repair service covers all those small to medium household fixes that you need taken care of. Whether it's a squeaky door, loose cabinet handle, or drywall patching, we've got you covered.</p>
-            <ul class="service-features">
-                <li>Quick response times</li>
-                <li>Experienced professionals</li>
-                <li>Quality guaranteed</li>
-                <li>Fair and transparent pricing</li>
-            </ul>
-        </div>
-    </section>
+<script>
+const CRITERIA_LABELS = {
+  h1: 'H1 Present & Unique',
+  heading_hierarchy: 'Heading Hierarchy Logical',
+  canonical: 'Canonical Tag Present',
+  meta_description: 'Meta Description Present',
+  schema: 'Structured Data (Schema) Present & Valid',
+  crawlability: 'Crawlability Baseline',
+  ai_crawler_access: 'AI Crawler Access',
+  org_schema_completeness: 'Organization/LocalBusiness Schema Completeness',
+  faq_schema: 'FAQPage Schema (Conditional)'
+};
+const ORDER = ['h1','heading_hierarchy','canonical','meta_description','schema','crawlability','ai_crawler_access','org_schema_completeness','faq_schema'];
 
-    <!-- Trust Section -->
-    <section class="trust-section">
-        <div class="trust-container">
-            <h2 class="section-title">Why Choose Us?</h2>
-            <p class="section-subtitle">Trusted by thousands of satisfied customers</p>
+const form = document.getElementById('audit-form');
+const urlInput = document.getElementById('url-input');
+const submitBtn = document.getElementById('submit-btn');
+const statusEl = document.getElementById('status');
+const errorEl = document.getElementById('error');
+const reportEl = document.getElementById('report');
 
-            <div class="trust-badges">
-                <div class="badge">
-                    <div class="badge-icon">⭐</div>
-                    <h3>4.9/5 Rating</h3>
-                    <p>Based on 500+ customer reviews</p>
-                </div>
-                <div class="badge">
-                    <div class="badge-icon">✓</div>
-                    <h3>Fully Licensed</h3>
-                    <p>All work meets local codes</p>
-                </div>
-                <div class="badge">
-                    <div class="badge-icon">🛡️</div>
-                    <h3>Insured</h3>
-                    <p>Protection for you and your home</p>
-                </div>
-                <div class="badge">
-                    <div class="badge-icon">⚡</div>
-                    <h3>Fast Response</h3>
-                    <p>Available within 24 hours</p>
-                </div>
-                <div class="badge">
-                    <div class="badge-icon">🤝</div>
-                    <h3>Expert Team</h3>
-                    <p>15+ years of combined experience</p>
-                </div>
-                <div class="badge">
-                    <div class="badge-icon">💰</div>
-                    <h3>Competitive Pricing</h3>
-                    <p>Best value in the area</p>
-                </div>
-            </div>
-        </div>
-    </section>
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  errorEl.textContent = '';
+  reportEl.innerHTML = '';
+  const url = urlInput.value.trim();
+  if (!url) return;
 
-    <!-- Team Section -->
-    <section id="team" class="team-section">
-        <h2 class="section-title">Meet Our Team</h2>
-        <p class="section-subtitle">Skilled professionals dedicated to your satisfaction</p>
+  submitBtn.disabled = true;
+  statusEl.textContent = 'Fetching raw HTML and running the 9 checks...';
 
-        <div class="team-grid">
-            <div class="team-member">
-                <div class="team-member-photo">👨‍🔧</div>
-                <div class="team-member-info">
-                    <h3>John Smith</h3>
-                    <p class="team-member-role">Master Technician</p>
-                    <p class="team-member-bio">15+ years experience in all trades. Specializes in complex renovations and custom projects.</p>
-                </div>
-            </div>
-            <div class="team-member">
-                <div class="team-member-photo">👩‍🔧</div>
-                <div class="team-member-info">
-                    <h3>Maria Garcia</h3>
-                    <p class="team-member-role">Plumbing Specialist</p>
-                    <p class="team-member-bio">Certified plumber with 12 years of expertise. Handles everything from simple repairs to complex installations.</p>
-                </div>
-            </div>
-            <div class="team-member">
-                <div class="team-member-photo">👨‍💼</div>
-                <div class="team-member-info">
-                    <h3>David Chen</h3>
-                    <p class="team-member-role">Electrical Expert</p>
-                    <p class="team-member-bio">Licensed electrician with 10+ years of experience. Specializes in residential electrical work.</p>
-                </div>
-            </div>
-            <div class="team-member">
-                <div class="team-member-photo">👩‍💼</div>
-                <div class="team-member-info">
-                    <h3>Sarah Wilson</h3>
-                    <p class="team-member-role">Carpentry Master</p>
-                    <p class="team-member-bio">Expert carpenter and designer. Creates custom solutions for your unique needs.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+  try {
+    const res = await fetch('/api/audit?url=' + encodeURIComponent(url));
+    const data = await res.json();
+    statusEl.textContent = '';
+    if (!res.ok) {
+      errorEl.textContent = data.error || 'Something went wrong.';
+      return;
+    }
+    renderReport(data);
+  } catch (err) {
+    statusEl.textContent = '';
+    errorEl.textContent = 'Network error: ' + err.message;
+  } finally {
+    submitBtn.disabled = false;
+  }
+});
 
-    <!-- Contact Form -->
-    <section id="contact" class="contact-section">
-        <div class="contact-container">
-            <h2 class="section-title">Get Your Free Quote</h2>
-            <p class="section-subtitle">Fill out the form below and we'll contact you within 24 hours</p>
+function renderReport(data) {
+  const intake = document.createElement('div');
+  intake.className = 'intake';
+  intake.innerHTML = `
+    <div><strong>URL checked:</strong> ${escapeHtml(data.url)}</div>
+    <div><strong>Access method:</strong> ${escapeHtml(data.accessMethod)}</div>
+    <div><strong>Date checked:</strong> ${escapeHtml(new Date(data.dateChecked).toLocaleString())}</div>
+    <div><strong>HTTP status:</strong> ${data.httpStatus === null ? 'N/A (fetch failed)' : data.httpStatus}</div>
+  `;
+  reportEl.appendChild(intake);
 
-            <form id="contactForm">
-                <div id="formMessage" class="form-message"></div>
+  if (data.fetchError) {
+    const note = document.createElement('div');
+    note.className = 'note';
+    note.textContent = 'The tool could not fetch this URL, so every criterion is reported as NOT VERIFIABLE rather than guessed. Error: ' + data.fetchError;
+    reportEl.appendChild(note);
+  }
 
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="name">Full Name *</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Phone Number *</label>
-                        <input type="tel" id="phone" name="phone" required>
-                    </div>
-                </div>
+  const table = document.createElement('table');
+  table.innerHTML = `
+    <thead><tr><th>Criterion</th><th>Verdict</th><th>Evidence</th></tr></thead>
+    <tbody></tbody>
+  `;
+  const tbody = table.querySelector('tbody');
+  for (const id of ORDER) {
+    const result = data.results[id];
+    const tr = document.createElement('tr');
+    const verdictClass = result.verdict.replace(/\s+/g, '-');
+    tr.innerHTML = `
+      <td>${escapeHtml(CRITERIA_LABELS[id])}</td>
+      <td class="verdict ${verdictClass}">${escapeHtml(result.verdict)}</td>
+      <td class="evidence">${escapeHtml(result.evidence)}</td>
+    `;
+    tbody.appendChild(tr);
+  }
+  reportEl.appendChild(table);
+}
 
-                <div class="form-group">
-                    <label for="email">Email Address *</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="service">Service Needed *</label>
-                    <select id="service" name="service" required>
-                        <option value="">Select a service</option>
-                        <option value="general">General Repairs</option>
-                        <option value="plumbing">Plumbing</option>
-                        <option value="electrical">Electrical</option>
-                        <option value="carpentry">Carpentry</option>
-                        <option value="painting">Painting</option>
-                        <option value="installation">Installation</option>
-                        <option value="other">Other</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="date">Preferred Service Date</label>
-                    <input type="date" id="date" name="date">
-                </div>
-
-                <div class="form-group">
-                    <label for="message">Project Description *</label>
-                    <textarea id="message" name="message" required placeholder="Tell us about your project..."></textarea>
-                </div>
-
-                <button type="submit" class="form-submit">Request Free Quote</button>
-            </form>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>About Us</h3>
-                <p>Professional handyman services serving the community with integrity, quality, and expertise for over 15 years.</p>
-            </div>
-            <div class="footer-section">
-                <h3>Services</h3>
-                <ul>
-                    <li><a href="#services">General Repairs</a></li>
-                    <li><a href="#services">Plumbing</a></li>
-                    <li><a href="#services">Electrical</a></li>
-                    <li><a href="#services">Carpentry</a></li>
-                    <li><a href="#services">Painting</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#team">Team</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Contact Info</h3>
-                <div class="footer-contact">
-                    <p>📞 (555) 123-4567</p>
-                    <p>📧 info@weknowsomeone.com</p>
-                    <p>📍 123 Main Street, Your City, State 12345</p>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 We Know Someone Handyman Services. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <script>
-        // Service Selector Data
-        const services = [
-            {
-                title: 'General Repairs',
-                description: 'Our general repair service covers all those small to medium household fixes that you need taken care of. Whether it\'s a squeaky door, loose cabinet handle, or drywall patching, we\'ve got you covered.',
-                features: ['Quick response times', 'Experienced professionals', 'Quality guaranteed', 'Fair and transparent pricing']
-            },
-            {
-                title: 'Plumbing',
-                description: 'From leaky faucets to complete bathroom renovations, our certified plumbers handle all your plumbing needs with expertise and precision.',
-                features: ['Licensed plumbers', 'Emergency service available', 'All types of fixtures', 'Warranty on work']
-            },
-            {
-                title: 'Electrical',
-                description: 'Safe, reliable electrical work for your home. We handle everything from simple outlet installation to complex rewiring projects.',
-                features: ['Licensed electrician', 'Code compliance', 'Modern safety standards', 'Insurance backed']
-            },
-            {
-                title: 'Carpentry',
-                description: 'Custom woodwork and framing solutions tailored to your needs. From decks to custom cabinets, we bring your vision to life.',
-                features: ['Custom designs', 'Premium materials', 'Expert craftsmanship', 'Attention to detail']
-            },
-            {
-                title: 'Painting',
-                description: 'Professional interior and exterior painting services. We prepare, prime, and paint with precision for a beautiful finish.',
-                features: ['Interior & exterior', 'Quality paints', 'Prep work included', 'Clean and professional']
-            },
-            {
-                title: 'Installation',
-                description: 'Expert installation of windows, doors, fixtures, and more. Professional installation ensures proper fit and function.',
-                features: ['Windows & doors', 'Fixtures & appliances', 'Proper sealing', 'Professional finish']
-            }
-        ];
-
-        function selectService(index) {
-            // Update active card
-            const cards = document.querySelectorAll('.service-card');
-            cards.forEach((card, i) => {
-                card.classList.remove('active');
-                if (i === index) {
-                    card.classList.add('active');
-                }
-            });
-
-            // Update service details
-            const service = services[index];
-            document.getElementById('serviceTitle').textContent = service.title;
-            document.getElementById('serviceDescription').textContent = service.description;
-
-            const featuresList = document.querySelector('.service-features');
-            featuresList.innerHTML = service.features.map(feature => `<li>${feature}</li>`).join('');
-        }
-
-        // Form Submission
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            const formMessage = document.getElementById('formMessage');
-            const name = document.getElementById('name').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const phone = document.getElementById('phone').value.trim();
-            const service = document.getElementById('service').value;
-            const message = document.getElementById('message').value.trim();
-
-            // Validation
-            if (!name || !email || !phone || !service || !message) {
-                formMessage.textContent = 'Please fill in all required fields.';
-                formMessage.classList.remove('success');
-                formMessage.classList.add('error');
-                return;
-            }
-
-            // Email validation
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                formMessage.textContent = 'Please enter a valid email address.';
-                formMessage.classList.remove('success');
-                formMessage.classList.add('error');
-                return;
-            }
-
-            // Phone validation (basic)
-            const phoneRegex = /^\d{10,}$/;
-            if (!phoneRegex.test(phone.replace(/\D/g, ''))) {
-                formMessage.textContent = 'Please enter a valid phone number.';
-                formMessage.classList.remove('success');
-                formMessage.classList.add('error');
-                return;
-            }
-
-            // Success message
-            formMessage.textContent = 'Thank you for your submission! We\'ll contact you within 24 hours.';
-            formMessage.classList.remove('error');
-            formMessage.classList.add('success');
-
-            // Reset form
-            this.reset();
-
-            // Hide message after 5 seconds
-            setTimeout(() => {
-                formMessage.classList.remove('success', 'error');
-            }, 5000);
-
-            console.log('Form Data:', { name, email, phone, service, message });
-        });
-
-        // Smooth scroll for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                const href = this.getAttribute('href');
-                if (href !== '#' && document.querySelector(href)) {
-                    e.preventDefault();
-                    document.querySelector(href).scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // Initialize service selector animation
-        window.addEventListener('load', function() {
-            selectService(0);
-        });
-    </script>
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+</script>
 </body>
 </html>

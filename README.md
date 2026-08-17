@@ -1,169 +1,67 @@
-# I Know Someone
+# Future-Proof Audit V2
 
-A project designed to help you discover and connect with people in your network.
+A small web tool that checks one webpage's raw HTML against the 9 mechanical
+criteria defined in the "Future-Proof Audit — V2" spec. Every result is
+**PASS**, **FAIL**, **NOT VERIFIABLE**, or (for the one conditional
+criterion) **SKIPPED** — there is no AI model involved in producing a
+verdict. The tool fetches the page's raw HTML on the server, parses the
+actual tags, and applies the exact conditions written in the spec.
 
-## Table of Contents
+## What it checks
 
-- [Overview](#overview)
-- [Features](#features)
-- [Requirements](#requirements)
-- [Setup Instructions](#setup-instructions)
-- [Project Structure](#project-structure)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
+1. H1 Present & Unique
+2. Heading Hierarchy Logical
+3. Canonical Tag Present
+4. Meta Description Present
+5. Structured Data (Schema) Present & Valid
+6. Crawlability Baseline (meta robots + HTTP status)
+7. AI Crawler Access (robots.txt vs. GPTBot, ClaudeBot, PerplexityBot, Google-Extended, OAI-SearchBot)
+8. Organization/LocalBusiness Schema Completeness
+9. FAQPage Schema (conditional — skipped if the page has no FAQ-style content)
 
-## Overview
+## How it works
 
-"I Know Someone" is a networking application that enables users to explore their connections and discover mutual acquaintances. Whether you're looking to expand your professional network or reconnect with old friends, this tool makes it easy to find and manage your contacts.
+- `index.html` — the page you open in a browser. It has a box to type a URL
+  and a button to run the audit. It shows the results in a table.
+- `api/audit.js` — the "brain." When you submit a URL, your browser asks
+  this code to fetch that page's HTML directly (server to server, not
+  through your browser, so there are no CORS/browser restrictions), read
+  the tags, and check each of the 9 rules. It also fetches `robots.txt`
+  from the site for criterion 7.
 
-## Features
+This only reads the HTML delivered by the very first server response. It
+does not run the page's JavaScript. Per the spec's own implementation
+notes, all 9 criteria check elements that are expected to already be
+present in that first HTML response, so this is the correct approach — but
+if a site builds these elements entirely with client-side JavaScript, a
+FAIL here reflects what's in the raw source, not necessarily what a user's
+browser eventually renders.
 
-- 🤝 Network exploration and visualization
-- 👥 Contact management and discovery
-- 🔗 Mutual connection identification
-- 📊 Network analytics and insights
-- 🔒 Privacy-focused design
+## One page, one report
 
-## Requirements
+Per the spec, each run checks exactly one URL. To check a whole site, run
+it once per page — don't assume one page's result applies to any other page.
 
-Before you begin, ensure you have the following installed:
+## Running it locally (optional — for testing before it's live)
 
-- **Node.js** (v14.0.0 or higher)
-- **npm** (v6.0.0 or higher) or **yarn** (v1.22.0 or higher)
-- **Git** (v2.0.0 or higher)
+You need [Node.js](https://nodejs.org) installed (v18+), and the free
+[Vercel CLI](https://vercel.com/docs/cli):
 
-## Setup Instructions
-
-### 1. Clone the Repository
-
-```bash
-git clone https://github.com/knarfco/I-know-someone.git
-cd I-know-someone
 ```
-
-### 2. Install Dependencies
-
-Using npm:
-```bash
 npm install
+npx vercel dev
 ```
 
-Or using yarn:
-```bash
-yarn install
-```
+This starts a local copy at `http://localhost:3000`.
 
-### 3. Environment Configuration
+## Deploying it so it's live on the internet
 
-Create a `.env` file in the root directory and add your configuration:
+This tool lives at the root of this repository on purpose, so it deploys
+on [Vercel](https://vercel.com) with zero configuration — just import this
+repository and deploy, no settings need to be changed.
 
-```bash
-cp .env.example .env
-```
+## About the `handyman-landing-page/` folder
 
-Edit the `.env` file with your settings:
-
-```env
-# Application Configuration
-PORT=3000
-NODE_ENV=development
-
-# Database Configuration
-DATABASE_URL=your_database_url_here
-
-# API Keys
-API_KEY=your_api_key_here
-```
-
-### 4. Initialize the Database (if applicable)
-
-```bash
-npm run db:setup
-```
-
-### 5. Start the Application
-
-For development:
-```bash
-npm run dev
-```
-
-For production:
-```bash
-npm run build
-npm start
-```
-
-The application will be available at `http://localhost:3000`
-
-## Project Structure
-
-```
-I-know-someone/
-├── src/
-│   ├── components/          # Reusable UI components
-│   ├── pages/              # Application pages
-│   ├── services/           # Business logic and API calls
-│   ├── utils/              # Helper functions and utilities
-│   └── styles/             # CSS and styling files
-├── public/                 # Static assets
-├── tests/                  # Test suites
-├── .env.example            # Environment variables template
-├── package.json            # Project dependencies and scripts
-├── README.md              # This file
-└── .gitignore             # Git ignore rules
-```
-
-## Usage
-
-### Basic Workflow
-
-1. **Create an Account**: Sign up with your email or social media account
-2. **Build Your Network**: Add contacts manually or import from your address book
-3. **Explore Connections**: Search for people and view mutual connections
-4. **Manage Contacts**: Update contact information and organize your network
-
-### Example Commands
-
-```bash
-# Run tests
-npm test
-
-# Run linter
-npm run lint
-
-# Format code
-npm run format
-
-# Build for production
-npm run build
-```
-
-## Contributing
-
-We welcome contributions to the I Know Someone project! Here's how you can help:
-
-1. **Fork the repository**
-2. **Create a feature branch**: `git checkout -b feature/your-feature-name`
-3. **Commit your changes**: `git commit -m 'Add some feature'`
-4. **Push to the branch**: `git push origin feature/your-feature-name`
-5. **Submit a Pull Request**
-
-Please ensure your code follows our style guidelines and all tests pass before submitting.
-
-### Code Style
-
-- Use ESLint for JavaScript/TypeScript linting
-- Follow the existing code formatting conventions
-- Write meaningful commit messages
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
----
-
-**Last Updated**: January 6, 2026
-
-For questions or support, please open an issue on the GitHub repository.
+That folder holds an earlier, unrelated project (a handyman services
+landing page) that used to live at the root of this repository. It's kept
+here for reference but isn't part of the audit tool.
