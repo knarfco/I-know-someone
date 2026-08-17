@@ -59,9 +59,3 @@ This starts a local copy at `http://localhost:3000`.
 This tool lives at the root of this repository on purpose, so it deploys
 on [Vercel](https://vercel.com) with zero configuration — just import this
 repository and deploy, no settings need to be changed.
-
-## About the `handyman-landing-page/` folder
-
-That folder holds an earlier, unrelated project (a handyman services
-landing page) that used to live at the root of this repository. It's kept
-here for reference but isn't part of the audit tool.
