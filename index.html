@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
 <title>Future-Proof Audit V2</title>
 <style>
   :root {
@@ -94,7 +95,7 @@
   <p class="subtitle">A mechanical, zero-interpretation check of a page's raw HTML against 9 machine-legibility criteria. No AI judgment — every verdict is a direct, deterministic read of the HTML source.</p>
 
   <form id="audit-form">
-    <input type="url" id="url-input" placeholder="https://example.com/page" required />
+    <input type="text" inputmode="url" autocapitalize="off" autocorrect="off" id="url-input" placeholder="www.example.com or https://example.com/page" required />
     <button type="submit" id="submit-btn">Run Audit</button>
   </form>
 
@@ -131,8 +132,11 @@ form.addEventListener('submit', async (e) => {
   e.preventDefault();
   errorEl.textContent = '';
   reportEl.innerHTML = '';
-  const url = urlInput.value.trim();
+  let url = urlInput.value.trim();
   if (!url) return;
+  if (!/^https?:\/\//i.test(url)) {
+    url = 'https://' + url;
+  }
 
   submitBtn.disabled = true;
   statusEl.textContent = 'Fetching raw HTML and running the 9 checks...';
