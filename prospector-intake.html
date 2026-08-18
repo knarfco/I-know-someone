@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Prospector Submission | CORXIT&trade;</title>
+<link rel="icon" type="image/png" href="assets/img/corxit-icon-512.png">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap');
+  :root {
+    --obsidian: #0D0E10;
+    --obsidian-raised: #17181B;
+    --obsidian-line: #2A2C30;
+    --white: #FFFFFF;
+    --white-soft: rgba(255,255,255,.78);
+    --white-faint: rgba(255,255,255,.5);
+    --orange: #FF7A1A;
+    --orange-hot: #FF4D00;
+    --font-display: 'Inter Tight', 'Inter', system-ui, sans-serif;
+    --font-body: 'Inter', system-ui, sans-serif;
+    --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+    --border: var(--obsidian-line);
+    --bg: var(--obsidian-raised);
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: var(--font-body);
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 0 20px 80px;
+    color: var(--white-soft);
+    background: var(--obsidian);
+  }
+  .brand-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 22px 0 18px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid var(--obsidian-line);
+  }
+  .brand-bar img { height: 26px; width: auto; display: block; }
+  .brand-bar span {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: .06em;
+    color: var(--white-faint);
+    text-transform: uppercase;
+  }
+  h1 { font-family: var(--font-display); font-weight: 800; color: var(--white); font-size: 1.7rem; margin-bottom: 6px; letter-spacing: -.01em; }
+  p.subtitle { color: var(--white-soft); margin-top: 0; font-size: 15px; line-height: 1.55; }
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin: 28px 0 12px;
+  }
+  .field { margin-bottom: 16px; }
+  .field label { display: block; font-size: 13.5px; color: var(--white-soft); margin-bottom: 6px; font-weight: 600; }
+  .field .hint { display: block; font-size: 12.5px; color: var(--white-faint); margin: -2px 0 8px; line-height: 1.5; }
+  input[type="text"], input[type="email"], input[type="tel"], select, textarea {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 1rem;
+    font-family: inherit;
+    border: 1px solid var(--obsidian-line);
+    border-radius: 6px;
+    background: var(--obsidian-raised);
+    color: var(--white);
+  }
+  textarea { resize: vertical; min-height: 70px; }
+  input::placeholder, textarea::placeholder { color: var(--white-faint); }
+  input[type="file"] {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 0.9rem;
+    border: 1px dashed var(--obsidian-line);
+    border-radius: 6px;
+    background: var(--obsidian-raised);
+    color: var(--white-soft);
+  }
+  button {
+    padding: 12px 22px;
+    font-size: 1rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 6px;
+    background: var(--orange);
+    color: var(--obsidian);
+    cursor: pointer;
+    margin-top: 8px;
+  }
+  button:hover { background: var(--orange-hot); }
+  button:disabled { opacity: 0.5; cursor: default; }
+  .note {
+    font-size: 0.85rem;
+    color: var(--white-soft);
+    background: rgba(255,122,26,.08);
+    border: 1px solid rgba(255,122,26,.3);
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-top: 20px;
+  }
+  #fileWarning {
+    font-size: 12.5px;
+    color: var(--orange);
+    margin-top: 6px;
+    display: none;
+  }
+  footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--obsidian-line); font-size: 0.8rem; color: var(--white-faint); }
+  footer a { color: var(--orange); text-decoration: none; }
+</style>
+</head>
+<body>
+  <div class="brand-bar">
+    <a href="https://corxit.com" target="_blank" rel="noopener">
+      <img src="assets/img/corxit-logo.svg" alt="CORXIT" />
+    </a>
+    <span>Prospector Submission</span>
+  </div>
+
+  <h1>Spotted something? Send it in.</h1>
+  <p class="subtitle">One clear photo, plus what you saw and where. That's it &mdash; we take it from here and get a report back to you.</p>
+
+  <form id="intake-form" action="https://formsubmit.co/info@corxit.com" method="POST" enctype="multipart/form-data">
+    <input type="hidden" name="_subject" value="New Prospector Submission">
+    <input type="hidden" name="_template" value="table">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_next" id="nextField" value="">
+    <input type="text" name="_honey" style="display:none">
+
+    <p class="section-label">Who You Are</p>
+    <div class="field">
+      <label for="prospectorName">Your Name</label>
+      <input type="text" id="prospectorName" name="prospector_name" required>
+    </div>
+    <div class="field">
+      <label for="prospectorContact">Your Email or Phone</label>
+      <span class="hint">So we know where to send the report back.</span>
+      <input type="text" id="prospectorContact" name="prospector_contact" required>
+    </div>
+
+    <p class="section-label">What You Found</p>
+    <div class="field">
+      <label for="assetType">Asset Type</label>
+      <select id="assetType" name="asset_type" required>
+        <option value="">Choose one</option>
+        <option>Vehicle Wrap / Lettering</option>
+        <option>Storefront / Signage</option>
+        <option>Banner</option>
+        <option>Bus Bench / Billboard</option>
+        <option>T-Shirt / Apparel</option>
+        <option>Menu / Flyer</option>
+        <option>Trade Show / Presentation</option>
+        <option>Other</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="assetPhoto">Photo</label>
+      <span class="hint">One clear photo. Business name readable if possible.</span>
+      <input type="file" id="assetPhoto" name="asset_photo" accept="image/*" capture="environment" required>
+      <span id="fileWarning">That photo is pretty large &mdash; it may fail to send. If it does, try a smaller photo or text it to 954-367-9274 instead.</span>
+    </div>
+    <div class="field">
+      <label for="businessName">Business Name (if you could read it)</label>
+      <input type="text" id="businessName" name="business_name_guess" placeholder="Optional">
+    </div>
+    <div class="field">
+      <label for="locationNote">Location, Date &amp; Time</label>
+      <span class="hint">Be specific &mdash; this is what makes the outreach feel real. e.g. "SR-84 eastbound near Davie, Tuesday 2:15pm"</span>
+      <textarea id="locationNote" name="location_note" required placeholder="Where you were, and when you saw it"></textarea>
+    </div>
+    <div class="field">
+      <label for="otherDetails">Anything Else Visible</label>
+      <span class="hint">Phone number, website, slogan, anything else on the asset. Optional.</span>
+      <textarea id="otherDetails" name="other_details" placeholder="Optional"></textarea>
+    </div>
+
+    <button type="submit" id="submit-btn">Send It In &rarr;</button>
+  </form>
+
+  <p class="note">A real person reviews every submission &mdash; nothing here is automated yet. You'll hear back with a report once we've had a look.</p>
+
+  <footer>
+    Trouble submitting? Text or email your photo directly &mdash; <a href="sms:19543679274">954-367-9274</a> or <a href="mailto:info@corxit.com">info@corxit.com</a>.
+    <br><br>
+    Built by <a href="https://corxit.com" target="_blank" rel="noopener">CORXIT&trade;</a>
+  </footer>
+
+<script>
+document.getElementById('nextField').value = window.location.origin + '/prospector-thank-you.html';
+
+const fileInput = document.getElementById('assetPhoto');
+const fileWarning = document.getElementById('fileWarning');
+const MAX_BYTES = 5 * 1024 * 1024;
+fileInput.addEventListener('change', () => {
+  const file = fileInput.files[0];
+  fileWarning.style.display = (file && file.size > MAX_BYTES) ? 'block' : 'none';
+});
+
+document.getElementById('intake-form').addEventListener('submit', () => {
+  document.getElementById('submit-btn').disabled = true;
+  document.getElementById('submit-btn').textContent = 'Sending...';
+});
+</script>
+</body>
+</html>
