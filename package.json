@@ -4,7 +4,8 @@
   "private": true,
   "description": "Mechanical, zero-interpretation checker for the Future-Proof Audit V2 spec (9 machine-legibility criteria).",
   "dependencies": {
-    "cheerio": "^1.0.0"
+    "cheerio": "^1.0.0",
+    "@anthropic-ai/sdk": "^0.117.1"
   },
   "engines": {
     "node": ">=18"
