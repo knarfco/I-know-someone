@@ -4,50 +4,85 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="robots" content="noindex, nofollow" />
-<title>Future-Proof Audit V2</title>
+<title>Future-Proof Audit | CORXIT&trade;</title>
+<link rel="icon" type="image/png" href="assets/img/corxit-icon-512.png">
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap');
   :root {
-    --pass: #1a7f37;
-    --fail: #c92c2c;
-    --nv: #8a6d00;
-    --skip: #666;
-    --border: #ddd;
-    --bg: #fafafa;
+    --obsidian: #0D0E10;
+    --obsidian-raised: #17181B;
+    --obsidian-line: #2A2C30;
+    --white: #FFFFFF;
+    --white-soft: rgba(255,255,255,.78);
+    --white-faint: rgba(255,255,255,.5);
+    --orange: #FF7A1A;
+    --orange-hot: #FF4D00;
+    --font-display: 'Inter Tight', 'Inter', system-ui, sans-serif;
+    --font-body: 'Inter', system-ui, sans-serif;
+    --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+
+    --pass: #2FB86A;
+    --fail: #FF5252;
+    --nv: #E0A83C;
+    --skip: var(--white-faint);
+    --border: var(--obsidian-line);
+    --bg: var(--obsidian-raised);
   }
   * { box-sizing: border-box; }
   body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-family: var(--font-body);
     max-width: 900px;
     margin: 0 auto;
-    padding: 32px 20px 80px;
-    color: #1a1a1a;
-    background: #fff;
+    padding: 0 20px 80px;
+    color: var(--white-soft);
+    background: var(--obsidian);
   }
-  h1 { font-size: 1.6rem; margin-bottom: 4px; }
-  p.subtitle { color: #555; margin-top: 0; }
+  .brand-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 22px 0 18px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid var(--obsidian-line);
+  }
+  .brand-bar img { height: 26px; width: auto; display: block; }
+  .brand-bar span {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: .06em;
+    color: var(--white-faint);
+    text-transform: uppercase;
+  }
+  h1 { font-family: var(--font-display); font-weight: 800; color: var(--white); font-size: 1.7rem; margin-bottom: 6px; letter-spacing: -.01em; }
+  p.subtitle { color: var(--white-soft); margin-top: 0; font-size: 15px; line-height: 1.55; max-width: 640px; }
   form {
     display: flex;
     gap: 8px;
     margin: 24px 0;
     flex-wrap: wrap;
   }
-  input[type="url"] {
+  input[type="url"], input[type="text"] {
     flex: 1;
     min-width: 240px;
     padding: 10px 12px;
     font-size: 1rem;
-    border: 1px solid #bbb;
+    border: 1px solid var(--obsidian-line);
     border-radius: 6px;
+    background: var(--obsidian-raised);
+    color: var(--white);
   }
+  input::placeholder { color: var(--white-faint); }
   button {
     padding: 10px 18px;
     font-size: 1rem;
+    font-weight: 700;
     border: none;
     border-radius: 6px;
-    background: #1a1a1a;
-    color: #fff;
+    background: var(--orange);
+    color: var(--obsidian);
     cursor: pointer;
   }
+  button:hover { background: var(--orange-hot); }
   button:disabled { opacity: 0.5; cursor: default; }
   .button-row {
     display: flex;
@@ -56,10 +91,11 @@
     flex-wrap: wrap;
   }
   #bulk-btn {
-    background: #fff;
-    color: #1a1a1a;
-    border: 1px solid #1a1a1a;
+    background: transparent;
+    color: var(--white);
+    border: 1px solid var(--obsidian-line);
   }
+  #bulk-btn:hover { background: var(--obsidian-raised); }
   .bulk-progress {
     background: var(--bg);
     border: 1px solid var(--border);
@@ -70,22 +106,23 @@
   }
   .bulk-progress-bar {
     height: 8px;
-    background: #eee;
+    background: var(--obsidian);
     border-radius: 4px;
     overflow: hidden;
     margin-top: 8px;
   }
   .bulk-progress-fill {
     height: 100%;
-    background: #1a1a1a;
+    background: var(--orange);
     transition: width 0.2s ease;
   }
   table.bulk-summary { margin-top: 16px; }
   table.bulk-summary td.url-cell {
-    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-family: var(--font-mono);
     font-size: 0.82rem;
     word-break: break-all;
     max-width: 320px;
+    color: var(--white-soft);
   }
   .counts-cell { white-space: nowrap; font-size: 0.85rem; }
   .counts-cell .c-pass { color: var(--pass); font-weight: 700; }
@@ -95,7 +132,7 @@
   details.page-detail summary {
     cursor: pointer;
     font-size: 0.8rem;
-    color: #555;
+    color: var(--orange);
   }
   details.page-detail table { margin-top: 8px; }
   .intake {
@@ -105,8 +142,10 @@
     padding: 14px 18px;
     margin-bottom: 20px;
     font-size: 0.9rem;
+    color: var(--white-soft);
   }
   .intake div { margin: 2px 0; }
+  .intake strong { color: var(--white); }
   table {
     width: 100%;
     border-collapse: collapse;
@@ -118,21 +157,22 @@
     border-bottom: 1px solid var(--border);
     vertical-align: top;
   }
-  th { background: #f2f2f2; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.03em; }
-  td.evidence { font-size: 0.85rem; color: #444; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+  th { background: var(--obsidian-raised); color: var(--white-faint); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.03em; font-weight: 600; }
+  td.evidence { font-size: 0.85rem; color: var(--white-faint); font-family: var(--font-mono); }
   .verdict { font-weight: 700; white-space: nowrap; }
   .verdict.PASS { color: var(--pass); }
   .verdict.FAIL { color: var(--fail); }
   .verdict.NOT-VERIFIABLE { color: var(--nv); }
   .verdict.SKIPPED { color: var(--skip); }
-  #status { margin-top: 10px; font-size: 0.9rem; color: #555; }
+  #status { margin-top: 10px; font-size: 0.9rem; color: var(--white-faint); }
   #error { color: var(--fail); margin-top: 10px; }
-  footer { margin-top: 40px; font-size: 0.8rem; color: #888; }
+  footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--obsidian-line); font-size: 0.8rem; color: var(--white-faint); }
+  footer a { color: var(--orange); text-decoration: none; }
   .note {
     font-size: 0.85rem;
-    color: #555;
-    background: #fff8e6;
-    border: 1px solid #f0dca0;
+    color: var(--white-soft);
+    background: rgba(224,168,60,.08);
+    border: 1px solid rgba(224,168,60,.35);
     padding: 10px 14px;
     border-radius: 6px;
     margin-top: 16px;
@@ -140,8 +180,15 @@
 </style>
 </head>
 <body>
-  <h1>Future-Proof Audit V2</h1>
-  <p class="subtitle">A mechanical, zero-interpretation check of a page's raw HTML against 9 machine-legibility criteria. No AI judgment — every verdict is a direct, deterministic read of the HTML source.</p>
+  <div class="brand-bar">
+    <a href="https://corxit.com" target="_blank" rel="noopener">
+      <img src="assets/img/corxit-logo.svg" alt="CORXIT" />
+    </a>
+    <span>Future-Proof Audit</span>
+  </div>
+
+  <h1>We evaluate the machine-legible half of "everything a customer sees."</h1>
+  <p class="subtitle">A mechanical, zero-interpretation check of a page's raw HTML against 9 machine-legibility criteria. No AI judgment, no guessing &mdash; every verdict is a direct, deterministic read of the HTML source, the same evidence-cited standard CORXIT applies to every correction we make.</p>
 
   <form id="audit-form">
     <input type="text" inputmode="url" autocapitalize="off" autocorrect="off" id="url-input" placeholder="www.example.com or https://example.com/page" required />
@@ -158,6 +205,8 @@
 
   <footer>
     One run evaluates exactly one URL. Findings on one page must never be assumed to apply to any other page on the same site &mdash; use "Check Entire Site" to run every page found in that site's sitemap, or run pages individually.
+    <br><br>
+    Built by <a href="https://corxit.com" target="_blank" rel="noopener">CORXIT&trade;</a> &mdash; we evaluate and correct everything a customer sees.
   </footer>
 
 <script>
