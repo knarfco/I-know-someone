@@ -17,16 +17,20 @@
     --white-faint: rgba(255,255,255,.5);
     --orange: #FF7A1A;
     --orange-hot: #FF4D00;
+    --pass: #2FB86A;
+    --fail: #FF5252;
+    --nv: #E0A83C;
+    --cream: #F7F5F1;
+    --ink: #0D0E10;
+    --ink-light: rgba(13,14,16,.6);
     --font-display: 'Inter Tight', 'Inter', system-ui, sans-serif;
     --font-body: 'Inter', system-ui, sans-serif;
     --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
-    --border: var(--obsidian-line);
-    --bg: var(--obsidian-raised);
   }
   * { box-sizing: border-box; }
   body {
     font-family: var(--font-body);
-    max-width: 640px;
+    max-width: 680px;
     margin: 0 auto;
     padding: 0 20px 80px;
     color: var(--white-soft);
@@ -104,14 +108,42 @@
     border-radius: 6px;
     margin-top: 20px;
   }
-  #fileWarning {
-    font-size: 12.5px;
-    color: var(--orange);
-    margin-top: 6px;
-    display: none;
-  }
+  #fileWarning { font-size: 12.5px; color: var(--orange); margin-top: 6px; display: none; }
+  #status { margin-top: 16px; font-size: 0.9rem; color: var(--white-faint); }
+  #error { color: var(--fail); margin-top: 10px; font-size: 0.9rem; }
   footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--obsidian-line); font-size: 0.8rem; color: var(--white-faint); }
   footer a { color: var(--orange); text-decoration: none; }
+
+  /* --- Report render (light "report" theme, matches CORXIT sample reports) --- */
+  #report { display: none; margin-top: 32px; background: var(--cream); border-radius: 8px; overflow: hidden; }
+  #report .report-inner { padding: 28px 22px; }
+  #report h2 {
+    font-family: var(--font-display); font-weight: 800; font-size: 20px;
+    text-transform: uppercase; color: var(--ink); margin-bottom: 12px;
+  }
+  #report .report-section { margin-bottom: 26px; padding-bottom: 22px; border-bottom: 1px solid rgba(13,14,16,.1); }
+  #report .report-section:last-child { border-bottom: none; margin-bottom: 0; }
+  #report .report-label {
+    font-family: var(--font-mono); font-size: 9px; letter-spacing: .2em; text-transform: uppercase;
+    color: #CC5200; display: block; margin-bottom: 8px;
+  }
+  #report .data-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  #report .data-cell { padding: 12px 14px; background: #ECE8E0; border: 1px solid rgba(13,14,16,.15); border-radius: 3px; }
+  #report .data-label { font-size: 8px; letter-spacing: .15em; text-transform: uppercase; color: var(--ink-light); display: block; margin-bottom: 4px; }
+  #report .data-value { font-size: 13px; font-weight: 600; color: var(--ink); }
+  #report .check-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 4px; }
+  #report .check-item { display: flex; gap: 8px; padding: 10px 12px; font-size: 12px; border-radius: 2px; line-height: 1.5; }
+  #report .check-item.FAIL { background: rgba(180,0,0,.07); border: 1px solid rgba(180,0,0,.2); color: rgba(13,14,16,.75); }
+  #report .check-item.PASS { background: rgba(47,184,106,.08); border: 1px solid rgba(47,184,106,.3); color: rgba(13,14,16,.75); }
+  #report .check-item.NV { background: rgba(224,168,60,.1); border: 1px solid rgba(224,168,60,.35); color: rgba(13,14,16,.75); }
+  #report .finding-card { background: #ECE8E0; border: 2px solid var(--ink); border-left: 5px solid var(--ink); padding: 14px 16px; margin-bottom: 10px; }
+  #report .finding-label { font-weight: 800; font-size: 13px; text-transform: uppercase; color: var(--ink); margin-bottom: 4px; }
+  #report .finding-detail { font-size: 13px; color: rgba(13,14,16,.65); line-height: 1.6; }
+  #report .email-box { background: var(--ink); color: var(--cream); padding: 22px; border-radius: 4px; font-size: 12px; line-height: 1.8; margin-top: 8px; }
+  #report .subject-option { background: rgba(13,14,16,.04); border: 1px solid rgba(13,14,16,.12); padding: 9px 12px; border-radius: 3px; font-size: 11px; color: var(--ink); margin-bottom: 6px; }
+  #report .email-body { color: rgba(247,245,241,.85); margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(247,245,241,.12); white-space: pre-wrap; font-size: 12.5px; }
+  #report .opener-note { background: var(--ink); color: var(--cream); padding: 16px 18px; border-radius: 4px; font-size: 12.5px; line-height: 1.6; }
+  #report .opener-note .lbl { font-family: var(--font-mono); font-size: 9px; letter-spacing: .15em; text-transform: uppercase; color: var(--orange); display: block; margin-bottom: 6px; }
 </style>
 </head>
 <body>
@@ -123,30 +155,24 @@
   </div>
 
   <h1>Spotted something? Send it in.</h1>
-  <p class="subtitle">One clear photo, plus what you saw and where. That's it &mdash; we take it from here and get a report back to you.</p>
+  <p class="subtitle">One clear photo, plus what you saw and where. We identify the business, check their site, and hand back a draft report.</p>
 
-  <form id="intake-form" action="https://formsubmit.co/info@corxit.com" method="POST" enctype="multipart/form-data">
-    <input type="hidden" name="_subject" value="New Prospector Submission">
-    <input type="hidden" name="_template" value="table">
-    <input type="hidden" name="_captcha" value="false">
-    <input type="hidden" name="_next" id="nextField" value="">
-    <input type="text" name="_honey" style="display:none">
-
+  <form id="intake-form">
     <p class="section-label">Who You Are</p>
     <div class="field">
       <label for="prospectorName">Your Name</label>
-      <input type="text" id="prospectorName" name="prospector_name" required>
+      <input type="text" id="prospectorName" required>
     </div>
     <div class="field">
       <label for="prospectorContact">Your Email or Phone</label>
-      <span class="hint">So we know where to send the report back.</span>
-      <input type="text" id="prospectorContact" name="prospector_contact" required>
+      <span class="hint">So we know where this came from.</span>
+      <input type="text" id="prospectorContact" required>
     </div>
 
     <p class="section-label">What You Found</p>
     <div class="field">
       <label for="assetType">Asset Type</label>
-      <select id="assetType" name="asset_type" required>
+      <select id="assetType" required>
         <option value="">Choose one</option>
         <option>Vehicle Wrap / Lettering</option>
         <option>Storefront / Signage</option>
@@ -161,28 +187,32 @@
     <div class="field">
       <label for="assetPhoto">Photo</label>
       <span class="hint">One clear photo. Business name readable if possible.</span>
-      <input type="file" id="assetPhoto" name="asset_photo" accept="image/*" capture="environment" required>
-      <span id="fileWarning">That photo is pretty large &mdash; it may fail to send. If it does, try a smaller photo or text it to 954-367-9274 instead.</span>
+      <input type="file" id="assetPhoto" accept="image/*" capture="environment" required>
+      <span id="fileWarning">That photo is pretty large &mdash; it'll be resized automatically before sending.</span>
     </div>
     <div class="field">
       <label for="businessName">Business Name (if you could read it)</label>
-      <input type="text" id="businessName" name="business_name_guess" placeholder="Optional">
+      <input type="text" id="businessName" placeholder="Optional">
     </div>
     <div class="field">
       <label for="locationNote">Location, Date &amp; Time</label>
       <span class="hint">Be specific &mdash; this is what makes the outreach feel real. e.g. "SR-84 eastbound near Davie, Tuesday 2:15pm"</span>
-      <textarea id="locationNote" name="location_note" required placeholder="Where you were, and when you saw it"></textarea>
+      <textarea id="locationNote" required placeholder="Where you were, and when you saw it"></textarea>
     </div>
     <div class="field">
       <label for="otherDetails">Anything Else Visible</label>
       <span class="hint">Phone number, website, slogan, anything else on the asset. Optional.</span>
-      <textarea id="otherDetails" name="other_details" placeholder="Optional"></textarea>
+      <textarea id="otherDetails" placeholder="Optional"></textarea>
     </div>
 
-    <button type="submit" id="submit-btn">Send It In &rarr;</button>
+    <button type="submit" id="submit-btn">Run The Report &rarr;</button>
   </form>
 
-  <p class="note">A real person reviews every submission &mdash; nothing here is automated yet. You'll hear back with a report once we've had a look.</p>
+  <div id="status"></div>
+  <div id="error"></div>
+  <div id="report"><div class="report-inner" id="report-inner"></div></div>
+
+  <p class="note">Nothing here is sent to a prospect automatically. Review the draft, then send it yourself.</p>
 
   <footer>
     Trouble submitting? Text or email your photo directly &mdash; <a href="sms:19543679274">954-367-9274</a> or <a href="mailto:info@corxit.com">info@corxit.com</a>.
@@ -191,19 +221,151 @@
   </footer>
 
 <script>
-document.getElementById('nextField').value = window.location.origin + '/prospector-thank-you.html';
-
+const form = document.getElementById('intake-form');
 const fileInput = document.getElementById('assetPhoto');
 const fileWarning = document.getElementById('fileWarning');
-const MAX_BYTES = 5 * 1024 * 1024;
+const submitBtn = document.getElementById('submit-btn');
+const statusEl = document.getElementById('status');
+const errorEl = document.getElementById('error');
+const reportEl = document.getElementById('report');
+const reportInner = document.getElementById('report-inner');
+
+const LARGE_FILE_BYTES = 3 * 1024 * 1024;
 fileInput.addEventListener('change', () => {
   const file = fileInput.files[0];
-  fileWarning.style.display = (file && file.size > MAX_BYTES) ? 'block' : 'none';
+  fileWarning.style.display = (file && file.size > LARGE_FILE_BYTES) ? 'block' : 'none';
 });
 
-document.getElementById('intake-form').addEventListener('submit', () => {
-  document.getElementById('submit-btn').disabled = true;
-  document.getElementById('submit-btn').textContent = 'Sending...';
+function compressImage(file, maxDim, quality) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onerror = () => reject(new Error('Could not read that file.'));
+    reader.onload = (e) => {
+      const img = new Image();
+      img.onerror = () => reject(new Error('Could not read that image.'));
+      img.onload = () => {
+        let { width, height } = img;
+        if (width > maxDim || height > maxDim) {
+          if (width > height) { height = Math.round(height * maxDim / width); width = maxDim; }
+          else { width = Math.round(width * maxDim / height); height = maxDim; }
+        }
+        const canvas = document.createElement('canvas');
+        canvas.width = width;
+        canvas.height = height;
+        canvas.getContext('2d').drawImage(img, 0, 0, width, height);
+        resolve(canvas.toDataURL('image/jpeg', quality));
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+function esc(s) {
+  return String(s == null ? '' : s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+
+function verdictClass(v) {
+  if (v === 'PASS') return 'PASS';
+  if (v === 'FAIL') return 'FAIL';
+  return 'NV';
+}
+
+function renderReport(report) {
+  const b = report.business || {};
+  const check = report.skinnyCheck || [];
+  const findings = report.findings || [];
+  const subjects = report.emailSubjectOptions || [];
+
+  reportInner.innerHTML = `
+    <div class="report-section">
+      <span class="report-label">Step 1 &mdash; Business Intelligence</span>
+      <h2>What We Found</h2>
+      <div class="data-grid">
+        <div class="data-cell"><span class="data-label">Business</span><span class="data-value">${esc(b.name)}</span></div>
+        <div class="data-cell"><span class="data-label">Website</span><span class="data-value">${esc(b.website || 'Not found')}</span></div>
+        <div class="data-cell"><span class="data-label">Phone</span><span class="data-value">${esc(b.phone || '&mdash;')}</span></div>
+        <div class="data-cell"><span class="data-label">Vertical</span><span class="data-value">${esc(b.vertical)}</span></div>
+      </div>
+      ${b.notes ? `<p style="font-size:13px;color:var(--ink-light);margin-top:10px;line-height:1.6">${esc(b.notes)}</p>` : ''}
+    </div>
+
+    <div class="report-section">
+      <span class="report-label">Step 2 &mdash; The Quick Check</span>
+      <h2>${check.length} Criteria Reviewed</h2>
+      <div class="check-grid">
+        ${check.map((c) => `<div class="check-item ${verdictClass(c.verdict)}"><span>${c.verdict === 'PASS' ? '&#10003;' : c.verdict === 'FAIL' ? '&#10007;' : '?'}</span><span><strong>${esc(c.criterion)}</strong><br>${esc(c.evidence)}</span></div>`).join('')}
+      </div>
+    </div>
+
+    <div class="report-section">
+      <span class="report-label">Step 3 &mdash; Named Findings</span>
+      <h2>What's Actually Broken</h2>
+      ${findings.map((f) => `<div class="finding-card"><div class="finding-label">${esc(f.label)}</div><div class="finding-detail">${esc(f.detail)}</div></div>`).join('')}
+    </div>
+
+    <div class="report-section">
+      <span class="report-label">Step 4 &mdash; The Outreach Email</span>
+      <h2>Draft, Ready To Review</h2>
+      <p style="font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-light);margin-bottom:8px">Subject Line Options</p>
+      ${subjects.map((s) => `<div class="subject-option">${esc(s)}</div>`).join('')}
+      <div class="email-box">
+        <div class="email-body">${esc(report.emailBody)}</div>
+      </div>
+    </div>
+
+    ${report.openerRationale ? `<div class="opener-note"><span class="lbl">For The Human Reviewing This</span>${esc(report.openerRationale)}</div>` : ''}
+  `;
+  reportEl.style.display = 'block';
+  reportEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  errorEl.textContent = '';
+  reportEl.style.display = 'none';
+
+  const file = fileInput.files[0];
+  if (!file) return;
+
+  submitBtn.disabled = true;
+  statusEl.textContent = 'Compressing photo...';
+
+  try {
+    const photoBase64 = await compressImage(file, 1600, 0.82);
+
+    statusEl.textContent = 'Identifying the business, searching for their website, and running the check — this can take up to a minute.';
+
+    const res = await fetch('/api/prospector', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        photoBase64,
+        mimeType: 'image/jpeg',
+        prospectorName: document.getElementById('prospectorName').value,
+        prospectorContact: document.getElementById('prospectorContact').value,
+        assetType: document.getElementById('assetType').value,
+        businessNameGuess: document.getElementById('businessName').value,
+        locationNote: document.getElementById('locationNote').value,
+        otherDetails: document.getElementById('otherDetails').value,
+      }),
+    });
+
+    const data = await res.json();
+    statusEl.textContent = '';
+
+    if (!res.ok) {
+      errorEl.textContent = data.error || 'Something went wrong. Try again, or text the photo to 954-367-9274 instead.';
+      return;
+    }
+
+    renderReport(data.report);
+  } catch (err) {
+    statusEl.textContent = '';
+    errorEl.textContent = 'Something went wrong: ' + err.message + '. Try again, or text the photo to 954-367-9274 instead.';
+  } finally {
+    submitBtn.disabled = false;
+  }
 });
 </script>
 </body>
