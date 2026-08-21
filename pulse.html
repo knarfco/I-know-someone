@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Future-Proof Pulse | CORXIT&trade;</title>
+<link rel="icon" type="image/png" href="assets/img/corxit-icon-512.png">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap');
+  :root {
+    --obsidian: #0D0E10;
+    --obsidian-raised: #17181B;
+    --obsidian-line: #2A2C30;
+    --white: #FFFFFF;
+    --white-soft: rgba(255,255,255,.78);
+    --white-faint: rgba(255,255,255,.5);
+    --orange: #FF7A1A;
+    --orange-hot: #FF4D00;
+    --cream: #F7F5F1;
+    --ink: #0D0E10;
+    --ink-light: rgba(13,14,16,.6);
+    --font-display: 'Inter Tight', 'Inter', system-ui, sans-serif;
+    --font-body: 'Inter', system-ui, sans-serif;
+    --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: var(--font-body);
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 20px 80px;
+    color: var(--white-soft);
+    background: var(--obsidian);
+  }
+  .brand-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 22px 0 18px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid var(--obsidian-line);
+  }
+  .brand-bar img { height: 26px; width: auto; display: block; }
+  .brand-bar span {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: .06em;
+    color: var(--white-faint);
+    text-transform: uppercase;
+  }
+  h1 { font-family: var(--font-display); font-weight: 800; color: var(--white); font-size: 1.7rem; margin-bottom: 6px; letter-spacing: -.01em; }
+  p.subtitle { color: var(--white-soft); margin-top: 0; font-size: 15px; line-height: 1.55; }
+  button {
+    padding: 12px 22px;
+    font-size: 1rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 6px;
+    background: var(--orange);
+    color: var(--obsidian);
+    cursor: pointer;
+    margin-top: 8px;
+  }
+  button:hover { background: var(--orange-hot); }
+  button:disabled { opacity: 0.5; cursor: default; }
+  .copy-btn {
+    padding: 6px 12px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    background: var(--obsidian-raised);
+    color: var(--white-soft);
+    border: 1px solid var(--obsidian-line);
+    border-radius: 5px;
+    margin-top: 0;
+  }
+  .copy-btn:hover { background: var(--obsidian-line); color: var(--white); }
+  #status { margin-top: 16px; font-size: 0.9rem; color: var(--white-faint); }
+  #error { color: #FF5252; margin-top: 10px; font-size: 0.9rem; }
+  footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--obsidian-line); font-size: 0.8rem; color: var(--white-faint); }
+  footer a { color: var(--orange); text-decoration: none; }
+
+  #report { display: none; margin-top: 32px; background: var(--cream); border-radius: 8px; overflow: hidden; }
+  #report .report-inner { padding: 28px 22px; }
+  #report h2 {
+    font-family: var(--font-display); font-weight: 800; font-size: 20px;
+    text-transform: uppercase; color: var(--ink); margin-bottom: 4px;
+  }
+  #report .report-section { margin-bottom: 26px; padding-bottom: 22px; border-bottom: 1px solid rgba(13,14,16,.1); }
+  #report .report-section:last-child { border-bottom: none; margin-bottom: 0; }
+  #report .report-label {
+    font-family: var(--font-mono); font-size: 9px; letter-spacing: .2em; text-transform: uppercase;
+    color: #CC5200; display: block; margin-bottom: 8px;
+  }
+  #report .status-pill {
+    display: inline-block; font-family: var(--font-mono); font-size: 10px; letter-spacing: .1em;
+    text-transform: uppercase; padding: 4px 10px; border-radius: 20px; margin-top: 10px;
+  }
+  #report .status-pill.news { background: rgba(47,184,106,.12); color: #1c7a45; border: 1px solid rgba(47,184,106,.35); }
+  #report .status-pill.quiet { background: rgba(224,168,60,.14); color: #8a5f0f; border: 1px solid rgba(224,168,60,.4); }
+  #report .item-card { background: #ECE8E0; border-left: 4px solid var(--ink); padding: 14px 16px; margin-bottom: 10px; }
+  #report .item-title { font-weight: 800; font-size: 13px; text-transform: uppercase; color: var(--ink); margin-bottom: 4px; }
+  #report .item-detail { font-size: 13px; color: rgba(13,14,16,.7); line-height: 1.6; margin-bottom: 4px; }
+  #report .item-why { font-size: 12px; color: rgba(13,14,16,.55); line-height: 1.6; font-style: italic; }
+  #report .item-source { font-size: 11px; color: rgba(13,14,16,.5); margin-top: 6px; }
+  #report .item-source a { color: #CC5200; }
+  #report .subject-option { background: rgba(13,14,16,.04); border: 1px solid rgba(13,14,16,.12); padding: 9px 12px; border-radius: 3px; font-size: 11px; color: var(--ink); margin-bottom: 6px; }
+  #report .body-box { background: var(--ink); color: var(--cream); padding: 22px; border-radius: 4px; margin-top: 8px; }
+  #report .body-text { color: rgba(247,245,241,.85); white-space: pre-wrap; font-size: 12.5px; line-height: 1.8; margin-bottom: 14px; }
+  #report .sources-note { font-size: 11.5px; color: var(--ink-light); line-height: 1.7; }
+  #report .row-between { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+</style>
+</head>
+<body>
+  <div class="brand-bar">
+    <a href="https://corxit.com" target="_blank" rel="noopener">
+      <img src="assets/img/corxit-logo.svg" alt="CORXIT" />
+    </a>
+    <span>Future-Proof Pulse</span>
+  </div>
+
+  <h1>This month's Pulse</h1>
+  <p class="subtitle">One click checks what's actually changed in AI &amp; voice search this cycle, and drafts the re-engagement digest for past Invert clients. If nothing meaningful happened, it says so &mdash; it never manufactures news.</p>
+
+  <button id="generate-btn">Generate This Month's Pulse &rarr;</button>
+
+  <div id="status"></div>
+  <div id="error"></div>
+  <div id="report"><div class="report-inner" id="report-inner"></div></div>
+
+  <p class="note" style="font-size:0.85rem;background:rgba(255,122,26,.08);border:1px solid rgba(255,122,26,.3);padding:10px 14px;border-radius:6px;margin-top:20px;">Nothing here is sent automatically. Review it, then copy the subject line and body into Zoho yourself.</p>
+
+  <footer>
+    Questions about a run? <a href="mailto:info@corxit.com">info@corxit.com</a> or <a href="sms:19543679274">954-367-9274</a>.
+    <br><br>
+    Built by <a href="https://corxit.com" target="_blank" rel="noopener">CORXIT&trade;</a>
+  </footer>
+
+<script>
+const generateBtn = document.getElementById('generate-btn');
+const statusEl = document.getElementById('status');
+const errorEl = document.getElementById('error');
+const reportEl = document.getElementById('report');
+const reportInner = document.getElementById('report-inner');
+
+function esc(s) {
+  return String(s == null ? '' : s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+
+function copyText(text, btn) {
+  navigator.clipboard.writeText(text).then(() => {
+    const original = btn.textContent;
+    btn.textContent = 'Copied!';
+    setTimeout(() => { btn.textContent = original; }, 1500);
+  });
+}
+
+let currentPulse = null;
+
+function renderPulse(pulse) {
+  currentPulse = pulse;
+  const items = pulse.items || [];
+  const subjects = pulse.subjectLineOptions || [];
+  const sources = pulse.sourcesChecked || [];
+  const statusClass = pulse.hasMeaningfulNews ? 'news' : 'quiet';
+  const statusLabel = pulse.hasMeaningfulNews ? 'Meaningful change detected' : 'Quiet month';
+
+  reportInner.innerHTML = `
+    <div class="report-section">
+      <span class="report-label">${esc(pulse.cycleLabel || '')}</span>
+      <h2>${esc(pulse.headline || '')}</h2>
+      <span class="status-pill ${statusClass}">${statusLabel}</span>
+      ${!pulse.hasMeaningfulNews && pulse.quietMonthNote ? `<p style="font-size:13px;color:var(--ink-light);margin-top:12px;line-height:1.6">${esc(pulse.quietMonthNote)}</p>` : ''}
+    </div>
+
+    ${items.length ? `
+    <div class="report-section">
+      <span class="report-label">What Changed</span>
+      ${items.map((it) => `
+        <div class="item-card">
+          <div class="item-title">${esc(it.title)}</div>
+          <div class="item-detail">${esc(it.whatChanged)}</div>
+          <div class="item-why">${esc(it.whyItMatters)}</div>
+          ${it.source ? `<div class="item-source">Source: ${it.sourceUrl ? `<a href="${esc(it.sourceUrl)}" target="_blank" rel="noopener">${esc(it.source)}</a>` : esc(it.source)}</div>` : ''}
+        </div>
+      `).join('')}
+    </div>` : ''}
+
+    <div class="report-section">
+      <div class="row-between">
+        <span class="report-label" style="margin-bottom:0">Ready For Zoho</span>
+        <button class="copy-btn" id="copy-body-btn" type="button">Copy Body</button>
+      </div>
+      <h2 style="margin-top:10px">Draft Newsletter</h2>
+      <p style="font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-light);margin-bottom:8px">Subject Line Options</p>
+      ${subjects.map((s) => `<div class="subject-option">${esc(s)}</div>`).join('')}
+      <div class="body-box">
+        <div class="body-text">${esc(pulse.bodyText || '')}</div>
+      </div>
+    </div>
+
+    ${sources.length ? `
+    <div class="report-section">
+      <span class="report-label">For The Human Reviewing This</span>
+      <p class="sources-note">Sources checked this cycle: ${sources.map(esc).join('; ')}</p>
+    </div>` : ''}
+  `;
+  reportEl.style.display = 'block';
+  reportEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+  document.getElementById('copy-body-btn').addEventListener('click', (e) => {
+    copyText(currentPulse.bodyText || '', e.currentTarget);
+  });
+}
+
+generateBtn.addEventListener('click', async () => {
+  errorEl.textContent = '';
+  reportEl.style.display = 'none';
+  generateBtn.disabled = true;
+  statusEl.textContent = 'Checking recent AI & voice assistant news — this can take up to a minute.';
+
+  try {
+    const res = await fetch('/api/pulse', { method: 'GET' });
+    const data = await res.json();
+    statusEl.textContent = '';
+
+    if (!res.ok) {
+      errorEl.textContent = data.error || 'Something went wrong. Try again in a moment.';
+      return;
+    }
+
+    renderPulse(data.pulse);
+  } catch (err) {
+    statusEl.textContent = '';
+    errorEl.textContent = 'Something went wrong: ' + err.message;
+  } finally {
+    generateBtn.disabled = false;
+  }
+});
+</script>
+</body>
+</html>
