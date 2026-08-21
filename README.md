@@ -59,3 +59,17 @@ This starts a local copy at `http://localhost:3000`.
 This tool lives at the root of this repository on purpose, so it deploys
 on [Vercel](https://vercel.com) with zero configuration — just import this
 repository and deploy, no settings need to be changed.
+
+## Other tools in this repo
+
+- **`prospector-intake.html` / `api/prospector.js`** — cold-outreach report
+  generator for the CORXIT Prospector Program.
+- **`pulse.html` / `api/pulse.js`** — Future-Proof Pulse: a free, monthly
+  re-engagement digest sent to past Invert clients. One click searches for
+  real, recent (last ~5-6 weeks) news about how AI assistants (ChatGPT,
+  Perplexity, Gemini) and voice assistants (Siri, Alexa, Google Assistant,
+  in-car assistants) find and recommend local businesses, filters out
+  rumor/noise, and drafts a plain-language newsletter (subject lines + body)
+  ready to paste into Zoho. If nothing meaningful happened that cycle, it
+  says so instead of manufacturing content. Nothing is sent automatically —
+  a human reviews and distributes it.
