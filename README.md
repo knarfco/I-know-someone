@@ -63,14 +63,18 @@ repository and deploy, no settings need to be changed.
 ## MediaIn360 Super Intelligence Readiness Check ($1.99)
 
 The paid, MediaIn360-branded version of this audit. The page lives on
-mediain360.com (`readiness-check.html`); the engine is these two endpoints:
+mediain360.com (`readiness-check.html`); the engine is these three endpoints:
 
-- `api/readiness-checkout.js` — validates the form and starts a $1.99
+- `api/readiness-checkout.js` — validates the form and starts a $6.97
   Stripe Checkout session (website, business name and city are stored in
   the session's metadata).
 - `api/readiness-report.js` — runs only for a *paid* Checkout session:
   the 9 website checks from `api/audit.js`, plus a YouTube video-presence
   check, and emails the report once.
+- `api/readiness-config.js` — a small public endpoint the static page
+  reads on load to find out whether Turnstile is configured (and its
+  site key, which is meant to be public). Lets the site pick up Turnstile
+  the moment it's turned on, with no redeploy of mediain360.com itself.
 
 Nothing turns on until these are set in Vercel → Project → Settings →
 Environment Variables (then redeploy):
@@ -82,6 +86,11 @@ Environment Variables (then redeploy):
 | `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`, `REPORT_FROM_EMAIL` | Turns on emailing the report. For Zoho Mail: `smtp.zoho.com`, port `465`, the mailbox address and an app password. |
 | `REPORT_BCC_EMAIL` | Optional: a copy of every report (e.g. `info@mediain360.com`) — every buyer becomes a lead. |
 | `READINESS_SITE_URL` | Optional; defaults to `https://mediain360.com`. |
+| `TURNSTILE_SITE_KEY`, `TURNSTILE_SECRET_KEY` | Turns on Cloudflare Turnstile (a free, non-Google bot check) on checkout. Get both from a free Cloudflare account → Turnstile → add a site for `mediain360.com`. Until both are set, checkout runs with no bot check at all rather than silently blocking every submission. |
 
 In Stripe, turn on Radar (fraud screening) — small charges attract
-card-testing bots.
+card-testing bots. The three lead forms (`demo.html`, `self-shoot.html`,
+`signup.html`) each also carry a honeypot field (`#hp_field`) as a
+no-account-needed first layer: a bot that fills every field on the page
+fills that one too, and the form quietly pretends to succeed without
+actually sending anything.

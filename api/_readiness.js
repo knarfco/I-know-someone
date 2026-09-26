@@ -1,5 +1,5 @@
 // Shared helpers for the MediaIn360 Super Intelligence Readiness Check —
-// the paid ($1.99) version of the Future-Proof Audit. The underscore prefix
+// the paid ($6.97) version of the Future-Proof Audit. The underscore prefix
 // keeps Vercel from exposing this file as its own endpoint.
 //
 // Everything here switches on by environment variables, so the code can sit
@@ -10,10 +10,17 @@
 //   SMTP_HOST / SMTP_PORT / SMTP_USER / SMTP_PASS / REPORT_FROM_EMAIL
 //                           enable emailing the report (Zoho: smtp.zoho.com, 465)
 //   REPORT_BCC_EMAIL        optional copy of every report (e.g. info@mediain360.com)
+//   TURNSTILE_SITE_KEY / TURNSTILE_SECRET_KEY
+//                           enable Cloudflare Turnstile on checkout (get both
+//                           from a free Cloudflare account -- see README).
+//                           Until both are set, checkout runs with no bot
+//                           check at all rather than silently blocking every
+//                           submission.
 
-const PRICE_CENTS = 199;
+const PRICE_CENTS = 697;
 const PRODUCT_NAME = 'Super Intelligence Readiness Check';
 const STRIPE_API = 'https://api.stripe.com/v1';
+const TURNSTILE_VERIFY_URL = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
 
 function siteUrl() {
   return (process.env.READINESS_SITE_URL || 'https://mediain360.com').replace(/\/+$/, '');
@@ -100,6 +107,29 @@ function validEmail(raw) {
   return typeof raw === 'string' && raw.length <= 254 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(raw.trim());
 }
 
+function turnstileConfigured() {
+  return Boolean(process.env.TURNSTILE_SITE_KEY && process.env.TURNSTILE_SECRET_KEY);
+}
+
+// Verifies a Turnstile token with Cloudflare. A verified token, once used,
+// can't be replayed -- pair this with checking `payload.success` and nothing
+// else. Returns true if Turnstile isn't configured yet, so checkout keeps
+// working (with no bot check) until both keys are set.
+async function verifyTurnstile(token, remoteIp) {
+  if (!turnstileConfigured()) return true;
+  if (!token || typeof token !== 'string') return false;
+  try {
+    const body = new URLSearchParams({ secret: process.env.TURNSTILE_SECRET_KEY, response: token });
+    if (remoteIp) body.append('remoteip', remoteIp);
+    const res = await fetch(TURNSTILE_VERIFY_URL, { method: 'POST', body });
+    if (!res.ok) return false;
+    const data = await res.json();
+    return Boolean(data.success);
+  } catch {
+    return false;
+  }
+}
+
 // Video presence: does anything on YouTube mention this business by name for
 // its city? Mechanical like the rest of the audit — PASS only when a result's
 // title, channel, or description actually contains the business name.
@@ -177,6 +207,8 @@ module.exports = {
   normalizeWebsite,
   cleanText,
   validEmail,
+  turnstileConfigured,
+  verifyTurnstile,
   checkYouTubePresence,
   emailConfigured,
   sendReportEmail,

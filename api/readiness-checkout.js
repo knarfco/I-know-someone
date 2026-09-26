@@ -1,4 +1,4 @@
-// Starts a $1.99 Super Intelligence Readiness Check: validates the form and
+// Starts a $6.97 Super Intelligence Readiness Check: validates the form and
 // hands back a Stripe Checkout URL. The website, business name, and city ride
 // along in the session's metadata, so the report endpoint can recover them
 // from Stripe itself instead of trusting anything the browser sends later.
@@ -13,6 +13,8 @@ const {
   normalizeWebsite,
   cleanText,
   validEmail,
+  turnstileConfigured,
+  verifyTurnstile,
 } = require('./_readiness');
 
 function readBody(req) {
@@ -63,6 +65,15 @@ module.exports = async (req, res) => {
   if (!validEmail(email)) {
     res.status(400).json({ error: 'Please enter a valid email address.' });
     return;
+  }
+
+  if (turnstileConfigured()) {
+    const remoteIp = (req.headers['x-forwarded-for'] || '').split(',')[0].trim() || undefined;
+    const ok = await verifyTurnstile(body.turnstileToken, remoteIp);
+    if (!ok) {
+      res.status(400).json({ error: 'Please retry the verification check and submit again.' });
+      return;
+    }
   }
 
   try {
