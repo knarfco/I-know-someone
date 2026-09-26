@@ -59,3 +59,29 @@ This starts a local copy at `http://localhost:3000`.
 This tool lives at the root of this repository on purpose, so it deploys
 on [Vercel](https://vercel.com) with zero configuration — just import this
 repository and deploy, no settings need to be changed.
+
+## MediaIn360 Super Intelligence Readiness Check ($1.99)
+
+The paid, MediaIn360-branded version of this audit. The page lives on
+mediain360.com (`readiness-check.html`); the engine is these two endpoints:
+
+- `api/readiness-checkout.js` — validates the form and starts a $1.99
+  Stripe Checkout session (website, business name and city are stored in
+  the session's metadata).
+- `api/readiness-report.js` — runs only for a *paid* Checkout session:
+  the 9 website checks from `api/audit.js`, plus a YouTube video-presence
+  check, and emails the report once.
+
+Nothing turns on until these are set in Vercel → Project → Settings →
+Environment Variables (then redeploy):
+
+| Variable | What it does |
+|---|---|
+| `STRIPE_SECRET_KEY` | **Required.** Turns on checkout. Until it's set, the page falls back to "email us to run your check." |
+| `YOUTUBE_API_KEY` | Turns on the YouTube check (Google Cloud → YouTube Data API v3). Without it, that check reads "Can't verify." |
+| `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`, `REPORT_FROM_EMAIL` | Turns on emailing the report. For Zoho Mail: `smtp.zoho.com`, port `465`, the mailbox address and an app password. |
+| `REPORT_BCC_EMAIL` | Optional: a copy of every report (e.g. `info@mediain360.com`) — every buyer becomes a lead. |
+| `READINESS_SITE_URL` | Optional; defaults to `https://mediain360.com`. |
+
+In Stripe, turn on Radar (fraud screening) — small charges attract
+card-testing bots.
