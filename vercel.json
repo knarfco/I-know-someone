@@ -1,0 +1,6 @@
+{
+  "functions": {
+    "api/accessibility.js": { "maxDuration": 60, "memory": 1024 },
+    "api/prospector.js": { "maxDuration": 60, "memory": 1024 }
+  }
+}

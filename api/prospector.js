@@ -9,10 +9,17 @@
 // margin to support the Prospector commission.
 
 const Anthropic = require('@anthropic-ai/sdk');
+const { runAccessibilityCheck } = require('./_accessibility');
 
 const client = new Anthropic();
 
 const MODEL = 'claude-opus-5';
+
+// Real postal address is required on every commercial email under CAN-SPAM,
+// regardless of who hits send -- set this in Vercel env vars to the actual
+// business mailing address. Never fabricate one; an absent/placeholder
+// address is safer than a wrong one.
+const MAILING_ADDRESS = process.env.CORXIT_MAILING_ADDRESS || '[SET CORXIT_MAILING_ADDRESS IN ENV -- REQUIRED BEFORE SENDING]';
 
 const SYSTEM_PROMPT = `You are the CORXIT Prospector Report engine.
 
@@ -64,10 +71,27 @@ Your job, given one submitted photo and the prospector's notes:
    is about to put their name on this email; a wrong claim burns their
    credibility with a real business owner.
 
-4. PICK THE THREE STRONGEST FINDINGS. Choose the three FAILs (or, if the
-   site doesn't exist, the three strongest absence-based points) that are
-   most concrete, most obviously costing them customers, and easiest for a
-   business owner to instantly understand without any jargon.
+3b. IF a real website was found and fetched, also call the check_accessibility
+   tool on that same URL once. This runs a real, automated WCAG 2.2 AA scan
+   (axe-core against the actually-rendered page) and returns genuine,
+   verifiable findings — exact elements, exact rules, not a guess. Treat its
+   output with the same zero-interpretation standard as everything else:
+   only reference a specific violation it actually returned, quoting its
+   description plainly. Never say "not ADA compliant," "violates the ADA,"
+   or claim any certification — automated scans catch real, concrete issues,
+   not the full picture, and there is no such thing as an official ADA
+   compliance certificate. State the finding itself (e.g. "some images on
+   your site have no text description for screen readers, and some links
+   can't be reached by keyboard") plainly, the way an ordinary business
+   owner would understand it, without legal framing. If the tool errors or
+   the site can't be checked, skip it — never fabricate a finding.
+
+4. PICK THE THREE STRONGEST FINDINGS. Choose from the FAILs, absence-based
+   points (if no site exists), and any real accessibility findings —
+   whichever three are most concrete, most obviously costing them customers,
+   and easiest for a business owner to instantly understand without any
+   jargon. An accessibility finding is strong evidence but doesn't have to
+   be included if the rubric findings are stronger for this business.
 
 5. DRAFT THE OUTREACH EMAIL. Voice: warm, specific, zero hype. Open with the
    exact real-world detail the prospector gave you (what they saw, where,
@@ -82,6 +106,12 @@ Your job, given one submitted photo and the prospector's notes:
    message) — never a placeholder for that. Use the literal token
    [PROSPECTOR_TRACKING_LINK] exactly once, in place of the link itself —
    that link is generated outside this system, per prospector.
+
+   REQUIRED CLOSING FOOTER, after the sign-off, exactly as follows (this is
+   a legal requirement under the CAN-SPAM Act on every commercial email,
+   not a stylistic choice — do not shorten, paraphrase, or omit it):
+   "${MAILING_ADDRESS}
+   Don't want emails like this? Reply STOP and you won't get another one from me."
 
 OUTPUT FORMAT: after your reasoning and tool use, end your reply with
 exactly one fenced code block, \`\`\`json ... \`\`\`, containing a single JSON
@@ -108,14 +138,43 @@ object with this exact shape and nothing else outside the fence:
   "openerRationale": string  // 1-3 sentences: why this specific submission is a strong (or weak) opener, for the human reviewing before it's sent
 }`;
 
+// The only client-executed (non-Anthropic-hosted) tool in this flow --
+// web_search/web_fetch below run server-side on Anthropic's infrastructure
+// (stop_reason 'pause_turn' when they're used), but the accessibility scan
+// needs a real headless browser, so it runs in our own function and its
+// result is handed back as a tool_result (stop_reason 'tool_use').
+const CUSTOM_TOOLS = [
+  {
+    name: 'check_accessibility',
+    description: 'Runs a real, automated WCAG 2.2 AA accessibility scan (axe-core, against the actually-rendered page) on one public URL. Use once, only after you have identified and fetched the business\'s real homepage. Returns genuine violations with exact elements and rule references -- never fabricate a finding if this errors or returns nothing.',
+    input_schema: {
+      type: 'object',
+      properties: { url: { type: 'string', description: 'The business\'s real homepage URL, exactly as fetched.' } },
+      required: ['url'],
+    },
+  },
+];
+
+async function executeCustomTool(name, input) {
+  if (name === 'check_accessibility') {
+    try {
+      return await runAccessibilityCheck(input.url);
+    } catch (e) {
+      return { error: e.message };
+    }
+  }
+  return { error: `Unknown tool: ${name}` };
+}
+
 async function runToCompletion(messages) {
   const tools = [
     { type: 'web_search_20260209', name: 'web_search', max_uses: 6 },
     { type: 'web_fetch_20260209', name: 'web_fetch', max_uses: 6 },
+    ...CUSTOM_TOOLS,
   ];
 
   let current = messages;
-  for (let i = 0; i < 6; i++) {
+  for (let i = 0; i < 8; i++) {
     const stream = client.messages.stream({
       model: MODEL,
       max_tokens: 16000,
@@ -128,6 +187,21 @@ async function runToCompletion(messages) {
 
     if (message.stop_reason === 'pause_turn') {
       current = [...current, { role: 'assistant', content: message.content }];
+      continue;
+    }
+
+    if (message.stop_reason === 'tool_use') {
+      const toolUseBlocks = message.content.filter((b) => b.type === 'tool_use');
+      const toolResults = await Promise.all(toolUseBlocks.map(async (block) => ({
+        type: 'tool_result',
+        tool_use_id: block.id,
+        content: JSON.stringify(await executeCustomTool(block.name, block.input)),
+      })));
+      current = [
+        ...current,
+        { role: 'assistant', content: message.content },
+        { role: 'user', content: toolResults },
+      ];
       continue;
     }
 

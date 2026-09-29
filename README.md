@@ -94,3 +94,36 @@ card-testing bots. The three lead forms (`demo.html`, `self-shoot.html`,
 no-account-needed first layer: a bot that fills every field on the page
 fills that one too, and the form quietly pretends to succeed without
 actually sending anything.
+
+## Accessibility check (internal only)
+
+`api/_accessibility.js` runs a real WCAG 2.2 AA scan (axe-core, against the
+actually-rendered page via a real headless browser) on one public URL.
+Deliberately has no linked public page — not meant for prospects or the
+public to self-serve, only for in-house use and for `api/prospector.js`'s
+own `check_accessibility` tool. Never issues a pass/fail "compliance"
+verdict; reports concrete, verifiable findings and states plainly that
+manual review is still required.
+
+- `api/accessibility.js` — plain internal HTTP endpoint:
+  `GET /api/accessibility?url=...`
+- `api/prospector.js` — once it has found and fetched a business's real
+  homepage, it can call the same check as a tool and fold a real finding
+  into the outreach email, alongside the existing V8-F2 rubric findings.
+
+Blocks requests to private/internal IP ranges (localhost, 10.x, 192.168.x,
+link-local/cloud-metadata addresses, etc.) — re-validated on every
+sub-request the target page itself makes, not just the URL typed in.
+
+## CAN-SPAM footer on prospector outreach emails
+
+Every email `api/prospector.js` drafts closes with a required footer: a
+real business mailing address and an opt-out instruction pointing back to
+the prospector's own inbox (they send it, so they're the one who sees and
+honors a reply). This is a legal requirement on any commercial email
+regardless of who hits send or how personalized it is — not something to
+shorten or remove.
+
+| Variable | What it does |
+|---|---|
+| `CORXIT_MAILING_ADDRESS` | **Required before sending anything.** The real physical business mailing address, used verbatim in every drafted email's footer. Until it's set, drafts contain an obvious placeholder instead of a real address — don't send those. |
