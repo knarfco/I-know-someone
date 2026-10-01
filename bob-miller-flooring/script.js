@@ -109,7 +109,7 @@
   }
 
   /* material explorer tabs */
-  var tabs = $$('[role=tab]');
+  var tabs = $$('.explorer [role=tab]');
   var activate = function (t) {
     tabs.forEach(function (x) {
       var on = x === t; x.setAttribute('aria-selected', on); x.tabIndex = on ? 0 : -1;

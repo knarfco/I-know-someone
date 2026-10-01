@@ -1,17 +1,24 @@
 BOB MILLER FLOORING — MOCK-UP WEBSITE
 =====================================
 
-Upload everything in this folder (keep the "images" folder next to the
-HTML files) to the root of your temporary domain. No build step and no
+Unzip and upload everything to the root (public_html / web root) of your
+temporary domain, keeping the "images" folder next to the HTML files. No build step and no
 server code is needed; it is plain HTML, CSS and JavaScript.
 
 PAGES
-  index.html          Home
+  index.html          Home (new light "workshop" design: Bob's words, video slot,
+                      before/during/after project, floor-layers explainer,
+                      project wall, sample board, reviews)
   our-work.html       Portfolio: before/after sliders, filterable gallery, lightbox
   bobs-story.html     Bob's story, decade timeline, values, crew
   services.html       Floor Finder comparison tool, 6 services, FAQ
   service-areas.html  South Florida + Pittsburgh, ZIP checker, town lists
   free-quote.html     Contact / quote form with CAPTCHA
+
+PLACEHOLDER SLOTS
+  On the home page, small dashed red labels ("Bob's real photo", "Video slot",
+  "Sample until interview", etc.) mark where Bob's real photos, video, quotes
+  and Google rating go. Delete each label once the real item is in.
 
 PLACEHOLDERS (made up for the mock-up)
   South Florida phone  (954) 555-0163
