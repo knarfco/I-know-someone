@@ -5,18 +5,27 @@ Unzip and upload everything to the root (public_html / web root) of your
 temporary domain, keeping the "images" folder next to the HTML files. No build step and no
 server code is needed; it is plain HTML, CSS and JavaScript.
 
-PAGES
-  index.html          Home (new light "workshop" design: Bob's words, video slot,
-                      before/during/after project, floor-layers explainer,
-                      project wall, sample board, reviews)
-  our-work.html       Portfolio: before/after sliders, filterable gallery, lightbox
-  bobs-story.html     Bob's story, decade timeline, values, crew
-  services.html       Floor Finder comparison tool, 6 services, FAQ
-  service-areas.html  South Florida + Pittsburgh, ZIP checker, town lists
-  free-quote.html     Contact / quote form with CAPTCHA
+PAGES (all share one design: styles.css + script.js)
+  index.html          Home: sample board of all 12 floors, Bob's words + video slot,
+                      before/during/after project, "what's under your floor" layers,
+                      project wall, reviews, both regions
+  our-work.html       Before/during/after spotlight, drag sliders, filterable gallery
+                      with lightbox, project stories (terrazzo, carpet, marble)
+  bobs-story.html     Bob's story, decade-by-decade timeline, the Bob Miller standard, crew
+  services.html       Material library (12 floors), Floor Finder comparison tool,
+                      6 services, FAQ
+  service-areas.html  ZIP checker, South Florida + Pittsburgh town lists
+  free-quote.html     Estimate form with material picker + CAPTCHA
+
+FLOORS COVERED
+  Solid hardwood, engineered wood, laminate (Pergo-style), luxury vinyl,
+  linoleum & sheet vinyl, carpet, porcelain & ceramic tile, marble,
+  travertine & limestone, slate & natural stone, terrazzo, cork & bamboo.
+  The texture swatches (images/tex-*.jpg) are computer-generated stand-ins;
+  swap in photos of real samples anytime (keep the same file names).
 
 PLACEHOLDER SLOTS
-  On the home page, small dashed red labels ("Bob's real photo", "Video slot",
+  Small dashed red labels ("Bob's real photo", "Video slot",
   "Sample until interview", etc.) mark where Bob's real photos, video, quotes
   and Google rating go. Delete each label once the real item is in.
 
