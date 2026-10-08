@@ -41,13 +41,19 @@ for p in sorted(CONTENT.glob("p[0-9][0-9]*.py")):  # rewrites that replace weak 
     for k, v in load(p.stem).P.items():
         CONTENT_BY_TASK[k] = {**CONTENT_BY_TASK[k], **v}
         PATCHED.add(k)
+        PATCHED.add(k)
+for p in sorted(CONTENT.glob("a[0-9][0-9]*.py")):  # single-answer rewrites keyed by (task, index)
+    for (k, i), ans in load(p.stem).A.items():
+        qs = list(CONTENT_BY_TASK[k]["q"])
+        qs[i] = (qs[i][0], ans)
+        CONTENT_BY_TASK[k] = {**CONTENT_BY_TASK[k], "q": qs}
 
 by_id = {r["id"]: r for r in rows}
 tasks = [r for r in rows if not r["merge_into"]]
 for r in rows:  # fold merged duplicates into their primary page as aliases
     if r["merge_into"]:
         p = by_id[r["merge_into"]]
-        extra = [r["task"]] + [a for a in r["aliases"].split("; ") if a]
+        extra = [r["task"][0].lower() + r["task"][1:]] + [a for a in r["aliases"].split("; ") if a]
         p["aliases"] = "; ".join(filter(None, [p["aliases"]] + extra))
 for t in tasks:
     t["alias_list"] = list(dict.fromkeys(a for a in t["aliases"].split("; ") if a))
@@ -338,7 +344,7 @@ def build_services():
 <section class="wrap">
   <p class="eyebrow">Service directory</p>
   <h1>All {len(tasks)} specialty cleaning services</h1>
-  <p class="lede">Every task a construction project can need cleaned, from rough clean to turnover and recurring overhead care. Search by any name your spec or crew uses. We index {sum(1 + len(t['alias_list']) for t in tasks)} of them.</p>
+  <p class="lede">Every cleaning task a construction project can call for, from rough clean to turnover and recurring overhead care. Search by any name your spec or crew uses. We index {sum(1 + len(t['alias_list']) for t in tasks)} of them.</p>
   <h2 class="h3">Browse by family</h2>
   <div class="fgrid">{fam_cards('')}</div>
   <div class="filter" data-list="svc">

@@ -8,10 +8,15 @@ for p in sorted(Path("content").glob("f[0-9][0-9]*.py")):
 for p in sorted(Path("content").glob("p[0-9][0-9]*.py")):
     s = importlib.util.spec_from_file_location(p.stem, p); m = importlib.util.module_from_spec(s); s.loader.exec_module(m)
     for k, v in m.P.items(): C[k] = (C[k][0], {**C[k][1], **v})
+    for k, v in m.P.items(): C[k] = (C[k][0], {**C[k][1], **v})
+for p in sorted(Path("content").glob("a[0-9][0-9]*.py")):
+    s = importlib.util.spec_from_file_location(p.stem, p); m = importlib.util.module_from_spec(s); s.loader.exec_module(m)
+    for (k, i), ans in m.A.items():
+        qs = list(C[k][1]["q"]); qs[i] = (qs[i][0], ans); C[k] = (C[k][0], {**C[k][1], "q": qs})
 wc = lambda t: len(t.split())
 thin = []
 for k, (f, c) in C.items():
-    short_ans = sum(1 for q, a in c["q"] if wc(a) < 12 or wc(q) < 5)
+    short_ans = sum(1 for q, a in c["q"] if wc(a) < 9 or wc(q) < 4)
     problems = []
     if short_ans: problems.append(f"{short_ans} short answers")
     if wc(c["a"]) < 20: problems.append("short lede")

@@ -85,7 +85,7 @@ section { margin-block: 2.25rem; }
 main > section:first-of-type, .task { margin-top: 1.25rem; }
 
 /* Home hero: always dark, on the glow mark */
-.hero { margin: 0; color: #ffffff; background: linear-gradient(90deg, rgba(2,8,18,.9) 0%, rgba(2,8,18,.62) 48%, rgba(2,8,18,.1) 100%), #020812 url("hero-glow.jpg") 70% center / cover no-repeat; }
+main > section.hero { margin: 0; color: #ffffff; background: linear-gradient(90deg, rgba(2,8,18,.9) 0%, rgba(2,8,18,.62) 48%, rgba(2,8,18,.1) 100%), #020812 url("hero-glow.jpg") 70% center / cover no-repeat; }
 .hero-in { padding-block: clamp(3rem, 9vw, 6.5rem); display: grid; gap: 1.25rem; }
 .hero h1 { color: #ffffff; max-width: 17ch; font-size: clamp(2.3rem, 6vw, 4.4rem); }
 .hero .lede { color: #d9e4ef; }
