@@ -1,0 +1,469 @@
+{
+ "unique_tasks": 454,
+ "families": 20,
+ "groups": 36,
+ "market_names_incl_aliases": 982,
+ "by_family": {
+  "Site, Debris & Waste Management": 37,
+  "Rough Clean": 11,
+  "Fine Dust, Drywall Dust & Controlled-Dust Cleaning": 18,
+  "Overhead & Elevated Surfaces (Above Eye Level)": 41,
+  "Walls, Ceilings & Interior Finishes": 17,
+  "Doors, Hardware, Millwork & Casework": 29,
+  "Glass, Windows & Glazing": 20,
+  "Hard Floors": 47,
+  "Carpet & Soft Surfaces": 11,
+  "Restrooms & Plumbing Fixtures": 13,
+  "Kitchens, Food Facilities & FRP": 35,
+  "Mechanical, Electrical & Construction IAQ": 18,
+  "Retail Fixtures & Store Opening": 14,
+  "Specialty & Controlled Environments": 31,
+  "Exterior, Hardscape & Building Envelope": 29,
+  "Residue, Stain & Protective-Material Removal": 27,
+  "Vertical Transportation & Circulation": 8,
+  "Turnover, Punch & Closeout Support": 26,
+  "Multifamily & Residential-Scale Turnover": 12,
+  "Restoration & Regulated Work (Conditional)": 10
+ },
+ "by_tier": {
+  "Core": 329,
+  "Adjacent specialist": 90,
+  "Conditional / regulated": 35
+ },
+ "by_phase": {
+  "Rough": 26,
+  "Progress": 23,
+  "Final": 322,
+  "Any stage / specialty": 54,
+  "Touch-up / punch": 5,
+  "Recurring maintenance": 7,
+  "Occupancy / turnover": 17
+ },
+ "aelc_feed_tasks": 41,
+ "cross_task_name_collisions": {
+  "after-trade re-clean": [
+   "BK-030114",
+   "BK-180106"
+  ],
+  "scuff removal": [
+   "BK-050101",
+   "BK-080211"
+  ],
+  "sparkle clean": [
+   "BK-180101",
+   "BK-180104"
+  ]
+ },
+ "duplicate_slugs": [],
+ "raw_task_lines": 454,
+ "true_duplicates_merged": 16,
+ "unique_after_merge": 438,
+ "tasks_in_any_overlap_cluster": 118,
+ "cluster_counts": {
+  "merge": 16,
+  "variant": 15,
+  "bundle": 15
+ },
+ "clusters": [
+  {
+   "name": "Grout haze",
+   "type": "merge",
+   "tasks": [
+    "Grout haze removal",
+    "Grout and setting material haze removal"
+   ]
+  },
+  {
+   "name": "Stair treads",
+   "type": "merge",
+   "tasks": [
+    "Stair tread and nosing cleaning",
+    "Stair nosing and tread detailing"
+   ]
+  },
+  {
+   "name": "Walk-off mats",
+   "type": "merge",
+   "tasks": [
+    "Entrance mat and grate cleaning",
+    "Entrance carpet and walk-off mat cleaning"
+   ]
+  },
+  {
+   "name": "Baseboards",
+   "type": "merge",
+   "tasks": [
+    "Baseboard and wall base cleaning",
+    "Fine dust removal from baseboards"
+   ]
+  },
+  {
+   "name": "Late-trade re-clean",
+   "type": "merge",
+   "tasks": [
+    "Dust re-clean after late-trade work",
+    "Re-clean after punch work"
+   ]
+  },
+  {
+   "name": "Parking garage floors",
+   "type": "merge",
+   "tasks": [
+    "Parking garage floor scrubbing",
+    "Parking garage washing"
+   ]
+  },
+  {
+   "name": "Rack dusting",
+   "type": "merge",
+   "tasks": [
+    "Pallet rack cleaning",
+    "Top of shelving and racking dusting"
+   ]
+  },
+  {
+   "name": "Quarry tile",
+   "type": "merge",
+   "tasks": [
+    "Quarry tile cleaning",
+    "Quarry tile kitchen floor degreasing"
+   ]
+  },
+  {
+   "name": "Caulk smears",
+   "type": "merge",
+   "tasks": [
+    "Caulk smear and silicone haze removal",
+    "Caulk and sealant smear removal"
+   ]
+  },
+  {
+   "name": "Final clean",
+   "type": "merge",
+   "tasks": [
+    "Final clean of entire building",
+    "Pre-substantial completion clean"
+   ]
+  },
+  {
+   "name": "Silica housekeeping",
+   "type": "merge",
+   "tasks": [
+    "Silica-aware housekeeping cleanup",
+    "Silica-aware wet sweeping"
+   ]
+  },
+  {
+   "name": "Refrigerated cases",
+   "type": "merge",
+   "tasks": [
+    "Refrigerated case detailing",
+    "Reach-in refrigeration cleaning"
+   ]
+  },
+  {
+   "name": "Wall smudges",
+   "type": "merge",
+   "tasks": [
+    "Spot cleaning of painted walls",
+    "Fingerprint and smudge removal"
+   ]
+  },
+  {
+   "name": "Interior glass walls",
+   "type": "merge",
+   "tasks": [
+    "Glass partition and interior glazing cleaning",
+    "Glass wall and back-painted glass cleaning"
+   ]
+  },
+  {
+   "name": "Glass film",
+   "type": "merge",
+   "tasks": [
+    "Glass protective film removal",
+    "Window and glass protection removal"
+   ]
+  },
+  {
+   "name": "Hardscape rust",
+   "type": "merge",
+   "tasks": [
+    "Rust stain removal from concrete",
+    "Rust and irrigation stain removal from hardscape"
+   ]
+  },
+  {
+   "name": "Concrete/mortar splatter",
+   "type": "variant",
+   "tasks": [
+    "Concrete and mortar splatter removal",
+    "Concrete and mortar splatter removal from glass",
+    "Thinset and mortar splatter removal"
+   ]
+  },
+  {
+   "name": "Adhesive residue",
+   "type": "variant",
+   "tasks": [
+    "Adhesive residue removal",
+    "Adhesive residue removal from resilient floors",
+    "Adhesive under floor protection cleanup",
+    "FRP adhesive squeeze-out removal",
+    "Tape residue removal"
+   ]
+  },
+  {
+   "name": "Paint residue",
+   "type": "variant",
+   "tasks": [
+    "Paint overspray removal",
+    "Paint drip and splatter removal",
+    "Paint and coating drip removal from concrete",
+    "Slab scraping of overspray and drips",
+    "Drywall mud and paint removal from carpet"
+   ]
+  },
+  {
+   "name": "Efflorescence",
+   "type": "variant",
+   "tasks": [
+    "Concrete efflorescence removal",
+    "Masonry efflorescence removal"
+   ]
+  },
+  {
+   "name": "Protective film",
+   "type": "variant",
+   "tasks": [
+    "Protective film removal from appliances and fixtures",
+    "Stainless steel protective film removal",
+    "Glass protective film removal",
+    "Carpet protection film removal"
+   ]
+  },
+  {
+   "name": "Mineral deposits",
+   "type": "variant",
+   "tasks": [
+    "Hard water stain removal from glass",
+    "Water spot and mineral deposit removal"
+   ]
+  },
+  {
+   "name": "Labels and stickers",
+   "type": "variant",
+   "tasks": [
+    "Label, sticker and UPC removal",
+    "Window label and sticker removal",
+    "Restroom fixture sticker and label removal",
+    "Removal of sticker and label backing debris"
+   ]
+  },
+  {
+   "name": "Ceiling fans",
+   "type": "variant",
+   "tasks": [
+    "Ceiling fan cleaning",
+    "HVLS ceiling fan cleaning"
+   ]
+  },
+  {
+   "name": "Rough clean scope",
+   "type": "variant",
+   "tasks": [
+    "Rough clean of entire building",
+    "Rough clean by floor or phase"
+   ]
+  },
+  {
+   "name": "Final clean scope",
+   "type": "variant",
+   "tasks": [
+    "Final clean of entire building",
+    "Final clean by phase or floor",
+    "Tenant improvement final clean"
+   ]
+  },
+  {
+   "name": "Natural stone",
+   "type": "variant",
+   "tasks": [
+    "Natural stone countertop cleaning",
+    "Natural stone floor initial clean",
+    "Stone and tile wall cleaning"
+   ]
+  },
+  {
+   "name": "Equipment exteriors",
+   "type": "variant",
+   "tasks": [
+    "Equipment exterior wipe-down",
+    "Air handler exterior cleaning",
+    "Chiller and boiler exterior cleaning",
+    "Rooftop unit exterior and curb cleaning"
+   ]
+  },
+  {
+   "name": "Stainless surfaces",
+   "type": "variant",
+   "tasks": [
+    "Stainless steel equipment exterior cleaning",
+    "Stainless and metal wall panel cleaning"
+   ]
+  },
+  {
+   "name": "Rust stains",
+   "type": "variant",
+   "tasks": [
+    "Rust stain removal from concrete",
+    "Rust stain removal from finishes"
+   ]
+  },
+  {
+   "name": "Concrete dust",
+   "type": "variant",
+   "tasks": [
+    "Concrete dust removal after grinding or saw cutting",
+    "Silica-aware housekeeping cleanup",
+    "Fine drywall dust removal from all horizontal surfaces"
+   ]
+  },
+  {
+   "name": "Window sills",
+   "type": "bundle",
+   "tasks": [
+    "Window sill and opening rough wipe",
+    "Window sill and stool cleaning",
+    "Window track and frame cleaning"
+   ]
+  },
+  {
+   "name": "Punch & touch-up",
+   "type": "bundle",
+   "tasks": [
+    "Touch-up clean before owner walk",
+    "Punch-list cleaning",
+    "Dust re-clean after late-trade work",
+    "Trade-area cleanup between trades"
+   ]
+  },
+  {
+   "name": "Fireproofing",
+   "type": "bundle",
+   "tasks": [
+    "Fireproofing overspray removal",
+    "Spray-applied fireproofing area light dusting"
+   ]
+  },
+  {
+   "name": "Kitchen hoods",
+   "type": "bundle",
+   "tasks": [
+    "Kitchen hood exterior cleaning",
+    "Kitchen exhaust hood and duct cleaning"
+   ]
+  },
+  {
+   "name": "Ice machines",
+   "type": "bundle",
+   "tasks": [
+    "Ice machine exterior cleaning",
+    "Ice machine interior cleaning and sanitizing"
+   ]
+  },
+  {
+   "name": "Skylights",
+   "type": "bundle",
+   "tasks": [
+    "Skylight cleaning",
+    "Skylight well and light shaft cleaning"
+   ]
+  },
+  {
+   "name": "Dock area",
+   "type": "bundle",
+   "tasks": [
+    "Receiving and loading bay cleaning",
+    "Loading dock washing",
+    "Truck court and dock apron sweeping",
+    "Sectional and dock door cleaning"
+   ]
+  },
+  {
+   "name": "Flatwork washing",
+   "type": "bundle",
+   "tasks": [
+    "Sidewalk pressure washing",
+    "Paver and hardscape cleaning",
+    "Curb and gutter cleaning",
+    "Entryway and vestibule cleaning"
+   ]
+  },
+  {
+   "name": "Elevators",
+   "type": "bundle",
+   "tasks": [
+    "Elevator cab protection install and removal",
+    "Elevator cab interior detailing",
+    "Elevator door and sill track cleaning"
+   ]
+  },
+  {
+   "name": "Carpet",
+   "type": "bundle",
+   "tasks": [
+    "Construction carpet vacuuming",
+    "Carpet extraction",
+    "Carpet spot and stain treatment"
+   ]
+  },
+  {
+   "name": "Floor protection",
+   "type": "bundle",
+   "tasks": [
+    "Floor protection installation",
+    "Floor protection removal and disposal",
+    "Adhesive under floor protection cleanup"
+   ]
+  },
+  {
+   "name": "Overhead MEP",
+   "type": "bundle",
+   "tasks": [
+    "Duct exterior cleaning",
+    "Overhead piping exterior cleaning",
+    "Sprinkler pipe exterior dusting",
+    "Cable tray exterior dusting",
+    "Conduit run dusting"
+   ]
+  },
+  {
+   "name": "Ceiling plane",
+   "type": "bundle",
+   "tasks": [
+    "Acoustic ceiling tile spot cleaning",
+    "Ceiling grid cleaning",
+    "Ceiling diffuser and grille face cleaning"
+   ]
+  },
+  {
+   "name": "Kitchen sanitation",
+   "type": "bundle",
+   "tasks": [
+    "Food-contact surface pre-opening cleaning",
+    "Food-contact surface sanitizing per label"
+   ]
+  },
+  {
+   "name": "Construction IAQ",
+   "type": "bundle",
+   "tasks": [
+    "Return grille temporary filter media change",
+    "Final HVAC filter replacement coordination",
+    "Pre-flush-out final cleaning",
+    "Construction IAQ photo documentation"
+   ]
+  }
+ ]
+}
