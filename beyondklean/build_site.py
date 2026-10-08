@@ -34,8 +34,13 @@ gen_mod = load("general")
 FAM = fam_mod.F  # family name -> dict(slug, short, intro, faq)
 
 CONTENT_BY_TASK = {}
-for p in sorted(CONTENT.glob("f[0-9][0-9].py")):
+for p in sorted(CONTENT.glob("f[0-9][0-9]*.py")):
     CONTENT_BY_TASK.update(load(p.stem).C)
+PATCHED = set()
+for p in sorted(CONTENT.glob("p[0-9][0-9]*.py")):  # rewrites that replace weak fields
+    for k, v in load(p.stem).P.items():
+        CONTENT_BY_TASK[k] = {**CONTENT_BY_TASK[k], **v}
+        PATCHED.add(k)
 
 by_id = {r["id"]: r for r in rows}
 tasks = [r for r in rows if not r["merge_into"]]

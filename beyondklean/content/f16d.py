@@ -1,0 +1,55 @@
+def T(a, y, m, s, w, q):
+    return dict(a=a, y=y, m=m, s=s, w=w, q=q)
+
+C = {
+"Elevator cab protection install and removal": T(
+ "Elevator cab protection install and removal hangs protective pads on elevator cab walls and covers floors during construction, then removes them and cleans the cab at the end.",
+ "Construction traffic and materials damage elevator cab finishes quickly. Cab finishes are expensive to repair.",
+ "Crews install pads and floor protection with the elevator contractor's approval, then remove them carefully and detail the cab.",
+ ["Elevator count", "Pad type", "Floor protection", "Elevator contractor approval"],
+ ["Do not block door sensors.", "Pad hooks must not damage finishes."],
+ [("Why protect elevator cabs during construction?", "Construction traffic damages finishes."),
+  ("Who approves elevator protection?", "The elevator contractor or GC."),
+  ("When is elevator protection removed?", "Near the end of construction."),
+  ("Is the cab cleaned after removal?", "Yes.")]),
+"Door and frame protection removal": T(
+ "Door and frame protection removal takes off temporary protection from doors and frames and cleans residue.",
+ "Protection leaves tape residue.",
+ "Crews remove protection and clean residue.",
+ ["Doors", "Tape", "Residue", "Finishes"],
+ ["Tape pulls paint.", "Residue."],
+ [("Why protect doors?", "To prevent damage."),
+  ("Does door protection leave residue?", "Often."),
+  ("Who removes it?", "Cleaning crews."),
+  ("When?", "At final clean.")]),
+"Countertop and fixture protection removal": T(
+ "Countertop and fixture protection removal takes protective coverings off counters, sinks and fixtures and cleans residue.",
+ "Debris can collect under protection.",
+ "Crews remove protection and clean surfaces.",
+ ["Items", "Protection", "Residue", "Surfaces"],
+ ["Scratching.", "Residue."],
+ [("Why protect counters?", "To prevent damage."),
+  ("Is residue cleaned?", "Yes."),
+  ("Who removes protection?", "Cleaning crews."),
+  ("When?", "At final clean.")]),
+"Carpet protection film removal": T(
+ "Carpet protection film removal peels adhesive film off carpet and vacuums the carpet.",
+ "Film left too long leaves residue and damages pile.",
+ "Crews peel film slowly and vacuum.",
+ ["Area", "Film age", "Residue", "Vacuuming"],
+ ["Residue.", "Pile damage."],
+ [("How long can carpet film stay on?", "Short periods."),
+  ("Does film leave residue?", "It can."),
+  ("Who removes it?", "Crews."),
+  ("Is carpet vacuumed after?", "Yes.")]),
+"Temporary walk-off mat placement and removal": T(
+ "Temporary walk-off mat placement and removal places mats at entrances during construction to catch dirt and removes them at the end.",
+ "Mats reduce dirt tracked onto finishes.",
+ "Crews place, clean and replace mats.",
+ ["Entrances", "Mat type", "Cleaning", "Removal"],
+ ["Mats can be trip hazards.", "Full mats stop working."],
+ [("Why use temporary mats?", "To catch dirt."),
+  ("How often are mats changed?", "When full."),
+  ("Are mats trip hazards?", "If not flat."),
+  ("When are they removed?", "At the end.")]),
+}
