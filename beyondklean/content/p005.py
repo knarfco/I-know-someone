@@ -1,0 +1,55 @@
+def T(a, y, m, s, w, q):
+    return dict(a=a, y=y, m=m, s=s, w=w, q=q)
+
+P = {
+"Curb and gutter cleaning": T(
+ "Curb and gutter cleaning removes mud, concrete slurry, debris and stains from new curbs, street gutters and valley gutters along the property and adjacent public streets.",
+ "Gutters collect everything that washes off a jobsite. Local authorities often require public curbs and streets to be clean before final sign-off, and debris in gutters flows to storm drains.",
+ "Crews scrape and sweep debris, treat slurry stains, wash with recovery equipment and clean inlet grates along the run.",
+ ["Linear feet of curb and gutter", "Public right-of-way rules", "Traffic control", "Water recovery"],
+ ["Work in public streets may need traffic control or permits.", "Wash water must not be flushed into storm drains."],
+ [("Why clean curbs and gutters at the end of a project?", "They collect mud and slurry from the site, and many local authorities expect them clean before final sign-off."),
+  ("Can curb wash water go into the storm drain?", "No, it should be recovered because it carries sediment and concrete fines."),
+  ("Does curb cleaning need traffic control?", "In public streets, often yes."),
+  ("Who cleans the public curb in front of a site?", "The GC is usually responsible and assigns it to the cleaning crew or site contractor.")]),
+"Wastewater recovery during washing": T(
+ "Wastewater recovery during washing collects the water used in pressure washing, dock cleaning and exterior washing with berms, drain covers and vacuum reclaim units, so it can be disposed of legally instead of entering storm drains.",
+ "Storm drains usually discharge straight to lakes, rivers and the ocean. Construction wash water carries sediment, concrete fines, oils and detergents, and discharging it can violate storm water permits and local ordinances.",
+ "Crews cover or block drains, contain water with berms, vacuum it into reclaim units and dispose of it at approved locations, documenting the process when the project requires it.",
+ ["Washing scope and volume", "Drain locations", "Reclaim equipment", "Approved disposal location"],
+ ["Discharging wash water to storm drains can bring fines and stop-work orders.", "Recovered water may need filtering or testing before disposal."],
+ [("Why must pressure washing water be recovered?", "Storm drains often flow directly to waterways, and wash water carries pollutants that storm water rules prohibit."),
+  ("How is wash water recovered?", "Drains are covered, berms contain the water, and vacuum reclaim units collect it."),
+  ("Where does recovered wash water go?", "To an approved disposal point, such as a sanitary sewer connection where the local utility allows it."),
+  ("Is wastewater recovery required in Florida?", "Florida and local storm water rules prohibit illicit discharges, so recovery is the safe practice for construction washing.")]),
+"Graffiti removal": T(
+ "Graffiti removal takes spray paint, marker and etching off walls, signs, glass and hardscape using removers matched to both the graffiti and the surface, then applies protective coatings where specified.",
+ "Graffiti on a new building or construction fence damages its image and tends to attract more. Fresh graffiti is much easier to remove than old.",
+ "Crews identify the surface and paint, test removers on a hidden area, remove from the edges inward, rinse and recover wash water, and may apply anti-graffiti coatings.",
+ ["Surfaces affected", "Graffiti type: spray paint, marker, etching", "Remover testing", "Protective coating options"],
+ ["Removers can leave a ghost image on porous surfaces.", "Etched glass graffiti cannot be cleaned off; it needs film or replacement."],
+ [("How fast should graffiti be removed?", "As soon as possible; fresh graffiti comes off more easily and prompt removal discourages repeat tagging."),
+  ("Can graffiti be removed from brick?", "Usually, with masonry-safe removers, though porous brick may show a faint ghost."),
+  ("What is an anti-graffiti coating?", "A clear coating that makes future graffiti easier to remove."),
+  ("Can graffiti be removed from glass?", "Paint and marker can; scratched or acid-etched graffiti cannot be cleaned away.")]),
+"Roof debris removal": T(
+ "Roof debris removal clears screws, metal scraps, packaging, sealant tubes and other construction debris from roofs, gutters and roof drains, protecting the roof membrane and keeping drains open.",
+ "Every trade working on the roof leaves debris. Sharp debris punctures membranes and voids warranties, and debris in roof drains causes ponding and leaks in the first storm.",
+ "Crews work with fall protection on approved walkways, collect debris by hand and magnetic sweepers, clear drains and scuppers and report membrane damage to the roofer.",
+ ["Roof area and type", "Fall protection plan", "Drains and scuppers", "Membrane walkways"],
+ ["Roof work requires fall protection.", "Walking on unprotected membrane can damage it."],
+ [("Why remove construction debris from roofs?", "Sharp debris punctures the membrane and loose debris blocks drains."),
+  ("Is fall protection required for roof cleaning?", "Yes, roof work requires a fall protection plan."),
+  ("Who reports roof membrane damage?", "Crews report it to the GC and roofer; only the roofer repairs it."),
+  ("Are roof drains cleaned during roof debris removal?", "Yes, drains and scuppers are cleared.")]),
+"Gutter and downspout debris removal": T(
+ "Gutter and downspout debris removal clears construction debris, shingle grit, sealant tubes and leaves from gutters, downspouts and splash blocks.",
+ "Clogged gutters overflow and send water against the foundation and facade during the first heavy rain.",
+ "Crews clear gutters by hand from ladders or lifts, flush downspouts to confirm flow and report damaged sections.",
+ ["Gutter length", "Access", "Downspout flow testing", "Splash blocks"],
+ ["Ladder work requires safe setup and footing.", "Do not bend gutters by leaning ladders on them."],
+ [("Why clean gutters on a new building?", "Construction debris and grit collect in them and cause overflows in the first storm."),
+  ("Are downspouts tested?", "They are flushed to confirm water flows freely."),
+  ("Who cleans gutters at turnover?", "The cleaning crew or roofer."),
+  ("How is gutter cleaning done safely?", "With proper ladder setup or lifts and without leaning on gutters.")]),
+}

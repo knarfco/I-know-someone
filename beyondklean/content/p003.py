@@ -1,0 +1,55 @@
+def T(a, y, m, s, w, q):
+    return dict(a=a, y=y, m=m, s=s, w=w, q=q)
+
+P = {
+"Metal panel and canopy cleaning": T(
+ "Metal panel and canopy cleaning removes protective film, adhesive, construction dust, sealant smears and fingerprints from exterior metal wall panels, composite panels, entrance canopies and soffits.",
+ "Metal panels usually arrive with protective film that must come off soon after installation; left in the sun, it bakes on. Painted and anodized finishes scratch and stain easily.",
+ "Crews remove film from the top down, clean adhesive with finish-safe removers, wash with mild detergent and soft brushes, and rinse and dry to avoid spotting.",
+ ["Panel area and finish type", "Protective film age and sun exposure", "Sealant smears at joints", "Access height"],
+ ["Abrasive pads and harsh solvents damage painted and anodized finishes.", "Film left in sunlight for months may leave residue or ghosting."],
+ [("When should protective film come off metal panels?", "As soon as practical after installation, following the panel manufacturer's time limit, before sun and heat bake the adhesive on."),
+  ("How are exterior metal panels cleaned?", "With mild detergent, soft brushes or sponges and thorough rinsing, never abrasive pads."),
+  ("Can sealant smears be removed from metal panels?", "Usually, with removers compatible with the panel finish, tested first."),
+  ("Who cleans entrance canopies?", "The cleaning crew during exterior turnover cleaning, using lifts for higher canopies.")]),
+"Paver and hardscape cleaning": T(
+ "Paver and hardscape cleaning removes mud, concrete slurry, efflorescence, rust and construction stains from pavers, plazas, stone walkways and decorative concrete before turnover.",
+ "Hardscape plazas and entries are designed as showpieces, and construction traffic leaves them muddy and stained. Too much pressure blows joint sand out and damages surfaces.",
+ "Crews sweep, pre-treat stains with paver-safe cleaners, wash with moderate pressure using a surface cleaner and coordinate re-sanding or sealing with the hardscape installer.",
+ ["Hardscape area and materials", "Stain types", "Joint sand type", "Sealing plans"],
+ ["High pressure blows out joint sand.", "Acidic cleaners can etch concrete pavers and some stone."],
+ [("How are new pavers cleaned after construction?", "Swept, pre-treated with paver-safe cleaners and washed at moderate pressure, with joint sand replaced if needed."),
+  ("Does pressure washing remove paver joint sand?", "It can, which is why pressure is kept moderate and joints are re-sanded afterward."),
+  ("Should new pavers be sealed?", "Sealing is optional and depends on the specification; the installer usually decides timing."),
+  ("Can concrete slurry stains be removed from pavers?", "Often, with products made for cementitious residue, tested first.")]),
+"Paver joint sand cleanup": T(
+ "Paver joint sand cleanup sweeps excess joint sand and polymeric sand haze off pavers after installation, so sand does not track into the building and polymeric haze does not harden on the surface.",
+ "Loose sand on pavers is tracked onto new floors, where it scratches finishes. Polymeric sand left on the surface can harden into a hazy film.",
+ "Crews sweep and blow excess sand off with leaf blowers or brooms right after installation, working with the installer before polymeric sand is activated.",
+ ["Paver area", "Sand type: standard or polymeric", "Installer schedule", "Entrances nearby"],
+ ["Polymeric sand haze is hard to remove once activated.", "Sand tracked inside scratches floors."],
+ [("Why is paver sand tracked into buildings?", "Excess sand left on the surface sticks to shoes and wheels, and it scratches new floors."),
+  ("What is polymeric sand?", "Joint sand mixed with binders that harden when wet, used to lock pavers and resist weeds."),
+  ("Can polymeric sand haze be removed?", "It can sometimes be removed with specific haze removers, but prevention is much easier."),
+  ("Who is responsible for paver sand cleanup?", "Usually the paver installer, with final cleanup by the cleaning crew.")]),
+"Entryway and vestibule cleaning": T(
+ "Entryway and vestibule cleaning details building entrances: doors, glass, frames, vestibule walls, recessed mats, thresholds and the walkway outside.",
+ "The entrance is where every visitor's impression starts, and it is also where construction traffic is heaviest. Dirt there tracks into every finished space.",
+ "Crews clean from top to bottom: door frames and glass, hardware, walls, then lift and clean recessed mats and grates and wash the exterior approach.",
+ ["Number of entrances", "Glass and door systems", "Recessed mat systems", "Exterior approach"],
+ ["Recessed mat pits collect construction debris.", "Automatic door sensors must not be sprayed."],
+ [("Why focus on entrances during final cleaning?", "They form the first impression and are where dirt enters the building."),
+  ("What is a vestibule?", "The enclosed space between two sets of entrance doors."),
+  ("Are recessed entrance mats cleaned?", "Yes, mats and grates are lifted where possible and the pits vacuumed."),
+  ("Is the outside walkway included?", "Usually, the approach is swept and washed as part of entry cleaning.")]),
+"Exterior signage and monument sign cleaning": T(
+ "Exterior signage and monument sign cleaning removes construction dust, protective film, fingerprints and overspray from building letters, wall signs, monument signs and directional signage.",
+ "Signs are installed late and carry film and fingerprints. They identify the business, so dirty signs undermine a grand opening.",
+ "Crews remove film, clean faces and returns with finish-safe cleaners, avoid illuminated components and wash monument bases.",
+ ["Sign types and materials", "Illuminated components", "Height and access", "Protective film"],
+ ["Do not spray water into illuminated sign components.", "Acrylic faces scratch easily."],
+ [("How are illuminated signs cleaned?", "Exteriors are cleaned carefully with the sign off and no water directed into electrical components."),
+  ("Do monument signs need cleaning at turnover?", "Yes, especially the base, which collects mud and landscaping debris."),
+  ("Can acrylic sign faces be scratched?", "Yes, so only soft cloths and approved cleaners are used."),
+  ("Who removes sign protective film?", "The sign installer or cleaning crew at final clean.")]),
+}

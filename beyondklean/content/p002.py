@@ -1,0 +1,55 @@
+def T(a, y, m, s, w, q):
+    return dict(a=a, y=y, m=m, s=s, w=w, q=q)
+
+P = {
+"Building facade washing": T(
+ "Building facade washing cleans exterior walls of construction dust, overspray, sealant smears, rust streaks and grime, using a method chosen for each cladding: brick, stone, metal panel, glass, stucco or fiber cement.",
+ "Exterior trades leave the facade streaked with dust, mortar, paint and sealant. The facade is the building's most visible surface, and the wrong method can etch stone, strip coatings or force water behind cladding.",
+ "Crews identify each cladding, test cleaners on a small area, use soft washing or low pressure where needed, work from lifts or swing stages with fall protection, and recover runoff.",
+ ["Facade materials and areas", "Building height and access method", "Stains present: mortar, rust, sealant, paint", "Runoff control and landscaping protection"],
+ ["High pressure can damage mortar joints, sealants, EIFS and coatings.", "Facade work at height requires fall protection and trained crews."],
+ [("How is a new building facade cleaned?", "With methods matched to each material, usually low pressure or soft washing with tested cleaners, working top down and recovering runoff."),
+  ("Can pressure washing damage a building?", "Yes. High pressure can erode mortar, damage sealants, force water behind cladding and strip coatings."),
+  ("Who washes building facades at turnover?", "Facade cleaning specialists with lifts, swing stages or rope access, depending on height."),
+  ("Do facade cleaners hurt landscaping?", "Some can, so plants are pre-wetted or covered and runoff is controlled.")]),
+"Exterior soft washing": T(
+ "Exterior soft washing cleans building exteriors with low-pressure water and cleaning solutions that do the work chemically, instead of relying on high pressure that can damage finishes.",
+ "Stucco, EIFS, painted siding, roofs and sealant joints can be damaged by high pressure. Soft washing cleans them without forcing water behind the cladding.",
+ "Crews apply a solution suited to the soil and surface, allow dwell time, and rinse at low pressure, protecting plants and recovering runoff where required.",
+ ["Surfaces to wash", "Cleaning solution and dwell time", "Plant and window protection", "Runoff control"],
+ ["Some solutions harm plants and stain metal if not rinsed.", "Soft washing still requires care around windows and seals."],
+ [("What is soft washing?", "Exterior cleaning with low pressure and cleaning solutions, used on surfaces that high pressure would damage."),
+  ("When is soft washing better than pressure washing?", "On stucco, EIFS, painted surfaces, roofs and anywhere high pressure could damage the finish or drive water behind it."),
+  ("Is soft washing safe for plants?", "When plants are pre-wetted, covered and rinsed, and runoff is controlled, the risk is low."),
+  ("Does soft washing remove construction stains?", "It removes dust, dirt and organic growth well. Mortar, paint and sealant usually need targeted removal.")]),
+"Brick and masonry cleaning": T(
+ "Brick and masonry cleaning removes mortar smears, mortar tags, construction dirt and stains from new brick, block and stone masonry using cleaners chosen for the specific masonry unit.",
+ "Masons leave mortar smears and splatter on new walls. Using the wrong acid or too much pressure can burn mortar joints, cause green or brown stains on light brick, or etch stone.",
+ "Crews follow the brick manufacturer's and mason's guidance: remove large mortar tags by hand, pre-wet the wall, apply a tested masonry cleaner, and rinse thoroughly from the bottom up and top down.",
+ ["Brick or block type and color", "Manufacturer cleaning recommendations", "Test panel location", "Adjacent windows, metal and landscaping"],
+ ["Improper acid use can cause vanadium or manganese staining on some brick.", "Cleaner left to dry on the wall causes new stains."],
+ [("How is mortar smear removed from new brick?", "Large tags are removed by hand, then the wall is pre-wet, cleaned with a tested masonry cleaner and rinsed thoroughly."),
+  ("Why test a cleaner on brick first?", "Different brick reacts differently. A test area shows whether a cleaner will stain or damage the brick before the whole wall is cleaned."),
+  ("Can muriatic acid be used on brick?", "Many manufacturers advise against raw muriatic acid because it can stain brick and damage mortar. Proprietary masonry cleaners are usually recommended."),
+  ("Who cleans new brick walls?", "The mason is often responsible, but masonry cleaning specialists or trained crews frequently do the final cleaning.")]),
+"Masonry efflorescence removal": T(
+ "Masonry efflorescence removal cleans the white, powdery salt deposits that appear on new brick, block, stone and mortar as moisture moves through the wall and evaporates.",
+ "Efflorescence is common on new masonry and makes a wall look stained. It returns if the moisture source continues, and the wrong cleaner can make it worse.",
+ "Crews dry-brush and vacuum loose salts first, wait for dry weather, then use a tested efflorescence cleaner if needed, and report persistent moisture to the GC.",
+ ["Wall areas affected", "Moisture source", "Masonry type", "Cleaner testing"],
+ ["Washing with plain water can dissolve salts and pull more to the surface.", "Acid cleaners can damage mortar and some masonry."],
+ [("What causes white powder on new brick?", "Efflorescence: salts carried to the surface by moisture moving through the masonry, left behind when the water evaporates."),
+  ("Will efflorescence go away on its own?", "New-building efflorescence often lessens as the wall dries, but persistent deposits mean moisture is still getting in."),
+  ("How is efflorescence removed?", "Start with dry brushing in dry weather, then use a tested efflorescence cleaner only if needed."),
+  ("Should efflorescence be washed with water?", "Usually not first, because water can dissolve salts and bring more to the surface.")]),
+"Stucco and EIFS cleaning": T(
+ "Stucco and EIFS cleaning removes construction dust, dirt, rust streaks and mildew from traditional stucco and exterior insulation and finish systems using low pressure and gentle solutions.",
+ "EIFS is a lightweight synthetic system that high pressure can puncture or delaminate, and stucco can be eroded. Water forced behind either can cause hidden damage.",
+ "Crews soft wash with manufacturer-compatible solutions, use soft brushes on stains, and keep pressure low and nozzles at a distance, especially around joints and terminations.",
+ ["Stucco or EIFS system and finish", "Manufacturer cleaning guidance", "Stains and growth", "Access height"],
+ ["High pressure damages EIFS and forces water behind it.", "Sealant joints and terminations are especially vulnerable."],
+ [("Can EIFS be pressure washed?", "Only at low pressure from a distance, or by soft washing. High pressure can damage the finish and insulation."),
+  ("What is EIFS?", "Exterior insulation and finish system: a synthetic stucco-look cladding with insulation board and a thin finish coat."),
+  ("How do you clean rust streaks off stucco?", "With a rust remover compatible with the finish, tested first, and gentle brushing."),
+  ("Is stucco cleaning part of construction turnover?", "Yes, when exterior trades leave dirt, overspray or streaks on the finish.")]),
+}

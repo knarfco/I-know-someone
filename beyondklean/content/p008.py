@@ -1,0 +1,55 @@
+def T(a, y, m, s, w, q):
+    return dict(a=a, y=y, m=m, s=s, w=w, q=q)
+
+P = {
+"Biohazard and sharps cleanup on jobsites": T(
+ "Biohazard and sharps cleanup on jobsites safely removes blood, bodily fluids, discarded needles and similar infectious hazards found during construction, renovation or vacant-building work, using trained crews and regulated disposal.",
+ "Vacant buildings and urban sites sometimes contain needles and biological waste. Contact can transmit bloodborne diseases, and improper disposal violates medical waste rules.",
+ "Requests are routed only to trained biohazard remediation providers, who isolate the area, use protective equipment, place sharps in approved containers and dispose of waste through licensed channels.",
+ ["Type and extent of hazard", "Protective equipment", "Sharps containers and disposal", "Area isolation"],
+ ["Never pick up needles by hand or put them in regular trash.", "Bloodborne pathogen training is required for exposure-prone work."],
+ [("What should a crew do if they find needles on a jobsite?", "Leave them in place, keep people away and notify the supervisor. Trained personnel remove them with tools into approved sharps containers."),
+  ("Who cleans up blood or bodily fluids at a construction site?", "Trained biohazard remediation providers using protective equipment, approved disinfectants and regulated disposal."),
+  ("Can biohazard waste go in the dumpster?", "No. Sharps and regulated medical waste must be disposed of through approved channels."),
+  ("Why is biohazard cleanup conditional work?", "It involves infection risks and regulated waste, so only trained and equipped providers handle it.")]),
+"Bird and pest dropping removal": T(
+ "Bird and pest dropping removal cleans accumulated droppings, nesting material and debris from structures, ledges, attics and equipment, using containment and respiratory protection to control disease-carrying dust.",
+ "Dried droppings from birds and bats can carry fungal spores and other pathogens that become airborne when disturbed. Renovations of older buildings and open structures often uncover large accumulations.",
+ "Requests are routed only to trained crews, who wet droppings to prevent dust, remove them with HEPA vacuums and scrapers, disinfect per label, and coordinate exclusion with pest professionals.",
+ ["Extent of droppings and nesting", "Respiratory protection", "Disposal", "Exclusion and prevention"],
+ ["Dry sweeping droppings releases spores into the air.", "Some birds and bats are protected species; removal timing may be regulated."],
+ [("Are bird droppings dangerous to clean up?", "They can be. Dried droppings may carry fungal spores that cause lung infections when inhaled, so wet methods and respirators are used."),
+  ("Who should remove large accumulations of droppings?", "Trained remediation crews with containment, HEPA equipment and respiratory protection."),
+  ("How do you keep birds from coming back?", "With exclusion measures such as netting, spikes and sealing openings, installed by pest control professionals."),
+  ("Are bats handled the same as birds?", "Bats are often protected, so removal and exclusion must follow wildlife regulations and seasonal restrictions.")]),
+"Hazardous material spill cleanup": T(
+ "Hazardous material spill cleanup responds to spills of fuel, hydraulic oil, solvents, acids and other hazardous substances on a jobsite, with containment, cleanup, disposal and any required reporting handled by trained responders.",
+ "Hazardous spills can injure workers, contaminate soil and water, and trigger regulatory reporting. Untrained cleanup can make exposure and contamination worse.",
+ "Cleaning crews do not respond to hazardous spills. Requests go only to trained hazmat responders, while the site isolates the area and follows its spill plan.",
+ ["Material spilled and SDS", "Quantity and location", "Reporting requirements", "Waste disposal"],
+ ["Some spills must be reported to authorities within strict time limits.", "Mixing absorbents or chemicals incorrectly can create new hazards."],
+ [("Who cleans up a fuel or chemical spill on a construction site?", "Trained hazmat responders. Site staff isolate the area, check the SDS and follow the project's spill plan."),
+  ("Do hazardous spills have to be reported?", "Some do, depending on the material, amount and location. The GC's environmental plan defines reporting."),
+  ("Can construction cleaning crews clean up small oil spills?", "Small non-hazardous drips can be absorbed with spill kits. Anything hazardous or large goes to trained responders."),
+  ("What happens to hazardous spill waste?", "It is packaged, labeled and disposed of through licensed hazardous waste channels.")]),
+"Disinfection service with registered products": T(
+ "Disinfection service with registered products applies EPA-registered disinfectants to cleaned surfaces according to the product label, including dilution, contact time and surface compatibility, with documentation of the product used.",
+ "Disinfection only works, and is only legal to claim, when a registered product is used exactly as its label directs. Surfaces must be cleaned first, because soil blocks disinfectants.",
+ "Requests are routed only to trained providers who clean first, apply the registered product per label, observe contact time and document the product and areas treated.",
+ ["Product and EPA registration number", "Label directions and contact time", "Surfaces and compatibility", "Documentation"],
+ ["Disinfection claims must match what the label supports.", "Some disinfectants damage stone, metal or plastics."],
+ [("What is the difference between cleaning and disinfecting?", "Cleaning removes soil and residue; disinfecting kills specified microorganisms with a registered product used per label. Cleaning must come first."),
+  ("Why does the disinfectant label matter?", "The label sets the dilution, contact time and surfaces. Using it any other way may not work and may not be lawful."),
+  ("What is contact time?", "How long a disinfectant must stay wet on a surface to kill the microorganisms listed on its label."),
+  ("Does a new building need disinfecting before opening?", "Usually cleaning is enough. Healthcare, food and childcare spaces may add disinfection or sanitizing per their requirements.")]),
+"Post-event facility restoration": T(
+ "Post-event facility restoration cleans and restores buildings after hurricanes, floods, windstorms and similar events: debris removal, water extraction, drying, mud-out, damaged material removal and cleaning for reoccupancy.",
+ "In Florida and other storm-prone regions, events can damage active jobsites and finished buildings alike. Fast, coordinated response limits mold, structural damage and schedule loss.",
+ "Requests are routed only to qualified restoration contractors with surge capacity, who triage safety hazards, extract and dry, remove damaged materials and document everything for insurers.",
+ ["Type and extent of damage", "Safety hazards: electrical, structural", "Insurance and documentation", "Capacity and timeline"],
+ ["Do not enter buildings until structural and electrical safety is confirmed.", "Floodwater is contaminated and requires protective equipment."],
+ [("What is post-event facility restoration?", "Cleanup and restoration after storms, floods and similar events, from debris removal and drying to cleaning for reoccupancy."),
+  ("How soon should storm restoration start?", "As soon as the building is safe to enter. Drying within the first days limits mold and further damage."),
+  ("Is floodwater cleanup dangerous?", "Yes. Floodwater can carry sewage, chemicals and debris, so crews use protective equipment and contaminated materials are removed."),
+  ("Does Beyond Klean help with hurricane cleanup in Florida?", "Requests are reviewed and routed to qualified restoration providers where coverage exists, with clear communication about capacity after major events.")]),
+}

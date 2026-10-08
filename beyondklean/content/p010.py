@@ -1,0 +1,55 @@
+def T(a, y, m, s, w, q):
+    return dict(a=a, y=y, m=m, s=s, w=w, q=q)
+
+P = {
+"Appliance interior and exterior cleaning": T(
+ "Appliance interior and exterior cleaning removes packaging, protective film, labels, adhesive and construction dust from new refrigerators, ranges, ovens, dishwashers, microwaves, washers and dryers, inside and out.",
+ "Residents and buyers open appliances first. Tape, foam blocks and dust inside a new refrigerator or oven are among the most common move-in complaints.",
+ "Crews remove all packaging and shipping tape, peel film, clean interiors with food-safe products, wipe exteriors with finish-appropriate cleaners and leave manuals and required labels in place.",
+ ["Appliance package per unit", "Packaging and shipping tape", "Stainless or specialty finishes", "Manuals and warranty cards"],
+ ["Do not remove energy guide or safety labels required to stay.", "Oven interiors should be cleaned only with products the manufacturer allows."],
+ [("Are new appliances cleaned inside during turnover?", "Yes. Shipping blocks, tape, film and dust are removed and interiors are wiped with food-safe cleaners."),
+  ("Should appliance manuals be left in the unit?", "Yes, manuals and warranty information are usually left for the resident or owner."),
+  ("Which appliance labels should stay on?", "Required safety, rating and model labels stay; shipping and promotional stickers come off."),
+  ("How is stainless steel appliance film removed?", "Peeled slowly, with any adhesive residue removed by a stainless-safe cleaner and wiped with the grain.")]),
+"Range hood and microwave detailing": T(
+ "Range hood and microwave detailing cleans residential range hoods, filters, lights and over-the-range microwaves, removing film, dust and adhesive from installation.",
+ "Range hoods collect construction dust on their filters and tops, and over-range microwaves often still have film and labels at turnover.",
+ "Crews remove filters for washing where designed to be removed, wipe hood and microwave exteriors and interiors, and clean the hood top from a step stool.",
+ ["Hood and microwave types", "Filter removal", "Film and labels", "Hood tops"],
+ ["Do not spray liquid into control panels.", "Hood tops are easy to miss."],
+ [("Are range hood filters cleaned at turnover?", "Yes, removable filters are washed and reinstalled because they collect construction dust."),
+  ("Is the top of the range hood cleaned?", "It should be, because dust collects there and is visible from upstairs or lofts."),
+  ("How is an over-the-range microwave cleaned?", "Inside and out with mild cleaners, removing film and labels."),
+  ("Why does a new range hood need cleaning?", "Construction dust collects on filters and surfaces before the kitchen is ever used.")]),
+"Washer and dryer area cleaning": T(
+ "Washer and dryer area cleaning cleans laundry closets and rooms, including appliance exteriors and drums, shelves, floors, walls and the area behind and beside machines.",
+ "Laundry closets collect drywall dust and debris during construction, and the gaps around machines are easy to miss.",
+ "Crews vacuum behind and around appliances where accessible, wipe drums and exteriors, and clean shelving and floors.",
+ ["Laundry area size", "Appliance access", "Shelving", "Dryer vent connection"],
+ ["Do not pull appliances out without permission; connections can be damaged.", "Dryer vents should be checked separately."],
+ [("Are washer and dryer drums cleaned at turnover?", "Yes, drums are wiped to remove dust and packaging debris."),
+  ("Is the area behind the washer cleaned?", "Accessible areas are vacuumed; appliances are not moved without permission."),
+  ("Do laundry closets get dusty during construction?", "Yes, they collect drywall dust and debris."),
+  ("Is the dryer vent cleaned too?", "The vent connection is checked separately for debris.")]),
+"Dryer vent debris check": T(
+ "A dryer vent debris check looks for construction debris, drywall dust, insulation and blockages in dryer vent connections and runs before turnover, and reports anything that restricts airflow.",
+ "Dryer vents installed during construction can collect drywall dust, debris or crushed sections. Restricted vents are a leading cause of dryer fires and resident complaints.",
+ "Crews inspect accessible connections and terminations, clear loose debris at the connection and exterior hood, and report blockages to the GC for specialist cleaning.",
+ ["Vent runs per unit", "Accessible connections", "Exterior terminations", "Reporting"],
+ ["Clogged dryer vents are a fire hazard.", "Long or concealed runs need specialist equipment."],
+ [("Why check dryer vents in new construction?", "Construction debris and drywall dust can block vents, which reduces airflow and creates a fire risk."),
+  ("Who cleans blocked dryer vents?", "Dryer vent specialists with rotary brush equipment, coordinated by the GC."),
+  ("What is checked during a dryer vent check?", "The connection behind the dryer, the exterior termination and any accessible sections for debris."),
+  ("How common is construction debris in dryer vents?", "Common enough that a check before turnover is good practice.")]),
+"Garage and storage unit cleaning": T(
+ "Garage and storage unit cleaning sweeps and cleans private garages and storage units in residential and mixed-use projects, removing construction debris, dust and concrete residue.",
+ "Garages and storage units are often used by trades for storage and are left full of debris. Owners and residents inspect them before move-in.",
+ "Crews remove debris, sweep and scrub floors, clean doors and walls and remove concrete and paint residue.",
+ ["Number of garages or units", "Debris volume", "Floor condition", "Doors and openers"],
+ ["Do not discard stored materials without confirmation.", "Garage door openers should not be adjusted."],
+ [("Are garages cleaned in residential turnover?", "Yes, garages are swept and cleaned and debris is removed."),
+  ("Why are storage units dirty after construction?", "Trades often use them to store materials."),
+  ("Are garage floors scrubbed?", "Often, to remove dust and residue."),
+  ("Who checks before stored materials are removed?", "The GC confirms what can be discarded.")]),
+}

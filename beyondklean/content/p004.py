@@ -1,0 +1,55 @@
+def T(a, y, m, s, w, q):
+    return dict(a=a, y=y, m=m, s=s, w=w, q=q)
+
+P = {
+"Exterior light fixture and pole base cleaning": T(
+ "Exterior light fixture and pole base cleaning cleans site light poles, concrete pole bases, wall packs and bollard lights, removing concrete splatter, mud, labels and dust.",
+ "Concrete pole bases are poured early and get splattered with mud and concrete throughout the job. Wall pack lenses collect dust that dims light output.",
+ "Crews clean pole bases with cementitious residue removers and brushes, wipe fixtures with power considerations in mind and use lifts for tall fixtures.",
+ ["Number of poles, wall packs and bollards", "Base condition and stains", "Fixture heights", "Power coordination"],
+ ["Do not spray water into fixtures or open electrical handholes.", "Lift work near parking areas needs traffic control."],
+ [("Why do light pole bases need cleaning?", "They are poured early and get covered in mud and concrete splatter that look unfinished."),
+  ("Are exterior light lenses cleaned at turnover?", "Yes, dust on lenses reduces light output and looks dirty at night."),
+  ("Is a lift needed for site lights?", "For tall poles, yes."),
+  ("Who cleans exterior lighting?", "The cleaning crew, coordinated with the electrical contractor for any power issues.")]),
+"Site furniture and bike rack cleaning": T(
+ "Site furniture and bike rack cleaning cleans benches, picnic tables, trash receptacles, planters, bike racks and bollards, removing labels, dust, mud and concrete splatter.",
+ "Site furniture is used the day the building opens, and it often arrives with labels and gets splattered during landscape and paving work.",
+ "Crews remove labels and adhesive, wash surfaces with finish-safe cleaners and remove concrete splatter from bases and mounting plates.",
+ ["Furniture items and finishes", "Labels and adhesive", "Concrete on mounting plates", "Receptacle liners"],
+ ["Powder-coated finishes scratch with abrasive pads.", "Solvents can damage recycled plastic furniture."],
+ [("Is site furniture cleaned before a building opens?", "Yes, benches, tables, receptacles and bike racks are cleaned and labels removed."),
+  ("How is concrete removed from bike rack bases?", "With careful scraping and cementitious residue removers safe for the finish."),
+  ("Do trash receptacles need liners at turnover?", "Owners often want liners installed; confirm in the scope."),
+  ("What cleaner is safe for powder-coated site furniture?", "Mild detergent and soft brushes or cloths.")]),
+"Landscape bed debris removal": T(
+ "Landscape bed debris removal picks construction debris, packaging, concrete chunks, screws and trash out of planting beds, tree wells and planters without damaging new plants or mulch.",
+ "Debris hidden in landscape beds is visible from walkways and can injure maintenance crews later. Landscapers often install plants while construction is still active.",
+ "Crews walk every bed by hand, pick out debris, rake mulch back into place and report damaged plants to the landscape contractor.",
+ ["Bed areas and planters", "Plant and mulch status", "Debris type", "Landscape contractor coordination"],
+ ["Avoid stepping on new plants and irrigation heads.", "Sharp debris like screws and glass requires gloves."],
+ [("Why clean construction debris out of landscape beds?", "It looks bad from walkways and can injure people doing landscape maintenance later."),
+  ("Who removes debris from planting beds?", "The cleaning crew or landscape contractor, depending on the contract."),
+  ("Is mulch replaced after cleaning?", "Disturbed mulch is raked back; replacement is usually the landscaper's job."),
+  ("When should landscape beds be cleaned?", "After exterior trades finish and before the owner walk.")]),
+"Storm drain inlet protection cleanup": T(
+ "Storm drain inlet protection cleanup removes sediment captured by inlet filters, socks and barriers, and removes the protection itself when the site is stabilized and the permit allows.",
+ "Inlet protection keeps construction sediment out of storm sewers. Full or torn protection fails, and protection left in place after turnover can cause flooding.",
+ "Crews remove trapped sediment with shovels and vacuums, replace damaged protection during construction, and remove it only when the GC confirms permit requirements are met.",
+ ["Number of inlets and protection type", "Permit and stabilization status", "Sediment disposal", "Removal approval"],
+ ["Removing inlet protection too early can violate the storm water permit.", "Sediment must not be swept into the inlet during removal."],
+ [("What is storm drain inlet protection?", "Filters, socks or barriers around storm drains that keep construction sediment out of the storm sewer."),
+  ("When can inlet protection be removed?", "When the site is stabilized and the GC confirms the storm water permit allows it."),
+  ("Why clean inlet protection during construction?", "Full or clogged protection stops working and can cause flooding."),
+  ("What happens to the sediment removed from inlets?", "It is collected and disposed of according to site rules, never pushed into the drain.")]),
+"Silt fence and erosion control debris cleanup": T(
+ "Silt fence and erosion control debris cleanup removes silt fence, wattles, stakes and trapped sediment at the end of a project, once the site is stabilized and the storm water permit allows removal.",
+ "Erosion controls protect waterways during construction, but leftover silt fence and stakes at turnover look unfinished and can be hazards for mowing and maintenance.",
+ "Crews remove trapped sediment first, pull fabric and stakes, dispose of materials properly and repair disturbed ground for the landscaper.",
+ ["Length of silt fence and wattles", "Permit closeout status", "Sediment disposal", "Ground repair"],
+ ["Removing controls before stabilization can violate the permit.", "Stakes left in the ground are a hazard for mowers."],
+ [("When is silt fence removed from a construction site?", "After vegetation or paving stabilizes the site and the storm water permit allows it."),
+  ("Who removes silt fence?", "The site contractor, GC or cleaning crew, depending on the contract."),
+  ("What happens to sediment behind silt fence?", "It is removed and spread or disposed of properly before the fence comes out."),
+  ("Why remove erosion control stakes completely?", "Stakes left behind are hazards for mowing and foot traffic.")]),
+}
