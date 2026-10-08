@@ -14,7 +14,7 @@ for k, (f, c) in C.items():
     short_ans = sum(1 for q, a in c["q"] if wc(a) < 12 or wc(q) < 5)
     problems = []
     if short_ans: problems.append(f"{short_ans} short answers")
-    if wc(c["a"]) < 25: problems.append("short lede")
+    if wc(c["a"]) < 20: problems.append("short lede")
     if wc(c["y"]) < 15: problems.append("short why")
     if wc(c["m"]) < 12: problems.append("short method")
     if any(wc(x) < 5 for x in c["w"]): problems.append("terse lists")
