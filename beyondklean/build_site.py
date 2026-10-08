@@ -61,6 +61,30 @@ for t in tasks:
     t["c"] = CONTENT_BY_TASK.get(t["task"])
 
 fams = list(dict.fromkeys(t["family"] for t in tasks))
+HINTS = {
+    "Site, Debris & Waste Management": "Debris haul-off, daily sweeps, recycling",
+    "Rough Clean": "Phase one: slabs, stud bays, plenums",
+    "Fine Dust, Drywall Dust & Controlled-Dust Cleaning": "Drywall dust, silica-safe housekeeping",
+    "Overhead & Elevated Surfaces (Above Eye Level)": "Decks, beams, ducts, high dusting",
+    "Walls, Ceilings & Interior Finishes": "Walls, ceiling tile, grid, diffusers",
+    "Doors, Hardware, Millwork & Casework": "Doors, hardware, cabinets, counters",
+    "Glass, Windows & Glazing": "Construction windows, storefronts, mirrors",
+    "Hard Floors": "Concrete, VCT, LVT, tile, stone, wood",
+    "Carpet & Soft Surfaces": "Carpet, extraction, upholstery",
+    "Restrooms & Plumbing Fixtures": "Fixtures, labels, caulk haze, drains",
+    "Kitchens, Food Facilities & FRP": "Restaurants, grocery, FRP, walk-ins",
+    "Mechanical, Electrical & Construction IAQ": "Equipment rooms, filters, flush-out",
+    "Retail Fixtures & Store Opening": "Store openings, fixtures, remodels",
+    "Specialty & Controlled Environments": "Healthcare, labs, schools, hotels",
+    "Exterior, Hardscape & Building Envelope": "Pressure washing, facades, lots",
+    "Residue, Stain & Protective-Material Removal": "Paint, adhesive, labels, film",
+    "Vertical Transportation & Circulation": "Elevators, stairs, lobbies",
+    "Turnover, Punch & Closeout Support": "Final clean, punch list, move-in",
+    "Multifamily & Residential-Scale Turnover": "Apartments, condos, amenities",
+    "Restoration & Regulated Work (Conditional)": "Water, mold, fire, abatement",
+}
+for _fn in fams:
+    FAM[_fn]["hint"] = HINTS.get(_fn, "")
 groups = defaultdict(list)
 for t in tasks:
     groups[(t["family"], t["group"])].append(t)
@@ -143,7 +167,9 @@ def page(path, title, desc, body, crumbs=None, schema=None, active=None):
       <img class="logo-l" src="{up}assets/logo.png" alt="Beyond Klean" width="634" height="243">
       <img class="logo-d" src="{up}assets/logo-dark.png" alt="" width="634" height="243">
     </a>
-    <nav class="mainnav" aria-label="Main">{nav}<a class="btn btn-sm" href="{up}quote.html">Request a Quote</a></nav>
+    <a class="btn btn-sm quote-m" href="{up}quote.html">Get a Quote</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mainnav" aria-label="Open menu"><span></span><span></span><span></span></button>
+    <nav class="mainnav" id="mainnav" aria-label="Main">{nav}<a class="btn btn-sm" href="{up}quote.html">Request a Quote</a></nav>
   </div>
 </header>
 <main id="main">
@@ -158,7 +184,7 @@ def page(path, title, desc, body, crumbs=None, schema=None, active=None):
       <p class="small">Beyond Klean helps builders and owners scope specialty cleaning and connects them with independent, verified contractors. The contractor that quotes the work performs, insures and warrants it.</p>
     </div>
     <div><h2 class="foot-h">Find work</h2>
-      <a href="{up}services.html">All {len(tasks)} services</a><a href="{up}faq.html">FAQ library</a><a href="{up}glossary.html">Glossary</a><a href="{up}methods.html">Our methods</a></div>
+      <a href="{up}services.html">All services</a><a href="{up}faq.html">FAQ library</a><a href="{up}glossary.html">Glossary</a><a href="{up}methods.html">Our methods</a></div>
     <div><h2 class="foot-h">Work with us</h2>
       <a href="{up}quote.html">Request a quote</a><a href="{up}quote.html#bid">Submit a bid package</a><a href="{up}join.html">Join the contractor network</a><a href="{up}general-contractors.html">For general contractors</a><a href="{up}about.html">About Beyond Klean</a></div>
     <div><h2 class="foot-h">Above eye level</h2>
@@ -166,6 +192,7 @@ def page(path, title, desc, body, crumbs=None, schema=None, active=None):
   </div>
   <div class="wrap small foot-note">© 2026 Beyond Klean. Service descriptions are educational and do not represent that any single contractor performs every service. Availability depends on verified contractor coverage.</div>
 </footer>
+{'<script src="' + up + 'assets/search-index.js"></script>' if 'data-finder' in body else ''}
 <script src="{up}assets/site.js"></script>
 </body>
 </html>
@@ -306,7 +333,7 @@ def build_family(fname, idx):
     prev_f, next_f = fams[idx - 1], fams[(idx + 1) % len(fams)]
     body = f"""
 <section class="wrap fam-hero">
-  <p class="eyebrow">Service family {idx + 1} of {len(fams)} · {len(ftasks)} tasks</p>
+  <p class="eyebrow">Service family</p>
   <h1>{e(fname)}</h1>
   <p class="lede">{e(f['intro'])}</p>
   {aelc}
@@ -327,9 +354,9 @@ def build_family(fname, idx):
 # ---------------------------------------------------------------- index pages
 def fam_cards(up):
     return "".join(
-        f'<a class="fcard" href="{up}families/{FAM[fn]["slug"]}.html"><span class="mono small">{i + 1:02d}</span>'
-        f'<strong>{e(FAM[fn]["short"])}</strong><span class="small">{sum(1 for t in tasks if t["family"] == fn)} tasks</span></a>'
-        for i, fn in enumerate(fams))
+        f'<a class="fcard" href="{up}families/{FAM[fn]["slug"]}.html">'
+        f'<strong>{e(FAM[fn]["short"])}</strong><span class="small muted">{e(FAM[fn].get("hint", ""))}</span></a>'
+        for fn in fams)
 
 
 def build_services():
@@ -343,20 +370,20 @@ def build_services():
     body = f"""
 <section class="wrap">
   <p class="eyebrow">Service directory</p>
-  <h1>All {len(tasks)} specialty cleaning services</h1>
-  <p class="lede">Every cleaning task a construction project can call for, from rough clean to turnover and recurring overhead care. Search by any name your spec or crew uses. We index {sum(1 + len(t['alias_list']) for t in tasks)} of them.</p>
+  <h1>Find the cleaning service you need</h1>
+  <p class="lede">Every cleaning task a construction project can call for, from rough clean to turnover and recurring overhead care. Search by any name your spec or crew uses.</p>
   <h2 class="h3">Browse by family</h2>
   <div class="fgrid">{fam_cards('')}</div>
   <div class="filter" data-list="svc">
     <label for="q" class="eyebrow">Search services</label>
     <input id="q" type="search" placeholder="Try “grout haze”, “high dusting” or “FRP”" autocomplete="off">
     <div class="chips"><button type="button" class="chip is-on" data-filter="">All</button>{chips}</div>
-    <p class="small muted" aria-live="polite"><span data-count>{len(tasks)}</span> services shown</p>
+    <p class="small muted" aria-live="polite" data-countline hidden><span data-count></span> services shown</p>
   </div>
   <ul class="az" id="svc">{items}</ul>
 </section>"""
     page("services.html", "Specialty Cleaning Services Directory | Beyond Klean",
-         f"Search all {len(tasks)} construction and specialty cleaning services by name, stage or specialty.",
+         "Search construction and specialty cleaning services by name, project stage or specialty.",
          body, crumbs=[("index.html", "Home"), (None, "Services")], active="services.html")
 
 
@@ -388,19 +415,19 @@ def build_faq():
     body = f"""
 <section class="wrap">
   <p class="eyebrow">FAQ library</p>
-  <h1>{total:,} answers about construction and specialty cleaning</h1>
+  <h1>Construction cleaning questions, answered</h1>
   <p class="lede">Straight answers for general contractors, owners, facility managers and cleaning crews. Search any question, or browse by service family. Every task answer links back to its full scope page.</p>
   <div class="filter" data-list="faqall">
     <label for="q" class="eyebrow">Search the library</label>
     <input id="q" type="search" placeholder="Ask it the way you’d say it: “who cleans the ceiling in a new store?”" autocomplete="off">
-    <p class="small muted" aria-live="polite"><span data-count>{total:,}</span> answers shown</p>
+    <p class="small muted" aria-live="polite" data-countline hidden><span data-count></span> answers shown</p>
   </div>
   <nav class="toc" aria-label="FAQ sections">{toc}</nav>
   <div id="faqall">{gen_secs}{secs}</div>
 </section>"""
     all_general = [qa for _, qas in gen_mod.GENERAL_FAQ for qa in qas]
     page("faq.html", "Construction Cleaning FAQ Library | Beyond Klean",
-         f"{total:,} answers about post-construction, overhead, floor, glass, kitchen and specialty cleaning.",
+         "Answers about post-construction, overhead, floor, glass, kitchen and specialty cleaning.",
          body, crumbs=[("index.html", "Home"), (None, "FAQ")], schema=[faq_schema(all_general)], active="faq.html")
     return total
 
@@ -413,7 +440,7 @@ def build_glossary():
 <p class="eyebrow">Glossary</p><h1>Construction cleaning terms</h1>
 <p class="lede">The words that show up in specs, bid packages and punch lists, defined the way crews and superintendents use them.</p>
 <div class="filter" data-list="gl"><label for="q" class="eyebrow">Search terms</label><input id="q" type="search" autocomplete="off">
-<p class="small muted" aria-live="polite"><span data-count>{len(GLOSS)}</span> terms shown</p></div>
+<p class="small muted" aria-live="polite" data-countline hidden><span data-count></span> terms shown</p></div>
 <dl class="gloss" id="gl">{items}</dl></section>"""
     page("glossary.html", "Construction Cleaning Glossary | Beyond Klean",
          "Definitions of rough clean, final clean, FRP, VCT, HEPA, grout haze and other construction cleaning terms.",
@@ -478,6 +505,21 @@ if __name__ == "__main__":
     n_faq = build_faq()
     build_glossary()
     build_static(n_faq)
+    # type-ahead index for the "What needs cleaning?" finder: name, other names, family, url
+    POPULAR = {"Final clean of entire building": 12, "Rough clean of entire building": 10, "Open ceiling deck cleaning": 12,
+               "Grout haze removal": 10, "Interior window cleaning": 8, "Exterior window cleaning": 6, "VCT initial floor finish": 8,
+               "Commercial kitchen post-construction clean": 8, "Fine drywall dust removal from all horizontal surfaces": 8,
+               "Touch-up clean before owner walk": 6, "Store opening clean": 6, "Warehouse post-construction cleaning": 6,
+               "Sidewalk pressure washing": 6, "Carpet extraction": 6, "Quarterly high dusting program": 6, "Duct exterior cleaning": 6}
+    EXTRA = {"Open ceiling deck cleaning": ["ceiling dust", "open ceiling cleaning", "high ceiling dusting"],
+             "Fine drywall dust removal from all horizontal surfaces": ["construction dust cleaning", "dust removal"],
+             "Final clean of entire building": ["post construction cleaning", "construction clean up"],
+             "Interior window cleaning": ["window washing"], "Sidewalk pressure washing": ["power washing"]}
+    TIERW = {"Core": 3, "Adjacent specialist": 1, "Conditional / regulated": 0}
+    idx = [[t["task"], t["alias_list"], FAM[t["family"]]["short"], f"tasks/{t['slug']}.html",
+            TIERW[t["tier"]] + POPULAR.get(t["task"], 0), EXTRA.get(t["task"], [])] for t in tasks]
+    idx += [[FAM[fn]["short"], [], "Service family", f"families/{FAM[fn]['slug']}.html", 2, [fn]] for fn in fams]
+    (SITE / "assets" / "search-index.js").write_text("window.BK_INDEX=" + json.dumps(idx, ensure_ascii=False, separators=(",", ":")) + ";\n")
     (SITE / "robots.txt").write_text("# Preview build: keep out of search until launch\nUser-agent: *\nDisallow: /\n")
     (SITE / "sitemap.xml").write_text(
         '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +

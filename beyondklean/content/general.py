@@ -82,7 +82,7 @@ GENERAL_FAQ = [
   ("How is Beyond Klean different from a lead-selling directory?", "We do not sell your request to a list of companies. Each request is scoped and qualified, then matched to contractors verified for that specific work, with capacity confirmed before an introduction."),
   ("What areas does Beyond Klean serve?", "The service library is national. Contractor coverage is being built market by market, starting in Florida, and we tell you plainly whether a verified contractor covers your location."),
   ("What kinds of buildings does Beyond Klean cover?", "Commercial, retail, grocery, restaurant, warehouse, industrial, office, healthcare, education, hospitality and multifamily projects, from tenant improvements to ground-up construction."),
-  ("How many cleaning services does Beyond Klean list?", "438 distinct services across 20 service families, searchable under nearly a thousand names that contractors, specs and buyers use for them."),
+  ("What kinds of cleaning does Beyond Klean cover?", "Everything a construction project can need cleaned, from debris and rough clean through final clean, glass, floors, kitchens, overhead high dusting and closeout, searchable by the names contractors, specs and buyers actually use."),
   ("Is there a cost to request a quote?", "No. Requesting a scope review and quote is free for project owners and general contractors."),
   ("What is the relationship with Above Eye Level Cleaning?", "Above Eye Level Cleaning is our partner program for recurring overhead and high-dusting work. Beyond Klean covers construction turnover, and AELC keeps overhead surfaces clean after the building opens."),
  ]),
@@ -140,41 +140,33 @@ GENERAL_FAQ = [
 
 
 def static_pages(n_tasks, n_names, n_faq, fam_cards, AELC_URL, phase_counts, task_options):
-    phase_bar = "".join(
-        f'<a href="services.html#{k}"><span class="eyebrow">{e(p)}</span><strong>{n}</strong><span class="small muted">tasks</span></a>'
-        for p, k, n in phase_counts)
     home = f"""
 <section class="hero">
   <div class="wrap hero-in">
     <p class="eyebrow">Specialty construction cleaning · procurement network</p>
     <h1>Every cleaning task your project needs. One place to get it done.</h1>
+    <form class="finder" data-finder role="search" action="services.html">
+      <label for="finder-q" class="finder-label">What needs cleaning?</label>
+      <div class="finder-box">
+        <input id="finder-q" name="q" type="text" autocomplete="off" spellcheck="false" placeholder="Try “ceiling dust”, “grout haze” or “final clean”" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="finder-list">
+        <button class="btn" type="submit">Find it</button>
+      </div>
+      <ul class="finder-list" id="finder-list" role="listbox" hidden></ul>
+    </form>
     <p class="lede">Beyond Klean scopes specialty and post-construction cleaning for general contractors and owners, then matches it to verified contractors who use capture-first, safer-chemistry methods.</p>
     <div class="hero-cta">
       <a class="btn" href="quote.html">Request a Quote</a>
       <a class="btn btn-light" href="quote.html#bid">Submit a Bid Package</a>
       <a class="btn btn-light" href="join.html">Join the Network</a>
     </div>
-    <div class="statrow" role="list">
-      <div role="listitem"><strong>{n_tasks}</strong><span>distinct services</span></div>
-      <div role="listitem"><strong>{n_names:,}</strong><span>names we answer to</span></div>
-      <div role="listitem"><strong>{n_faq:,}</strong><span>answered questions</span></div>
-      <div role="listitem"><strong>20</strong><span>service families</span></div>
-    </div>
   </div>
 </section>
 
 <section class="wrap">
-  <p class="eyebrow">By project stage</p>
-  <h2>From rough clean to recurring overhead care</h2>
-  <p class="lede">Most construction cleaning scopes stop at what you can reach. Ours follow the whole project: debris during construction, the final clean before Substantial Completion, the touch-up before the owner walk, and the high dusting that keeps it clean after opening.</p>
-  <div class="phasebar">{phase_bar}</div>
-</section>
-
-<section class="wrap">
   <p class="eyebrow">Service families</p>
-  <h2>Twenty families. Every surface, every stage.</h2>
+  <h2>Browse by type of work</h2>
   <div class="fgrid">{fam_cards}</div>
-  <p><a class="btn btn-ghost" href="services.html">Search all {n_tasks} services</a></p>
+  <p><a class="btn btn-ghost" href="services.html">See every service</a></p>
 </section>
 
 <section class="wrap">
@@ -204,14 +196,6 @@ def static_pages(n_tasks, n_names, n_faq, fam_cards, AELC_URL, phase_counts, tas
   </div>
 </section>
 
-<section class="band">
-  <div class="wrap">
-    <p class="eyebrow" style="color:inherit">FAQ library</p>
-    <h2>{n_faq:,} straight answers.</h2>
-    <p class="lede">Who cleans the ceiling in a new grocery store? Can LVT be waxed? How do you get grout haze off porcelain? Ask it the way you'd say it.</p>
-    <p><a class="btn" href="faq.html">Search the FAQ library</a></p>
-  </div>
-</section>
 """
 
     methods = """
@@ -272,7 +256,7 @@ def static_pages(n_tasks, n_names, n_faq, fam_cards, AELC_URL, phase_counts, tas
     <li>Phase dates, inspection dates and the owner walk date</li>
     <li>Site access rules, working hours and who provides water, power and lifts</li>
   </ul>
-  <p><a class="btn" href="quote.html#bid">Submit a bid package</a> <a class="btn btn-ghost" href="services.html">Browse {n_tasks} services</a></p>
+  <p><a class="btn" href="quote.html#bid">Submit a bid package</a> <a class="btn btn-ghost" href="services.html">Browse services</a></p>
 </section>"""
 
     join = """
@@ -345,7 +329,7 @@ def static_pages(n_tasks, n_names, n_faq, fam_cards, AELC_URL, phase_counts, tas
 <section class="wrap narrow">
   <p class="eyebrow">About</p>
   <h1>About Beyond Klean</h1>
-  <p class="lede">Beyond Klean is a national specialty cleaning procurement platform. We built the most complete library of construction and specialty cleaning services we know of, {n_tasks} services and {n_faq:,} answers, so buyers can specify the work correctly and find the right contractor to do it.</p>
+  <p class="lede">Beyond Klean is a national specialty cleaning procurement platform. We built a deep library of construction and specialty cleaning services and answers so buyers can specify the work correctly and find the right contractor to do it.</p>
   <h2>What we do</h2>
   <p>We help general contractors, developers, property owners and facility managers scope specialty cleaning, then connect them with independent, verified contractors. We handle coordination and documentation. The contractor that quotes the job performs it, insures it and warrants it.</p>
   <h2>What we don't do</h2>
@@ -357,7 +341,7 @@ def static_pages(n_tasks, n_names, n_faq, fam_cards, AELC_URL, phase_counts, tas
 
     return [
         ("index.html", "Beyond Klean | Specialty Construction Cleaning Network",
-         f"Scope and source {n_tasks} specialty and post-construction cleaning services, matched to verified contractors using capture-first, safer-chemistry methods.",
+         "Scope and source specialty and post-construction cleaning, matched to verified contractors using capture-first, safer-chemistry methods.",
          None, home, None),
         ("methods.html", "Our Cleaning Methods | Beyond Klean",
          "Capture-first dust removal, least-aggressive chemistry, warranty-safe products and documented results.",
