@@ -1,0 +1,55 @@
+def T(a, y, m, s, w, q):
+    return dict(a=a, y=y, m=m, s=s, w=w, q=q)
+
+P = {
+"Dry storage room cleaning": T(
+ "Dry storage room cleaning cleans food dry storage rooms before stocking: shelving, walls, floors, corners, door sweeps and the gaps under shelving where debris and pests hide.",
+ "Dry storage holds flour, grains and packaged food that attract pests. Construction debris and food wrappers left by workers create harborage before the restaurant even opens.",
+ "Crews remove debris, vacuum corners and under shelving, wipe shelves with food-safe cleaners and check door sweeps and wall penetrations for gaps to report.",
+ ["Room size and shelving", "Corners and under-shelf areas", "Door sweeps and penetrations", "Stocking date"],
+ ["Food debris left by workers attracts pests before opening.", "Shelving must be off the floor and cleanable underneath."],
+ [("Why clean dry storage before stocking?", "Debris and food wrappers attract pests, and once shelves are full the corners and floor are hard to reach."),
+  ("What do health inspectors check in dry storage?", "Clean shelves and floors, food stored off the floor and no signs of pests."),
+  ("Are corners and under-shelf areas cleaned?", "Yes, they are where debris and pests hide, so they get special attention."),
+  ("Should dry storage shelving be off the floor?", "Yes, food storage shelving is typically raised so the floor underneath can be cleaned.")]),
+"Kitchen floor drain and trench drain cleaning": T(
+ "Kitchen floor drain and trench drain cleaning removes grout, mortar, debris and dust from commercial kitchen floor drains, floor sinks and trench drains, and checks that grates and strainers are clean and in place.",
+ "Kitchen drains handle large volumes of water from the first day. Construction debris causes backups, standing water and odors, and inspectors check drains at opening.",
+ "Crews lift grates, remove debris by hand and with vacuums, clean grates and strainers and report slow drains to the plumber instead of flushing debris further down.",
+ ["Drain types and count", "Grates and strainers", "Debris present", "Plumber coordination"],
+ ["Grates are heavy; lift with proper technique and gloves.", "Washing debris into drains moves the clog further down the line."],
+ [("What is a floor sink in a commercial kitchen?", "A recessed drain receptor that collects indirect waste from equipment like ice machines, steam tables and sinks."),
+  ("Why clean trench drains before a kitchen opens?", "Construction debris causes backups and standing water as soon as the kitchen starts using water."),
+  ("Who clears a clogged kitchen drain?", "The plumber, using drain equipment. Cleaners remove debris they can reach and report slow drains."),
+  ("Are kitchen drains checked at health inspection?", "Often. Inspectors look for clean, working drains and no standing water.")]),
+"FRP wall cleaning": T(
+ "FRP wall cleaning cleans fiberglass reinforced plastic wall panels in commercial kitchens, restrooms, food storage and back-of-house areas, removing construction dust, adhesive and residue from the textured surface.",
+ "FRP is chosen because it is cleanable and meets health code, but its pebbled texture traps dust and adhesive. Food facilities must have clean, intact, cleanable walls to pass inspection.",
+ "Crews clean with neutral, non-abrasive cleaners and soft-bristle brushes that reach into the texture, rinse thoroughly and wipe dry.",
+ ["Wall area by room", "Adhesive and residue at seams", "Trim and corners", "Food-safe products"],
+ ["Abrasive pads damage the FRP surface and expose fibers.", "Some solvents soften FRP."],
+ [("What is FRP?", "Fiberglass reinforced plastic: textured, washable wall panels used in kitchens, restrooms and food areas."),
+  ("How is FRP cleaned after construction?", "With neutral, non-abrasive cleaners and soft-bristle brushes that reach into the texture, followed by rinsing."),
+  ("Can FRP be pressure washed?", "Usually not. High pressure can force water behind panels and lift trim."),
+  ("Why is FRP used in commercial kitchens?", "It is durable, moisture-resistant and easy to clean, which helps meet health code.")]),
+"FRP wall degreasing": T(
+ "FRP wall degreasing removes grease and oily film from FRP wall panels near cooking lines, fryers and dish areas, using degreasers that are safe for the panel surface.",
+ "Cooking vapors deposit grease on kitchen walls quickly. Greasy FRP collects dirt, looks yellow and fails inspections that require clean, cleanable surfaces.",
+ "Crews apply FRP-safe degreasers, allow dwell time, scrub with soft brushes into the texture and rinse thoroughly so no degreaser residue remains.",
+ ["Wall areas near cooking", "Grease level", "Degreaser compatibility", "Rinse and drainage"],
+ ["Strong solvents and high-alkaline products can damage FRP.", "Grease runoff makes floors slippery."],
+ [("How is grease removed from FRP walls?", "With FRP-safe degreasers, soft-bristle brushes and thorough rinsing."),
+  ("Why does FRP get greasy so quickly?", "Cooking vapors carry grease that settles on nearby walls."),
+  ("Can degreasers damage FRP?", "Some strong solvents and very high-alkaline products can, so compatible products are used."),
+  ("How often should kitchen FRP be degreased?", "Regularly during operation, often weekly near cooking lines, and once at turnover if construction work left residue.")]),
+"FRP adhesive squeeze-out removal": T(
+ "FRP adhesive squeeze-out removal takes off the panel adhesive that squeezed out at seams, edges and trim during FRP installation, before it hardens permanently.",
+ "Adhesive squeeze-out looks unfinished, traps dirt and makes walls harder to clean. Inspectors expect smooth, cleanable surfaces.",
+ "Crews remove adhesive with plastic tools while it is still soft where possible, then use adhesive-safe removers tested on the FRP, without cutting seams or trim.",
+ ["Seams and edges with squeeze-out", "Adhesive type and cure state", "Remover compatibility", "Trim condition"],
+ ["Solvents can damage FRP surfaces.", "Cutting into seams can create gaps that harbor bacteria."],
+ [("What is adhesive squeeze-out on FRP?", "Panel adhesive that oozes out at seams and edges when panels are pressed into place."),
+  ("How is FRP adhesive removed?", "With plastic tools while it is soft and adhesive removers tested on the panel."),
+  ("Who should remove FRP adhesive?", "The installer ideally removes it as they work; the cleaning crew removes what remains at final clean."),
+  ("Does adhesive on FRP affect health inspection?", "It can, because walls must be smooth and easily cleanable.")]),
+}

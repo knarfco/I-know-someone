@@ -1,0 +1,55 @@
+def T(a, y, m, s, w, q):
+    return dict(a=a, y=y, m=m, s=s, w=w, q=q)
+
+P = {
+"Cleanroom protocol cleaning": T(
+ "Cleanroom protocol cleaning cleans controlled environments, such as pharmaceutical, semiconductor and medical device cleanrooms, to defined particle standards using specific garments, low-lint wipes, approved agents and a set sequence before certification.",
+ "Cleanrooms must pass particle count testing to be certified. Construction dust and the wrong cleaning materials cause failures that delay startup.",
+ "Requests are routed only to certified cleanroom cleaning specialists, who gown properly, clean ceiling to floor in a defined sequence and coordinate with the certifier.",
+ ["Cleanroom ISO class", "Cleaning protocol and sequence", "Approved garments, wipes and agents", "Certification testing schedule"],
+ ["Ordinary wipes and mops shed particles and can cause certification failure.", "Skipping steps in the sequence recontaminates cleaned surfaces."],
+ [("What is a cleanroom?", "A room with controlled levels of airborne particles, used in pharmaceutical, electronics and medical device manufacturing."),
+  ("How is a new cleanroom cleaned after construction?", "With a multi-step protocol using cleanroom garments, low-lint wipes and approved agents, from ceiling to floor, often repeated several times."),
+  ("Who certifies a cleanroom?", "Independent certification firms that test particle counts, airflow and pressure against the room's classification."),
+  ("Why is cleanroom cleaning a specialty?", "Particle limits are strict, and ordinary cleaning materials add particles instead of removing them.")]),
+"Pharmacy compounding room cleaning": T(
+ "Pharmacy compounding room cleaning cleans sterile and non-sterile compounding areas, such as cleanrooms, anterooms and segregated compounding areas, to pharmacy standards before certification and use.",
+ "Compounding rooms produce medications for patients, and contamination can cause serious harm. They must meet pharmacy compounding standards and pass certification.",
+ "Requests go only to qualified specialists after review, who follow the pharmacy's procedures, approved agents and cleaning sequence, documented for the pharmacy's records.",
+ ["Room classification and standard", "Pharmacy procedures", "Approved cleaning and disinfecting agents", "Certification schedule"],
+ ["Only agents approved by the pharmacy may be used.", "Rooms must be certified before compounding begins."],
+ [("What is a pharmacy compounding room?", "A controlled room where pharmacists prepare customized medications, sometimes under sterile conditions."),
+  ("Are compounding rooms certified?", "Yes, sterile compounding areas are certified for air quality and pressure before use and periodically after."),
+  ("Who cleans pharmacy compounding rooms after construction?", "Qualified specialists following the pharmacy's procedures."),
+  ("Why is compounding room cleaning conditional?", "Strict standards protect patient safety, so only trained providers are introduced.")]),
+"Data center post-construction cleaning": T(
+ "Data center post-construction cleaning removes construction contamination from white space, raised floor plenums, cabinets, cable trays and support rooms before IT equipment is installed or energized.",
+ "Construction dust in a data center is drawn into servers by cooling air, where it causes overheating and failures. Many operators require a documented clean before equipment goes in.",
+ "Requests are routed only to trained critical-environment crews, who clean ceiling to subfloor with HEPA and antistatic methods and often verify with particle testing.",
+ ["White space and support rooms", "Raised floor plenum", "Cabinets and cable trays", "Antistatic and testing requirements"],
+ ["Static discharge can damage sensitive equipment.", "Cabling and fiber must not be disturbed."],
+ [("Why clean a data center after construction?", "Construction dust is pulled into servers by cooling air and can cause overheating and failures."),
+  ("What is data center white space?", "The area where IT equipment racks are installed, usually on a raised floor."),
+  ("Who cleans data centers after construction?", "Trained critical-environment cleaning crews using HEPA and antistatic methods."),
+  ("Is particle testing done after data center cleaning?", "Often, to verify the space meets the operator's contamination standard.")]),
+"Sub-floor plenum cleaning in data centers": T(
+ "Sub-floor plenum cleaning in data centers cleans the space beneath raised access floors, where cooling air flows to equipment, removing construction dust and debris with HEPA equipment.",
+ "Dust and debris under the floor are blown straight into IT equipment through perforated tiles. Construction leaves cable scraps, dust and trash in the plenum.",
+ "Trained crews lift panels in limited sections with proper lifters, HEPA vacuum the subfloor and pedestals, and replace panels before moving on.",
+ ["Plenum area and depth", "Panel lifting plan", "Cabling and fiber in the plenum", "HEPA equipment"],
+ ["Removing too many panels at once weakens the floor grid.", "Cables and fiber must not be pulled or stepped on."],
+ [("Why clean under a data center raised floor?", "The plenum delivers cooling air, so dust there is blown into equipment."),
+  ("How is a raised floor plenum cleaned?", "Panels are lifted in sections and the subfloor is HEPA vacuumed, then panels are replaced."),
+  ("Who cleans data center subfloors?", "Trained critical-environment crews."),
+  ("Is subfloor cleaning done before equipment is installed?", "Ideally yes, as part of the post-construction clean.")]),
+"Server rack exterior cleaning": T(
+ "Server rack exterior cleaning cleans the outside of server cabinets and racks, including doors, panels and tops, with antistatic methods and IT approval, without opening equipment.",
+ "Dust on rack exteriors and doors is drawn into equipment by cooling fans. Racks often sit in place while the room is still being finished.",
+ "Trained crews clean only with IT approval, using HEPA vacuums and antistatic wipes on exteriors and never opening cabinets or touching cables.",
+ ["Rack count and approval", "Antistatic materials", "Equipment status", "Access rules"],
+ ["Never open racks or touch equipment and cables.", "Static discharge can damage electronics."],
+ [("Can cleaning crews clean server racks?", "Only the exteriors, with IT approval and antistatic methods."),
+  ("Why use antistatic cleaning on server racks?", "Static discharge can damage sensitive electronics."),
+  ("Are server racks opened during cleaning?", "No, cabinets stay closed and equipment is not touched."),
+  ("Who approves server rack cleaning?", "The IT or data center operations team.")]),
+}

@@ -1,0 +1,55 @@
+def T(a, y, m, s, w, q):
+    return dict(a=a, y=y, m=m, s=s, w=w, q=q)
+
+P = {
+"Industrial equipment exterior cleaning": T(
+ "Industrial equipment exterior cleaning cleans the outside of newly installed production machines, process equipment, tanks and skids, removing construction dust, overspray and packaging residue under the owner's lockout procedures.",
+ "New equipment is often set while construction is still underway and collects dust before startup. Dust on motors, panels and moving parts affects reliability and quality.",
+ "Crews clean only with the owner's approval and lockout, using dry and damp methods on exteriors and leaving controls, guards and internals to the equipment vendor.",
+ ["Equipment list and owner approval", "Lockout procedures", "Allowed cleaning methods", "Startup schedule"],
+ ["Equipment must be locked out before any cleaning.", "Controls, guards and internals are left to the vendor."],
+ [("Is lockout required to clean industrial equipment?", "Yes. Equipment must be locked out by authorized personnel before anyone cleans it."),
+  ("Who approves cleaning of production equipment?", "The owner or plant manager, often with the equipment vendor's guidance."),
+  ("Are equipment control panels cleaned?", "Only the exterior, gently and without liquids; panels are never opened."),
+  ("Why clean equipment before startup?", "Construction dust affects motors, sensors and product quality once the equipment runs.")]),
+"Conveyor system exterior cleaning": T(
+ "Conveyor system exterior cleaning cleans conveyor frames, side rails, guards, supports and under-conveyor areas after installation, removing construction dust and debris before the system starts.",
+ "Conveyors run through warehouses and plants for long distances and collect debris that can jam rollers or fall onto product.",
+ "Crews clean under lockout, working along the line to vacuum frames and supports and clear debris underneath, without removing guards.",
+ ["Conveyor length and layout", "Lockout coordination", "Guards and access", "Startup date"],
+ ["Conveyors must be locked out before cleaning.", "Guards stay in place; only the vendor removes them."],
+ [("Are conveyors cleaned after installation?", "Yes, construction debris is removed from frames and underneath before startup."),
+  ("Is lockout required to clean a conveyor?", "Yes, conveyors must be locked out by authorized personnel."),
+  ("Are conveyor guards removed for cleaning?", "No, guards stay in place; any removal is done by the vendor."),
+  ("Who services conveyor systems?", "The conveyor vendor or integrator.")]),
+"Manufacturing plant post-construction cleaning": T(
+ "Manufacturing plant post-construction cleaning prepares new or expanded production areas for startup, cleaning floors, overhead structure, equipment exteriors, utility areas and support spaces under the plant's procedures.",
+ "Plants must be clean for worker safety, product quality and audits. Construction contamination in production areas can cause defects and failed inspections.",
+ "Specialist crews clean under the plant's safety and quality procedures, top down, with lockout on any equipment and documentation for the owner.",
+ ["Production areas and equipment", "Plant safety and quality procedures", "Overhead structure", "Startup date"],
+ ["Plant safety rules and lockout procedures apply.", "Some areas require specific PPE or training."],
+ [("Who cleans manufacturing plants after construction?", "Specialist industrial cleaning crews working under the plant's procedures."),
+  ("Is overhead cleaning included in plant turnover?", "Often, because overhead dust falls onto production lines and products."),
+  ("Do plant safety rules apply to cleaning crews?", "Yes, crews follow the plant's PPE, lockout and access rules."),
+  ("When is a plant cleaned after construction?", "Before production startup and any customer or regulatory audits.")]),
+"Cold storage facility cleaning": T(
+ "Cold storage facility cleaning cleans cold warehouses, freezers and refrigerated docks before the building is pulled down to temperature, removing construction debris and dust with minimal water.",
+ "Once a cold storage building is cooled, any water left behind freezes and debris freezes in place. Cleaning before pull-down is far easier and safer.",
+ "Crews sweep and vacuum, clean with minimal moisture, dry surfaces thoroughly and coordinate timing with the refrigeration contractor's pull-down schedule.",
+ ["Facility size and temperature zones", "Pull-down date", "Floors and insulated panels", "Racking"],
+ ["Water left behind freezes and creates slip hazards.", "Working in cold areas requires cold-weather PPE."],
+ [("Why clean a cold storage building before it is cooled?", "Water freezes once the building is cold, and debris freezes in place, so cleaning is much harder afterward."),
+  ("Is water used to clean cold storage facilities?", "Minimally, and surfaces are dried thoroughly before pull-down."),
+  ("What is pull-down in cold storage?", "Slowly lowering the building to its operating temperature after construction."),
+  ("Are cold storage racks cleaned?", "Yes, racks are cleaned before product is stored.")]),
+"Truck court and dock apron sweeping": T(
+ "Truck court and dock apron sweeping clears gravel, debris, mud and trash from the paved truck courts and dock aprons of warehouses and distribution centers with power sweepers.",
+ "Debris in truck courts punctures tires, gets blown into dock doors and washes into storm drains. Tenants expect clean courts when they move in.",
+ "Crews power sweep in lanes with truck-mounted or ride-on sweepers, hand-sweep corners and dock pits and clear drain inlets.",
+ ["Truck court area", "Dock positions", "Drain inlets", "Traffic and timing"],
+ ["Truck traffic must be controlled during sweeping.", "Drain inlets must not receive swept debris."],
+ [("What is a truck court?", "The paved area behind a warehouse where trucks maneuver and park at dock doors."),
+  ("How is a truck court cleaned?", "With truck-mounted or ride-on power sweepers, plus hand sweeping at corners and dock positions."),
+  ("Why sweep truck courts before turnover?", "Debris punctures tires, blows into docks and washes into storm drains."),
+  ("When is the truck court swept?", "Before tenant move-in and periodically during operation.")]),
+}
