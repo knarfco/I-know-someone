@@ -209,6 +209,22 @@
     } catch (e) { /* query string not available */ }
   }
 
+  // ---- Before / after sliders on project cards
+  document.querySelectorAll("[data-ba]").forEach(function (ba) {
+    var stage = ba.querySelector(".ba-stage"), range = ba.querySelector(".ba-range"), during = ba.querySelector(".ba-during");
+    range.addEventListener("input", function () { stage.style.setProperty("--pos", range.value + "%"); });
+    ba.querySelectorAll("[data-ba-view]").forEach(function (b) {
+      b.addEventListener("click", function () {
+        var d = b.getAttribute("data-ba-view") === "during";
+        stage.hidden = d; if (during) during.hidden = !d;
+        ba.querySelectorAll("[data-ba-view]").forEach(function (x) { x.classList.toggle("is-on", x === b); });
+      });
+    });
+  });
+
+  // ---- Print buttons (capability statement)
+  document.querySelectorAll("[data-print]").forEach(function (b) { b.addEventListener("click", function () { window.print(); }); });
+
   // ---- Open a linked FAQ answer (task.html#q3)
   var t = location.hash && document.getElementById(location.hash.slice(1));
   if (t && t.tagName === "DETAILS") t.open = true;

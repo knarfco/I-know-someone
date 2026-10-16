@@ -37,6 +37,10 @@ rows = json.loads((ROOT / "research" / "tasks.json").read_text())
 fam_mod = load("families")
 gen_mod = load("general")
 inhouse = load("inhouse")
+company_mod = load("company")
+trust_mod = load("trust")
+PHONE = company_mod.COMPANY["phone"] or PHONE
+OPERATOR = company_mod.COMPANY["operator"] or OPERATOR
 FAM = inhouse.deep(fam_mod.F)  # family name -> dict(slug, short, intro, faq)
 gen_mod.GENERAL_FAQ = inhouse.deep(gen_mod.GENERAL_FAQ)
 
@@ -71,6 +75,7 @@ for t in tasks:
     t["c"] = CONTENT_BY_TASK.get(t["task"])
 
 fams = list(dict.fromkeys(t["family"] for t in tasks))
+TRUST = trust_mod.Trust(company_mod, {t["task"]: t["slug"] for t in tasks})
 HINTS = {
     "Site, Debris & Waste Management": "Debris haul-off, daily sweeps, recycling",
     "Rough Clean": "Phase one: slabs, stud bays, plenums",
@@ -140,8 +145,8 @@ PRICEBOOK = PRICING["items"]
 
 
 # ---------------------------------------------------------------- layout
-NAV = [("services.html", "Services"), ("faq.html", "FAQ"), ("methods.html", "Our Methods"),
-       ("general-contractors.html", "For GCs"), ("about.html", "About")]
+NAV = [("services.html", "Services"), ("projects.html", "Projects"), ("capability-statement.html", "Government"),
+       ("general-contractors.html", "For GCs"), ("faq.html", "FAQ"), ("about.html", "About"), ("contact.html", "Contact")]
 
 
 def page(path, title, desc, body, crumbs=None, schema=None, active=None, extra_js="", robots="noindex, nofollow"):
@@ -209,8 +214,10 @@ def page(path, title, desc, body, crumbs=None, schema=None, active=None, extra_j
     </div>
     <div><h2 class="foot-h">Services</h2>
       <a href="{up}services.html">All services</a><a href="{up}faq.html">FAQ</a><a href="{up}glossary.html">Glossary</a><a href="{up}methods.html">Our methods</a></div>
+    <div><h2 class="foot-h">Company</h2>
+      <a href="{up}about.html">About Beyond Klean</a><a href="{up}projects.html">Projects</a><a href="{up}safety.html">Safety and compliance</a><a href="{up}capability-statement.html">Capability statement</a><a href="{up}contact.html">Contact</a></div>
     <div><h2 class="foot-h">Work with us</h2>
-      <a href="{up}quote.html">Request a bid</a><a href="{up}quote.html#specs">Send your specs</a><a href="{up}general-contractors.html">For general contractors</a><a href="{up}about.html">About Beyond Klean</a></div>
+      <a href="{up}quote.html">Request a bid</a><a href="{up}quote.html#specs">Send your specs</a><a href="{up}general-contractors.html">For general contractors</a></div>
     <div><h2 class="foot-h">Above eye level</h2>
       <a href="{up}families/{FAM[fams[3]]['slug']}.html">Overhead &amp; high dusting</a><a href="{AELC_URL}" rel="noopener">AboveEyeLevelCleaning.com</a></div>
   </div>
@@ -322,6 +329,7 @@ def build_task(t):
   </aside>
 </article>
 <section class="wrap related"><h2>Related work</h2><div class="rel-grid">{rel_html}</div></section>
+{TRUST.for_task(t["task"], up)}
 """
     schema = [{"@context": "https://schema.org", "@type": "Service", "name": t["task"],
                "alternateName": t["alias_list"], "description": c["a"], "serviceType": t["group"],
@@ -477,15 +485,20 @@ def build_glossary():
 
 
 def build_static(n_faq):
-    for path, title, desc, crumb, html_body, active in gen_mod.static_pages(
+    pages = gen_mod.static_pages(
             n_tasks=len(tasks), n_names=sum(1 + len(t['alias_list']) for t in tasks),
             n_faq=n_faq, fam_cards=fam_cards(""), AELC_URL=AELC_URL,
             phase_counts=[(p, PHASE_KEY[p], sum(1 for t in tasks if t["phase"] == p)) for p in PHASE_ORDER],
-            task_options="", phone=PHONE):
+            task_options="", phone=PHONE)
+    pages += [TRUST.projects_page(), TRUST.capability_page(), TRUST.safety_page(), TRUST.contact_page()]
+    blocks = {"<!--CRED-->": TRUST.cred_strip(), "<!--FEATURED-->": TRUST.featured(),
+              "<!--PROOF-->": TRUST.quotes_block() + TRUST.clients_block(), "<!--LEADERSHIP-->": TRUST.leadership_block()}
+    for path, title, desc, crumb, html_body, active in pages:
+        for k, v in blocks.items():
+            html_body = html_body.replace(k, v)
         page(path, title, desc, html_body,
              crumbs=None if path == "index.html" else [("index.html", "Home"), (None, crumb)],
-             schema=[{"@context": "https://schema.org", "@type": "Organization", "name": "Beyond Klean",
-                      "url": SITE_URL, "logo": f"{SITE_URL}/assets/logo.png"},
+             schema=[TRUST.org_schema(SITE_URL),
                      {"@context": "https://schema.org", "@type": "WebSite", "name": "Beyond Klean", "url": SITE_URL}]
              if path == "index.html" else None, active=active)
 

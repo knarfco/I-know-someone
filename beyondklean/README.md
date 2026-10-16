@@ -11,6 +11,8 @@ The site is marked **noindex** and `robots.txt` blocks crawlers until launch. Fo
 | `research/` | Task research, `tasks.csv` / `tasks.json` and the report |
 | `content/families.py` | Family intros and family-level FAQs |
 | `content/general.py` | Glossary, general FAQ, markets and the static pages (home, methods, GCs, quote, about) |
+| `content/company.py` | Company facts, credentials, projects, clients and quotes. Empty values show as Pending in preview; set `SHOW_SLOTS = False` at launch |
+| `content/trust.py` | Projects, capability statement, safety and contact pages, and the proof blocks on home and service pages |
 | `content/inhouse.py` | Rewrites applied at build time that turn referral-network wording into in-house voice |
 | `content/estimator.html` | Body of the internal estimator page (`site/estimator/`) |
 | `research/pricing.json` | Price book: unit and low / typical / high rate per task, with sources (`PRICING.md`) |
@@ -32,7 +34,7 @@ python3 quality_scan.py -v # lists any task content that is still thin
 
 - Remove `noindex` and replace `robots.txt`.
 - Connect the bid request form to a real inbox or CRM (both owner and operator copied, with the reference number).
-- Set `PHONE` and `OPERATOR` at the top of `build_site.py`.
+- Fill in `content/company.py` (phone, email, address, credentials, projects with photos in `site/assets/projects/`), then set `SHOW_SLOTS = False`.
 - Keep `/estimator/` out of search (`Disallow: /estimator/`). It is locked by its own password (`ESTIMATOR_PASSWORD` in `build_site.py`); Hostinger's Password Protect Directories can add a server login on top.
 - Add Search Console, Bing Webmaster Tools (with IndexNow) and Apple Business Connect.
 - Replace the preview bar.

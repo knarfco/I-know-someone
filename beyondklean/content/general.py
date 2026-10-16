@@ -177,12 +177,14 @@ def static_pages(n_tasks, n_names, n_faq, fam_cards, AELC_URL, phase_counts, tas
     </div>
   </div>
 </section>
+<!--CRED-->
 
 <section class="wrap">
   <p class="eyebrow">Markets we serve</p>
   <h2>Any building type. Any stage of construction.</h2>
   <div class="mgrid">{markets}</div>
 </section>
+<!--FEATURED-->
 
 <section class="wrap">
   <p class="eyebrow">Services</p>
@@ -214,6 +216,8 @@ def static_pages(n_tasks, n_names, n_faq, fam_cards, AELC_URL, phase_counts, tas
     <a class="btn btn-ghost" href="quote.html#specs">Send Your Specs</a>
   </div>
 </section>
+
+<!--PROOF-->
 
 <section class="wrap split">
   <div class="panel">
@@ -355,6 +359,9 @@ def static_pages(n_tasks, n_names, n_faq, fam_cards, AELC_URL, phase_counts, tas
   <p>Home crews cover the Southeast. Travel crews mobilize nationwide for larger projects. Send the city and ZIP code and we'll confirm availability before we bid.</p>
   <h2>How we work</h2>
   <p>Capture dust instead of moving it. Use the least aggressive chemistry that does the job. Follow the manufacturer's care guide on every new finish. Assign regulated work only to licensed, certified technicians.</p>
+<!--LEADERSHIP-->
+  <h2>Proof and paperwork</h2>
+  <p>See our <a href="projects.html">projects</a>, how our crews work under our <a href="safety.html">safety and compliance</a> program, our <a href="methods.html">cleaning methods</a>, and the <a href="capability-statement.html">capability statement</a> for government and institutional buyers.</p>
   <h2>Our sister brand</h2>
   <p>Recurring overhead and high dusting is handled through <a href="{AELC_URL}" rel="noopener">Above Eye Level Cleaning</a>, which keeps open ceilings, structure and fixtures clean after the building opens.</p>
   <p><a class="btn" href="quote.html">Request a Bid</a></p>
