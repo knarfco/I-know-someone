@@ -540,15 +540,30 @@ def build_static(n_faq):
 # ---------------------------------------------------------------- estimator (internal, unlinked)
 def build_estimator():
     up = "../"
+    est = load("est_data")
+    routine_mod = load("routine")
+    BILLED = {"general": 42, "tech": 55, "lift": 70, "specialist": 70, "lead": 55}
     rows_pb = []
     for t in sorted(tasks, key=lambda x: x["task"]):
         pb = PRICEBOOK.get(t["task"], {})
-        rows_pb.append([t["task"], FAM[t["family"]]["short"], pb.get("unit", "sqft"), pb.get("low", 0), pb.get("mid", 0),
+        role = "specialist" if t["tier"] == "Conditional / regulated" else est.FAMILY_ROLE.get(t["family"], "general")
+        mid = pb.get("mid", 0)
+        rate = pb.get("rate_per_hr") or (1 if pb.get("unit") == "hour" else round(BILLED[role] / (mid * .6), 3) if mid else 0)
+        mat = round(mid * est.MATERIAL_SHARE.get(t["family"], .05), 4)
+        scope = (t["c"] or {}).get("s", [])
+        rows_pb.append([t["task"], FAM[t["family"]]["short"], pb.get("unit", "sqft"), pb.get("low", 0), mid,
                         pb.get("high", 0), pb.get("min", 0), pb.get("basis", ""), pb.get("confidence", ""),
-                        t["alias_list"], t["phase"]])
+                        t["alias_list"], t["phase"], rate, mat, role, scope])
+    names = {r[0] for r in rows_pb} | {r[0] for r in routine_mod.ROUTINE}
+    for name, mode, lines in est.TEMPLATES:
+        bad = [l[0] for l in lines if l[0] not in names]
+        assert not bad, f"template {name}: unknown tasks {bad}"
+    units = {**UNIT_LABEL, "flight": "Flight of stairs", "month": "Month"}
     # The price book ships encrypted (AES-GCM, key from the password via PBKDF2), so the rates stay
     # locked even though the files sit on a plain static host. The page decrypts it after login.
-    plain = json.dumps({"meta": PRICING.get("meta", {}), "units": UNIT_LABEL, "items": rows_pb},
+    plain = json.dumps({"meta": PRICING.get("meta", {}), "units": units, "items": rows_pb,
+                        "routine": [list(r) for r in routine_mod.ROUTINE], "freq": routine_mod.FREQ,
+                        "roles": est.ROLES, "equipment": est.EQUIPMENT, "templates": est.TEMPLATES},
                        ensure_ascii=False, separators=(",", ":")).encode()
     salt, iv, iters = os.urandom(16), os.urandom(12), 200_000
     key = hashlib.pbkdf2_hmac("sha256", ESTIMATOR_PASSWORD.encode(), salt, iters, 32)

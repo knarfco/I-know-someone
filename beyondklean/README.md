@@ -41,4 +41,12 @@ python3 quality_scan.py -v # lists any task content that is still thin
 
 ## Estimator
 
-`site/estimator/index.html` is an internal quoting tool, not linked from the site. Pick services from the price book, enter quantities, add mobilization, travel, premiums, overhead and profit, discount and tax, then print to PDF or export a CSV for a spreadsheet. It opens with a password (default `12345`, set by `ESTIMATOR_PASSWORD`); the price book ships encrypted in `estimator/pricebook.enc.js` and is decrypted in the browser on unlock, so the rates can't be read from the files without it. The page needs https (or localhost). The Company tab sets the header of the company performing the work. Rates are starting points: edit them on the Price book tab (saved in that browser) and export or import the book as JSON to move it between computers.
+`site/estimator/` is the in-house estimating program, not linked from the site and opened with a password (`ESTIMATOR_PASSWORD` in `build_site.py`, default `12345`). Its data ships encrypted in `estimator/pricebook.enc.js` and is decrypted in the browser on unlock (https or localhost only).
+
+- **Your costs:** wages by crew role with payroll burden, supervision, crew size and shift, night premium, local or travel crew (mileage, lodging, per diem), equipment by the day, disposal, overhead and target margin.
+- **The job:** any number of line items from the 438 construction tasks or 70 routine janitorial tasks, each with its own quantity, unit, height, soil level and crew. Hours come from production rates; labor, materials, cost, price and margin are calculated per line. Lines price at market rates (low, typical, high) or at cost plus target margin.
+- **Recurring contracts:** tasks by frequency, giving monthly hours, cleaners per night, monthly price, price per square foot per month and annual value.
+- **Summary:** days on site, cost breakdown, profit, margin against target, profit per crew-hour, a market check and a what-if price slider.
+- **Outputs:** internal estimate PDF, customer quote PDF (no internal numbers), estimate CSV, and a bids list with status tracking, win rate and a CRM-ready CSV export. Company defaults, templates and the price book are editable and saved in the browser.
+
+Data lives in `research/pricing.json`, `content/routine.py` and `content/est_data.py`. Production rates and material costs are starting points to be replaced with each contractor's own numbers.
