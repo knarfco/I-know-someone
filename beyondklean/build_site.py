@@ -38,6 +38,10 @@ fam_mod = load("families")
 gen_mod = load("general")
 inhouse = load("inhouse")
 company_mod = load("company")
+icons_mod = load("icons")
+graphics = load("graphics")
+ic = icons_mod.ic
+FAMILY_ICON = icons_mod.FAMILY_ICON
 trust_mod = load("trust")
 PHONE = company_mod.COMPANY["phone"] or PHONE
 OPERATOR = company_mod.COMPANY["operator"] or OPERATOR
@@ -169,6 +173,9 @@ def page(path, title, desc, body, crumbs=None, schema=None, active=None, extra_j
     tel = "".join(ch for ch in PHONE if ch.isdigit() or ch == "+")
     foot_call = f'<p><a class="foot-tel" href="tel:{tel}">{e(PHONE)}</a></p>' if PHONE else ""
     op_note = f" Services performed by {e(OPERATOR)}." if OPERATOR else ""
+    mcall = f'<a class="btn btn-light mbar-call" href="tel:{tel}">{ic("phone", up)}Call</a>' if PHONE else ""
+    mbar = (f'<div class="mbar">{mcall}<a class="btn" href="{up}quote.html">Request a Bid'
+            f'<span class="badge" data-bidbadge hidden>0</span></a></div>')
     ld = "".join(f'<script type="application/ld+json">{json.dumps(s, ensure_ascii=False)}</script>'
                  for s in (schema or []))
     out = f"""<!doctype html>
@@ -204,6 +211,7 @@ def page(path, title, desc, body, crumbs=None, schema=None, active=None, extra_j
 {bcw}
 {body}
 </main>
+{'' if path in ('quote.html', 'estimator/index.html') else mbar}
 <footer class="foot">
   <div class="wrap foot-grid">
     <div>
@@ -298,37 +306,48 @@ def build_task(t):
 
     pb = PRICEBOOK.get(t["task"])
     unit_row = (f'<div><dt>Bid by</dt><dd>{e(UNIT_LABEL.get(pb["unit"], pb["unit"]))}</dd></div>' if pb else "")
-    also = (f'<p class="also"><span class="eyebrow">Also called</span> {e("; ".join(t["alias_list"]))}</p>'
+    also = ('<div class="also"><span class="eyebrow">Also called</span>' +
+            "".join(f'<span class="chip chip-static">{e(a)}</span>' for a in t["alias_list"]) + "</div>"
             if t["alias_list"] else "")
+    more = lambda txt: (f'<div class="more" data-more><p>{e(txt)}</p></div>' if len(txt) > 260 else f"<p>{e(txt)}</p>")
     body = f"""
+<div class="band band-white task-top"><div class="wrap">
+  <p class="eyebrow fam-eyebrow">{ic(FAMILY_ICON[t['family']], up)}<a href="{up}families/{fam['slug']}.html">{e(fam['short'])}</a> · {e(t['group'])}</p>
+  <h1>{e(t['task'])}</h1>
+  <p class="lede">{e(c['a'])}</p>
+  <div class="task-cta">
+    <button class="btn btn-lg" type="button" data-add="{e(t['task'])}">Add to bid list</button>
+    <a class="btn btn-ghost" href="{up}quote.html?add={quote_url(t['task'])}">Request a bid</a>
+  </div>
+  {graphics.phase_strip(phase_k)}
+  {also}
+</div></div>
 <article class="wrap task" data-phase="{phase_k}">
   <div class="task-main">
-    <p class="eyebrow"><a href="{up}families/{fam['slug']}.html">{e(t['family'])}</a> · {e(t['group'])}</p>
-    <h1>{e(t['task'])}</h1>
-    <p class="lede">{e(c['a'])}</p>
-    {also}
-    <section><h2>Why it matters</h2><p>{e(c['y'])}</p></section>
-    <section><h2>How we approach it</h2><p>{e(c['m'])}</p>
-      <p class="small">Methods follow our <a href="{up}methods.html">capture-first, least-aggressive-chemistry standard</a>.</p></section>
-    <section><h2>Scope checklist for your bid</h2><ul class="check">{"".join(f"<li>{e(x)}</li>" for x in c['s'])}</ul></section>
-    <section><h2>Watch-outs</h2><ul class="warn">{"".join(f"<li>{e(x)}</li>" for x in c['w'])}</ul></section>
+    <div class="duo">
+      <section class="card"><h2>{ic("why", up)}Why it matters</h2>{more(c['y'])}</section>
+      <section class="card"><h2>{ic("how", up)}How we do it</h2>{more(c['m'])}
+        <p class="small"><a href="{up}methods.html">Our capture-first method</a></p></section>
+    </div>
+    <section class="card"><h2>{ic("list", up)}Scope checklist for your bid</h2><ul class="check check-grid">{"".join(f"<li>{e(x)}</li>" for x in c['s'])}</ul></section>
+    <section class="card card-warn"><h2>{ic("warn", up)}Watch-outs</h2><ul class="warn">{"".join(f"<li>{e(x)}</li>" for x in c['w'])}</ul></section>
     {aelc}
-    <section id="questions"><h2>Questions about {e(t['task'].lower())}</h2>{qa_html(qas, 'q')}</section>
+    <section id="questions"><h2 class="qh">{ic("question", up)}Common questions</h2>{qa_html(qas, 'q')}</section>
     {terms_html}
   </div>
   <aside class="spec" aria-label="Scope summary">
     <dl>
-      <div><dt>Scope ID</dt><dd class="mono">{e(t['id'])}</dd></div>
       <div><dt>Project stage</dt><dd><a class="pill ph-{phase_k}" href="{up}services.html#{phase_k}">{e(t['phase'])}</a></dd></div>
       <div><dt>Typical spec section</dt><dd class="mono">{e(PHASE_SPEC[t['phase']])}</dd></div>
       {unit_row}
       <div><dt>Performed by</dt><dd><span class="pill tier-{tier_k}">{e(TIER_LABEL[t['tier']])}</span><span class="small block">{e(TIER_NOTE[t['tier']])}</span></dd></div>
+      <div><dt>Scope ID</dt><dd class="mono">{e(t['id'])}</dd></div>
     </dl>
     <button class="btn" type="button" data-add="{e(t['task'])}">Add to bid list</button>
     <a class="btn btn-ghost" href="{up}quote.html?add={quote_url(t['task'])}">Request a bid</a>
   </aside>
 </article>
-<section class="wrap related"><h2>Related work</h2><div class="rel-grid">{rel_html}</div></section>
+<div class="band band-soft"><section class="wrap related"><h2>Related work</h2><div class="rel-grid">{rel_html}</div></section></div>
 {TRUST.for_task(t["task"], up)}
 """
     schema = [{"@context": "https://schema.org", "@type": "Service", "name": t["task"],
@@ -357,8 +376,10 @@ def build_family(fname, idx):
             f'<li><a href="{up}tasks/{t["slug"]}.html"><span>{e(t["task"])}</span>'
             f'<span class="pill ph-{PHASE_KEY[t["phase"]]}">{e(t["phase"])}</span></a></li>' for t in gts)
         gsec += f"""<section class="group"><h2>{e(gname)}</h2>
-<div class="group-why"><p><strong>Why it matters.</strong> {e(g0['why_it_matters'])}</p>
-<p><strong>Our method.</strong> {e(g0['beyond_klean_method'])}</p></div>
+<div class="duo duo-sm">
+  <div class="card"><h3>{ic("why", up)}Why it matters</h3><p>{e(g0['why_it_matters'])}</p></div>
+  <div class="card"><h3>{ic("how", up)}Our method</h3><p>{e(g0['beyond_klean_method'])}</p></div>
+</div>
 <ul class="tasklist">{items}</ul></section>"""
     aelc = ""
     if ftasks and ftasks[0]["aelc_feed"]:
@@ -367,13 +388,17 @@ def build_family(fname, idx):
                 f'and food facilities. <a href="{AELC_URL}" rel="noopener">Visit AboveEyeLevelCleaning.com</a></div>')
     prev_f, next_f = fams[idx - 1], fams[(idx + 1) % len(fams)]
     body = f"""
-<section class="wrap fam-hero">
-  <p class="eyebrow">Service family</p>
-  <h1>{e(fname)}</h1>
+<div class="band band-white fam-top"><section class="wrap fam-hero">
+  <div class="fam-head">{ic(FAMILY_ICON[fname], up, "ic fam-ic")}<div>
+    <p class="eyebrow">Service family</p>
+    <h1>{e(fname)}</h1>
+  </div></div>
   <p class="lede">{e(f['intro'])}</p>
+  <p class="task-cta"><a class="btn btn-lg" href="{up}quote.html">Request a Bid</a> <a class="btn btn-ghost" href="#groups">See every service</a></p>
   {aelc}
-</section>
-<div class="wrap">{gsec}</div>
+</section></div>
+{'<section class="wrap mid"><h2>The order we clean in</h2>' + graphics.top_down() + '</section>' if f['slug'] == 'overhead-high-dusting' else ''}
+<div class="wrap" id="groups">{gsec}</div>
 <section class="wrap"><h2>Questions about {e(f['short'].lower())}</h2>{qa_html(f['faq'], 'fq')}
 <p><a class="btn btn-ghost" href="{up}faq.html#{f['slug']}">See every {e(f['short'].lower())} question in the FAQ library</a></p></section>
 <nav class="wrap pager" aria-label="Families">
@@ -389,7 +414,7 @@ def build_family(fname, idx):
 # ---------------------------------------------------------------- index pages
 def fam_cards(up):
     return "".join(
-        f'<a class="fcard" href="{up}families/{FAM[fn]["slug"]}.html">'
+        f'<a class="fcard" href="{up}families/{FAM[fn]["slug"]}.html">{ic(FAMILY_ICON[fn], up, "ic fc-ic")}'
         f'<strong>{e(FAM[fn]["short"])}</strong><span class="small muted">{e(FAM[fn].get("hint", ""))}</span></a>'
         for fn in fams)
 
@@ -491,8 +516,17 @@ def build_static(n_faq):
             phase_counts=[(p, PHASE_KEY[p], sum(1 for t in tasks if t["phase"] == p)) for p in PHASE_ORDER],
             task_options="", phone=PHONE)
     pages += [TRUST.projects_page(), TRUST.capability_page(), TRUST.safety_page(), TRUST.contact_page()]
+    gi = lambda n: ic(n, "")
+    markets = "".join(f'<div class="mcard">{gi(i)}<strong>{e(n)}</strong><span class="small muted">{e(d)}</span></div>'
+                      for (n, d), i in zip(gen_mod.MARKETS, ["house", "office", "factory", "school", "capitol", "military"]))
+    proof = TRUST.quotes_block() + TRUST.clients_block()
     blocks = {"<!--CRED-->": TRUST.cred_strip(), "<!--FEATURED-->": TRUST.featured(),
-              "<!--PROOF-->": TRUST.quotes_block() + TRUST.clients_block(), "<!--LEADERSHIP-->": TRUST.leadership_block()}
+              "<!--PROOF-->": f'<div class="band band-white">{proof}</div>' if proof else "",
+              "<!--LEADERSHIP-->": TRUST.leadership_block(),
+              "<!--MARKETS-->": f'<div class="mgrid">{markets}</div>', "<!--TIMELINE-->": graphics.three_cleans(gi),
+              "<!--PROCESS-->": graphics.process(gi), "<!--VERSUS-->": graphics.capture_vs_move(gi),
+              "<!--TOPDOWN-->": graphics.top_down(), "<!--MISSED-->": graphics.commonly_missed(),
+              "<!--CLOSEOUT-->": graphics.closeout(gi)}
     for path, title, desc, crumb, html_body, active in pages:
         for k, v in blocks.items():
             html_body = html_body.replace(k, v)
@@ -572,6 +606,7 @@ if __name__ == "__main__":
     build_glossary()
     build_static(n_faq)
     build_estimator()
+    (SITE / "assets" / "icons.svg").write_text(icons_mod.sprite())
     (SITE / "join.html").unlink(missing_ok=True)  # contractor network page retired
     # type-ahead index for the "What needs cleaning?" finder: name, other names, family, url
     POPULAR = {"Final clean of entire building": 12, "Rough clean of entire building": 10, "Open ceiling deck cleaning": 12,

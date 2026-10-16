@@ -155,12 +155,12 @@ class Trust:
         ps = self.projects[:3]
         if not ps:
             return ""
-        return f"""<section class="wrap">
+        return f"""<div class="band band-white"><section class="wrap">
   <p class="eyebrow">Recent work</p>
   <h2>Before, during and after</h2>
   <div class="proj-grid">{"".join(self.card(p, "") for p in ps)}</div>
   <p><a class="btn btn-ghost" href="projects.html">See all projects</a></p>
-</section>"""
+</section></div>"""
 
     def clients_block(self):
         if self.m.CLIENTS:
@@ -329,12 +329,12 @@ class Trust:
 
   <h2>Documents we provide</h2>
   <ul class="check">
-    <li>Certificate of insurance and W-9</li>
-    <li>Site-specific safety plan and job hazard analysis</li>
-    <li>Safety Data Sheets and product technical data</li>
+    <li>Certificate of insurance and W-9 with the bid or on award</li>
+    <li>Site-specific safety plan and job hazard analysis before mobilization</li>
     <li>Training records for crew members on site</li>
-    <li>Room checklists and photo documentation at closeout</li>
   </ul>
+  <h3>At closeout</h3>
+  <!--CLOSEOUT-->
   <p><a class="btn" href="quote.html">Request a Bid</a> <a class="btn btn-ghost" href="capability-statement.html">Capability statement</a></p>
 </section>"""
         return ("safety.html", "Safety and Compliance | Beyond Klean",

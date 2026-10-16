@@ -169,57 +169,56 @@ def static_pages(n_tasks, n_names, n_faq, fam_cards, AELC_URL, phase_counts, tas
       </div>
       <ul class="finder-list" id="finder-list" role="listbox" hidden></ul>
     </form>
-    <p class="lede">Our crews handle every cleaning scope a building project calls for, from rough clean to final turnover, for general contractors, property managers and building owners. Home crews cover the Southeast. Travel crews mobilize nationwide for larger projects.</p>
     <div class="hero-cta">
-      <a class="btn" href="quote.html">Request a Bid</a>
+      <a class="btn btn-lg" href="quote.html">Request a Bid</a>
       <a class="btn btn-light" href="quote.html#specs">Send Your Specs</a>
       {call}
     </div>
+    <p class="lede">Our crews handle every cleaning scope a building project calls for, from rough clean to final turnover, for general contractors, property managers and building owners. Home crews cover the Southeast. Travel crews mobilize nationwide.</p>
   </div>
 </section>
 <!--CRED-->
 
-<section class="wrap">
+<div class="band band-white"><section class="wrap">
   <p class="eyebrow">Markets we serve</p>
   <h2>Any building type. Any stage of construction.</h2>
-  <div class="mgrid">{markets}</div>
-</section>
+  <!--MARKETS-->
+</section></div>
+
+<div class="band band-soft"><section class="wrap">
+  <p class="eyebrow">Where we fit in your schedule</p>
+  <h2>Three cleans, timed to your trades</h2>
+  <!--TIMELINE-->
+</section></div>
+
 <!--FEATURED-->
 
-<section class="wrap">
+<div class="band"><section class="wrap">
   <p class="eyebrow">Services</p>
   <h2>Browse by type of work</h2>
   <div class="fgrid">{fam_cards}</div>
   <p><a class="btn btn-ghost" href="services.html">Search our services</a></p>
-</section>
+</section></div>
 
-<section class="wrap">
+<div class="band band-navy"><section class="wrap">
   <p class="eyebrow">How it works</p>
   <h2>From your scope to a signed-off building</h2>
-  <ol class="steps">
-    <li><strong>Send your scope.</strong> Project type, location, deadline, square footage and the tasks you need. Specs and plans help but aren't required.</li>
-    <li><strong>We confirm crew availability.</strong> A home crew or a travel crew, matched to the size and timing of the job.</li>
-    <li><strong>You get an itemized bid.</strong> Every task priced as its own line, by phase, with nothing buried.</li>
-    <li><strong>We mobilize on your schedule.</strong> Rough, final and punch cleans timed to your trades and inspections.</li>
-    <li><strong>Closeout on time.</strong> Walkthrough, punch items re-cleaned, checklists and photos for your closeout package.</li>
-  </ol>
-</section>
-
-<section class="wrap bidstrip">
-  <div>
-    <p class="eyebrow">What we need to bid</p>
-    <h2>Five answers get you a bid</h2>
-    {need}
+  <!--PROCESS-->
+  <div class="bidstrip">
+    <div>
+      <h3>Five answers get you a bid</h3>
+      {need}
+    </div>
+    <div class="bidstrip-cta">
+      <a class="btn btn-lg" href="quote.html">Request a Bid</a>
+      <a class="btn btn-light" href="quote.html#specs">Send Your Specs</a>
+    </div>
   </div>
-  <div class="bidstrip-cta">
-    <a class="btn" href="quote.html">Request a Bid</a>
-    <a class="btn btn-ghost" href="quote.html#specs">Send Your Specs</a>
-  </div>
-</section>
+</section></div>
 
 <!--PROOF-->
 
-<section class="wrap split">
+<div class="band"><section class="wrap split">
   <div class="panel">
     <p class="eyebrow">Our methods</p>
     <h2>Capture it. Don't move it.</h2>
@@ -232,20 +231,22 @@ def static_pages(n_tasks, n_names, n_faq, fam_cards, AELC_URL, phase_counts, tas
     <p>Open decks, beams, ducts and fixtures collect dust long after turnover. Our sister brand schedules recurring high dusting for stores, warehouses and food facilities.</p>
     <p><a href="families/overhead-high-dusting.html">Overhead services</a> · <a href="{AELC_URL}" rel="noopener">AboveEyeLevelCleaning.com</a></p>
   </div>
-</section>
+</section></div>
 """
 
     methods = """
-<section class="wrap narrow">
+<section class="wrap mid">
   <p class="eyebrow">Our methods</p>
   <h1>How Beyond Klean cleans differently</h1>
   <p class="lede">Construction cleaning has a habit of moving dirt around: blowing dust off ledges, sweeping it into the air and attacking residue with the strongest chemical on the truck. Our standard is the opposite.</p>
 
+  <!--VERSUS-->
   <h2>1. Capture first</h2>
   <p>Dust is removed from the building, not relocated. Our crews use sealed HEPA vacuums at the surface, damp microfiber and wet methods. OSHA's construction silica standard already restricts dry sweeping, dry brushing and compressed-air cleaning where silica dust is present; we treat that as the baseline everywhere.</p>
 
   <h2>2. Top down, inside out</h2>
   <p>Overhead surfaces are cleaned before walls, walls before floors, and rooms toward exits, so nothing falls onto a surface that is already clean.</p>
+  <!--TOPDOWN-->
 
   <h2>3. Least-aggressive chemistry</h2>
   <p>Mechanical removal and water come first, then pH-neutral cleaners, then targeted products only where needed, tested in a hidden spot. New stone, grout, floor finishes, coatings and glass are at their most vulnerable right after installation.</p>
@@ -274,10 +275,12 @@ def static_pages(n_tasks, n_names, n_faq, fam_cards, AELC_URL, phase_counts, tas
 </section>"""
 
     gcs = f"""
-<section class="wrap narrow">
+<section class="wrap mid">
   <p class="eyebrow">For general contractors</p>
   <h1>One crew for every cleaning scope on your job</h1>
   <p class="lede">Rough clean, final clean, glass, floors, overhead, kitchens and the touch-up before the owner walk. Send us the scope and we bid it line by line, then show up when your schedule says.</p>
+  <h2>Where we fit in your schedule</h2>
+  <!--TIMELINE-->
   <h2>What we keep off your punch list</h2>
   <ul class="check">
     <li>Final cleaning scopes that leave out overhead structure, glass or floor finish, then turn into change orders.</li>
@@ -286,8 +289,12 @@ def static_pages(n_tasks, n_names, n_faq, fam_cards, AELC_URL, phase_counts, tas
     <li>Missing insurance certificates and unclear re-clean terms at the end of the job.</li>
     <li>A failed Substantial Completion walk because the building was not inspection-clean.</li>
   </ul>
+  <h2>The scope items most often missed</h2>
+  <!--MISSED-->
   <h2>What we need to bid</h2>
   {need}
+  <h2>What you get at closeout</h2>
+  <!--CLOSEOUT-->
   <h2>What helps us sharpen the number</h2>
   <ul class="check">
     <li>Drawings and the finish schedule</li>
@@ -330,8 +337,11 @@ def static_pages(n_tasks, n_names, n_faq, fam_cards, AELC_URL, phase_counts, tas
       <label for="r-zip">ZIP code<input id="r-zip" name="zip" inputmode="numeric" maxlength="10" required></label>
     </div>
     <label for="r-sf">Approximate square feet<input id="r-sf" name="sqft" inputmode="numeric" placeholder="25,000"></label>
-    <label for="r-desc">Anything else we should know<textarea id="r-desc" name="details" placeholder="Phases, ceiling heights, inspection dates, access rules"></textarea></label>
-    <label for="r-files" id="specs">Specs, plans or photos (optional)<input id="r-files" type="file" name="files" multiple></label>
+    <details class="more-fields" id="specs">
+      <summary>Add details, specs or plans (optional)</summary>
+      <label for="r-desc">Anything else we should know<textarea id="r-desc" name="details" placeholder="Phases, ceiling heights, inspection dates, access rules"></textarea></label>
+      <label for="r-files">Specs, plans or photos<input id="r-files" type="file" name="files" multiple></label>
+    </details>
     <div class="row">
       <label for="r-name">Your name<input id="r-name" name="name" required></label>
       <label for="r-co">Company<input id="r-co" name="company"></label>

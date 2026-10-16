@@ -28,6 +28,7 @@
   var paintList = function () {
     var l = getList();
     document.querySelectorAll("[data-bidcount]").forEach(function (a) { a.hidden = !l.length; a.querySelector(".badge").textContent = l.length; });
+    document.querySelectorAll("[data-bidbadge]").forEach(function (b) { b.hidden = !l.length; b.textContent = l.length; });
     document.querySelectorAll("[data-add]").forEach(function (b) {
       var on = l.indexOf(b.getAttribute("data-add")) !== -1;
       b.textContent = on ? "On your bid list ✓" : "Add to bid list";
@@ -221,6 +222,20 @@
       });
     });
   });
+
+  // ---- "Read more" on long paragraphs: clamped by CSS, the full text stays in the page
+  document.querySelectorAll("[data-more]").forEach(function (box) {
+    var p = box.querySelector("p");
+    if (p.scrollHeight <= p.clientHeight + 4) { box.classList.add("open"); return; }
+    var b = document.createElement("button");
+    b.type = "button"; b.className = "more-btn"; b.textContent = "Read more";
+    b.addEventListener("click", function () { var o = box.classList.toggle("open"); b.textContent = o ? "Show less" : "Read more"; });
+    box.appendChild(b);
+  });
+
+  // ---- "Send your specs" opens the optional details on the bid form
+  var specs = document.getElementById("specs");
+  if (specs && specs.tagName === "DETAILS" && location.hash === "#specs") specs.open = true;
 
   // ---- Print buttons (capability statement)
   document.querySelectorAll("[data-print]").forEach(function (b) { b.addEventListener("click", function () { window.print(); }); });

@@ -57,8 +57,11 @@
       <label for="r-zip">ZIP code<input id="r-zip" name="zip" inputmode="numeric" maxlength="10" required></label>
     </div>
     <label for="r-sf">Approximate square feet<input id="r-sf" name="sqft" inputmode="numeric" placeholder="25,000"></label>
-    <label for="r-desc">Anything else we should know<textarea id="r-desc" name="details" placeholder="Phases, ceiling heights, inspection dates, access rules"></textarea></label>
-    <label for="r-files" id="specs">Specs, plans or photos (optional)<input id="r-files" type="file" name="files" multiple></label>
+    <details class="more-fields" id="specs">
+      <summary>Add details, specs or plans (optional)</summary>
+      <label for="r-desc">Anything else we should know<textarea id="r-desc" name="details" placeholder="Phases, ceiling heights, inspection dates, access rules"></textarea></label>
+      <label for="r-files">Specs, plans or photos<input id="r-files" type="file" name="files" multiple></label>
+    </details>
     <div class="row">
       <label for="r-name">Your name<input id="r-name" name="name" required></label>
       <label for="r-co">Company<input id="r-co" name="company"></label>
@@ -75,6 +78,7 @@
   </form>
 </section>
 </main>
+
 <footer class="foot">
   <div class="wrap foot-grid">
     <div>
