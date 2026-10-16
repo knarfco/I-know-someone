@@ -1,4 +1,19 @@
-<section class="wrap est" data-estimator>
+<section class="wrap lock" data-lock>
+  <form class="lock-card" data-lockform autocomplete="off">
+    <p class="eyebrow">Internal · authorized users only</p>
+    <h1>Beyond Klean Estimator</h1>
+    <p class="lock-sub">Field bid tool. Every construction cleaning service, priced from researched rates you can adjust job by job.</p>
+    <label for="lock-pw">Password</label>
+    <div class="lock-row">
+      <input id="lock-pw" type="password" inputmode="numeric" autocomplete="current-password" required>
+      <button class="btn" type="submit">Unlock</button>
+    </div>
+    <p class="lock-err" role="alert" data-lockerr hidden></p>
+    <p class="small lock-note">The price book is encrypted. It only opens with the password.</p>
+  </form>
+</section>
+
+<section class="wrap est" data-estimator hidden>
   <div class="est-bar noprint">
     <div>
       <p class="eyebrow">Internal · not indexed</p>
@@ -8,6 +23,7 @@
       <button type="button" role="tab" class="chip is-on" data-tab="quote" aria-selected="true">Quote</button>
       <button type="button" role="tab" class="chip" data-tab="book" aria-selected="false">Price book</button>
       <button type="button" role="tab" class="chip" data-tab="company" aria-selected="false">Company</button>
+      <button type="button" class="chip" data-lockout>Lock</button>
     </div>
   </div>
 

@@ -33,10 +33,10 @@ python3 quality_scan.py -v # lists any task content that is still thin
 - Remove `noindex` and replace `robots.txt`.
 - Connect the bid request form to a real inbox or CRM (both owner and operator copied, with the reference number).
 - Set `PHONE` and `OPERATOR` at the top of `build_site.py`.
-- Keep `/estimator/` out of search (`Disallow: /estimator/`) and password-protect it in Hostinger (hPanel → Password Protect Directories).
+- Keep `/estimator/` out of search (`Disallow: /estimator/`). It is locked by its own password (`ESTIMATOR_PASSWORD` in `build_site.py`); Hostinger's Password Protect Directories can add a server login on top.
 - Add Search Console, Bing Webmaster Tools (with IndexNow) and Apple Business Connect.
 - Replace the preview bar.
 
 ## Estimator
 
-`site/estimator/index.html` is an internal quoting tool, not linked from the site. Pick services from the price book, enter quantities, add mobilization, travel, premiums, overhead and profit, discount and tax, then print to PDF or export a CSV for a spreadsheet. The Company tab sets the header of the company performing the work. Rates are starting points: edit them on the Price book tab (saved in that browser) and export or import the book as JSON to move it between computers.
+`site/estimator/index.html` is an internal quoting tool, not linked from the site. Pick services from the price book, enter quantities, add mobilization, travel, premiums, overhead and profit, discount and tax, then print to PDF or export a CSV for a spreadsheet. It opens with a password (default `12345`, set by `ESTIMATOR_PASSWORD`); the price book ships encrypted in `estimator/pricebook.enc.js` and is decrypted in the browser on unlock, so the rates can't be read from the files without it. The page needs https (or localhost). The Company tab sets the header of the company performing the work. Rates are starting points: edit them on the Price book tab (saved in that browser) and export or import the book as JSON to move it between computers.

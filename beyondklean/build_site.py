@@ -6,7 +6,8 @@ uploaded to any static host as-is.
 
     python3 build_site.py
 """
-import html, importlib.util, json, re, shutil
+import base64, hashlib, html, importlib.util, json, os, re, shutil
+from cryptography.hazmat.primitives.ciphers.aead import AESGCM
 from urllib.parse import quote as quote_url
 from collections import defaultdict
 from itertools import combinations
@@ -18,6 +19,7 @@ CONTENT = ROOT / "content"
 AELC_URL = "https://aboveeyelevelcleaning.com"
 SITE_URL = "https://beyondklean.com"
 PHONE = ""      # business phone, e.g. "(813) 555-0100"; shows Call buttons when set
+ESTIMATOR_PASSWORD = "12345"  # unlocks /estimator/ and decrypts its price book; change and rebuild to rotate
 OPERATOR = ""   # company performing the work, e.g. "Acme Cleaning LLC, license #123"; shown in the footer when set
 
 e = lambda s: html.escape(str(s), quote=True)
@@ -497,12 +499,21 @@ def build_estimator():
         rows_pb.append([t["task"], FAM[t["family"]]["short"], pb.get("unit", "sqft"), pb.get("low", 0), pb.get("mid", 0),
                         pb.get("high", 0), pb.get("min", 0), pb.get("basis", ""), pb.get("confidence", ""),
                         t["alias_list"], t["phase"]])
-    (SITE / "assets" / "pricebook.js").write_text(
-        "window.BK_PRICEBOOK=" + json.dumps({"meta": PRICING.get("meta", {}), "units": UNIT_LABEL, "items": rows_pb},
-                                             ensure_ascii=False, separators=(",", ":")) + ";\n")
+    # The price book ships encrypted (AES-GCM, key from the password via PBKDF2), so the rates stay
+    # locked even though the files sit on a plain static host. The page decrypts it after login.
+    plain = json.dumps({"meta": PRICING.get("meta", {}), "units": UNIT_LABEL, "items": rows_pb},
+                       ensure_ascii=False, separators=(",", ":")).encode()
+    salt, iv, iters = os.urandom(16), os.urandom(12), 200_000
+    key = hashlib.pbkdf2_hmac("sha256", ESTIMATOR_PASSWORD.encode(), salt, iters, 32)
+    ct = AESGCM(key).encrypt(iv, plain, None)
+    b64 = lambda b: base64.b64encode(b).decode()
+    (SITE / "estimator" / "pricebook.enc.js").parent.mkdir(parents=True, exist_ok=True)
+    (SITE / "estimator" / "pricebook.enc.js").write_text(
+        "window.BK_PB_ENC=" + json.dumps({"salt": b64(salt), "iv": b64(iv), "iter": iters, "ct": b64(ct)}) + ";\n")
+    (SITE / "assets" / "pricebook.js").unlink(missing_ok=True)
     body = (CONTENT / "estimator.html").read_text()
     page("estimator/index.html", "Estimator | Beyond Klean", "Internal estimating tool.", body,
-         extra_js=f'<script src="{up}assets/pricebook.js"></script><script src="{up}assets/estimator.js"></script>',
+         extra_js='<script src="pricebook.enc.js"></script><script src="estimator.js"></script>',
          robots="noindex, nofollow, noarchive")
 
 
