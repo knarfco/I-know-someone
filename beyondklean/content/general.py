@@ -1,4 +1,4 @@
-"""Site-wide content: glossary, general FAQ and the static pages (home, methods, GCs, join, quote, about)."""
+"""Site-wide content: glossary, general FAQ, markets and the static pages (home, methods, GCs, quote, about)."""
 from html import escape as e
 
 GLOSSARY = [(t, s, d) for t, s, d in [
@@ -77,44 +77,40 @@ GLOSSARY = [(t, s, d) for t, s, d in [
 
 GENERAL_FAQ = [
  ("About Beyond Klean", [
-  ("What is Beyond Klean?", "Beyond Klean is a specialty cleaning procurement platform for construction and commercial buildings. We help builders and owners define the cleaning scope and connect them with independent, verified contractors who quote and perform the work."),
-  ("Does Beyond Klean do the cleaning itself?", "No. Independent, verified contractors perform the work. Beyond Klean handles scoping, matching, coordination and documentation, and the contractor that quotes the job performs, insures and warrants it."),
-  ("How is Beyond Klean different from a lead-selling directory?", "We do not sell your request to a list of companies. Each request is scoped and qualified, then matched to contractors verified for that specific work, with capacity confirmed before an introduction."),
-  ("What areas does Beyond Klean serve?", "The service library is national. Contractor coverage is being built market by market, starting in Florida, and we tell you plainly whether a verified contractor covers your location."),
-  ("What kinds of buildings does Beyond Klean cover?", "Commercial, retail, grocery, restaurant, warehouse, industrial, office, healthcare, education, hospitality and multifamily projects, from tenant improvements to ground-up construction."),
-  ("What kinds of cleaning does Beyond Klean cover?", "Everything a construction project can need cleaned, from debris and rough clean through final clean, glass, floors, kitchens, overhead high dusting and closeout, searchable by the names contractors, specs and buyers actually use."),
-  ("Is there a cost to request a quote?", "No. Requesting a scope review and quote is free for project owners and general contractors."),
-  ("What is the relationship with Above Eye Level Cleaning?", "Above Eye Level Cleaning is our partner program for recurring overhead and high-dusting work. Beyond Klean covers construction turnover, and AELC keeps overhead surfaces clean after the building opens."),
+  ("What is Beyond Klean?", "Beyond Klean is a construction and specialty cleaning company. Our crews handle every cleaning scope a building project can call for, from debris and rough clean through final clean, glass, floors, kitchens, overhead and closeout."),
+  ("Does Beyond Klean do the cleaning itself?", "Yes. Our own crews perform the work, and your bid names the company that performs and insures it. Regulated scopes such as mold, abatement and hood cleaning are assigned only to licensed, certified technicians."),
+  ("Where does Beyond Klean work?", "We take projects nationwide. Home crews cover the Southeast, and travel crews mobilize for larger scopes anywhere in the country. Tell us the city and ZIP code and we will confirm crew availability before we bid."),
+  ("What kinds of buildings do you clean?", "Residential, multifamily, commercial, retail, restaurant, industrial, warehouse, institutional, healthcare, education, government and military facilities, from tenant improvements to ground-up construction."),
+  ("What kinds of cleaning do you handle?", "Everything a construction project can need cleaned, from debris and rough clean through final clean, glass, floors, kitchens, overhead high dusting and closeout, searchable by the names contractors, specs and buyers actually use."),
+  ("Is there a cost to request a bid?", "No. Bids are free for general contractors, property managers and building owners."),
+  ("What do you need from me to bid?", "Five things: the type of project, when it needs to be done, the city and ZIP code, the approximate square footage and the tasks you need. Plans and specs help but are not required."),
+  ("What is the relationship with Above Eye Level Cleaning?", "Above Eye Level Cleaning is our sister brand for recurring overhead and high-dusting work. Beyond Klean handles construction turnover, and AELC keeps overhead surfaces clean after the building opens."),
  ]),
  ("For general contractors", [
-  ("How do I get a cleaning sub for my project?", "Request a quote or send your bid package. We review the scope, phases, schedule and site details, then introduce a verified contractor who prices the work directly with you."),
-  ("Can you price from my drawings and specs?", "Yes. Send drawings, the Division 01 cleaning section and any finish schedules. The matched contractor prices the scope; we help make sure nothing is missing, such as overhead cleaning or glass."),
-  ("Can one request cover rough, final and touch-up cleaning?", "Yes. Most construction cleaning is bid by phase. One request can cover every phase, with each priced separately."),
-  ("What if I need a cleaning crew tomorrow?", "Tell us the deadline. We only promise a response after a contractor confirms capacity, and we will tell you plainly if we cannot cover it in time."),
-  ("Do your contractors carry insurance?", "Contractors must provide current insurance certificates before they are routed work, and expired documents pause routing automatically. Project-specific requirements such as additional insured status are confirmed by the contractor."),
-  ("Who do I pay?", "You contract with and pay the cleaning contractor that performs the work, under the terms you agree with them."),
-  ("Can you help with multi-site rollouts?", "Yes. National and regional programs can use one scope and checklist across many sites, with local verified contractors where coverage exists."),
-  ("What documentation do I get at closeout?", "Contractors can provide photo documentation, room checklists and product data sheets for the cleaners used, which help with closeout packages and LEED or IAQ requirements."),
+  ("How do I get a cleaning crew on my project?", "Request a bid or send your specs. We review the scope, phases, schedule and site, confirm crew availability and send an itemized bid."),
+  ("Can you price from my drawings and specs?", "Yes. Send drawings, the Division 01 cleaning section and any finish schedules. We price from them and point out anything commonly missed, such as overhead cleaning, glass or floor finish."),
+  ("Can one bid cover rough, final and touch-up cleaning?", "Yes. Most construction cleaning is bid by phase. One bid can cover every phase, with each phase priced as its own line."),
+  ("What if I need a cleaning crew tomorrow?", "Tell us the deadline. We only commit to a date after a crew is confirmed, and we will tell you plainly if we cannot make it."),
+  ("Do your crews carry insurance?", "Yes. A certificate of insurance is provided with the bid or on award, and additional insured or waiver requirements are confirmed before mobilization."),
+  ("Who do I contract with and pay?", "The company named on your bid, which is the company performing the work."),
+  ("Can you handle multi-site rollouts?", "Yes. National and regional programs use one scope and checklist across every site, with travel crews for locations outside our home markets."),
+  ("What documentation do I get at closeout?", "Room checklists, photo documentation and product data sheets for the cleaners used, ready for your closeout package and any LEED or IAQ requirements."),
  ]),
- ("For owners and facility managers", [
+ ("For owners and property managers", [
   ("When should cleaning be planned on a construction project?", "Early. Overhead cleaning, glass, floors and kitchen equipment are often missed in scopes. Writing them in during bidding prevents change orders at the end."),
   ("Why is my new building still dusty after the final clean?", "Usually because overhead surfaces were not in scope, or dust was moved instead of captured. HEPA capture and overhead cleaning fix the cause, not just the symptom."),
-  ("Can Beyond Klean help after we open?", "Yes. Recurring overhead and high dusting goes through Above Eye Level Cleaning, and floor, glass and specialty services can be arranged as needed."),
+  ("Can Beyond Klean help after we open?", "Yes. Recurring overhead and high dusting goes through Above Eye Level Cleaning, and floor, glass and specialty services can be scheduled as needed."),
   ("Is construction cleaning the same as janitorial service?", "No. Construction cleaning removes construction residue from new finishes: dust, labels, adhesive, grout haze and debris. Janitorial service maintains an occupied building."),
-  ("How do I know the cleaning was done right?", "Ask for room checklists and before-and-after photos, and walk the space with the punch list. We track complaints so performance is visible."),
+  ("How do I know the cleaning was done right?", "Ask for room checklists and before-and-after photos, and walk the space with the punch list. Our crews provide both and re-clean punch items before sign-off."),
   ("Can cleaning be scheduled around our operations?", "Yes. Remodels in operating stores, offices and healthcare facilities are commonly cleaned overnight or in phases."),
   ("What should I check at the owner walk?", "Look up at ceilings and fixtures, open drawers, check glass in daylight, look behind toilets and under sinks, and check floor edges and corners."),
-  ("Who is responsible if something is damaged during cleaning?", "The contractor performing the work is responsible under its contract and insurance. That is one reason we verify insurance before routing."),
+  ("Who is responsible if something is damaged during cleaning?", "The company performing the work, under its contract and insurance. That is why we test products in a hidden spot and follow manufacturer care guides on new finishes."),
  ]),
- ("For cleaning contractors", [
-  ("How do I join the Beyond Klean network?", "Apply through the Join the Network page with your company details, services, coverage area, insurance and references. We verify before any project is routed."),
-  ("Does Beyond Klean sell leads?", "No. Requests are scoped and matched to verified contractors with capacity, not sold to a list."),
-  ("What are the network tiers?", "Applicant, verified generalist, verified specialist and conditional specialist. Your tier determines which scopes are routed to you."),
-  ("Do I set my own prices?", "Yes. The executing contractor prices and approves every proposal. Beyond Klean does not set your price."),
-  ("Can specialty contractors join?", "Yes. Floor care, glass, high dusting, kitchen, pressure washing and other specialists are needed, and regulated specialties are reviewed case by case."),
-  ("What documents are required?", "Legal business information, insurance certificates, relevant licenses, safety program information, references and your service area and capacity."),
-  ("Is there a cost to join?", "Commercial terms are discussed during onboarding and agreed in writing before any work is routed."),
-  ("Can I serve only part of a state?", "Yes. You set your service area and the scopes you want, and routing follows them."),
+ ("Government, military and institutional work", [
+  ("Do you work on government and military projects?", "Yes. Federal, state, municipal and military facility work follows the contract's requirements, including wage determinations, site access rules and documentation."),
+  ("Can your crews get onto a military installation?", "Yes, by following the installation's access process, such as background checks, base credentials or escorts, arranged with the prime contractor before mobilization."),
+  ("Do you work in occupied schools, hospitals and courthouses?", "Yes, with scheduling, containment and infection-control or security rules set by the facility, and crews briefed on them before work starts."),
+  ("Can you work as a subcontractor to the prime contractor?", "Yes. Most institutional and government cleaning scopes are subcontracted under the prime, and we follow the prime's safety plan and submittal process."),
  ]),
  ("Green and safer cleaning", [
   ("What makes Beyond Klean's approach greener?", "Methods first: capture dust with HEPA instead of blowing it around, use microfiber and water before chemicals, pick pH-neutral and low-VOC products matched to the surface, and recover wash water instead of sending it to storm drains."),
@@ -122,29 +118,49 @@ GENERAL_FAQ = [
   ("What is capture-first cleaning?", "Removing dust and soil from the building, with HEPA vacuums and microfiber, instead of moving it into the air or onto other surfaces."),
   ("Why does least-aggressive chemistry matter on new buildings?", "New finishes are at their most vulnerable. Harsh acids and solvents can etch stone, dull coatings, damage grout and void warranties."),
   ("Are green cleaning products less effective?", "Not when they are matched to the job. Many construction residues come off with mechanical methods and neutral products; stronger chemistry is reserved for when it is truly needed."),
-  ("Do you follow green building requirements?", "Contractors can follow project IAQ plans, document products and methods, and support LEED documentation for cleaning-related credits."),
+  ("Do you follow green building requirements?", "Yes. Our crews follow the project IAQ plan, document products and methods, and support LEED documentation for cleaning-related credits."),
   ("What certifications matter for green cleaning?", "EPA Safer Choice certifies products, and Green Seal GS-42 certifies cleaning service providers. Project specs may name others."),
   ("How is wash water handled?", "Exterior washing uses recovery equipment or drain protection so dirty water does not enter storm drains."),
  ]),
  ("Pricing and scheduling", [
-  ("How is construction cleaning priced?", "By square foot, by phase, by crew-day or by line item, depending on scope. Overhead work, glass and floor care are often priced separately."),
-  ("What affects the price most?", "Square footage, ceiling height and access, number of phases, finish types, the amount of residue, schedule pressure and night or weekend work."),
-  ("Why do you not publish prices?", "Prices depend on local labor, access and scope. We provide pricing factors, and the contractor prices after reviewing the actual project."),
+  ("How is construction cleaning priced?", "By square foot, by phase, by crew-day or by line item, depending on scope. Overhead work, glass and floor care are usually separate lines on the bid."),
+  ("What affects the price most?", "Square footage, ceiling height and access, number of phases, finish types, the amount of residue, schedule pressure, travel and night or weekend work."),
+  ("Why don't you publish prices?", "Prices depend on location, access and scope. We price after seeing the project type, size, location, deadline and task list, and every line is itemized."),
   ("How far in advance should cleaning be booked?", "As early as the bid phase. Final cleaning is scheduled around inspection dates, and crews book up near quarter-end and holiday openings."),
   ("Is night work more expensive?", "Usually, because of labor premiums. It is often worth it for operating stores and occupied buildings."),
   ("Are re-cleans extra?", "That depends on the contract. Clear re-clean terms in the scope avoid disputes at the end of the job."),
   ("How long does a final clean take?", "From one day for a small tenant space to several weeks for large buildings cleaned in phases."),
-  ("Can cleaning be split between phases of occupancy?", "Yes. Each area can be final-cleaned and protected as it is handed over."),
+  ("Do you charge for travel on out-of-area projects?", "Travel crews carry mobilization and lodging costs, shown as their own line on the bid so you can compare it fairly."),
  ]),
 ]
 
+MARKETS = [
+    ("Residential & multifamily", "Apartments, condos, townhomes and amenity spaces, unit turns and lease-up."),
+    ("Commercial", "Offices, retail, restaurants, hotels and tenant improvements, including store openings."),
+    ("Industrial", "Warehouses, distribution centers, plants and cold storage, with lift work at any height."),
+    ("Institutional", "Schools, universities, hospitals, clinics and labs, cleaned to facility protocol."),
+    ("Government", "Federal, state and municipal buildings, courthouses and public works."),
+    ("Military", "Barracks, hangars, admin and support facilities, under installation access rules."),
+]
 
-def static_pages(n_tasks, n_names, n_faq, fam_cards, AELC_URL, phase_counts, task_options):
+
+def static_pages(n_tasks, n_names, n_faq, fam_cards, AELC_URL, phase_counts, task_options, phone=""):
+    tel = "".join(c for c in phone if c.isdigit() or c == "+")
+    call = f'<a class="btn btn-light" href="tel:{tel}">Call {e(phone)}</a>' if phone else ""
+    markets = "".join(f'<div class="mcard"><strong>{e(n)}</strong><span class="small muted">{e(d)}</span></div>'
+                      for n, d in MARKETS)
+    need = """<ol class="need">
+      <li><strong>Project type</strong><span>Residential, commercial, industrial, institutional, government or military</span></li>
+      <li><strong>Needed by</strong><span>The date it has to be done</span></li>
+      <li><strong>Location</strong><span>City and ZIP code</span></li>
+      <li><strong>Size</strong><span>Approximate square footage</span></li>
+      <li><strong>Tasks</strong><span>What needs cleaning</span></li>
+    </ol>"""
     home = f"""
 <section class="hero">
   <div class="wrap hero-in">
-    <p class="eyebrow">Specialty construction cleaning · procurement network</p>
-    <h1>Every cleaning task your project needs. One place to get it done.</h1>
+    <p class="eyebrow">Construction &amp; specialty cleaning · Nationwide</p>
+    <h1>Construction cleaning, done to spec and on schedule.</h1>
     <form class="finder" data-finder role="search" action="services.html">
       <label for="finder-q" class="finder-label">What needs cleaning?</label>
       <div class="finder-box">
@@ -153,49 +169,66 @@ def static_pages(n_tasks, n_names, n_faq, fam_cards, AELC_URL, phase_counts, tas
       </div>
       <ul class="finder-list" id="finder-list" role="listbox" hidden></ul>
     </form>
-    <p class="lede">Beyond Klean scopes specialty and post-construction cleaning for general contractors and owners, then matches it to verified contractors who use capture-first, safer-chemistry methods.</p>
+    <p class="lede">Our crews handle every cleaning scope a building project calls for, from rough clean to final turnover, for general contractors, property managers and building owners. Home crews cover the Southeast. Travel crews mobilize nationwide for larger projects.</p>
     <div class="hero-cta">
-      <a class="btn" href="quote.html">Request a Quote</a>
-      <a class="btn btn-light" href="quote.html#bid">Submit a Bid Package</a>
-      <a class="btn btn-light" href="join.html">Join the Network</a>
+      <a class="btn" href="quote.html">Request a Bid</a>
+      <a class="btn btn-light" href="quote.html#specs">Send Your Specs</a>
+      {call}
     </div>
   </div>
 </section>
 
 <section class="wrap">
-  <p class="eyebrow">Service families</p>
+  <p class="eyebrow">Markets we serve</p>
+  <h2>Any building type. Any stage of construction.</h2>
+  <div class="mgrid">{markets}</div>
+</section>
+
+<section class="wrap">
+  <p class="eyebrow">Services</p>
   <h2>Browse by type of work</h2>
   <div class="fgrid">{fam_cards}</div>
-  <p><a class="btn btn-ghost" href="services.html">See every service</a></p>
+  <p><a class="btn btn-ghost" href="services.html">Search our services</a></p>
 </section>
 
 <section class="wrap">
   <p class="eyebrow">How it works</p>
-  <h2>Scoped first. Matched second. Quoted by the contractor who does the work.</h2>
+  <h2>From your scope to a signed-off building</h2>
   <ol class="steps">
-    <li><strong>Describe the work.</strong> Facility type, project stage, square footage, heights, surfaces, deadline, plans and photos.</li>
-    <li><strong>We qualify the scope.</strong> We check for missing items like overhead, glass and floor care, and flag regulated work.</li>
-    <li><strong>We match a verified contractor.</strong> Insurance, specialty and current capacity are confirmed before any introduction.</li>
-    <li><strong>The contractor quotes.</strong> The company performing the work prices it, signs it and warrants it.</li>
-    <li><strong>Work is documented.</strong> Checklists, photos and product data sheets for your closeout package.</li>
+    <li><strong>Send your scope.</strong> Project type, location, deadline, square footage and the tasks you need. Specs and plans help but aren't required.</li>
+    <li><strong>We confirm crew availability.</strong> A home crew or a travel crew, matched to the size and timing of the job.</li>
+    <li><strong>You get an itemized bid.</strong> Every task priced as its own line, by phase, with nothing buried.</li>
+    <li><strong>We mobilize on your schedule.</strong> Rough, final and punch cleans timed to your trades and inspections.</li>
+    <li><strong>Closeout on time.</strong> Walkthrough, punch items re-cleaned, checklists and photos for your closeout package.</li>
   </ol>
+</section>
+
+<section class="wrap bidstrip">
+  <div>
+    <p class="eyebrow">What we need to bid</p>
+    <h2>Five answers get you a bid</h2>
+    {need}
+  </div>
+  <div class="bidstrip-cta">
+    <a class="btn" href="quote.html">Request a Bid</a>
+    <a class="btn btn-ghost" href="quote.html#specs">Send Your Specs</a>
+  </div>
 </section>
 
 <section class="wrap split">
   <div class="panel">
     <p class="eyebrow">Our methods</p>
     <h2>Capture it. Don't move it.</h2>
-    <p>Construction dust that is swept or blown just lands somewhere else. Our network captures it with HEPA vacuums and microfiber, uses water and pH-neutral products before stronger chemistry, and keeps wash water out of storm drains.</p>
+    <p>Construction dust that is swept or blown just lands somewhere else. Our crews capture it with HEPA vacuums and microfiber, use water and pH-neutral products before stronger chemistry, and keep wash water out of storm drains.</p>
     <p><a href="methods.html">How we clean differently</a></p>
   </div>
   <div class="panel">
     <p class="eyebrow">Above Eye Level Cleaning</p>
     <h2>The ceiling gets cleaned once. Then it gets dusty again.</h2>
-    <p>Open decks, beams, ducts and fixtures collect dust long after turnover. Our partner program schedules recurring high dusting for stores, warehouses and food facilities.</p>
+    <p>Open decks, beams, ducts and fixtures collect dust long after turnover. Our sister brand schedules recurring high dusting for stores, warehouses and food facilities.</p>
     <p><a href="families/overhead-high-dusting.html">Overhead services</a> · <a href="{AELC_URL}" rel="noopener">AboveEyeLevelCleaning.com</a></p>
   </div>
 </section>
-
 """
 
     methods = """
@@ -205,7 +238,7 @@ def static_pages(n_tasks, n_names, n_faq, fam_cards, AELC_URL, phase_counts, tas
   <p class="lede">Construction cleaning has a habit of moving dirt around: blowing dust off ledges, sweeping it into the air and attacking residue with the strongest chemical on the truck. Our standard is the opposite.</p>
 
   <h2>1. Capture first</h2>
-  <p>Dust is removed from the building, not relocated. Crews use sealed HEPA vacuums at the surface, damp microfiber and wet methods. OSHA's construction silica standard already restricts dry sweeping, dry brushing and compressed-air cleaning where silica dust is present; we treat that as the baseline everywhere.</p>
+  <p>Dust is removed from the building, not relocated. Our crews use sealed HEPA vacuums at the surface, damp microfiber and wet methods. OSHA's construction silica standard already restricts dry sweeping, dry brushing and compressed-air cleaning where silica dust is present; we treat that as the baseline everywhere.</p>
 
   <h2>2. Top down, inside out</h2>
   <p>Overhead surfaces are cleaned before walls, walls before floors, and rooms toward exits, so nothing falls onto a surface that is already clean.</p>
@@ -223,7 +256,7 @@ def static_pages(n_tasks, n_names, n_faq, fam_cards, AELC_URL, phase_counts, tas
   <p>Ductwork protection, temporary return filters, final filter replacement and a thorough final clean support the project's construction indoor air quality plan before flush-out and occupancy.</p>
 
   <h2>7. Documented, not promised</h2>
-  <p>Contractors provide the Safety Data Sheets and technical data for the products they use, along with checklists and photos. We describe methods specifically instead of making blanket claims like "non-toxic" or "eco-friendly."</p>
+  <p>We provide the Safety Data Sheets and technical data for the products we use, along with room checklists and photos. We describe methods specifically instead of making blanket claims like "non-toxic" or "eco-friendly."</p>
 
   <h2>Standards we reference</h2>
   <ul>
@@ -233,95 +266,81 @@ def static_pages(n_tasks, n_names, n_faq, fam_cards, AELC_URL, phase_counts, tas
     <li>FTC Green Guides for environmental marketing claims</li>
     <li>IWCA and glass industry guidance on construction glass protection and cleaning</li>
   </ul>
-  <p><a class="btn" href="quote.html">Request a scope review</a></p>
+  <p><a class="btn" href="quote.html">Request a Bid</a></p>
 </section>"""
 
     gcs = f"""
 <section class="wrap narrow">
   <p class="eyebrow">For general contractors</p>
-  <h1>One call for every cleaning scope on your job</h1>
-  <p class="lede">Rough clean, final clean, glass, floors, overhead, kitchens and the touch-up before the owner walk. Beyond Klean scopes it with you and brings in verified contractors who price it directly.</p>
-  <h2>What we help you avoid</h2>
+  <h1>One crew for every cleaning scope on your job</h1>
+  <p class="lede">Rough clean, final clean, glass, floors, overhead, kitchens and the touch-up before the owner walk. Send us the scope and we bid it line by line, then show up when your schedule says.</p>
+  <h2>What we keep off your punch list</h2>
   <ul class="check">
     <li>Final cleaning scopes that leave out overhead structure, glass or floor finish, then turn into change orders.</li>
-    <li>Crews that sweep dust into the air and leave the building dusty a week later.</li>
+    <li>Dust swept into the air that settles back on finishes a week later.</li>
     <li>Residue removal that etches stone, scratches glass or voids a floor warranty.</li>
     <li>Missing insurance certificates and unclear re-clean terms at the end of the job.</li>
     <li>A failed Substantial Completion walk because the building was not inspection-clean.</li>
   </ul>
-  <h2>What to send us</h2>
+  <h2>What we need to bid</h2>
+  {need}
+  <h2>What helps us sharpen the number</h2>
   <ul class="check">
     <li>Drawings and the finish schedule</li>
     <li>Your Division 01 cleaning section (often 01 74 13, 01 74 23 or 01 77 00)</li>
     <li>Phase dates, inspection dates and the owner walk date</li>
     <li>Site access rules, working hours and who provides water, power and lifts</li>
   </ul>
-  <p><a class="btn" href="quote.html#bid">Submit a bid package</a> <a class="btn btn-ghost" href="services.html">Browse services</a></p>
+  <p><a class="btn" href="quote.html">Request a Bid</a> <a class="btn btn-ghost" href="quote.html#specs">Send Your Specs</a></p>
 </section>"""
 
-    join = """
-<section class="wrap narrow">
-  <p class="eyebrow">Join the network</p>
-  <h1>Specialty cleaning contractors: get matched to real projects</h1>
-  <p class="lede">Beyond Klean doesn't sell leads. We scope projects, qualify them and route them to verified contractors with the right specialty and capacity. You price and perform the work.</p>
-  <h2>Network tiers</h2>
-  <ul class="check">
-    <li><strong>Applicant.</strong> Information received, not yet verified. No project routing.</li>
-    <li><strong>Verified generalist.</strong> Identity, insurance and experience verified. Routed general construction cleaning scopes.</li>
-    <li><strong>Verified specialist.</strong> Additional technical qualifications and references. Routed matching specialty scopes.</li>
-    <li><strong>Conditional specialist.</strong> Regulated or higher-risk capabilities, reviewed case by case. Manual approval only.</li>
-  </ul>
-  <form class="form panel" data-demo>
-    <div class="row">
-      <label for="j-co">Company name<input id="j-co" name="company" required></label>
-      <label for="j-name">Contact name<input id="j-name" name="name" required></label>
-    </div>
-    <div class="row">
-      <label for="j-email">Email<input id="j-email" type="email" name="email" required></label>
-      <label for="j-phone">Phone<input id="j-phone" type="tel" name="phone"></label>
-    </div>
-    <div class="row">
-      <label for="j-area">Service area<input id="j-area" name="area" placeholder="Cities, counties or state"></label>
-      <label for="j-crew">Crew capacity<input id="j-crew" name="crew" placeholder="Crews and people available"></label>
-    </div>
-    <label for="j-svc">Services and specialties<textarea id="j-svc" name="services" placeholder="Rough and final clean, high dusting, floor care, glass, pressure washing…"></textarea></label>
-    <label for="j-ins">Insurance and licenses<textarea id="j-ins" name="insurance" placeholder="General liability, workers' compensation, licenses held"></textarea></label>
-    <button class="btn" type="submit">Apply to join</button>
-    <p class="notice" tabindex="-1" hidden>This is a preview build, so applications aren't sent yet. On the live site this goes to the Beyond Klean network team for verification.</p>
-  </form>
-</section>"""
-
+    types = ["Residential", "Multifamily", "Commercial office", "Retail or store opening", "Restaurant or food service",
+             "Hospitality", "Industrial or warehouse", "Healthcare", "Education or institutional", "Government",
+             "Military", "Other"]
+    type_opts = "".join(f"<option>{e(t)}</option>" for t in types)
     quote = f"""
 <section class="wrap narrow">
-  <p class="eyebrow">Request a quote</p>
-  <h1>Tell us about the project</h1>
-  <p class="lede">The more we know about stage, size, heights and surfaces, the faster we can match a verified contractor. Plans and photos help.</p>
-  <form class="form panel" data-demo>
+  <p class="eyebrow">Request a bid</p>
+  <h1>Send us your scope</h1>
+  <p class="lede">Five answers get you a bid: what kind of project, when it has to be done, where it is, how big it is and what needs cleaning. Specs and plans help but aren't required.</p>
+  <form class="form panel" data-demo data-bidform>
+    <fieldset class="bidbox">
+      <legend>What needs cleaning</legend>
+      <ul class="bidlist" data-bidlist><li class="empty">Nothing on your list yet. Add services below or from any service page.</li></ul>
+      <div class="finder finder-add" data-finder data-mode="add">
+        <label for="add-q" class="small">Add a service</label>
+        <div class="finder-box">
+          <input id="add-q" type="text" autocomplete="off" spellcheck="false" placeholder="Start typing: “final clean”, “windows”, “VCT”" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="add-list">
+          <button class="btn btn-sm" type="button" data-add-typed>Add</button>
+        </div>
+        <ul class="finder-list" id="add-list" role="listbox" hidden></ul>
+      </div>
+      <input type="hidden" name="tasks" data-bidfield>
+    </fieldset>
+    <div class="row">
+      <label for="r-type">Project type<select id="r-type" name="project_type" required><option value="">Choose one</option>{type_opts}</select></label>
+      <label for="r-date">Needed by<input id="r-date" type="date" name="needed_by" required></label>
+    </div>
+    <div class="row">
+      <label for="r-city">City and state<input id="r-city" name="city" placeholder="Tampa, FL" required></label>
+      <label for="r-zip">ZIP code<input id="r-zip" name="zip" inputmode="numeric" maxlength="10" required></label>
+    </div>
+    <label for="r-sf">Approximate square feet<input id="r-sf" name="sqft" inputmode="numeric" placeholder="25,000"></label>
+    <label for="r-desc">Anything else we should know<textarea id="r-desc" name="details" placeholder="Phases, ceiling heights, inspection dates, access rules"></textarea></label>
+    <label for="r-files" id="specs">Specs, plans or photos (optional)<input id="r-files" type="file" name="files" multiple></label>
     <div class="row">
       <label for="r-name">Your name<input id="r-name" name="name" required></label>
       <label for="r-co">Company<input id="r-co" name="company"></label>
     </div>
     <div class="row">
+      <label for="r-phone">Phone<input id="r-phone" type="tel" name="phone" required></label>
       <label for="r-email">Email<input id="r-email" type="email" name="email" required></label>
-      <label for="r-role">Your role<select id="r-role" name="role"><option>General contractor</option><option>Owner or developer</option><option>Facility or property manager</option><option>Architect or designer</option><option>Other</option></select></label>
     </div>
-    <label for="r-task">Main service needed<select id="r-task" name="task"><option value="">Choose a service</option>{task_options}</select></label>
-    <div class="row">
-      <label for="r-fac">Facility type<select id="r-fac" name="facility"><option>Retail</option><option>Grocery</option><option>Restaurant</option><option>Warehouse or industrial</option><option>Office</option><option>Healthcare</option><option>Education</option><option>Hospitality</option><option>Multifamily</option><option>Other</option></select></label>
-      <label for="r-stage">Project stage<select id="r-stage" name="stage"><option>Bidding</option><option>Under construction</option><option>Near completion</option><option>Occupied or operating</option></select></label>
+    <button class="btn" type="submit">Request my bid</button>
+    <div class="notice" tabindex="-1" hidden>
+      <p><strong>Got it. Your reference is <span class="mono" data-ref></span>.</strong> We'll confirm crew availability and send an itemized bid.</p>
+      <p class="small">Preview build: requests aren't sent yet.</p>
     </div>
-    <div class="row">
-      <label for="r-sf">Approx. square feet<input id="r-sf" name="sqft" inputmode="numeric"></label>
-      <label for="r-ht">Highest ceiling (ft)<input id="r-ht" name="height" inputmode="numeric"></label>
-    </div>
-    <div class="row">
-      <label for="r-loc">City and state<input id="r-loc" name="location"></label>
-      <label for="r-date">Needed by<input id="r-date" type="date" name="date"></label>
-    </div>
-    <label for="r-desc" id="bid">Scope or bid package details<textarea id="r-desc" name="details" placeholder="Phases, surfaces, inspection dates, access constraints, links to plans"></textarea></label>
-    <label for="r-files">Plans and photos<input id="r-files" type="file" name="files" multiple></label>
-    <button class="btn" type="submit">Request a scope review</button>
-    <p class="notice" tabindex="-1" hidden>This is a preview build, so requests aren't sent yet. On the live site this goes to the Beyond Klean intake team, and you get an acknowledgment right away.</p>
   </form>
 </section>"""
 
@@ -329,31 +348,31 @@ def static_pages(n_tasks, n_names, n_faq, fam_cards, AELC_URL, phase_counts, tas
 <section class="wrap narrow">
   <p class="eyebrow">About</p>
   <h1>About Beyond Klean</h1>
-  <p class="lede">Beyond Klean is a national specialty cleaning procurement platform. We built a deep library of construction and specialty cleaning services and answers so buyers can specify the work correctly and find the right contractor to do it.</p>
+  <p class="lede">Beyond Klean is a construction and specialty cleaning company. We clean new and renovated buildings of every type, from a single apartment turn to a full campus, with methods built for new finishes.</p>
   <h2>What we do</h2>
-  <p>We help general contractors, developers, property owners and facility managers scope specialty cleaning, then connect them with independent, verified contractors. We handle coordination and documentation. The contractor that quotes the job performs it, insures it and warrants it.</p>
-  <h2>What we don't do</h2>
-  <p>We don't sell your request to a list of companies, invent local offices, or claim capabilities our network doesn't have. Where we don't yet have verified coverage, we say so.</p>
-  <h2>Our partner program</h2>
+  <p>Our crews handle rough, final and touch-up cleaning, glass, floors, kitchens, overhead structure, exteriors and closeout for general contractors, property managers and building owners. Every bid is itemized, and every job closes out with checklists and photos.</p>
+  <h2>Where we work</h2>
+  <p>Home crews cover the Southeast. Travel crews mobilize nationwide for larger projects. Send the city and ZIP code and we'll confirm availability before we bid.</p>
+  <h2>How we work</h2>
+  <p>Capture dust instead of moving it. Use the least aggressive chemistry that does the job. Follow the manufacturer's care guide on every new finish. Assign regulated work only to licensed, certified technicians.</p>
+  <h2>Our sister brand</h2>
   <p>Recurring overhead and high dusting is handled through <a href="{AELC_URL}" rel="noopener">Above Eye Level Cleaning</a>, which keeps open ceilings, structure and fixtures clean after the building opens.</p>
-  <p><a class="btn" href="quote.html">Request a quote</a> <a class="btn btn-ghost" href="join.html">Join the network</a></p>
+  <p><a class="btn" href="quote.html">Request a Bid</a></p>
 </section>"""
 
     return [
-        ("index.html", "Beyond Klean | Specialty Construction Cleaning Network",
-         "Scope and source specialty and post-construction cleaning, matched to verified contractors using capture-first, safer-chemistry methods.",
+        ("index.html", "Beyond Klean | Construction & Specialty Cleaning",
+         "Post-construction and specialty cleaning for general contractors, property managers and building owners. Itemized bids, our own crews, nationwide.",
          None, home, None),
         ("methods.html", "Our Cleaning Methods | Beyond Klean",
          "Capture-first dust removal, least-aggressive chemistry, warranty-safe products and documented results.",
          "Our Methods", methods, "methods.html"),
         ("general-contractors.html", "Construction Cleaning for General Contractors | Beyond Klean",
-         "One source for rough, final, overhead, glass, floor and kitchen cleaning scopes, priced by verified contractors.",
+         "One crew for rough, final, overhead, glass, floor and kitchen cleaning scopes, bid line by line.",
          "For General Contractors", gcs, "general-contractors.html"),
-        ("join.html", "Join the Contractor Network | Beyond Klean",
-         "Specialty cleaning contractors: apply to be verified and matched to qualified construction and commercial projects.",
-         "Join the Network", join, "join.html"),
-        ("quote.html", "Request a Quote | Beyond Klean",
-         "Request a scope review and quote for construction or specialty cleaning.", "Request a Quote", quote, None),
-        ("about.html", "About Beyond Klean", "Beyond Klean is a national specialty cleaning procurement platform.",
-         "About", about, None),
+        ("quote.html", "Request a Bid | Beyond Klean",
+         "Request an itemized bid for construction or specialty cleaning. Project type, deadline, location, size and tasks.",
+         "Request a Bid", quote, "quote.html"),
+        ("about.html", "About Beyond Klean", "Beyond Klean is a construction and specialty cleaning company working nationwide.",
+         "About", about, "about.html"),
     ]

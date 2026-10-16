@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Estimator | Beyond Klean</title>
+<meta name="description" content="Internal estimating tool.">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<link rel="canonical" href="https://beyondklean.com/estimator/index.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=IBM+Plex+Mono:wght@400;600&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="preview-bar">Preview build · not indexed · beyondklean.com</div>
+<header class="top">
+  <div class="wrap top-in">
+    <a class="brand" href="../index.html" aria-label="Beyond Klean home">
+      <img class="logo-l" src="../assets/logo.png" alt="Beyond Klean" width="634" height="243">
+      <img class="logo-d" src="../assets/logo-dark.png" alt="" width="634" height="243">
+    </a>
+    <a class="btn btn-sm quote-m" href="../quote.html">Request a Bid</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mainnav" aria-label="Open menu"><span></span><span></span><span></span></button>
+    <nav class="mainnav" id="mainnav" aria-label="Main"><a href="../services.html">Services</a><a href="../faq.html">FAQ</a><a href="../methods.html">Our Methods</a><a href="../general-contractors.html">For GCs</a><a href="../about.html">About</a><a class="bidlink" href="../quote.html" data-bidcount hidden>Bid list <span class="badge">0</span></a><a class="btn btn-sm" href="../quote.html">Request a Bid</a></nav>
+  </div>
+</header>
+<main id="main">
+
+<section class="wrap est" data-estimator>
+  <div class="est-bar noprint">
+    <div>
+      <p class="eyebrow">Internal · not indexed</p>
+      <h1>Estimator</h1>
+    </div>
+    <div class="est-tabs" role="tablist">
+      <button type="button" role="tab" class="chip is-on" data-tab="quote" aria-selected="true">Quote</button>
+      <button type="button" role="tab" class="chip" data-tab="book" aria-selected="false">Price book</button>
+      <button type="button" role="tab" class="chip" data-tab="company" aria-selected="false">Company</button>
+    </div>
+  </div>
+
+  <!-- ============ QUOTE ============ -->
+  <div data-pane="quote">
+    <div class="est-actions noprint">
+      <button type="button" class="btn" data-act="print">Print / Save PDF</button>
+      <button type="button" class="btn btn-ghost" data-act="csv">Export spreadsheet (CSV)</button>
+      <button type="button" class="btn btn-ghost" data-act="save">Save quote file</button>
+      <label class="btn btn-ghost filebtn">Open quote file<input type="file" accept=".json,application/json" data-act="open"></label>
+      <button type="button" class="btn btn-ghost" data-act="new">New quote</button>
+    </div>
+
+    <article class="qdoc">
+      <header class="qhead">
+        <div class="qco" data-co></div>
+        <div class="qmeta">
+          <p class="qtitle">Quote</p>
+          <label>Quote no.<input data-q="no"></label>
+          <label>Date<input type="date" data-q="date"></label>
+          <label>Valid until<input type="date" data-q="valid"></label>
+        </div>
+      </header>
+
+      <section class="qclient">
+        <h2 class="h3">Prepared for</h2>
+        <div class="qgrid">
+          <label>Client name<input data-q="client.name"></label>
+          <label>Company<input data-q="client.company"></label>
+          <label>Phone<input data-q="client.phone"></label>
+          <label>Email<input data-q="client.email"></label>
+          <label class="span2">Project name<input data-q="client.project"></label>
+          <label>Project type<select data-q="client.type">
+            <option></option><option>Residential</option><option>Multifamily</option><option>Commercial office</option>
+            <option>Retail or store opening</option><option>Restaurant or food service</option><option>Hospitality</option>
+            <option>Industrial or warehouse</option><option>Healthcare</option><option>Education or institutional</option>
+            <option>Government</option><option>Military</option><option>Other</option></select></label>
+          <label>Needed by<input type="date" data-q="client.needed"></label>
+          <label>Address<input data-q="client.address"></label>
+          <label>City, state<input data-q="client.city"></label>
+          <label>ZIP<input data-q="client.zip" inputmode="numeric"></label>
+          <label>Square feet<input data-q="client.sqft" inputmode="decimal" data-num></label>
+        </div>
+      </section>
+
+      <section class="qlines">
+        <div class="qlines-top noprint">
+          <h2 class="h3">Line items</h2>
+          <label class="small">Price level
+            <select data-tier><option value="low">Low</option><option value="mid" selected>Typical</option><option value="high">High</option></select></label>
+        </div>
+        <h2 class="h3 printonly">Scope and pricing</h2>
+        <div class="tablewrap">
+          <table class="qtable">
+            <thead><tr><th>#</th><th>Service</th><th class="num">Qty</th><th>Unit</th><th class="num">Rate</th><th class="num">Amount</th><th class="noprint"><span class="sr">Remove</span></th></tr></thead>
+            <tbody data-lines></tbody>
+          </table>
+        </div>
+        <div class="qadd noprint">
+          <div class="finder finder-add" data-estfinder>
+            <label for="est-q" class="small">Add a service</label>
+            <div class="finder-box">
+              <input id="est-q" type="text" autocomplete="off" spellcheck="false" placeholder="Type a task: “final clean”, “grout haze”, “windows”…" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="est-list">
+              <button type="button" class="btn btn-sm" data-act="custom">Custom line</button>
+            </div>
+            <ul class="finder-list" id="est-list" role="listbox" hidden></ul>
+          </div>
+          <p class="small muted">Tip: when you enter the project square feet above, new square-foot lines start with that quantity.</p>
+        </div>
+      </section>
+
+      <section class="qtotals">
+        <div class="qadj noprint">
+          <h2 class="h3">Adjustments</h2>
+          <div class="qgrid">
+            <label>Mobilization ($)<input data-adj="mob" inputmode="decimal" data-num></label>
+            <label>Travel crew: lodging and per diem ($)<input data-adj="travel" inputmode="decimal" data-num></label>
+            <label>Height / lift premium (%)<input data-adj="height" inputmode="decimal" data-num></label>
+            <label>Night or weekend premium (%)<input data-adj="night" inputmode="decimal" data-num></label>
+            <label>Rush premium (%)<input data-adj="rush" inputmode="decimal" data-num></label>
+            <label>Overhead and profit (%)<input data-adj="op" inputmode="decimal" data-num></label>
+            <label>Discount (%)<input data-adj="disc" inputmode="decimal" data-num></label>
+            <label>Sales tax (%)<input data-adj="tax" inputmode="decimal" data-num></label>
+          </div>
+        </div>
+        <table class="qsum"><tbody data-sum></tbody></table>
+      </section>
+
+      <section class="qterms">
+        <h2 class="h3">Terms and notes</h2>
+        <textarea data-q="terms" rows="5"></textarea>
+        <div class="qsign">
+          <div><span></span>Accepted by</div>
+          <div><span></span>Title</div>
+          <div><span></span>Date</div>
+        </div>
+      </section>
+    </article>
+  </div>
+
+  <!-- ============ PRICE BOOK ============ -->
+  <div data-pane="book" hidden>
+    <p class="lede">Starting rates for every service. Edit any number to match your market; changes are saved in this browser. Export the book to back it up or to load it on another computer.</p>
+    <div class="est-actions">
+      <button type="button" class="btn btn-ghost" data-act="book-json">Export price book (JSON)</button>
+      <button type="button" class="btn btn-ghost" data-act="book-csv">Export price book (CSV)</button>
+      <label class="btn btn-ghost filebtn">Import price book<input type="file" accept=".json,application/json" data-act="book-import"></label>
+      <button type="button" class="btn btn-ghost" data-act="book-reset">Reset to defaults</button>
+    </div>
+    <div class="filter">
+      <label for="pb-q" class="eyebrow">Search the price book</label>
+      <input id="pb-q" type="search" autocomplete="off" data-pbq>
+      <p class="small muted" data-pbcount></p>
+    </div>
+    <div class="tablewrap">
+      <table class="pbtable">
+        <thead><tr><th>Service</th><th>Unit</th><th class="num">Low</th><th class="num">Typical</th><th class="num">High</th><th class="num">Minimum</th><th>Basis</th></tr></thead>
+        <tbody data-pb></tbody>
+      </table>
+    </div>
+    <p class="small muted" data-pbmeta></p>
+  </div>
+
+  <!-- ============ COMPANY ============ -->
+  <div data-pane="company" hidden>
+    <p class="lede">The company performing the work. This prints at the top of every quote and is saved in this browser.</p>
+    <div class="form panel">
+      <div class="row">
+        <label>Company name<input data-co-f="name" placeholder="Company performing the work"></label>
+        <label>License no.<input data-co-f="license"></label>
+      </div>
+      <div class="row">
+        <label>Phone<input data-co-f="phone"></label>
+        <label>Email<input data-co-f="email"></label>
+      </div>
+      <div class="row">
+        <label>Address<input data-co-f="address"></label>
+        <label>Website<input data-co-f="web"></label>
+      </div>
+      <div class="row">
+        <label>Default overhead and profit (%)<input data-co-f="op" inputmode="decimal"></label>
+        <label>Default sales tax (%)<input data-co-f="tax" inputmode="decimal"></label>
+      </div>
+      <label>Default terms<textarea data-co-f="terms" rows="6"></textarea></label>
+      <p class="small muted">Saved automatically. New quotes pick up the default terms and percentages.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+<footer class="foot">
+  <div class="wrap foot-grid">
+    <div>
+      <img class="logo-l foot-logo" src="../assets/logo.png" alt="Beyond Klean" width="634" height="243">
+      <img class="logo-d foot-logo" src="../assets/logo-dark.png" alt="" width="634" height="243">
+      <p class="small">Construction and specialty cleaning for general contractors, property managers and building owners. Itemized bids, our own crews, nationwide.</p>
+      
+    </div>
+    <div><h2 class="foot-h">Services</h2>
+      <a href="../services.html">All services</a><a href="../faq.html">FAQ</a><a href="../glossary.html">Glossary</a><a href="../methods.html">Our methods</a></div>
+    <div><h2 class="foot-h">Work with us</h2>
+      <a href="../quote.html">Request a bid</a><a href="../quote.html#specs">Send your specs</a><a href="../general-contractors.html">For general contractors</a><a href="../about.html">About Beyond Klean</a></div>
+    <div><h2 class="foot-h">Above eye level</h2>
+      <a href="../families/overhead-high-dusting.html">Overhead &amp; high dusting</a><a href="https://aboveeyelevelcleaning.com" rel="noopener">AboveEyeLevelCleaning.com</a></div>
+  </div>
+  <div class="wrap small foot-note">© 2026 Beyond Klean. Regulated work such as mold remediation, abatement and hood cleaning is performed only by licensed, certified technicians where required.</div>
+</footer>
+<script src="../assets/pricebook.js"></script><script src="../assets/estimator.js"></script>
+<script src="../assets/site.js"></script>
+</body>
+</html>

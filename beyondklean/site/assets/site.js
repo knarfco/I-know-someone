@@ -1,4 +1,4 @@
-// Mobile menu, "What needs cleaning?" finder, directory / FAQ / glossary filters, demo forms.
+// Mobile menu, bid list, "What needs cleaning?" finder, directory / FAQ / glossary filters, bid form.
 (function () {
   var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
   var norm = function (s) { return String(s).toLowerCase().replace(/[^a-z0-9 ]+/g, " ").replace(/\s+/g, " ").trim(); };
@@ -17,45 +17,87 @@
     document.addEventListener("click", function (ev) { if (!nav.contains(ev.target) && !mb.contains(ev.target)) setOpen(false); });
   }
 
-  // ---- "What needs cleaning?" finder (type-ahead over every service name and the names crews use for it)
-  var finder = document.querySelector("[data-finder]");
-  if (finder && window.BK_INDEX) {
+  // ---- Bid list: services collected across pages, kept in this browser
+  var BL_KEY = "bk-bidlist";
+  var getList = function () { try { return JSON.parse(localStorage.getItem(BL_KEY)) || []; } catch (e) { return []; } };
+  var setList = function (l) { try { localStorage.setItem(BL_KEY, JSON.stringify(l)); } catch (e) { /* storage unavailable */ } paintList(); };
+  var addToList = function (name) {
+    name = String(name || "").trim(); if (!name) return;
+    var l = getList(); if (l.indexOf(name) === -1) l.push(name); setList(l);
+  };
+  var paintList = function () {
+    var l = getList();
+    document.querySelectorAll("[data-bidcount]").forEach(function (a) { a.hidden = !l.length; a.querySelector(".badge").textContent = l.length; });
+    document.querySelectorAll("[data-add]").forEach(function (b) {
+      var on = l.indexOf(b.getAttribute("data-add")) !== -1;
+      b.textContent = on ? "On your bid list ✓" : "Add to bid list";
+      b.classList.toggle("is-added", on);
+    });
+    document.querySelectorAll("[data-bidlist]").forEach(function (ul) {
+      ul.innerHTML = l.length ? l.map(function (n, i) {
+        return '<li><span>' + esc(n) + '</span><button type="button" class="x" data-rm="' + i + '" aria-label="Remove ' + esc(n) + '">×</button></li>';
+      }).join("") : '<li class="empty">Nothing on your list yet. Add services below or from any service page.</li>';
+    });
+    document.querySelectorAll("[data-bidfield]").forEach(function (f) { f.value = l.join("; "); });
+  };
+  document.addEventListener("click", function (ev) {
+    var b = ev.target.closest("[data-add]");
+    if (b) {
+      var name = b.getAttribute("data-add"), l = getList(), i = l.indexOf(name);
+      if (i === -1) l.push(name); else l.splice(i, 1);
+      setList(l); return;
+    }
+    var rm = ev.target.closest("[data-rm]");
+    if (rm) { var l2 = getList(); l2.splice(+rm.getAttribute("data-rm"), 1); setList(l2); }
+  });
+  try {
+    var addp = new URLSearchParams(location.search).get("add");
+    if (addp) addToList(addp);
+  } catch (e) { /* query string not available */ }
+  paintList();
+
+  // ---- "What needs cleaning?" finder (type-ahead over every service name and the names crews use for it).
+  // data-mode="add" (bid form) adds the pick to the bid list instead of opening the page.
+  var data = (window.BK_INDEX || []).map(function (r) {
+    return { name: r[0], alts: r[1], fam: r[2], url: r[3], w: r[4] || 0, n: norm(r[0]), an: r[1].map(norm), xn: (r[5] || []).map(norm) };
+  });
+  var STARTERS = ["Final clean of entire building", "Open ceiling deck cleaning", "Grout haze removal",
+    "Interior window cleaning", "VCT initial floor finish", "Rough clean of entire building", "Commercial kitchen post-construction clean"];
+  var mark = function (text, q) {
+    var i = text.toLowerCase().indexOf(q);
+    if (i < 0 || !q) return esc(text);
+    return esc(text.slice(0, i)) + "<b>" + esc(text.slice(i, i + q.length)) + "</b>" + esc(text.slice(i + q.length));
+  };
+  var wordStart = function (hay, q) { return hay.indexOf(q) === 0 || hay.indexOf(" " + q) !== -1; };
+  var search = function (raw, tasksOnly) {
+    var q = norm(raw), words = q.split(" ").filter(Boolean);
+    if (q.length < 2) return [];
+    var out = [];
+    data.forEach(function (d) {
+      if (tasksOnly && d.fam === "Service family") return;
+      var best = 0, via = "";
+      var test = function (hay, isAlt, label) {
+        if (!words.every(function (w) { return hay.indexOf(w) !== -1; })) return;
+        var s = hay.indexOf(q) === 0 ? 100 : wordStart(hay, q) ? 85 : hay.indexOf(q) !== -1 ? 60 : 45;
+        if (isAlt) s -= 12;
+        if (s > best) { best = s; via = isAlt ? label : ""; }
+      };
+      test(d.n, false);
+      d.an.forEach(function (a, i) { test(a, true, d.alts[i]); });
+      d.xn.forEach(function (a) { test(a, true, ""); });
+      if (best) out.push({ d: d, s: best + d.w - d.name.length / 200, via: via });
+    });
+    out.sort(function (a, b) { return b.s - a.s; });
+    return out.slice(0, 7);
+  };
+
+  document.querySelectorAll("[data-finder]").forEach(function (finder) {
+    if (!data.length) return;
+    var addMode = finder.getAttribute("data-mode") === "add";
     var input = finder.querySelector("input");
     var list = finder.querySelector(".finder-list");
-    var data = window.BK_INDEX.map(function (r) {
-      return { name: r[0], alts: r[1], fam: r[2], url: r[3], w: r[4] || 0, n: norm(r[0]), an: r[1].map(norm), xn: (r[5] || []).map(norm) };
-    });
-    var STARTERS = ["Final clean of entire building", "Open ceiling deck cleaning", "Grout haze removal",
-      "Interior window cleaning", "VCT initial floor finish", "Rough clean of entire building", "Commercial kitchen post-construction clean"];
+    var lid = list.id;
     var active = -1, shown = [];
-
-    var mark = function (text, q) {
-      var i = text.toLowerCase().indexOf(q);
-      if (i < 0 || !q) return esc(text);
-      return esc(text.slice(0, i)) + "<b>" + esc(text.slice(i, i + q.length)) + "</b>" + esc(text.slice(i + q.length));
-    };
-    var wordStart = function (hay, q) { return hay.indexOf(q) === 0 || hay.indexOf(" " + q) !== -1; };
-
-    var search = function (raw) {
-      var q = norm(raw), words = q.split(" ").filter(Boolean);
-      if (q.length < 2) return [];
-      var out = [];
-      data.forEach(function (d) {
-        var best = 0, via = "";
-        var test = function (hay, isAlt, label) {
-          if (!words.every(function (w) { return hay.indexOf(w) !== -1; })) return;
-          var s = hay.indexOf(q) === 0 ? 100 : wordStart(hay, q) ? 85 : hay.indexOf(q) !== -1 ? 60 : 45;
-          if (isAlt) s -= 12;
-          if (s > best) { best = s; via = isAlt ? label : ""; }
-        };
-        test(d.n, false);
-        d.an.forEach(function (a, i) { test(a, true, d.alts[i]); });
-        d.xn.forEach(function (a) { test(a, true, ""); });
-        if (best) out.push({ d: d, s: best + d.w - d.name.length / 200, via: via });
-      });
-      out.sort(function (a, b) { return b.s - a.s; });
-      return out.slice(0, 7);
-    };
 
     var render = function () {
       var raw = input.value.trim(), q = norm(raw), html = "";
@@ -64,23 +106,28 @@
           .filter(Boolean).map(function (d) { return { d: d, via: "" }; });
         html = '<li class="hint-row" role="presentation">Popular requests</li>';
       } else {
-        shown = search(raw);
+        shown = search(raw, addMode);
       }
       shown.forEach(function (r, i) {
         var name = r.via ? esc(r.d.name) : mark(r.d.name, q);
         var aka = r.via ? '<span class="aka">also called ' + mark(r.via, q) + "</span>" : "";
-        html += '<li role="option" id="fo-' + i + '" aria-selected="' + (i === active) + '"><a href="' + esc(r.d.url) + '"><span>' + name + aka +
-          '</span><span class="fam">' + esc(r.d.fam) + "</span></a></li>";
+        html += '<li role="option" id="' + lid + "-" + i + '" aria-selected="' + (i === active) + '"><a href="' + esc(r.d.url) + '" data-pick="' + i + '"><span>' + name + aka +
+          '</span><span class="fam">' + (addMode ? "+ Add" : esc(r.d.fam)) + "</span></a></li>";
       });
       if (q.length >= 2 && !shown.length) {
-        html = '<li class="none"><a href="quote.html">Can’t find it? Tell us what you need →</a></li>';
+        html = addMode ? '<li class="none"><a href="#" data-typed>Add “' + esc(raw) + '” to your list →</a></li>'
+                       : '<li class="none"><a href="quote.html">Can’t find it? Tell us what you need →</a></li>';
       }
       list.innerHTML = html;
       list.hidden = false;
       input.setAttribute("aria-expanded", "true");
-      input.setAttribute("aria-activedescendant", active >= 0 ? "fo-" + active : "");
+      input.setAttribute("aria-activedescendant", active >= 0 ? lid + "-" + active : "");
     };
     var close = function () { list.hidden = true; active = -1; input.setAttribute("aria-expanded", "false"); };
+    var take = function (r) {
+      if (addMode) { addToList(r ? r.d.name : input.value); input.value = ""; close(); input.focus(); }
+      else if (r) location.href = r.d.url;
+    };
 
     input.addEventListener("input", function () { active = -1; render(); });
     input.addEventListener("focus", render);
@@ -92,8 +139,24 @@
         active = ev.key === "ArrowDown" ? (active + 1) % n : (active - 1 + n) % n;
         render();
       } else if (ev.key === "Escape") { close(); }
+      else if (ev.key === "Enter" && addMode) {
+        ev.preventDefault();  // never submit the surrounding bid form from here
+        if (input.value.trim().length >= 2) take(shown[active >= 0 ? active : 0] || null);
+      }
     });
-    finder.addEventListener("submit", function (ev) {
+    list.addEventListener("click", function (ev) {
+      if (!addMode) return;
+      var a = ev.target.closest("a"); if (!a) return;
+      ev.preventDefault();
+      take(a.hasAttribute("data-typed") ? null : shown[+a.getAttribute("data-pick")]);
+    });
+    var typed = finder.querySelector("[data-add-typed]");
+    if (typed) typed.addEventListener("click", function () {
+      var raw = input.value.trim(); if (raw.length < 2) { input.focus(); render(); return; }
+      var r = search(raw, true)[0];
+      take(r && norm(r.d.name) === norm(raw) ? r : null);
+    });
+    if (finder.tagName === "FORM") finder.addEventListener("submit", function (ev) {
       ev.preventDefault();
       var pick = shown[active >= 0 ? active : 0];
       if (input.value.trim().length >= 2 && pick) { location.href = pick.d.url; return; }
@@ -101,10 +164,10 @@
       input.focus(); render();
     });
     document.addEventListener("click", function (ev) { if (!finder.contains(ev.target)) close(); });
-  }
+  });
 
   // ---- Directory, FAQ and glossary filters
-  var box = document.querySelector(".filter");
+  var box = document.querySelector(".filter[data-list]");
   if (box) {
     var flist = document.getElementById(box.getAttribute("data-list"));
     var finput = box.querySelector("input");
@@ -150,15 +213,16 @@
   var t = location.hash && document.getElementById(location.hash.slice(1));
   if (t && t.tagName === "DETAILS") t.open = true;
 
-  // ---- Quote / application forms: preview build does not transmit anything
+  // ---- Bid request form: preview build does not transmit anything yet
   document.querySelectorAll("form[data-demo]").forEach(function (f) {
-    try {
-      var task = new URLSearchParams(location.search).get("task");
-      var sel = f.querySelector("[name=task]");
-      if (task && sel) sel.value = task;
-    } catch (e) { /* query string not available */ }
     f.addEventListener("submit", function (ev) {
       ev.preventDefault();
+      paintList();
+      var d = new Date();
+      var ref = "BK-" + String(d.getFullYear()).slice(2) + ("0" + (d.getMonth() + 1)).slice(-2) + ("0" + d.getDate()).slice(-2) +
+        "-" + String(Math.floor(Math.random() * 9000) + 1000);
+      var slot = f.querySelector("[data-ref]");
+      if (slot) slot.textContent = ref;
       var msg = f.querySelector(".notice");
       msg.hidden = false;
       msg.focus();
