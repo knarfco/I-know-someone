@@ -43,7 +43,7 @@
     "Owner or GC provides water, power, dumpster and site access. Lifts provided by the GC unless listed above.\n" +
     "One re-clean of punch items is included. Additional re-cleans caused by other trades are billed at the hourly rate.\n" +
     "Net 30 from invoice. This quote is valid until the date shown.";
-  var co = store.get("bk-est-co", { name: "", license: "", phone: "", email: "", address: "", web: "", op: "10", tax: "0", terms: DEFAULT_TERMS });
+  var co = store.get("bk-est-co", { name: "", license: "", phone: "", email: "", address: "", web: "", op: "0", tax: "0", terms: DEFAULT_TERMS });
 
   // ---------------------------------------------------------------- quote state
   var newQuote = function () {

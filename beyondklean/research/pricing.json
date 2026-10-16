@@ -1,0 +1,6154 @@
+{
+ "meta": {
+  "currency": "USD",
+  "as_of": "2026-10",
+  "region": "US national, FL/GA/AL calibrated",
+  "labor_rate_billed": {
+   "general_cleaner": {
+    "low": 35,
+    "mid": 42,
+    "high": 50,
+    "unit": "per worker-hour"
+   },
+   "lead_or_floor_tech": {
+    "low": 45,
+    "mid": 55,
+    "high": 65,
+    "unit": "per worker-hour"
+   },
+   "specialty_tech_lift_or_restoration": {
+    "low": 55,
+    "mid": 70,
+    "high": 90,
+    "unit": "per worker-hour"
+   },
+   "night_weekend_rush_multiplier": 1.5,
+   "wage_basis": "BLS OEWS May 2024 janitor medians FL $15.16, GA $15.93, AL $14.00 vs national $17.27; SCA janitor (Polk Co. FL) $15.63 + $5.55 H&W",
+   "loading": "wage x ~1.30-1.35 burden (FICA, FUTA/SUTA, workers comp, GL) x ~1.5-1.7 overhead and profit = billed rate",
+   "regional_factor_vs_national": {
+    "FL": 0.9,
+    "GA": 0.93,
+    "AL": 0.85,
+    "national": 1.0,
+    "high_cost_metros_NE_West": 1.25
+   }
+  },
+  "notes": "Unit prices are starting points for an editable price book, not quotes. 'mid' is the typical FL/GA/AL bid price; low = competitive public-bid / large-volume level, high = small, rushed, high-access or heavily soiled work. rate_per_hr is units per worker-hour (not per crew). 'min' is a typical minimum charge for that line when bid alone. 'sourced' = a published price/bid anchor exists for this task or a direct equivalent; 'derived' = nearest sourced analog plus production-rate x billed-labor math. Lift rental, dumpsters, tipping fees, licensed-subcontract work and permits are excluded unless the basis says otherwise. Multiply by regional factor outside FL/GA/AL.",
+  "counts": {
+   "items": 438,
+   "sourced": 68,
+   "derived": 370
+  }
+ },
+ "sources": [
+  {
+   "id": "S1",
+   "title": "Fixr - Post-construction cleaning cost",
+   "url": "https://www.fixr.com/costs/post-construction-cleaning",
+   "what": "Phase ranges: rough $0.15-0.40/sf, final $0.20-0.60/sf; renovation low end, new construction high end"
+  },
+  {
+   "id": "S2",
+   "title": "ThePricer - Post construction clean up cost (cites Cleaner Match)",
+   "url": "https://thepricer.org/post-construction-clean-up-cost",
+   "what": "Rough $0.10-0.15/sf, final $0.15-0.30/sf, touch-up $0.06-0.12/sf; $30-50 per employee-hour"
+  },
+  {
+   "id": "S3",
+   "title": "ServiceMaster Clean - Post-construction cleaning cost factors",
+   "url": "https://www.servicemasterclean.com/clean-blog/post-construction-cleaning/post-construction-cleaning-cost-factors/",
+   "what": "Commercial post-construction cleaning $0.15-0.75/sf by detail level"
+  },
+  {
+   "id": "S4",
+   "title": "CMM Online - Tuesday's Ask the Experts: Post-construction cleaning (2011)",
+   "url": "https://cmmonline.com/articles/tuesdays-ask-the-experts-post-construction-cleaning",
+   "what": "Trade Q&A: 13-20 cents/sf for commercial jobs, up to 35 cents for restaurants; windows, carpet, VCT refinish extra"
+  },
+  {
+   "id": "S5",
+   "title": "HomeAdvisor - Post-construction cleaning cost",
+   "url": "https://www.homeadvisor.com/cost/cleaning-services/clean-construction-site",
+   "what": "About $0.25/sf average for a new home"
+  },
+  {
+   "id": "S7",
+   "title": "Construction Clean Partners - Calculator pricing assumptions",
+   "url": "https://final-clean.com/calculator-pricing-assumptions/",
+   "what": "Construction-clean calculator prices residential living units at a flat ~$300-400 per unit; rates vary by state/project type"
+  },
+  {
+   "id": "S8",
+   "title": "EngineersViews - Post construction cleaning calculator (2025 US reference)",
+   "url": "https://engineersviews.com/tools/post-construction-cleaning-calculator/",
+   "what": "Production: commercial rough 150-200 sf/hr, standard 100-150, final 70-100, medical final 50-80 sf/worker-hr"
+  },
+  {
+   "id": "S9",
+   "title": "Leon County Schools (FL) - Lincoln HS stripping bid tab & award (2018)",
+   "url": "https://www.leonschools.net/cms/lib/FL01903265/Centricity/Domain/195/CURRENTBIDS/BID55272018LINCOLNHSSTRIPPING/AwardRecommendationandBidTab.pdf",
+   "what": "VCT strip and wax bids $0.20-0.25/sf"
+  },
+  {
+   "id": "S10",
+   "title": "Town of Davie (FL) - ITB EL-21-61 janitorial bid tabulation (2021)",
+   "url": "https://davie-fl.gov/DocumentCenter/View/15592/ITB-EL-21-61_Bid-Tabulation",
+   "what": "Optional as-needed strip & wax and tile/grout per SF; six vendors roughly $0.23-0.75/sf (strip & wax ~$0.28-0.45)"
+  },
+  {
+   "id": "S11",
+   "title": "Leon County Schools (FL) - ITB 1001-2026 Supplemental Custodial Services bid tab",
+   "url": "https://www.leonschools.net/cms/lib/FL01903265/Centricity/Domain/195/ITB%201001-2026%20Bid%20Tabulation.pdf",
+   "what": "Custodian $15-35/hr billed; carpet deep cleaning $0.09-0.40/sf across bidders"
+  },
+  {
+   "id": "S12",
+   "title": "Missouri DOT - CD-15-001B janitorial services bid tabulation",
+   "url": "https://www.modot.org/sites/default/files/documents/general_services/central_district_bidding/cd-15-001bjanitorialservices-bidtabulation.pdf",
+   "what": "Carpet deep clean/water extraction $0.05-0.15/sf; construction clean-up priced per person-hour"
+  },
+  {
+   "id": "S13",
+   "title": "Collin County (TX) - Bid 2022-260 tabulation",
+   "url": "https://eagenda.collincountytx.gov/docs/2022/CC/20221205_2806/53264%5FBid%20Tabulation%202022%2D260%2Epdf",
+   "what": "Wet-extraction carpet cleaning $0.34-1.75/sf (small, travel-loaded sites)"
+  },
+  {
+   "id": "S14",
+   "title": "Cobb County School District (GA) - Gym floor resurfacing bid tab B1922",
+   "url": "https://media.cobbk12.org/media/WWWCobb/medialib/gymfloorresurfacingrefinishing_b1922_tabsheet.d5ca0346913.pdf",
+   "what": "Screen and recoat bids about $0.26-0.95/sf"
+  },
+  {
+   "id": "S15",
+   "title": "Sports Venue Calculator - gym floor maintenance Q&A (sports flooring manufacturer rep)",
+   "url": "https://sportsvenuecalculator.com/knowledge/news/gym-floor-maintenance-best-practices-interview/",
+   "what": "Screen and recoat typically $0.40-0.80/sf"
+  },
+  {
+   "id": "S16",
+   "title": "Cobb County School District (GA) - Hood cleaning bid tab B2115",
+   "url": "https://media.cobbk12.org/media/WWWCobb/medialib/fnshoodclnsrv-b2115_tabsht.e5bcc246889.pdf",
+   "what": "Per single/double hood system: $137.90-350 single, $154.85-450 double"
+  },
+  {
+   "id": "S17",
+   "title": "Jefferson County Commission (AL) - Kitchen exhaust hood cleaning bid tabs 31-20 / 30-24",
+   "url": "https://paca.jccal.org/Sites/PACA/AppData/DocLib/Main/30-24%20Kitchen%20Commerical%20Food%20Areas%20Exhaust%20Hoods%20Cleaning%20Services%20-%20Bid%20Tabulation.pdf",
+   "what": "$200-395 per hood per location"
+  },
+  {
+   "id": "S18",
+   "title": "HoodMart / Angi - commercial kitchen hood cleaning cost guides",
+   "url": "https://www.hoodmart.com/blog/post/the-average-cost-of-a-commercial-exhaust-hood-cleaning",
+   "what": "Vendor rate cards by system length ~$475-1,100; HomeAdvisor flat fee ~$400-430, $140-180/hr"
+  },
+  {
+   "id": "S19",
+   "title": "State of Iowa - HVAC duct cleaning task order unit rates",
+   "url": "https://bidopportunities.iowa.gov/Home/ShowContractDocument/c53743de-1446-4cdf-b2c2-c98f2af5d25b",
+   "what": "Duct cleaning $3.50-4.50/lf easy access, $9.50-10.25/lf difficult; air handler work $68.50-98.50/hr"
+  },
+  {
+   "id": "S20",
+   "title": "Collier County (FL) - Pressure washing bid 08-5002 tabulation (2007)",
+   "url": "https://colliercountyfl.gov/home/showpublisheddocument/15932/635883137282070000",
+   "what": "Sidewalk/walkway pressure washing $0.075-0.20/sf"
+  },
+  {
+   "id": "S21",
+   "title": "Dallas County (TX) - Bid 2022-002-6917 Power Washing Services tabulation",
+   "url": "https://www.dallascounty.org/Assets/uploads/docs/purchasing/bidtabs/2022/Bid%20Tabulation-%202022-002-6917%20Power%20Washing%20Services.pdf",
+   "what": "Emergency power washing $0.15/sf; graffiti abatement $0.35-10.00/sf across bidders"
+  },
+  {
+   "id": "S22",
+   "title": "Town of Apple Valley (CA) - Graffiti removal bid results",
+   "url": "https://applevalley.org/home/showpublisheddocument/3395/635611242901270000",
+   "what": "Graffiti removal $0.30-0.70/sf over minimum areas"
+  },
+  {
+   "id": "S23",
+   "title": "Housecall Pro - How to price pressure washing jobs",
+   "url": "https://housecallpro.com/resources/how-to-price-pressure-washing-jobs",
+   "what": "Commercial flatwork $0.08-0.40/sf"
+  },
+  {
+   "id": "S24",
+   "title": "Thumbtack - Power washing prices",
+   "url": "https://www.thumbtack.com/p/power-washing-prices",
+   "what": "National $0.08-0.47/sf; $65-99/hr; average job $368"
+  },
+  {
+   "id": "S26",
+   "title": "Housecall Pro / Jobber - commercial window cleaning pricing guides",
+   "url": "https://www.housecallpro.com/resources/how-to-price-window-cleaning-guide/",
+   "what": "Commercial ~$2-8/pane, $50-100/hr, $0.10-0.50/sf of glass"
+  },
+  {
+   "id": "S27",
+   "title": "Window cleaner trade forum + Angi - post-construction window pricing",
+   "url": "https://community.windowcleaner.com/t/post-construction-cleanup/5930",
+   "what": "Post-construction priced 2-3x routine; overspray bids $5.50-10+/pane; Angi $12-20/window post-construction"
+  },
+  {
+   "id": "S28",
+   "title": "Window cleaner trade forum - hard water stain removal pricing",
+   "url": "https://community.windowcleaner.com/t/what-to-charge-for-glass-restoration-stain-removal/53202",
+   "what": "Glass restoration averages $5-10/sf incl. sealing"
+  },
+  {
+   "id": "S29",
+   "title": "HomeAdvisor - Wall and ceiling washing cost",
+   "url": "https://www.homeadvisor.com/cost/cleaning-services/clean-walls-and-ceilings",
+   "what": "$0.45-0.65/sf by wall material"
+  },
+  {
+   "id": "S30",
+   "title": "Homewyse - Cost to clean ceiling tile (Jan 2026)",
+   "url": "https://www.homewyse.com/maintenance_costs/cost_to_clean_ceiling_tile.html",
+   "what": "$0.63-0.78/sf"
+  },
+  {
+   "id": "S31",
+   "title": "Homewyse - Cost to clean ceiling fan (Jan 2026)",
+   "url": "https://www.homewyse.com/maintenance_costs/cost_to_clean_ceiling_fan.html",
+   "what": "$117-144 per fan (residential, incl. minimums)"
+  },
+  {
+   "id": "S32",
+   "title": "HomeAdvisor / Fixr - Tile and grout cleaning and sealing",
+   "url": "https://www.fixr.com/costs/tile-and-grout-cleaning",
+   "what": "Cleaning $0.50-3/sf; sealing $0.25-0.50 (HomeAdvisor) to $0.90-1.73 (Fixr)"
+  },
+  {
+   "id": "S33",
+   "title": "Angi / HomeAdvisor - Carpet cleaning prices",
+   "url": "https://www.angi.com/articles/what-are-average-carpet-cleaning-prices.htm",
+   "what": "Hot water extraction $0.20-0.90/sf; commercial carpet $0.15-0.25/sf (HomeAdvisor)"
+  },
+  {
+   "id": "S34",
+   "title": "HomeAdvisor / This Old House - Polished concrete cost",
+   "url": "https://www.homeadvisor.com/cost/flooring/polished-concrete-floor-cost",
+   "what": "Polish $2-16/sf; basic polish $2-6/sf"
+  },
+  {
+   "id": "S35",
+   "title": "EngineerFix and cost guides - Terrazzo restoration cost",
+   "url": "https://engineerfix.com/how-much-does-terrazzo-floor-restoration-cost/",
+   "what": "Finishing/polish $2.50-8.00/sf; full restoration $6-14/sf"
+  },
+  {
+   "id": "S36",
+   "title": "Fixr - Mold remediation cost",
+   "url": "https://www.fixr.com/costs/mold-remediation",
+   "what": "$10-30/sf of affected area"
+  },
+  {
+   "id": "S37",
+   "title": "Fixr / HomeServe - Lead paint removal",
+   "url": "https://www.fixr.com/costs/lead-paint-removal",
+   "what": "Removal $8-17/sf; encapsulation $1-4/sf"
+  },
+  {
+   "id": "S38",
+   "title": "Asbestos removal cost guides (homeowner oriented)",
+   "url": "https://partner.kurlon.com/news/asbestos-removal-cost-guide-2026-8211-adnan-painting-and-remodeling.html",
+   "what": "$8-25/sf incl. containment and disposal (low-quality source; verify locally)"
+  },
+  {
+   "id": "S39",
+   "title": "LawnStarter / Angi - Fire and smoke damage restoration cost",
+   "url": "https://www.lawnstarter.com/blog/cost/fire-and-smoke-restoration-price",
+   "what": "Standard fire/smoke cleanup $4-7/sf"
+  },
+  {
+   "id": "S40",
+   "title": "Fixr / BioRecovery - Biohazard cleanup cost",
+   "url": "https://fixr.com/costs/biohazard-cleanup",
+   "what": "$60-140/hr typical; $4-12 (to $20)/sf"
+  },
+  {
+   "id": "S41",
+   "title": "HomeAdvisor - Junk / construction debris removal cost (2025)",
+   "url": "https://www.homeadvisor.com/cost/cleaning-services/remove-waste/",
+   "what": "Construction debris $100-800/truckload; full truck 13-17 cy $600-800; per-cy $50-80 typical"
+  },
+  {
+   "id": "S42",
+   "title": "Highlands County FL FY2025-26 landfill fees; Dougherty County GA tipping fees (2025)",
+   "url": "https://highlandsfl.gov/departments/solid_waste/landfill/fee_schedule.php",
+   "what": "C&D disposal $55/ton (FL), $40.97/ton (GA)"
+  },
+  {
+   "id": "S43",
+   "title": "ZTERS dumpster rental pricing, Tampa / Fort Myers FL (2025)",
+   "url": "https://zters.com/dumpster-rental/tampa-fl",
+   "what": "30-yd roll-off $677-740 incl. weight allowance; Orlando guides $530-650"
+  },
+  {
+   "id": "S44",
+   "title": "Ram Board 38in x 100ft retail listings",
+   "url": "https://www.runyonsurfaceprep.com/product/ram-board-38x100/",
+   "what": "$61.68-81.25 per 317 sf roll = ~$0.19-0.26/sf material"
+  },
+  {
+   "id": "S45",
+   "title": "BigRentz - Florida scissor lift rental rates",
+   "url": "https://www.bigrentz.com/rental-locations/florida/lakeland/scissor-lifts",
+   "what": "19 ft electric $97/day, $230/wk; 26 ft $121/day, $338/wk"
+  },
+  {
+   "id": "S46",
+   "title": "BLS OOH / OEWS - Janitors and building cleaners (May 2024)",
+   "url": "https://www.bls.gov/ooh/building-and-grounds-cleaning/janitors-and-building-cleaners.htm",
+   "what": "National median $17.27/hr; FL $15.16, GA $15.93, AL $14.00 (OEWS 37-2011 state medians); basis for derived labor math"
+  },
+  {
+   "id": "S48",
+   "title": "City of Pensacola (FL) - janitorial bids 24-045 / 24-046 (2024)",
+   "url": "https://www.cityofpensacola.com/DocumentCenter/View/27050",
+   "what": "Low bids $18-20 per man-hour labor / extraction (low end of FL market)"
+  },
+  {
+   "id": "S49",
+   "title": "ISSA - How to calculate cleaning times (612 production rates)",
+   "url": "https://www.issa.com/articles/how-to-calculate-cleaning-times/",
+   "what": "Mopping 5,355 sf/hr; restroom ~3 min/fixture; vacuum 20-30 min per 1,000 sf"
+  },
+  {
+   "id": "S50",
+   "title": "Cooperator News / Florida Community Association Journal - trash chute cleaning",
+   "url": "https://sofl.cooperatornews.com/article/a-breath-of-fresh-air",
+   "what": "$30-40 per floor (Cooperator); $50-100 per floor (FCAJ 2024)"
+  },
+  {
+   "id": "S51",
+   "title": "Commercial gutter cleaning price guides (2026)",
+   "url": "https://cleanproguttercleaning.com/guides/commercial-gutter-cleaning-prices",
+   "what": "$0.75-2.75 per lf for commercial/multi-unit"
+  },
+  {
+   "id": "S52",
+   "title": "Angi - Dryer vent cleaning cost",
+   "url": "https://www.angi.com/articles/how-much-does-dryer-vent-cleaning-cost/dc/washington",
+   "what": "$90-250 per vent, by run length"
+  },
+  {
+   "id": "S53",
+   "title": "Ice machine and grease trap service cost guides (ThePricer et al.)",
+   "url": "https://www.thepricer.org/?p=19032",
+   "what": "Ice machine $120-350/unit (avg ~$200); interceptor service $130-250"
+  },
+  {
+   "id": "S54",
+   "title": "Uptime Institute Journal - data center cleaning and sanitization",
+   "url": "https://journal.uptimeinstitute.com/data_center_cleaning_sanitization_covid19/",
+   "what": "Up to ~$100,000 per deep clean of a 100,000 sf facility (~$1/sf); sanitization +20%"
+  },
+  {
+   "id": "S55",
+   "title": "Window cleaner trade forum - chandelier cleaning pricing",
+   "url": "https://community.windowcleaner.com/t/chandelier-cleaning-and-pricing/15495",
+   "what": "$80-125 and up per chandelier; guides $60-250 per fixture"
+  },
+  {
+   "id": "S56",
+   "title": "HomeServe / Thumbtack - Solar panel cleaning cost",
+   "url": "https://www.homeserve.com/blog/cost-guide/solar-panel-cleaning-service-cost",
+   "what": "$10-25 per panel small arrays; $3-8 per panel larger arrays; ~$100 minimums"
+  },
+  {
+   "id": "S57",
+   "title": "Karcher know-how - cleaning escalators; escalator cleaning business model",
+   "url": "https://www.kaercher.com/int/professional/know-how/cleaning-escalators-and-moving-walkways.html",
+   "what": "Maintenance clean ~20 min per 50-step escalator; restorative jobs planned at $800-2,500 per unit"
+  },
+  {
+   "id": "S58",
+   "title": "City of Tulsa sweeping bid summary; World Sweeper contractor bidding guidance",
+   "url": "https://www.cityoftulsa.org/media/16491/bid-summary-tac-308e.pdf",
+   "what": "Sweeper bids $125-195/hr; contractor bids typically $115-135/hr"
+  },
+  {
+   "id": "S59",
+   "title": "HomeServe (citing Homewyse) - Efflorescence / brick cleaning cost",
+   "url": "https://www.homeserve.com/blog/home-improvement/efflorescence-remover",
+   "what": "Brick cleaning $0.54-0.68/sf; acid/chemical efflorescence $1.00-3.50/sf"
+  },
+  {
+   "id": "S60",
+   "title": "Paver cleaning and sealing cost guides",
+   "url": "https://new.risingsunartscentre.org/news/paver-cleaning-and-sealing-cost-guide-2026.html",
+   "what": "Cleaning + sealing bundled $0.75-1.45/sf (low-quality source)"
+  },
+  {
+   "id": "S61",
+   "title": "Epoxy floor cost guides - surface preparation tiers",
+   "url": "https://dna.strongeru.com/how-much-is-it-cost-to-epoxy-sf-floor/",
+   "what": "Light prep $0.50-1.50, medium $1-3, heavy grind/shot blast $2-5/sf (low-quality source)"
+  },
+  {
+   "id": "S64",
+   "title": "CMM Online - Tackling the condo and apartment market",
+   "url": "https://cmmonline.com/articles/tackling-the-condo-and-apartment-market",
+   "what": "Multifamily flat rates $125 (studio/1BR) to $300+ (3BR+)"
+  },
+  {
+   "id": "S65",
+   "title": "Housecall Pro - Commercial cleaning price guide 2025",
+   "url": "https://www.housecallpro.com/?p=49928",
+   "what": "Restaurant/kitchen $0.15-0.25/sf; medical $0.25-0.35/sf recurring"
+  },
+  {
+   "id": "S67",
+   "title": "Move-out / deep cleaning add-on guides",
+   "url": "https://new.risingsunartscentre.org/news/move-out-deep-cleaning-cost-2026.html",
+   "what": "Appliance add-ons $40-150 each (low-quality source)"
+  },
+  {
+   "id": "S68",
+   "title": "Clean Group - Cost to clean blinds",
+   "url": "https://www.clean-group.com.au/cost-to-clean-blinds",
+   "what": "Commercial contracts 50+ blinds ~$8-15 each (vendor page, AUD market)"
+  },
+  {
+   "id": "S69",
+   "title": "Fixr siding cleaning; commercial soft wash pricing guides",
+   "url": "https://www.fixr.com/costs/siding-cleaning",
+   "what": "Residential $0.30-0.80/sf; commercial wall wash $0.20-1.00, soft wash $0.15-0.60/sf"
+  },
+  {
+   "id": "S70",
+   "title": "Airtasker - Commercial kitchen cleaning prices",
+   "url": "https://www.airtasker.com/us/commercial-cleaning/commercial-kitchen-cleaning/price/commercial-kitchen-cleaning-cost",
+   "what": "Commercial kitchen deep cleaning $50-150/hr"
+  },
+  {
+   "id": "S72",
+   "title": "Contractor 2026 construction-cleaning price guides (FlexCrew, Brye A Plus, Housefly)",
+   "url": "https://flexcrewusa.com/blog/post-construction-cleaning-cost-per-square-foot/",
+   "what": "Rough $0.10-0.30/sf, final $0.30-0.75 (homes) / $0.20-0.50 (large commercial), touch-up $0.10-0.20/sf or $150-500/visit; rough/light phases $35-60 per cleaner-hour"
+  },
+  {
+   "id": "S74",
+   "title": "Auto-scrubber productivity specs (Elite Metal Tools) and manufacturer guidance",
+   "url": "https://www.elitemetaltools.com/tool-shop/janitorial/automatic-scrubbers",
+   "what": "Practical productivity ~22,770 sf/hr for 32-in machine; 10,000-40,000 sf/hr by model"
+  },
+  {
+   "id": "S75",
+   "title": "ContractorPlus - strip and wax rates",
+   "url": "https://contractorplus.app/blog/set-profitable-strip-and-wax-rates-this-winter",
+   "what": "~3-5 labor hours per 1,000 sf strip and wax (200-330 sf/labor-hr)"
+  },
+  {
+   "id": "S77",
+   "title": "HomeStars - Industrial cleaning cost",
+   "url": "https://www.homestars.com/demolition-disposal/price-guides/industrial-cleaning-cost",
+   "what": "Industrial cleaning ~$0.20/sf average; high dusting with lifts +20-40%"
+  },
+  {
+   "id": "S79",
+   "title": "Parking lot / garage pressure washing guides and contractor forum",
+   "url": "https://pressurewashingresource.com/community/t/indoor-parking-garage-quote-help/40130",
+   "what": "Lots $0.08-0.25/sf basic; enclosed garage bid at $0.20/sf"
+  },
+  {
+   "id": "S80",
+   "title": "Water damage restoration cost guides",
+   "url": "https://new.risingsunartscentre.org/news/mold-and-water-damage-repair-cost-2026.html",
+   "what": "$2-12/sf extraction through drying (low-quality source; verify with licensed restorers)"
+  }
+ ],
+ "items": {
+  "Bulk debris pickup by floor": {
+   "unit": "sqft",
+   "low": 0.02,
+   "mid": 0.035,
+   "high": 0.07,
+   "min": 350,
+   "rate_per_hr": 1200,
+   "basis": "Per sf of floor plate per pickup; labor to gather and stage at chute/dumpster; container and disposal billed separately",
+   "src": [
+    "S41",
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Drywall scrap collection": {
+   "unit": "cy",
+   "low": 18,
+   "mid": 28,
+   "high": 45,
+   "min": 250,
+   "rate_per_hr": 1.5,
+   "basis": "Labor-only per loose cy collected and loaded; ~1.5 cy per worker-hr; dumpster/tipping separate",
+   "src": [
+    "S41",
+    "S42"
+   ],
+   "confidence": "derived"
+  },
+  "Lumber and wood scrap collection": {
+   "unit": "cy",
+   "low": 15,
+   "mid": 25,
+   "high": 40,
+   "min": 250,
+   "rate_per_hr": 1.8,
+   "basis": "Labor-only per cy; bulky but light; disposal separate",
+   "src": [
+    "S41"
+   ],
+   "confidence": "derived"
+  },
+  "Metal scrap and stud offcut collection": {
+   "unit": "cy",
+   "low": 18,
+   "mid": 30,
+   "high": 48,
+   "min": 250,
+   "rate_per_hr": 1.4,
+   "basis": "Labor-only per cy; sharp-edge handling; scrap value may offset haul",
+   "src": [
+    "S41"
+   ],
+   "confidence": "derived"
+  },
+  "Cardboard and packaging breakdown": {
+   "unit": "cy",
+   "low": 12,
+   "mid": 20,
+   "high": 32,
+   "min": 200,
+   "rate_per_hr": 2.2,
+   "basis": "Per cy of breakdown and baling/flattening for recycling container",
+   "src": [
+    "S41"
+   ],
+   "confidence": "derived"
+  },
+  "Pallet and crate removal": {
+   "unit": "each",
+   "low": 4.0,
+   "mid": 8.0,
+   "high": 15,
+   "min": 150,
+   "rate_per_hr": 6.0,
+   "basis": "Per pallet stacked and loaded; haul-off by load if not reclaimed by vendor",
+   "src": [
+    "S41"
+   ],
+   "confidence": "derived"
+  },
+  "Insulation scrap removal": {
+   "unit": "cy",
+   "low": 15,
+   "mid": 24,
+   "high": 38,
+   "min": 200,
+   "rate_per_hr": 1.8,
+   "basis": "Per cy bagged and loaded; PPE for fiberglass",
+   "src": [
+    "S41"
+   ],
+   "confidence": "derived"
+  },
+  "Ceiling tile scrap and carton removal": {
+   "unit": "cy",
+   "low": 15,
+   "mid": 25,
+   "high": 40,
+   "min": 200,
+   "rate_per_hr": 1.7,
+   "basis": "Per cy collected and loaded; cartons flattened",
+   "src": [
+    "S41"
+   ],
+   "confidence": "derived"
+  },
+  "Flooring offcut and carton removal": {
+   "unit": "cy",
+   "low": 18,
+   "mid": 28,
+   "high": 45,
+   "min": 200,
+   "rate_per_hr": 1.5,
+   "basis": "Per cy; heavy LVT/carpet remnants push to high end",
+   "src": [
+    "S41"
+   ],
+   "confidence": "derived"
+  },
+  "Wire, conduit and cable offcut pickup": {
+   "unit": "sqft",
+   "low": 0.005,
+   "mid": 0.01,
+   "high": 0.02,
+   "min": 200,
+   "rate_per_hr": 4500,
+   "basis": "Per sf of floor swept for offcuts; usually inside rough clean",
+   "src": [
+    "S49"
+   ],
+   "confidence": "derived"
+  },
+  "Fastener and screw sweep with magnetic sweeper": {
+   "unit": "sqft",
+   "low": 0.004,
+   "mid": 0.008,
+   "high": 0.015,
+   "min": 150,
+   "rate_per_hr": 6000,
+   "basis": "Per sf; magnetic sweeper ~6,000 sf/worker-hr; parking/drive lanes common",
+   "src": [
+    "S49"
+   ],
+   "confidence": "derived"
+  },
+  "Tile and stone offcut removal": {
+   "unit": "cy",
+   "low": 25,
+   "mid": 40,
+   "high": 65,
+   "min": 250,
+   "rate_per_hr": 1.0,
+   "basis": "Per cy; heavy material, weight-based disposal surcharges likely",
+   "src": [
+    "S41",
+    "S42"
+   ],
+   "confidence": "derived"
+  },
+  "Glass shard and broken glazing cleanup": {
+   "unit": "hour",
+   "low": 45,
+   "mid": 55,
+   "high": 75,
+   "min": 150,
+   "basis": "Hourly with cut-resistant PPE; disposal of glass in rigid containers",
+   "src": [
+    "S46",
+    "S48"
+   ],
+   "confidence": "derived"
+  },
+  "Construction dumpster loading": {
+   "unit": "load",
+   "low": 250,
+   "mid": 400,
+   "high": 650,
+   "min": 250,
+   "basis": "Per 20-30 yd roll-off loaded by hand/cart (2 workers 3-5 hr); container rental $530-740 FL separate",
+   "src": [
+    "S41",
+    "S43"
+   ],
+   "confidence": "derived"
+  },
+  "Debris chute operation support": {
+   "unit": "hour",
+   "low": 38,
+   "mid": 45,
+   "high": 58,
+   "min": 180,
+   "basis": "Hourly attendant at chute top/bottom; 4-hr minimum",
+   "src": [
+    "S46",
+    "S48"
+   ],
+   "confidence": "derived"
+  },
+  "Dumpster area housekeeping": {
+   "unit": "each",
+   "low": 50,
+   "mid": 85,
+   "high": 140,
+   "basis": "Per visit: sweep pad, pick up blown debris, keep lids closed",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Recycling stream separation": {
+   "unit": "hour",
+   "low": 38,
+   "mid": 45,
+   "high": 58,
+   "min": 180,
+   "basis": "Hourly sorting into C&D recycling streams",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Waste diversion tracking for LEED": {
+   "unit": "lot",
+   "low": 300,
+   "mid": 650,
+   "high": 1500,
+   "basis": "Per project setup plus monthly hauler-ticket log and diversion report",
+   "src": [
+    "S42"
+   ],
+   "confidence": "derived"
+  },
+  "Final haul-off of remaining debris": {
+   "unit": "load",
+   "low": 350,
+   "mid": 550,
+   "high": 850,
+   "min": 350,
+   "basis": "Per box-truck load (13-17 cy) incl. labor and disposal; HomeAdvisor full truck $600-800",
+   "src": [
+    "S41",
+    "S42"
+   ],
+   "confidence": "sourced"
+  },
+  "Surplus material staging for return": {
+   "unit": "hour",
+   "low": 38,
+   "mid": 45,
+   "high": 58,
+   "min": 180,
+   "basis": "Hourly to stage, label and wrap surplus/attic material",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Daily jobsite sweep": {
+   "unit": "sqft",
+   "low": 0.004,
+   "mid": 0.008,
+   "high": 0.015,
+   "min": 175,
+   "rate_per_hr": 5000,
+   "basis": "Per sf per visit; broom/sweeping compound at ~5,000 sf/worker-hr (ISSA sweep/mop band)",
+   "src": [
+    "S49",
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Weekly jobsite clean": {
+   "unit": "sqft",
+   "low": 0.01,
+   "mid": 0.02,
+   "high": 0.035,
+   "min": 300,
+   "rate_per_hr": 2200,
+   "basis": "Per sf per visit; sweep, trash, temp restrooms, stair and egress check",
+   "src": [
+    "S49",
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Stairwell and egress path clearing": {
+   "unit": "floor",
+   "low": 25,
+   "mid": 40,
+   "high": 65,
+   "min": 150,
+   "rate_per_hr": 1.2,
+   "basis": "Per stair flight/floor landing per visit",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Trade-area cleanup between trades": {
+   "unit": "sqft",
+   "low": 0.02,
+   "mid": 0.035,
+   "high": 0.06,
+   "min": 250,
+   "rate_per_hr": 1300,
+   "basis": "Per sf of trade area handed over; light rough clean",
+   "src": [
+    "S2",
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Jobsite trailer cleaning": {
+   "unit": "each",
+   "low": 60,
+   "mid": 95,
+   "high": 150,
+   "basis": "Per trailer per visit (office trailer, ~400 sf)",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Portable toilet area upkeep": {
+   "unit": "each",
+   "low": 25,
+   "mid": 40,
+   "high": 65,
+   "basis": "Per visit for area tidy and supply check; pumping by toilet vendor",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Break and lunch area cleaning": {
+   "unit": "each",
+   "low": 35,
+   "mid": 55,
+   "high": 90,
+   "basis": "Per visit per break area",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Tool and material laydown area cleanup": {
+   "unit": "sqft",
+   "low": 0.01,
+   "mid": 0.02,
+   "high": 0.04,
+   "min": 200,
+   "rate_per_hr": 2500,
+   "basis": "Per sf of laydown yard",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Mud and track-out removal at entrances": {
+   "unit": "hour",
+   "low": 38,
+   "mid": 45,
+   "high": 60,
+   "min": 150,
+   "basis": "Hourly; shovel, sweep, wash-down at entries",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "HEPA vacuuming of work areas": {
+   "unit": "sqft",
+   "low": 0.015,
+   "mid": 0.025,
+   "high": 0.045,
+   "min": 200,
+   "rate_per_hr": 1800,
+   "basis": "Per sf; ISSA vacuum 20-30 min/1,000 sf normal, slower with construction dust",
+   "src": [
+    "S49",
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Sweeping compound application": {
+   "unit": "sqft",
+   "low": 0.008,
+   "mid": 0.014,
+   "high": 0.025,
+   "min": 150,
+   "rate_per_hr": 3500,
+   "basis": "Per sf incl. compound (~$0.003/sf)",
+   "src": [
+    "S49"
+   ],
+   "confidence": "derived"
+  },
+  "Combustible waste removal": {
+   "unit": "cy",
+   "low": 15,
+   "mid": 25,
+   "high": 40,
+   "min": 150,
+   "rate_per_hr": 1.8,
+   "basis": "Per cy; daily removal of combustible waste for fire code",
+   "src": [
+    "S41"
+   ],
+   "confidence": "derived"
+  },
+  "Spill response for paint and non-hazardous liquids": {
+   "unit": "hour",
+   "low": 50,
+   "mid": 65,
+   "high": 90,
+   "min": 195,
+   "basis": "Hourly incl. absorbents; hazardous spills go to licensed responder",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Concrete washout area maintenance": {
+   "unit": "each",
+   "low": 150,
+   "mid": 275,
+   "high": 500,
+   "basis": "Per service: remove hardened washout, reline; disposal by weight",
+   "src": [
+    "S42"
+   ],
+   "confidence": "derived"
+  },
+  "Pre-inspection jobsite clean": {
+   "unit": "sqft",
+   "low": 0.03,
+   "mid": 0.05,
+   "high": 0.09,
+   "min": 350,
+   "rate_per_hr": 900,
+   "basis": "Per sf; light clean ahead of inspections",
+   "src": [
+    "S2",
+    "S72"
+   ],
+   "confidence": "derived"
+  },
+  "Owner walkthrough and VIP tour prep clean": {
+   "unit": "sqft",
+   "low": 0.03,
+   "mid": 0.06,
+   "high": 0.1,
+   "min": 400,
+   "rate_per_hr": 800,
+   "basis": "Per sf; short-notice premium vs touch-up",
+   "src": [
+    "S2",
+    "S72"
+   ],
+   "confidence": "derived"
+  },
+  "Rough clean of entire building": {
+   "unit": "sqft",
+   "low": 0.08,
+   "mid": 0.13,
+   "high": 0.22,
+   "min": 750,
+   "rate_per_hr": 350,
+   "basis": "Rough phase $0.10-0.15 (Cleaner Match), $0.10-0.30 (2026 guides); ~350 sf/worker-hr",
+   "src": [
+    "S1",
+    "S2",
+    "S72",
+    "S4"
+   ],
+   "confidence": "sourced"
+  },
+  "Rough clean by floor or phase": {
+   "unit": "sqft",
+   "low": 0.09,
+   "mid": 0.15,
+   "high": 0.25,
+   "min": 500,
+   "rate_per_hr": 320,
+   "basis": "Rough-clean anchor plus re-mobilization per phase",
+   "src": [
+    "S1",
+    "S2",
+    "S72"
+   ],
+   "confidence": "sourced"
+  },
+  "Interior wall stud bay vacuuming before close-in": {
+   "unit": "lf",
+   "low": 0.25,
+   "mid": 0.38,
+   "high": 0.6,
+   "min": 250,
+   "rate_per_hr": 120,
+   "basis": "Per lf of wall; HEPA vacuum bays and bottom track before drywall",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Slab scraping of drywall mud and joint compound": {
+   "unit": "sqft",
+   "low": 0.03,
+   "mid": 0.06,
+   "high": 0.12,
+   "min": 250,
+   "rate_per_hr": 750,
+   "basis": "Per sf of slab; floor scraper and long-handle blades",
+   "src": [
+    "S2",
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Slab scraping of overspray and drips": {
+   "unit": "sqft",
+   "low": 0.04,
+   "mid": 0.08,
+   "high": 0.15,
+   "min": 250,
+   "rate_per_hr": 550,
+   "basis": "Per sf of slab treated",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Window sill and opening rough wipe": {
+   "unit": "opening",
+   "low": 1.5,
+   "mid": 2.5,
+   "high": 4.0,
+   "min": 150,
+   "rate_per_hr": 18,
+   "basis": "Per opening; vacuum and damp wipe sill/stool",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Rough clean of mechanical and electrical rooms": {
+   "unit": "sqft",
+   "low": 0.1,
+   "mid": 0.18,
+   "high": 0.3,
+   "min": 250,
+   "rate_per_hr": 250,
+   "basis": "Per sf of room; non-invasive around energized gear",
+   "src": [
+    "S2",
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Rough clean of shafts and chases": {
+   "unit": "floor",
+   "low": 40,
+   "mid": 75,
+   "high": 140,
+   "min": 250,
+   "rate_per_hr": 0.6,
+   "basis": "Per shaft per floor; access and confined-space limits drive cost",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Rough clean of plenum above ceiling before grid close": {
+   "unit": "sqft",
+   "low": 0.04,
+   "mid": 0.07,
+   "high": 0.12,
+   "min": 400,
+   "rate_per_hr": 650,
+   "basis": "Per sf; ladders/lift, top of ducts and deck",
+   "src": [
+    "S45",
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Removal of sticker and label backing debris": {
+   "unit": "sqft",
+   "low": 0.004,
+   "mid": 0.008,
+   "high": 0.015,
+   "min": 150,
+   "rate_per_hr": 5500,
+   "basis": "Per sf of floor area swept",
+   "src": [
+    "S49"
+   ],
+   "confidence": "derived"
+  },
+  "Rough clean of exterior perimeter": {
+   "unit": "lf",
+   "low": 0.25,
+   "mid": 0.5,
+   "high": 1.0,
+   "min": 250,
+   "rate_per_hr": 90,
+   "basis": "Per lf of building perimeter, ~10 ft swath",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Fine drywall dust removal from all horizontal surfaces": {
+   "unit": "sqft",
+   "low": 0.03,
+   "mid": 0.05,
+   "high": 0.09,
+   "min": 300,
+   "rate_per_hr": 900,
+   "basis": "Per sf of floor area; HEPA vac and microfiber all horizontal surfaces",
+   "src": [
+    "S1",
+    "S2",
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Fine dust removal from vertical wall surfaces": {
+   "unit": "sqft",
+   "low": 0.03,
+   "mid": 0.05,
+   "high": 0.08,
+   "min": 300,
+   "rate_per_hr": 900,
+   "basis": "Per sf of wall; dry dusting, far faster than washing ($0.45-0.65)",
+   "src": [
+    "S29",
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Fine dust removal from window frames and mullions": {
+   "unit": "lf",
+   "low": 0.2,
+   "mid": 0.35,
+   "high": 0.6,
+   "min": 150,
+   "rate_per_hr": 130,
+   "basis": "Per lf of frame/mullion",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Fine dust removal from door tops and frame heads": {
+   "unit": "opening",
+   "low": 1.5,
+   "mid": 2.5,
+   "high": 4.0,
+   "min": 100,
+   "rate_per_hr": 18,
+   "basis": "Per opening",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Fine dust removal from light switch and outlet plates": {
+   "unit": "each",
+   "low": 0.4,
+   "mid": 0.75,
+   "high": 1.25,
+   "min": 75,
+   "rate_per_hr": 60,
+   "basis": "Per device plate",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Fine dust removal from cabinets and casework interiors": {
+   "unit": "lf",
+   "low": 1.25,
+   "mid": 2.25,
+   "high": 3.75,
+   "min": 150,
+   "rate_per_hr": 20,
+   "basis": "Per lf of casework (upper or base), interior vacuum and wipe",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Fine dust removal from fire extinguisher cabinets": {
+   "unit": "each",
+   "low": 3.0,
+   "mid": 5.0,
+   "high": 8.0,
+   "min": 75,
+   "rate_per_hr": 9.0,
+   "basis": "Per cabinet incl. glass",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Fine dust removal from signage and wayfinding": {
+   "unit": "each",
+   "low": 2.0,
+   "mid": 4.0,
+   "high": 7.0,
+   "min": 75,
+   "rate_per_hr": 12,
+   "basis": "Per sign",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Fine dust removal from electronics and low-voltage devices": {
+   "unit": "each",
+   "low": 2.0,
+   "mid": 4.0,
+   "high": 8.0,
+   "min": 100,
+   "rate_per_hr": 12,
+   "basis": "Per device; dry/anti-static methods only",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Fine dust removal from server and IT rooms": {
+   "unit": "sqft",
+   "low": 0.25,
+   "mid": 0.45,
+   "high": 0.8,
+   "min": 350,
+   "rate_per_hr": 100,
+   "basis": "Per sf; anti-static HEPA; data-center deep clean ~$1/sf benchmark",
+   "src": [
+    "S54",
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Concrete dust removal after grinding or saw cutting": {
+   "unit": "sqft",
+   "low": 0.05,
+   "mid": 0.09,
+   "high": 0.16,
+   "min": 300,
+   "rate_per_hr": 500,
+   "basis": "Per sf; HEPA vacuum + damp wipe",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Silica-aware housekeeping cleanup": {
+   "unit": "sqft",
+   "low": 0.04,
+   "mid": 0.07,
+   "high": 0.12,
+   "min": 300,
+   "rate_per_hr": 600,
+   "basis": "Per sf; HEPA/wet methods only (no dry sweeping or compressed air)",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Dust re-clean after late-trade work": {
+   "unit": "sqft",
+   "low": 0.04,
+   "mid": 0.07,
+   "high": 0.12,
+   "min": 300,
+   "rate_per_hr": 650,
+   "basis": "Per sf re-cleaned; touch-up band",
+   "src": [
+    "S2",
+    "S72"
+   ],
+   "confidence": "derived"
+  },
+  "Dust containment barrier cleanup and removal": {
+   "unit": "lf",
+   "low": 0.75,
+   "mid": 1.25,
+   "high": 2.25,
+   "min": 200,
+   "rate_per_hr": 40,
+   "basis": "Per lf of barrier; take down poly/zip wall, HEPA clean footprint",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Negative air zone final cleaning": {
+   "unit": "sqft",
+   "low": 0.12,
+   "mid": 0.2,
+   "high": 0.35,
+   "min": 400,
+   "rate_per_hr": 220,
+   "basis": "Per sf inside containment; HEPA vac + wipe before teardown",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Occupied-building renovation dust control cleaning": {
+   "unit": "sqft",
+   "low": 0.04,
+   "mid": 0.07,
+   "high": 0.12,
+   "min": 250,
+   "rate_per_hr": 650,
+   "basis": "Per sf per visit; ICRA-style daily cleaning outside barrier",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Air scrubber filter change and unit wipe-down": {
+   "unit": "each",
+   "low": 25,
+   "mid": 45,
+   "high": 80,
+   "rate_per_hr": 2.0,
+   "basis": "Per unit labor; filters billed at cost plus",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Open ceiling deck cleaning": {
+   "unit": "sqft",
+   "low": 0.12,
+   "mid": 0.22,
+   "high": 0.4,
+   "min": 1000,
+   "rate_per_hr": 250,
+   "basis": "Per sf of floor below; industrial base ~$0.20/sf +20-40% for lift work; lift rental extra or included",
+   "src": [
+    "S77",
+    "S45"
+   ],
+   "confidence": "sourced"
+  },
+  "Exposed structural steel beam cleaning": {
+   "unit": "lf",
+   "low": 0.4,
+   "mid": 0.75,
+   "high": 1.4,
+   "min": 500,
+   "rate_per_hr": 70,
+   "basis": "Per lf of beam from lift",
+   "src": [
+    "S77",
+    "S45"
+   ],
+   "confidence": "derived"
+  },
+  "Bar joist cleaning": {
+   "unit": "lf",
+   "low": 0.3,
+   "mid": 0.55,
+   "high": 1.0,
+   "min": 500,
+   "rate_per_hr": 90,
+   "basis": "Per lf of joist",
+   "src": [
+    "S77",
+    "S45"
+   ],
+   "confidence": "derived"
+  },
+  "Wood truss and glulam cleaning": {
+   "unit": "lf",
+   "low": 0.5,
+   "mid": 0.9,
+   "high": 1.6,
+   "min": 500,
+   "rate_per_hr": 55,
+   "basis": "Per lf; gentle methods on wood",
+   "src": [
+    "S77",
+    "S45"
+   ],
+   "confidence": "derived"
+  },
+  "Gymnasium rafter cleaning": {
+   "unit": "sqft",
+   "low": 0.15,
+   "mid": 0.25,
+   "high": 0.45,
+   "min": 1200,
+   "rate_per_hr": 220,
+   "basis": "Per sf of gym floor; floor protection under lift",
+   "src": [
+    "S77",
+    "S45"
+   ],
+   "confidence": "derived"
+  },
+  "Warehouse ceiling dust removal": {
+   "unit": "sqft",
+   "low": 0.08,
+   "mid": 0.15,
+   "high": 0.28,
+   "min": 1200,
+   "rate_per_hr": 400,
+   "basis": "Per sf of floor; HEPA/blow-down from scissor lift",
+   "src": [
+    "S77",
+    "S45"
+   ],
+   "confidence": "sourced"
+  },
+  "Retail store ceiling dust capture": {
+   "unit": "sqft",
+   "low": 0.07,
+   "mid": 0.12,
+   "high": 0.22,
+   "min": 600,
+   "rate_per_hr": 420,
+   "basis": "Per sf; HEPA capture over fixtures/merch",
+   "src": [
+    "S77"
+   ],
+   "confidence": "derived"
+  },
+  "Exposed concrete ceiling cleaning": {
+   "unit": "sqft",
+   "low": 0.1,
+   "mid": 0.18,
+   "high": 0.32,
+   "min": 600,
+   "rate_per_hr": 280,
+   "basis": "Per sf",
+   "src": [
+    "S77"
+   ],
+   "confidence": "derived"
+  },
+  "Acoustic deck and sound panel dusting": {
+   "unit": "sqft",
+   "low": 0.1,
+   "mid": 0.18,
+   "high": 0.3,
+   "min": 600,
+   "rate_per_hr": 260,
+   "basis": "Per sf; soft-brush HEPA on perforated deck",
+   "src": [
+    "S77"
+   ],
+   "confidence": "derived"
+  },
+  "Spray-applied fireproofing area light dusting": {
+   "unit": "sqft",
+   "low": 0.08,
+   "mid": 0.15,
+   "high": 0.28,
+   "min": 600,
+   "rate_per_hr": 300,
+   "basis": "Per sf; no-contact, low-pressure only to avoid SFRM damage",
+   "src": [
+    "S77"
+   ],
+   "confidence": "derived"
+  },
+  "Mezzanine underside cleaning": {
+   "unit": "sqft",
+   "low": 0.12,
+   "mid": 0.2,
+   "high": 0.35,
+   "min": 400,
+   "rate_per_hr": 250,
+   "basis": "Per sf of underside",
+   "src": [
+    "S77"
+   ],
+   "confidence": "derived"
+  },
+  "Atrium and lobby high ceiling cleaning": {
+   "unit": "sqft",
+   "low": 0.25,
+   "mid": 0.5,
+   "high": 1.0,
+   "min": 1500,
+   "rate_per_hr": 100,
+   "basis": "Per sf; boom lift or scaffold; heavy access cost",
+   "src": [
+    "S45",
+    "S77"
+   ],
+   "confidence": "derived"
+  },
+  "Skylight well and light shaft cleaning": {
+   "unit": "each",
+   "low": 75,
+   "mid": 150,
+   "high": 300,
+   "basis": "Per skylight well",
+   "src": [
+    "S45"
+   ],
+   "confidence": "derived"
+  },
+  "Duct exterior cleaning": {
+   "unit": "lf",
+   "low": 0.3,
+   "mid": 0.55,
+   "high": 1.0,
+   "min": 300,
+   "rate_per_hr": 85,
+   "basis": "Per lf of exposed duct (all faces)",
+   "src": [
+    "S77"
+   ],
+   "confidence": "derived"
+  },
+  "Fabric duct sock cleaning": {
+   "unit": "lf",
+   "low": 2.0,
+   "mid": 4.0,
+   "high": 7.0,
+   "min": 300,
+   "rate_per_hr": 12,
+   "basis": "Per lf: take down, send to laundry vendor, rehang",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Overhead piping exterior cleaning": {
+   "unit": "lf",
+   "low": 0.2,
+   "mid": 0.35,
+   "high": 0.65,
+   "min": 300,
+   "rate_per_hr": 140,
+   "basis": "Per lf of pipe",
+   "src": [
+    "S77"
+   ],
+   "confidence": "derived"
+  },
+  "Sprinkler pipe exterior dusting": {
+   "unit": "lf",
+   "low": 0.12,
+   "mid": 0.22,
+   "high": 0.4,
+   "min": 300,
+   "rate_per_hr": 220,
+   "basis": "Per lf; no contact with heads",
+   "src": [
+    "S77"
+   ],
+   "confidence": "derived"
+  },
+  "Sprinkler head careful dusting": {
+   "unit": "each",
+   "low": 0.75,
+   "mid": 1.5,
+   "high": 3.0,
+   "min": 150,
+   "rate_per_hr": 35,
+   "basis": "Per head; air puff/soft brush only, never wipe or paint",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Cable tray exterior dusting": {
+   "unit": "lf",
+   "low": 0.2,
+   "mid": 0.35,
+   "high": 0.65,
+   "min": 300,
+   "rate_per_hr": 140,
+   "basis": "Per lf",
+   "src": [
+    "S77"
+   ],
+   "confidence": "derived"
+  },
+  "Conduit run dusting": {
+   "unit": "lf",
+   "low": 0.08,
+   "mid": 0.15,
+   "high": 0.28,
+   "min": 200,
+   "rate_per_hr": 320,
+   "basis": "Per lf",
+   "src": [
+    "S77"
+   ],
+   "confidence": "derived"
+  },
+  "Unit heater exterior cleaning": {
+   "unit": "each",
+   "low": 25,
+   "mid": 45,
+   "high": 80,
+   "min": 150,
+   "rate_per_hr": 1.2,
+   "basis": "Per unit from lift",
+   "src": [
+    "S45"
+   ],
+   "confidence": "derived"
+  },
+  "Overhead exhaust fan exterior cleaning": {
+   "unit": "each",
+   "low": 25,
+   "mid": 45,
+   "high": 85,
+   "min": 150,
+   "rate_per_hr": 1.2,
+   "basis": "Per fan housing/guard",
+   "src": [
+    "S45"
+   ],
+   "confidence": "derived"
+  },
+  "HVLS ceiling fan cleaning": {
+   "unit": "each",
+   "low": 125,
+   "mid": 225,
+   "high": 400,
+   "min": 250,
+   "rate_per_hr": 0.3,
+   "basis": "Per fan (blades + hub) from lift; residential fan $117-144 shows floor",
+   "src": [
+    "S31",
+    "S45"
+   ],
+   "confidence": "derived"
+  },
+  "Ceiling fan cleaning": {
+   "unit": "each",
+   "low": 15,
+   "mid": 30,
+   "high": 60,
+   "min": 100,
+   "rate_per_hr": 2.0,
+   "basis": "Per fan; Homewyse $117-144/fan incl. service minimum; volume commercial far lower",
+   "src": [
+    "S31"
+   ],
+   "confidence": "sourced"
+  },
+  "High-bay light fixture cleaning": {
+   "unit": "fixture",
+   "low": 12,
+   "mid": 22,
+   "high": 40,
+   "min": 300,
+   "rate_per_hr": 2.5,
+   "basis": "Per fixture from lift; lift rental ($97-121/day) separate if long duration",
+   "src": [
+    "S45",
+    "S77"
+   ],
+   "confidence": "derived"
+  },
+  "Pendant and suspended light cleaning": {
+   "unit": "fixture",
+   "low": 8.0,
+   "mid": 15,
+   "high": 30,
+   "min": 150,
+   "rate_per_hr": 3.5,
+   "basis": "Per pendant",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Linear light fixture and lens cleaning": {
+   "unit": "fixture",
+   "low": 4.0,
+   "mid": 7.0,
+   "high": 12,
+   "min": 150,
+   "rate_per_hr": 7.0,
+   "basis": "Per 2x4/linear fixture, lens remove/wipe/reinstall",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Chandelier and decorative fixture cleaning": {
+   "unit": "fixture",
+   "low": 80,
+   "mid": 150,
+   "high": 350,
+   "min": 150,
+   "rate_per_hr": 0.4,
+   "basis": "Per chandelier; pros quote $80-125 and up, $60-250 range",
+   "src": [
+    "S55"
+   ],
+   "confidence": "sourced"
+  },
+  "Track lighting cleaning": {
+   "unit": "lf",
+   "low": 1.0,
+   "mid": 2.0,
+   "high": 3.5,
+   "min": 100,
+   "rate_per_hr": 25,
+   "basis": "Per lf of track incl. heads",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Exit sign and emergency light cleaning": {
+   "unit": "each",
+   "low": 3.0,
+   "mid": 5.0,
+   "high": 9.0,
+   "min": 75,
+   "rate_per_hr": 10,
+   "basis": "Per device",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Clerestory and upper window cleaning": {
+   "unit": "pane",
+   "low": 6.0,
+   "mid": 10,
+   "high": 18,
+   "min": 300,
+   "rate_per_hr": 6.0,
+   "basis": "Per pane from lift; ~2x ground-level pane price",
+   "src": [
+    "S26",
+    "S45"
+   ],
+   "confidence": "derived"
+  },
+  "Elevated signage and banner cleaning": {
+   "unit": "each",
+   "low": 15,
+   "mid": 30,
+   "high": 60,
+   "min": 150,
+   "rate_per_hr": 1.8,
+   "basis": "Per sign/banner at height",
+   "src": [
+    "S45"
+   ],
+   "confidence": "derived"
+  },
+  "Upper wall ledge and soffit cleaning": {
+   "unit": "lf",
+   "low": 0.3,
+   "mid": 0.6,
+   "high": 1.1,
+   "min": 200,
+   "rate_per_hr": 80,
+   "basis": "Per lf of ledge/soffit",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Top of walk-in cooler box dusting": {
+   "unit": "sqft",
+   "low": 0.1,
+   "mid": 0.2,
+   "high": 0.35,
+   "min": 75,
+   "rate_per_hr": 250,
+   "basis": "Per sf of box top",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Top of millwork and display dusting": {
+   "unit": "lf",
+   "low": 0.2,
+   "mid": 0.35,
+   "high": 0.6,
+   "min": 100,
+   "rate_per_hr": 140,
+   "basis": "Per lf",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Quarterly high dusting program": {
+   "unit": "sqft",
+   "low": 0.03,
+   "mid": 0.06,
+   "high": 0.1,
+   "min": 400,
+   "rate_per_hr": 800,
+   "basis": "Per sf per visit; maintained surfaces, low dust load",
+   "src": [
+    "S77"
+   ],
+   "confidence": "derived"
+  },
+  "Semiannual overhead cleaning program": {
+   "unit": "sqft",
+   "low": 0.05,
+   "mid": 0.09,
+   "high": 0.16,
+   "min": 600,
+   "rate_per_hr": 550,
+   "basis": "Per sf per visit",
+   "src": [
+    "S77"
+   ],
+   "confidence": "derived"
+  },
+  "Annual deep overhead cleaning": {
+   "unit": "sqft",
+   "low": 0.08,
+   "mid": 0.15,
+   "high": 0.28,
+   "min": 1000,
+   "rate_per_hr": 350,
+   "basis": "Per sf per visit",
+   "src": [
+    "S77"
+   ],
+   "confidence": "derived"
+  },
+  "Pre-audit overhead cleaning for food facilities": {
+   "unit": "sqft",
+   "low": 0.1,
+   "mid": 0.18,
+   "high": 0.32,
+   "min": 1200,
+   "rate_per_hr": 300,
+   "basis": "Per sf; documentation for GFSI/third-party audits",
+   "src": [
+    "S77"
+   ],
+   "confidence": "derived"
+  },
+  "Overnight high dusting in operating stores": {
+   "unit": "sqft",
+   "low": 0.04,
+   "mid": 0.07,
+   "high": 0.12,
+   "min": 500,
+   "rate_per_hr": 750,
+   "basis": "Per sf per visit; night work, merch protection",
+   "src": [
+    "S77"
+   ],
+   "confidence": "derived"
+  },
+  "Spot cleaning of painted walls": {
+   "unit": "sqft",
+   "low": 0.01,
+   "mid": 0.02,
+   "high": 0.04,
+   "min": 150,
+   "rate_per_hr": 2200,
+   "basis": "Per sf of floor area; spot-clean marks, no full wash",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Full wall washing": {
+   "unit": "sqft",
+   "low": 0.25,
+   "mid": 0.45,
+   "high": 0.65,
+   "min": 300,
+   "rate_per_hr": 110,
+   "basis": "Per sf of wall; HomeAdvisor wall/ceiling washing $0.45-0.65/sf",
+   "src": [
+    "S29"
+   ],
+   "confidence": "sourced"
+  },
+  "Wallcovering and vinyl wall cleaning": {
+   "unit": "sqft",
+   "low": 0.25,
+   "mid": 0.45,
+   "high": 0.7,
+   "min": 300,
+   "rate_per_hr": 100,
+   "basis": "Per sf of wall",
+   "src": [
+    "S29"
+   ],
+   "confidence": "sourced"
+  },
+  "Wall protection and corner guard cleaning": {
+   "unit": "lf",
+   "low": 0.15,
+   "mid": 0.3,
+   "high": 0.55,
+   "min": 100,
+   "rate_per_hr": 150,
+   "basis": "Per lf of rail/guard",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Acoustic wall panel vacuuming": {
+   "unit": "sqft",
+   "low": 0.08,
+   "mid": 0.15,
+   "high": 0.28,
+   "min": 150,
+   "rate_per_hr": 300,
+   "basis": "Per sf of panel",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Wood wall panel and slat cleaning": {
+   "unit": "sqft",
+   "low": 0.2,
+   "mid": 0.4,
+   "high": 0.7,
+   "min": 150,
+   "rate_per_hr": 120,
+   "basis": "Per sf; slats slow the work",
+   "src": [
+    "S29"
+   ],
+   "confidence": "derived"
+  },
+  "Stone and tile wall cleaning": {
+   "unit": "sqft",
+   "low": 0.25,
+   "mid": 0.45,
+   "high": 0.8,
+   "min": 150,
+   "rate_per_hr": 100,
+   "basis": "Per sf of wall",
+   "src": [
+    "S29",
+    "S32"
+   ],
+   "confidence": "derived"
+  },
+  "Marker board and whiteboard wall cleaning": {
+   "unit": "each",
+   "low": 5.0,
+   "mid": 10,
+   "high": 18,
+   "min": 75,
+   "rate_per_hr": 5.0,
+   "basis": "Per board; remove film, condition surface",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Stainless and metal wall panel cleaning": {
+   "unit": "sqft",
+   "low": 0.2,
+   "mid": 0.4,
+   "high": 0.7,
+   "min": 150,
+   "rate_per_hr": 120,
+   "basis": "Per sf",
+   "src": [
+    "S29"
+   ],
+   "confidence": "derived"
+  },
+  "Acoustic ceiling tile spot cleaning": {
+   "unit": "each",
+   "low": 1.0,
+   "mid": 2.0,
+   "high": 4.0,
+   "min": 100,
+   "rate_per_hr": 25,
+   "basis": "Per tile spotted; full tile cleaning $0.63-0.78/sf (Homewyse)",
+   "src": [
+    "S30"
+   ],
+   "confidence": "sourced"
+  },
+  "Ceiling grid cleaning": {
+   "unit": "sqft",
+   "low": 0.05,
+   "mid": 0.1,
+   "high": 0.18,
+   "min": 200,
+   "rate_per_hr": 450,
+   "basis": "Per sf of ceiling",
+   "src": [
+    "S30"
+   ],
+   "confidence": "derived"
+  },
+  "Drywall ceiling and soffit cleaning": {
+   "unit": "sqft",
+   "low": 0.1,
+   "mid": 0.2,
+   "high": 0.35,
+   "min": 200,
+   "rate_per_hr": 220,
+   "basis": "Per sf of ceiling; dusting/spot, not full wash",
+   "src": [
+    "S29"
+   ],
+   "confidence": "derived"
+  },
+  "Wood and specialty ceiling cleaning": {
+   "unit": "sqft",
+   "low": 0.25,
+   "mid": 0.45,
+   "high": 0.8,
+   "min": 300,
+   "rate_per_hr": 100,
+   "basis": "Per sf",
+   "src": [
+    "S29"
+   ],
+   "confidence": "derived"
+  },
+  "Metal ceiling panel cleaning": {
+   "unit": "sqft",
+   "low": 0.2,
+   "mid": 0.35,
+   "high": 0.6,
+   "min": 200,
+   "rate_per_hr": 130,
+   "basis": "Per sf",
+   "src": [
+    "S29"
+   ],
+   "confidence": "derived"
+  },
+  "Ceiling diffuser and grille face cleaning": {
+   "unit": "each",
+   "low": 2.5,
+   "mid": 4.5,
+   "high": 8.0,
+   "min": 100,
+   "rate_per_hr": 10,
+   "basis": "Per diffuser/grille face",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Access panel cleaning": {
+   "unit": "each",
+   "low": 1.5,
+   "mid": 3.0,
+   "high": 5.0,
+   "min": 50,
+   "rate_per_hr": 15,
+   "basis": "Per panel",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Door face cleaning": {
+   "unit": "each",
+   "low": 3.0,
+   "mid": 5.0,
+   "high": 9.0,
+   "min": 75,
+   "rate_per_hr": 9.0,
+   "basis": "Per door leaf, both faces and edges",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Door frame and jamb cleaning": {
+   "unit": "opening",
+   "low": 2.0,
+   "mid": 3.5,
+   "high": 6.0,
+   "min": 75,
+   "rate_per_hr": 13,
+   "basis": "Per opening",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Door hardware polishing": {
+   "unit": "each",
+   "low": 2.0,
+   "mid": 3.5,
+   "high": 6.0,
+   "min": 75,
+   "rate_per_hr": 13,
+   "basis": "Per hardware set",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Door kick and push plate polishing": {
+   "unit": "each",
+   "low": 1.0,
+   "mid": 2.0,
+   "high": 3.5,
+   "min": 50,
+   "rate_per_hr": 22,
+   "basis": "Per plate",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Door vision lite cleaning": {
+   "unit": "each",
+   "low": 1.5,
+   "mid": 2.5,
+   "high": 4.0,
+   "min": 50,
+   "rate_per_hr": 18,
+   "basis": "Per lite, both sides",
+   "src": [
+    "S26"
+   ],
+   "confidence": "derived"
+  },
+  "Overhead coil and roll-up door cleaning": {
+   "unit": "each",
+   "low": 35,
+   "mid": 60,
+   "high": 110,
+   "min": 150,
+   "rate_per_hr": 0.8,
+   "basis": "Per door; lift for head/hood",
+   "src": [
+    "S45"
+   ],
+   "confidence": "derived"
+  },
+  "Sectional and dock door cleaning": {
+   "unit": "each",
+   "low": 35,
+   "mid": 60,
+   "high": 110,
+   "min": 150,
+   "rate_per_hr": 0.8,
+   "basis": "Per door incl. seals and track",
+   "src": [
+    "S45"
+   ],
+   "confidence": "derived"
+  },
+  "Revolving door cleaning": {
+   "unit": "each",
+   "low": 75,
+   "mid": 140,
+   "high": 250,
+   "min": 150,
+   "rate_per_hr": 0.35,
+   "basis": "Per revolving door; glass, canopy, sweeps",
+   "src": [
+    "S26"
+   ],
+   "confidence": "derived"
+  },
+  "Automatic sliding door track cleaning": {
+   "unit": "each",
+   "low": 20,
+   "mid": 35,
+   "high": 60,
+   "min": 75,
+   "rate_per_hr": 1.3,
+   "basis": "Per door; track/threshold vacuum and wipe",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Fire door label-safe cleaning": {
+   "unit": "each",
+   "low": 4.0,
+   "mid": 6.0,
+   "high": 10,
+   "min": 75,
+   "rate_per_hr": 8.0,
+   "basis": "Per door; do not remove/obscure rating labels",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Door threshold and sweep cleaning": {
+   "unit": "each",
+   "low": 1.5,
+   "mid": 3.0,
+   "high": 5.0,
+   "min": 50,
+   "rate_per_hr": 15,
+   "basis": "Per threshold",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Cabinet interior and exterior detailing": {
+   "unit": "lf",
+   "low": 2.0,
+   "mid": 3.5,
+   "high": 6.0,
+   "min": 150,
+   "rate_per_hr": 13,
+   "basis": "Per lf of cabinet run (base or upper)",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Drawer interior vacuum and wipe": {
+   "unit": "each",
+   "low": 0.75,
+   "mid": 1.5,
+   "high": 2.5,
+   "min": 50,
+   "rate_per_hr": 30,
+   "basis": "Per drawer",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Countertop cleaning by material": {
+   "unit": "sqft",
+   "low": 0.3,
+   "mid": 0.55,
+   "high": 1.0,
+   "min": 75,
+   "rate_per_hr": 80,
+   "basis": "Per sf of countertop; product per material",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Quartz and solid surface countertop cleaning": {
+   "unit": "sqft",
+   "low": 0.3,
+   "mid": 0.55,
+   "high": 1.0,
+   "min": 75,
+   "rate_per_hr": 80,
+   "basis": "Per sf of countertop",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Natural stone countertop cleaning": {
+   "unit": "sqft",
+   "low": 0.45,
+   "mid": 0.8,
+   "high": 1.4,
+   "min": 100,
+   "rate_per_hr": 60,
+   "basis": "Per sf; pH-neutral only, check sealer",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Laminate countertop cleaning": {
+   "unit": "sqft",
+   "low": 0.25,
+   "mid": 0.45,
+   "high": 0.8,
+   "min": 75,
+   "rate_per_hr": 100,
+   "basis": "Per sf",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Reception and service desk detailing": {
+   "unit": "each",
+   "low": 40,
+   "mid": 75,
+   "high": 150,
+   "basis": "Per desk",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Shelving and adjustable shelf cleaning": {
+   "unit": "lf",
+   "low": 0.3,
+   "mid": 0.55,
+   "high": 1.0,
+   "min": 75,
+   "rate_per_hr": 80,
+   "basis": "Per lf of shelf",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Closet rod and shelf cleaning": {
+   "unit": "each",
+   "low": 6.0,
+   "mid": 10,
+   "high": 18,
+   "min": 50,
+   "rate_per_hr": 4.5,
+   "basis": "Per closet",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Trim, casing and crown molding cleaning": {
+   "unit": "lf",
+   "low": 0.12,
+   "mid": 0.22,
+   "high": 0.4,
+   "min": 75,
+   "rate_per_hr": 200,
+   "basis": "Per lf",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Baseboard and wall base cleaning": {
+   "unit": "lf",
+   "low": 0.1,
+   "mid": 0.18,
+   "high": 0.32,
+   "min": 75,
+   "rate_per_hr": 250,
+   "basis": "Per lf",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Wood paneling and wainscot cleaning": {
+   "unit": "sqft",
+   "low": 0.2,
+   "mid": 0.35,
+   "high": 0.6,
+   "min": 100,
+   "rate_per_hr": 130,
+   "basis": "Per sf",
+   "src": [
+    "S29"
+   ],
+   "confidence": "derived"
+  },
+  "Handrail and guardrail cleaning": {
+   "unit": "lf",
+   "low": 0.3,
+   "mid": 0.55,
+   "high": 1.0,
+   "min": 75,
+   "rate_per_hr": 80,
+   "basis": "Per lf incl. balusters/infill",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Built-in bench and banquette cleaning": {
+   "unit": "lf",
+   "low": 2.0,
+   "mid": 3.5,
+   "high": 6.0,
+   "min": 75,
+   "rate_per_hr": 13,
+   "basis": "Per lf of seating",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Locker interior and exterior cleaning": {
+   "unit": "each",
+   "low": 3.0,
+   "mid": 5.0,
+   "high": 9.0,
+   "min": 75,
+   "rate_per_hr": 9.0,
+   "basis": "Per locker",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Toilet partition and urinal screen cleaning": {
+   "unit": "each",
+   "low": 10,
+   "mid": 18,
+   "high": 30,
+   "min": 75,
+   "rate_per_hr": 2.5,
+   "basis": "Per compartment/screen incl. hardware",
+   "src": [
+    "S49"
+   ],
+   "confidence": "derived"
+  },
+  "Window treatment and blind dusting": {
+   "unit": "each",
+   "low": 6.0,
+   "mid": 10,
+   "high": 18,
+   "min": 75,
+   "rate_per_hr": 4.5,
+   "basis": "Per blind; commercial volume $8-15 each",
+   "src": [
+    "S68"
+   ],
+   "confidence": "sourced"
+  },
+  "Window sill and stool cleaning": {
+   "unit": "lf",
+   "low": 0.25,
+   "mid": 0.45,
+   "high": 0.8,
+   "min": 75,
+   "rate_per_hr": 100,
+   "basis": "Per lf",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Interior window cleaning": {
+   "unit": "pane",
+   "low": 2.5,
+   "mid": 4.0,
+   "high": 7.0,
+   "min": 200,
+   "rate_per_hr": 12,
+   "basis": "Per pane; commercial $2-8/pane; post-construction scraping priced separately",
+   "src": [
+    "S26",
+    "S27"
+   ],
+   "confidence": "sourced"
+  },
+  "Exterior window cleaning": {
+   "unit": "pane",
+   "low": 3.0,
+   "mid": 5.0,
+   "high": 9.0,
+   "min": 250,
+   "rate_per_hr": 10,
+   "basis": "Per pane, ground to 2-story; post-construction 2-3x routine rate",
+   "src": [
+    "S26",
+    "S27"
+   ],
+   "confidence": "sourced"
+  },
+  "Storefront glass cleaning": {
+   "unit": "sqft",
+   "low": 0.15,
+   "mid": 0.3,
+   "high": 0.55,
+   "min": 150,
+   "rate_per_hr": 160,
+   "basis": "Per sf of glass both sides; guides $0.10-0.50/sf",
+   "src": [
+    "S26"
+   ],
+   "confidence": "sourced"
+  },
+  "Window label and sticker removal": {
+   "unit": "each",
+   "low": 1.0,
+   "mid": 2.0,
+   "high": 3.5,
+   "min": 75,
+   "rate_per_hr": 25,
+   "basis": "Per label; razor/plastic blade, adhesive remover",
+   "src": [
+    "S27"
+   ],
+   "confidence": "derived"
+  },
+  "Construction debris removal from glass": {
+   "unit": "pane",
+   "low": 3.0,
+   "mid": 6.0,
+   "high": 10,
+   "min": 200,
+   "rate_per_hr": 8.0,
+   "basis": "Per pane; post-construction premium 2-3x; $12-20/window (Angi)",
+   "src": [
+    "S27"
+   ],
+   "confidence": "sourced"
+  },
+  "Concrete and mortar splatter removal from glass": {
+   "unit": "pane",
+   "low": 6.0,
+   "mid": 12,
+   "high": 25,
+   "min": 200,
+   "rate_per_hr": 4.0,
+   "basis": "Per pane; overspray/splatter jobs $5.50-10+/pane; scratch risk",
+   "src": [
+    "S27"
+   ],
+   "confidence": "sourced"
+  },
+  "Window track and frame cleaning": {
+   "unit": "each",
+   "low": 3.0,
+   "mid": 6.0,
+   "high": 10,
+   "min": 100,
+   "rate_per_hr": 8.0,
+   "basis": "Per window unit",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Window screen cleaning and installation": {
+   "unit": "each",
+   "low": 3.0,
+   "mid": 5.0,
+   "high": 9.0,
+   "min": 75,
+   "rate_per_hr": 9.0,
+   "basis": "Per screen",
+   "src": [
+    "S26"
+   ],
+   "confidence": "derived"
+  },
+  "Glass partition and interior glazing cleaning": {
+   "unit": "sqft",
+   "low": 0.12,
+   "mid": 0.22,
+   "high": 0.4,
+   "min": 150,
+   "rate_per_hr": 210,
+   "basis": "Per sf of glass, both sides",
+   "src": [
+    "S26"
+   ],
+   "confidence": "derived"
+  },
+  "Glass railing and balustrade cleaning": {
+   "unit": "lf",
+   "low": 1.5,
+   "mid": 3.0,
+   "high": 5.0,
+   "min": 150,
+   "rate_per_hr": 15,
+   "basis": "Per lf of railing, both sides",
+   "src": [
+    "S26"
+   ],
+   "confidence": "derived"
+  },
+  "Shower glass and enclosure cleaning": {
+   "unit": "each",
+   "low": 25,
+   "mid": 45,
+   "high": 85,
+   "min": 100,
+   "rate_per_hr": 1.1,
+   "basis": "Per enclosure, post-construction detail (no hard-water restoration)",
+   "src": [
+    "S28"
+   ],
+   "confidence": "derived"
+  },
+  "Mirror cleaning and edge detailing": {
+   "unit": "each",
+   "low": 3.0,
+   "mid": 6.0,
+   "high": 12,
+   "min": 50,
+   "rate_per_hr": 8.0,
+   "basis": "Per mirror",
+   "src": [
+    "S26"
+   ],
+   "confidence": "derived"
+  },
+  "Display case and showcase glass cleaning": {
+   "unit": "each",
+   "low": 12,
+   "mid": 22,
+   "high": 40,
+   "min": 75,
+   "rate_per_hr": 2.0,
+   "basis": "Per case, inside and out",
+   "src": [
+    "S26"
+   ],
+   "confidence": "derived"
+  },
+  "Skylight cleaning": {
+   "unit": "sqft",
+   "low": 0.75,
+   "mid": 1.25,
+   "high": 2.5,
+   "min": 250,
+   "rate_per_hr": 40,
+   "basis": "Per sf of skylight glazing; roof/fall protection",
+   "src": [
+    "S26",
+    "S45"
+   ],
+   "confidence": "derived"
+  },
+  "Curtain wall cleaning": {
+   "unit": "sqft",
+   "low": 0.25,
+   "mid": 0.45,
+   "high": 0.9,
+   "min": 2500,
+   "rate_per_hr": 110,
+   "basis": "Per sf of glazing, low/mid-rise via lift or pole; rope access priced higher",
+   "src": [
+    "S26",
+    "S45"
+   ],
+   "confidence": "derived"
+  },
+  "High-rise exterior glass cleaning": {
+   "unit": "sqft",
+   "low": 0.35,
+   "mid": 0.65,
+   "high": 1.25,
+   "min": 5000,
+   "rate_per_hr": 80,
+   "basis": "Per sf of glazing; rope/BMU access (OSHA 1910.27), usually subcontracted",
+   "src": [
+    "S26"
+   ],
+   "confidence": "derived"
+  },
+  "Hard water stain removal from glass": {
+   "unit": "sqft",
+   "low": 4.0,
+   "mid": 7.0,
+   "high": 12,
+   "min": 150,
+   "rate_per_hr": 7.0,
+   "basis": "Per sf; restoration pros average $5-10/sf incl. sealing",
+   "src": [
+    "S28"
+   ],
+   "confidence": "sourced"
+  },
+  "Glass scratch assessment and documentation": {
+   "unit": "hour",
+   "low": 50,
+   "mid": 65,
+   "high": 90,
+   "min": 195,
+   "basis": "Hourly; photo log and map of pre-existing scratches before scraping",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Glass protective film removal": {
+   "unit": "sqft",
+   "low": 0.15,
+   "mid": 0.3,
+   "high": 0.55,
+   "min": 100,
+   "rate_per_hr": 160,
+   "basis": "Per sf of glass",
+   "src": [
+    "S26"
+   ],
+   "confidence": "derived"
+  },
+  "Pure-water fed-pole window cleaning": {
+   "unit": "pane",
+   "low": 2.5,
+   "mid": 4.0,
+   "high": 7.0,
+   "min": 250,
+   "rate_per_hr": 14,
+   "basis": "Per pane; same band as routine commercial, faster on low-rise",
+   "src": [
+    "S26"
+   ],
+   "confidence": "sourced"
+  },
+  "Concrete floor auto-scrubbing": {
+   "unit": "sqft",
+   "low": 0.03,
+   "mid": 0.05,
+   "high": 0.09,
+   "min": 350,
+   "rate_per_hr": 1500,
+   "basis": "Per sf; sweep + double scrub of construction soil; walk-behind 20-30 in.",
+   "src": [
+    "S74",
+    "S49"
+   ],
+   "confidence": "derived"
+  },
+  "Warehouse floor scrubbing": {
+   "unit": "sqft",
+   "low": 0.02,
+   "mid": 0.035,
+   "high": 0.06,
+   "min": 750,
+   "rate_per_hr": 3000,
+   "basis": "Per sf; rider scrubber, practical ~20,000 sf/machine-hr less detailing",
+   "src": [
+    "S74"
+   ],
+   "confidence": "derived"
+  },
+  "Sealed concrete floor cleaning": {
+   "unit": "sqft",
+   "low": 0.03,
+   "mid": 0.05,
+   "high": 0.08,
+   "min": 300,
+   "rate_per_hr": 1300,
+   "basis": "Per sf",
+   "src": [
+    "S74"
+   ],
+   "confidence": "derived"
+  },
+  "Polished concrete maintenance clean": {
+   "unit": "sqft",
+   "low": 0.04,
+   "mid": 0.07,
+   "high": 0.12,
+   "min": 300,
+   "rate_per_hr": 900,
+   "basis": "Per sf; scrub + diamond-pad burnish",
+   "src": [
+    "S74"
+   ],
+   "confidence": "derived"
+  },
+  "Concrete polishing": {
+   "unit": "sqft",
+   "low": 2.0,
+   "mid": 3.5,
+   "high": 6.0,
+   "min": 2500,
+   "rate_per_hr": 60,
+   "basis": "Per sf; grind/densify/polish $2-6 basic, higher for high gloss; usually specialist",
+   "src": [
+    "S34"
+   ],
+   "confidence": "sourced"
+  },
+  "Concrete grinding preparation": {
+   "unit": "sqft",
+   "low": 1.0,
+   "mid": 2.0,
+   "high": 4.0,
+   "min": 2000,
+   "rate_per_hr": 80,
+   "basis": "Per sf; heavy prep (grind/shot blast) $2-5/sf",
+   "src": [
+    "S61",
+    "S34"
+   ],
+   "confidence": "sourced"
+  },
+  "Curing compound residue removal": {
+   "unit": "sqft",
+   "low": 0.25,
+   "mid": 0.5,
+   "high": 1.0,
+   "min": 500,
+   "rate_per_hr": 120,
+   "basis": "Per sf; chemical stripper + scrub or light screen",
+   "src": [
+    "S61"
+   ],
+   "confidence": "derived"
+  },
+  "Tire mark and forklift mark removal": {
+   "unit": "sqft",
+   "low": 0.1,
+   "mid": 0.2,
+   "high": 0.4,
+   "min": 150,
+   "rate_per_hr": 250,
+   "basis": "Per sf of marked area",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Concrete stain and oil spot treatment": {
+   "unit": "each",
+   "low": 8.0,
+   "mid": 15,
+   "high": 30,
+   "min": 100,
+   "rate_per_hr": 4.0,
+   "basis": "Per spot (to ~4 sf); degreaser/poultice",
+   "src": [
+    "S23"
+   ],
+   "confidence": "derived"
+  },
+  "Concrete efflorescence removal": {
+   "unit": "sqft",
+   "low": 0.4,
+   "mid": 0.8,
+   "high": 1.75,
+   "min": 250,
+   "rate_per_hr": 70,
+   "basis": "Per sf; efflorescence on concrete/paving similar to brick cleaning $0.54-0.68, acid $1-3.50",
+   "src": [
+    "S59"
+   ],
+   "confidence": "sourced"
+  },
+  "Rust stain removal from concrete": {
+   "unit": "sqft",
+   "low": 1.0,
+   "mid": 2.0,
+   "high": 4.0,
+   "min": 150,
+   "rate_per_hr": 30,
+   "basis": "Per sf treated",
+   "src": [
+    "S59"
+   ],
+   "confidence": "derived"
+  },
+  "Paint and coating drip removal from concrete": {
+   "unit": "sqft",
+   "low": 0.05,
+   "mid": 0.1,
+   "high": 0.2,
+   "min": 200,
+   "rate_per_hr": 450,
+   "basis": "Per sf of floor area",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Joint and crack debris vacuuming": {
+   "unit": "lf",
+   "low": 0.08,
+   "mid": 0.15,
+   "high": 0.25,
+   "min": 100,
+   "rate_per_hr": 300,
+   "basis": "Per lf of joint",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Densifier and guard application support": {
+   "unit": "sqft",
+   "low": 0.1,
+   "mid": 0.2,
+   "high": 0.4,
+   "min": 500,
+   "rate_per_hr": 300,
+   "basis": "Per sf; prep clean + apply product (material extra)",
+   "src": [
+    "S34"
+   ],
+   "confidence": "derived"
+  },
+  "Epoxy floor preparation cleaning": {
+   "unit": "sqft",
+   "low": 0.06,
+   "mid": 0.12,
+   "high": 0.22,
+   "min": 300,
+   "rate_per_hr": 400,
+   "basis": "Per sf; degrease/clean only, not mechanical profiling",
+   "src": [
+    "S61"
+   ],
+   "confidence": "derived"
+  },
+  "Epoxy and resinous floor cleaning": {
+   "unit": "sqft",
+   "low": 0.04,
+   "mid": 0.07,
+   "high": 0.12,
+   "min": 250,
+   "rate_per_hr": 700,
+   "basis": "Per sf",
+   "src": [
+    "S74"
+   ],
+   "confidence": "derived"
+  },
+  "Parking garage floor scrubbing": {
+   "unit": "sqft",
+   "low": 0.05,
+   "mid": 0.1,
+   "high": 0.2,
+   "min": 1000,
+   "rate_per_hr": 700,
+   "basis": "Per sf; garage/lot washing $0.08-0.25/sf; enclosed garage bid $0.20",
+   "src": [
+    "S79",
+    "S23"
+   ],
+   "confidence": "sourced"
+  },
+  "VCT initial floor finish": {
+   "unit": "sqft",
+   "low": 0.2,
+   "mid": 0.32,
+   "high": 0.5,
+   "min": 350,
+   "rate_per_hr": 180,
+   "basis": "Per sf; scrub factory coat + 4-5 coats finish; bid tabs strip/wax $0.20-0.45/sf",
+   "src": [
+    "S9",
+    "S10"
+   ],
+   "confidence": "sourced"
+  },
+  "VCT strip and refinish": {
+   "unit": "sqft",
+   "low": 0.2,
+   "mid": 0.3,
+   "high": 0.45,
+   "min": 350,
+   "rate_per_hr": 200,
+   "basis": "Per sf; Leon County Schools $0.20-0.25, Town of Davie $0.28-0.45",
+   "src": [
+    "S9",
+    "S10"
+   ],
+   "confidence": "sourced"
+  },
+  "VCT scrub and recoat": {
+   "unit": "sqft",
+   "low": 0.1,
+   "mid": 0.15,
+   "high": 0.25,
+   "min": 250,
+   "rate_per_hr": 400,
+   "basis": "Per sf; about half of strip and wax",
+   "src": [
+    "S9",
+    "S10"
+   ],
+   "confidence": "derived"
+  },
+  "LVT and LVP manufacturer-approved cleaning": {
+   "unit": "sqft",
+   "low": 0.05,
+   "mid": 0.08,
+   "high": 0.14,
+   "min": 200,
+   "rate_per_hr": 700,
+   "basis": "Per sf; neutral cleaner, no finish unless specified",
+   "src": [
+    "S74"
+   ],
+   "confidence": "derived"
+  },
+  "Sheet vinyl initial clean": {
+   "unit": "sqft",
+   "low": 0.05,
+   "mid": 0.08,
+   "high": 0.14,
+   "min": 200,
+   "rate_per_hr": 700,
+   "basis": "Per sf",
+   "src": [
+    "S74"
+   ],
+   "confidence": "derived"
+  },
+  "Rubber floor initial cleaning": {
+   "unit": "sqft",
+   "low": 0.07,
+   "mid": 0.12,
+   "high": 0.2,
+   "min": 200,
+   "rate_per_hr": 450,
+   "basis": "Per sf; remove release agents per manufacturer",
+   "src": [
+    "S74"
+   ],
+   "confidence": "derived"
+  },
+  "Sports and gym floor rubber cleaning": {
+   "unit": "sqft",
+   "low": 0.06,
+   "mid": 0.1,
+   "high": 0.18,
+   "min": 500,
+   "rate_per_hr": 600,
+   "basis": "Per sf",
+   "src": [
+    "S74"
+   ],
+   "confidence": "derived"
+  },
+  "Linoleum and marmoleum initial care": {
+   "unit": "sqft",
+   "low": 0.12,
+   "mid": 0.22,
+   "high": 0.38,
+   "min": 300,
+   "rate_per_hr": 250,
+   "basis": "Per sf; manufacturer initial clean/protect",
+   "src": [
+    "S9"
+   ],
+   "confidence": "derived"
+  },
+  "Static-dissipative floor cleaning": {
+   "unit": "sqft",
+   "low": 0.08,
+   "mid": 0.14,
+   "high": 0.25,
+   "min": 300,
+   "rate_per_hr": 400,
+   "basis": "Per sf; ESD-safe products, no standard finish",
+   "src": [
+    "S74"
+   ],
+   "confidence": "derived"
+  },
+  "Adhesive residue removal from resilient floors": {
+   "unit": "sqft",
+   "low": 0.15,
+   "mid": 0.3,
+   "high": 0.6,
+   "min": 200,
+   "rate_per_hr": 130,
+   "basis": "Per sf of affected area",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Scuff and heel mark removal": {
+   "unit": "sqft",
+   "low": 0.01,
+   "mid": 0.02,
+   "high": 0.04,
+   "min": 100,
+   "rate_per_hr": 2500,
+   "basis": "Per sf of floor area",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Burnishing": {
+   "unit": "sqft",
+   "low": 0.02,
+   "mid": 0.035,
+   "high": 0.06,
+   "min": 150,
+   "rate_per_hr": 2500,
+   "basis": "Per sf; high-speed burnish after dust mop",
+   "src": [
+    "S75"
+   ],
+   "confidence": "derived"
+  },
+  "Ceramic and porcelain tile initial clean": {
+   "unit": "sqft",
+   "low": 0.08,
+   "mid": 0.14,
+   "high": 0.25,
+   "min": 200,
+   "rate_per_hr": 350,
+   "basis": "Per sf",
+   "src": [
+    "S32"
+   ],
+   "confidence": "derived"
+  },
+  "Grout haze removal": {
+   "unit": "sqft",
+   "low": 0.2,
+   "mid": 0.4,
+   "high": 0.8,
+   "min": 250,
+   "rate_per_hr": 120,
+   "basis": "Per sf; acid/haze remover per tile maker",
+   "src": [
+    "S32"
+   ],
+   "confidence": "derived"
+  },
+  "Grout line deep cleaning": {
+   "unit": "sqft",
+   "low": 0.4,
+   "mid": 0.75,
+   "high": 1.5,
+   "min": 250,
+   "rate_per_hr": 60,
+   "basis": "Per sf; tile/grout cleaning $0.50-3/sf (residential), commercial lower",
+   "src": [
+    "S32"
+   ],
+   "confidence": "sourced"
+  },
+  "Grout sealing": {
+   "unit": "sqft",
+   "low": 0.25,
+   "mid": 0.45,
+   "high": 0.9,
+   "min": 250,
+   "rate_per_hr": 100,
+   "basis": "Per sf; sealing $0.25-0.50 (HomeAdvisor) to $0.90+ (Fixr)",
+   "src": [
+    "S32"
+   ],
+   "confidence": "sourced"
+  },
+  "Quarry tile cleaning": {
+   "unit": "sqft",
+   "low": 0.1,
+   "mid": 0.18,
+   "high": 0.3,
+   "min": 200,
+   "rate_per_hr": 300,
+   "basis": "Per sf; degreaser and deck brush",
+   "src": [
+    "S32"
+   ],
+   "confidence": "derived"
+  },
+  "Natural stone floor initial clean": {
+   "unit": "sqft",
+   "low": 0.12,
+   "mid": 0.22,
+   "high": 0.4,
+   "min": 250,
+   "rate_per_hr": 220,
+   "basis": "Per sf; pH-neutral",
+   "src": [
+    "S32"
+   ],
+   "confidence": "derived"
+  },
+  "Stone polishing and honing": {
+   "unit": "sqft",
+   "low": 1.5,
+   "mid": 3.0,
+   "high": 6.0,
+   "min": 1500,
+   "rate_per_hr": 40,
+   "basis": "Per sf; terrazzo finishing analog $2.50-8.00; specialist",
+   "src": [
+    "S35"
+   ],
+   "confidence": "derived"
+  },
+  "Terrazzo initial clean": {
+   "unit": "sqft",
+   "low": 0.12,
+   "mid": 0.22,
+   "high": 0.4,
+   "min": 250,
+   "rate_per_hr": 220,
+   "basis": "Per sf",
+   "src": [
+    "S35"
+   ],
+   "confidence": "derived"
+  },
+  "Terrazzo polishing": {
+   "unit": "sqft",
+   "low": 1.5,
+   "mid": 3.5,
+   "high": 8.0,
+   "min": 2000,
+   "rate_per_hr": 40,
+   "basis": "Per sf; finishing (polish/hone) $2.50-8.00, full restoration $6-14",
+   "src": [
+    "S35"
+   ],
+   "confidence": "sourced"
+  },
+  "Mosaic and specialty tile detailing": {
+   "unit": "sqft",
+   "low": 0.4,
+   "mid": 0.75,
+   "high": 1.4,
+   "min": 150,
+   "rate_per_hr": 60,
+   "basis": "Per sf",
+   "src": [
+    "S32"
+   ],
+   "confidence": "derived"
+  },
+  "Thinset and mortar splatter removal": {
+   "unit": "sqft",
+   "low": 0.05,
+   "mid": 0.1,
+   "high": 0.2,
+   "min": 200,
+   "rate_per_hr": 450,
+   "basis": "Per sf of floor area",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Hardwood floor initial clean": {
+   "unit": "sqft",
+   "low": 0.08,
+   "mid": 0.14,
+   "high": 0.25,
+   "min": 200,
+   "rate_per_hr": 350,
+   "basis": "Per sf; manufacturer cleaner, no wet mop",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Engineered wood floor cleaning": {
+   "unit": "sqft",
+   "low": 0.08,
+   "mid": 0.14,
+   "high": 0.25,
+   "min": 200,
+   "rate_per_hr": 350,
+   "basis": "Per sf",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Gym and athletic hardwood floor cleaning": {
+   "unit": "sqft",
+   "low": 0.05,
+   "mid": 0.09,
+   "high": 0.16,
+   "min": 500,
+   "rate_per_hr": 700,
+   "basis": "Per sf cleaning; screen-and-recoat is separate ($0.26-0.95/sf bid tab, $0.40-0.80 typical)",
+   "src": [
+    "S14",
+    "S15"
+   ],
+   "confidence": "derived"
+  },
+  "Bamboo and cork floor cleaning": {
+   "unit": "sqft",
+   "low": 0.08,
+   "mid": 0.15,
+   "high": 0.25,
+   "min": 200,
+   "rate_per_hr": 330,
+   "basis": "Per sf",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Raised access floor cleaning": {
+   "unit": "sqft",
+   "low": 0.08,
+   "mid": 0.15,
+   "high": 0.25,
+   "min": 250,
+   "rate_per_hr": 330,
+   "basis": "Per sf of top surface; underfloor plenum separate",
+   "src": [
+    "S54"
+   ],
+   "confidence": "derived"
+  },
+  "Entrance mat and grate cleaning": {
+   "unit": "each",
+   "low": 10,
+   "mid": 20,
+   "high": 40,
+   "min": 75,
+   "rate_per_hr": 2.5,
+   "basis": "Per mat/grate; lift grate and vacuum pit",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Stair tread and nosing cleaning": {
+   "unit": "each",
+   "low": 1.5,
+   "mid": 2.5,
+   "high": 4.0,
+   "min": 75,
+   "rate_per_hr": 18,
+   "basis": "Per tread",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Construction carpet vacuuming": {
+   "unit": "sqft",
+   "low": 0.01,
+   "mid": 0.02,
+   "high": 0.035,
+   "min": 150,
+   "rate_per_hr": 2500,
+   "basis": "Per sf; ISSA 20-30 min/1,000 sf, slower with construction dust",
+   "src": [
+    "S49"
+   ],
+   "confidence": "derived"
+  },
+  "Carpet extraction": {
+   "unit": "sqft",
+   "low": 0.12,
+   "mid": 0.22,
+   "high": 0.4,
+   "min": 250,
+   "rate_per_hr": 220,
+   "basis": "Per sf; bid tabs $0.05-0.40 (Leon Co., MoDOT), guides $0.15-0.50",
+   "src": [
+    "S11",
+    "S12",
+    "S13",
+    "S33"
+   ],
+   "confidence": "sourced"
+  },
+  "Carpet tile cleaning": {
+   "unit": "sqft",
+   "low": 0.12,
+   "mid": 0.22,
+   "high": 0.4,
+   "min": 250,
+   "rate_per_hr": 220,
+   "basis": "Per sf; same band as extraction",
+   "src": [
+    "S11",
+    "S33"
+   ],
+   "confidence": "sourced"
+  },
+  "Carpet spot and stain treatment": {
+   "unit": "each",
+   "low": 3.0,
+   "mid": 6.0,
+   "high": 12,
+   "min": 75,
+   "rate_per_hr": 8.0,
+   "basis": "Per spot",
+   "src": [
+    "S33"
+   ],
+   "confidence": "derived"
+  },
+  "Drywall mud and paint removal from carpet": {
+   "unit": "each",
+   "low": 5.0,
+   "mid": 12,
+   "high": 25,
+   "min": 100,
+   "rate_per_hr": 4.0,
+   "basis": "Per spot; scrape, dissolve, extract",
+   "src": [
+    "S33"
+   ],
+   "confidence": "derived"
+  },
+  "Carpet seam and edge detailing": {
+   "unit": "lf",
+   "low": 0.08,
+   "mid": 0.15,
+   "high": 0.25,
+   "min": 75,
+   "rate_per_hr": 300,
+   "basis": "Per lf of seam/edge",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Upholstery and furniture vacuuming": {
+   "unit": "each",
+   "low": 2.0,
+   "mid": 4.0,
+   "high": 7.0,
+   "min": 75,
+   "rate_per_hr": 12,
+   "basis": "Per piece",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Upholstery extraction": {
+   "unit": "each",
+   "low": 15,
+   "mid": 30,
+   "high": 60,
+   "min": 150,
+   "rate_per_hr": 2.0,
+   "basis": "Per seat/chair; low-moisture extraction",
+   "src": [
+    "S33"
+   ],
+   "confidence": "derived"
+  },
+  "Fabric panel and cubicle cleaning": {
+   "unit": "each",
+   "low": 10,
+   "mid": 18,
+   "high": 35,
+   "min": 150,
+   "rate_per_hr": 2.5,
+   "basis": "Per workstation (panels vacuumed/spotted)",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Auditorium and theater seating cleaning": {
+   "unit": "each",
+   "low": 3.0,
+   "mid": 6.0,
+   "high": 12,
+   "min": 300,
+   "rate_per_hr": 8.0,
+   "basis": "Per seat vacuum + wipe; extraction about 3x",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Toilet and urinal detailing": {
+   "unit": "fixture",
+   "low": 8.0,
+   "mid": 14,
+   "high": 22,
+   "min": 75,
+   "rate_per_hr": 3.5,
+   "basis": "Per fixture; ISSA ~3 min/fixture routine, post-construction labels/caulk/grout ~4-5x",
+   "src": [
+    "S49"
+   ],
+   "confidence": "derived"
+  },
+  "Sink and faucet detailing": {
+   "unit": "fixture",
+   "low": 6.0,
+   "mid": 10,
+   "high": 18,
+   "min": 75,
+   "rate_per_hr": 4.5,
+   "basis": "Per fixture",
+   "src": [
+    "S49"
+   ],
+   "confidence": "derived"
+  },
+  "Restroom fixture sticker and label removal": {
+   "unit": "fixture",
+   "low": 2.0,
+   "mid": 4.0,
+   "high": 7.0,
+   "min": 50,
+   "rate_per_hr": 12,
+   "basis": "Per fixture",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Caulk smear and silicone haze removal": {
+   "unit": "lf",
+   "low": 0.75,
+   "mid": 1.5,
+   "high": 3.0,
+   "min": 75,
+   "rate_per_hr": 30,
+   "basis": "Per lf of joint",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Shower and tub detailing": {
+   "unit": "each",
+   "low": 35,
+   "mid": 60,
+   "high": 110,
+   "min": 100,
+   "rate_per_hr": 0.8,
+   "basis": "Per shower/tub incl. glass wipe",
+   "src": [
+    "S49"
+   ],
+   "confidence": "derived"
+  },
+  "Restroom accessory cleaning": {
+   "unit": "each",
+   "low": 2.0,
+   "mid": 4.0,
+   "high": 7.0,
+   "min": 50,
+   "rate_per_hr": 12,
+   "basis": "Per accessory (dispensers, bars, hooks)",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Hand dryer cleaning": {
+   "unit": "each",
+   "low": 4.0,
+   "mid": 7.0,
+   "high": 12,
+   "min": 50,
+   "rate_per_hr": 6.0,
+   "basis": "Per unit",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Floor drain and trap primer area cleaning": {
+   "unit": "each",
+   "low": 4.0,
+   "mid": 8.0,
+   "high": 15,
+   "min": 50,
+   "rate_per_hr": 6.0,
+   "basis": "Per drain",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Restroom tile and grout detailing": {
+   "unit": "sqft",
+   "low": 0.3,
+   "mid": 0.55,
+   "high": 1.0,
+   "min": 150,
+   "rate_per_hr": 80,
+   "basis": "Per sf of tile",
+   "src": [
+    "S32"
+   ],
+   "confidence": "derived"
+  },
+  "Drinking fountain and bottle filler cleaning": {
+   "unit": "each",
+   "low": 8.0,
+   "mid": 15,
+   "high": 25,
+   "min": 50,
+   "rate_per_hr": 3.0,
+   "basis": "Per unit",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Mop sink and janitor closet cleaning": {
+   "unit": "each",
+   "low": 35,
+   "mid": 60,
+   "high": 100,
+   "basis": "Per closet",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Eyewash and emergency shower station cleaning": {
+   "unit": "each",
+   "low": 15,
+   "mid": 25,
+   "high": 45,
+   "min": 75,
+   "rate_per_hr": 1.8,
+   "basis": "Per station; do not disturb flushing tags",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Plumbing fixture first-flush and aerator debris check": {
+   "unit": "fixture",
+   "low": 4.0,
+   "mid": 8.0,
+   "high": 15,
+   "min": 75,
+   "rate_per_hr": 6.0,
+   "basis": "Per fixture; remove/clean aerator screen",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Commercial kitchen post-construction clean": {
+   "unit": "sqft",
+   "low": 0.35,
+   "mid": 0.6,
+   "high": 1.0,
+   "min": 750,
+   "rate_per_hr": 80,
+   "basis": "Per sf of kitchen; restaurants priced above general (to $0.35 in 2011); kitchen deep clean $0.15-0.50",
+   "src": [
+    "S4",
+    "S65",
+    "S70"
+   ],
+   "confidence": "sourced"
+  },
+  "Stainless steel equipment exterior cleaning": {
+   "unit": "each",
+   "low": 15,
+   "mid": 30,
+   "high": 60,
+   "min": 100,
+   "rate_per_hr": 1.5,
+   "basis": "Per piece of equipment",
+   "src": [
+    "S70"
+   ],
+   "confidence": "derived"
+  },
+  "Stainless steel protective film removal": {
+   "unit": "each",
+   "low": 6.0,
+   "mid": 12,
+   "high": 25,
+   "min": 75,
+   "rate_per_hr": 4.0,
+   "basis": "Per piece; full film + adhesive removal",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Kitchen hood exterior cleaning": {
+   "unit": "lf",
+   "low": 3.0,
+   "mid": 6.0,
+   "high": 10,
+   "min": 100,
+   "rate_per_hr": 8.0,
+   "basis": "Per lf of hood canopy exterior",
+   "src": [
+    "S18"
+   ],
+   "confidence": "derived"
+  },
+  "Kitchen exhaust hood and duct cleaning": {
+   "unit": "each",
+   "low": 250,
+   "mid": 450,
+   "high": 900,
+   "min": 350,
+   "basis": "Per hood system (NFPA 96); school bid tabs $138-450/hood, vendor rate cards $475-1,100 by length; certified sub",
+   "src": [
+    "S16",
+    "S17",
+    "S18"
+   ],
+   "confidence": "sourced"
+  },
+  "Walk-in cooler interior cleaning": {
+   "unit": "each",
+   "low": 125,
+   "mid": 225,
+   "high": 400,
+   "basis": "Per box (up to ~100 sf); before temp-down",
+   "src": [
+    "S70"
+   ],
+   "confidence": "derived"
+  },
+  "Walk-in freezer interior cleaning": {
+   "unit": "each",
+   "low": 150,
+   "mid": 275,
+   "high": 475,
+   "basis": "Per box; must be done before pull-down",
+   "src": [
+    "S70"
+   ],
+   "confidence": "derived"
+  },
+  "Kitchen ceiling cleaning": {
+   "unit": "sqft",
+   "low": 0.15,
+   "mid": 0.3,
+   "high": 0.55,
+   "min": 150,
+   "rate_per_hr": 160,
+   "basis": "Per sf of ceiling",
+   "src": [
+    "S29"
+   ],
+   "confidence": "derived"
+  },
+  "Food-contact surface pre-opening cleaning": {
+   "unit": "sqft",
+   "low": 0.4,
+   "mid": 0.75,
+   "high": 1.25,
+   "min": 150,
+   "rate_per_hr": 60,
+   "basis": "Per sf of food-contact surface",
+   "src": [
+    "S70"
+   ],
+   "confidence": "derived"
+  },
+  "Food-contact surface sanitizing per label": {
+   "unit": "sqft",
+   "low": 0.05,
+   "mid": 0.1,
+   "high": 0.2,
+   "min": 100,
+   "rate_per_hr": 450,
+   "basis": "Per sf; EPA-registered sanitizer at label contact time",
+   "src": [
+    "S70"
+   ],
+   "confidence": "derived"
+  },
+  "Prep table and shelving cleaning": {
+   "unit": "each",
+   "low": 10,
+   "mid": 18,
+   "high": 30,
+   "min": 75,
+   "rate_per_hr": 2.5,
+   "basis": "Per table/shelving unit",
+   "src": [
+    "S70"
+   ],
+   "confidence": "derived"
+  },
+  "Dish area and dish machine exterior cleaning": {
+   "unit": "each",
+   "low": 75,
+   "mid": 140,
+   "high": 250,
+   "basis": "Per dish area",
+   "src": [
+    "S70"
+   ],
+   "confidence": "derived"
+  },
+  "Grease trap area cleaning": {
+   "unit": "each",
+   "low": 75,
+   "mid": 150,
+   "high": 300,
+   "basis": "Per trap area; pumping by licensed hauler ($130-250 interceptor service)",
+   "src": [
+    "S53"
+   ],
+   "confidence": "derived"
+  },
+  "Bar and beverage station cleaning": {
+   "unit": "lf",
+   "low": 3.0,
+   "mid": 6.0,
+   "high": 10,
+   "min": 100,
+   "rate_per_hr": 8.0,
+   "basis": "Per lf of bar",
+   "src": [
+    "S70"
+   ],
+   "confidence": "derived"
+  },
+  "Ice machine exterior cleaning": {
+   "unit": "each",
+   "low": 15,
+   "mid": 25,
+   "high": 45,
+   "min": 50,
+   "rate_per_hr": 2.0,
+   "basis": "Per machine",
+   "src": [
+    "S53"
+   ],
+   "confidence": "derived"
+  },
+  "Ice machine interior cleaning and sanitizing": {
+   "unit": "each",
+   "low": 125,
+   "mid": 200,
+   "high": 350,
+   "min": 125,
+   "basis": "Per machine; service $120-350/unit, avg just over $200",
+   "src": [
+    "S53"
+   ],
+   "confidence": "sourced"
+  },
+  "Dry storage room cleaning": {
+   "unit": "sqft",
+   "low": 0.12,
+   "mid": 0.22,
+   "high": 0.38,
+   "min": 100,
+   "rate_per_hr": 220,
+   "basis": "Per sf",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Kitchen floor drain and trench drain cleaning": {
+   "unit": "lf",
+   "low": 1.5,
+   "mid": 3.0,
+   "high": 6.0,
+   "min": 75,
+   "rate_per_hr": 15,
+   "basis": "Per lf of trench (floor sinks ~ $10 each)",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "FRP wall cleaning": {
+   "unit": "sqft",
+   "low": 0.1,
+   "mid": 0.18,
+   "high": 0.3,
+   "min": 150,
+   "rate_per_hr": 250,
+   "basis": "Per sf of FRP",
+   "src": [
+    "S29"
+   ],
+   "confidence": "derived"
+  },
+  "FRP wall degreasing": {
+   "unit": "sqft",
+   "low": 0.18,
+   "mid": 0.3,
+   "high": 0.5,
+   "min": 150,
+   "rate_per_hr": 150,
+   "basis": "Per sf",
+   "src": [
+    "S29"
+   ],
+   "confidence": "derived"
+  },
+  "FRP adhesive squeeze-out removal": {
+   "unit": "lf",
+   "low": 0.4,
+   "mid": 0.8,
+   "high": 1.5,
+   "min": 100,
+   "rate_per_hr": 55,
+   "basis": "Per lf of seam/trim",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "FRP trim and seam detailing": {
+   "unit": "lf",
+   "low": 0.2,
+   "mid": 0.35,
+   "high": 0.6,
+   "min": 75,
+   "rate_per_hr": 130,
+   "basis": "Per lf",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Insulated metal panel wall cleaning": {
+   "unit": "sqft",
+   "low": 0.1,
+   "mid": 0.18,
+   "high": 0.3,
+   "min": 150,
+   "rate_per_hr": 250,
+   "basis": "Per sf",
+   "src": [
+    "S29"
+   ],
+   "confidence": "derived"
+  },
+  "Grocery store post-construction cleaning": {
+   "unit": "sqft",
+   "low": 0.18,
+   "mid": 0.3,
+   "high": 0.5,
+   "min": 2500,
+   "rate_per_hr": 150,
+   "basis": "Per sf of sales floor; final-clean band with case/stainless detail",
+   "src": [
+    "S1",
+    "S3",
+    "S4"
+   ],
+   "confidence": "derived"
+  },
+  "Refrigerated case detailing": {
+   "unit": "lf",
+   "low": 4.0,
+   "mid": 7.0,
+   "high": 12,
+   "min": 150,
+   "rate_per_hr": 6.5,
+   "basis": "Per lf of case",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Deli department finish cleaning": {
+   "unit": "sqft",
+   "low": 0.35,
+   "mid": 0.6,
+   "high": 1.0,
+   "min": 500,
+   "rate_per_hr": 80,
+   "basis": "Per sf of department",
+   "src": [
+    "S4",
+    "S65"
+   ],
+   "confidence": "derived"
+  },
+  "Bakery department finish cleaning": {
+   "unit": "sqft",
+   "low": 0.35,
+   "mid": 0.6,
+   "high": 1.0,
+   "min": 500,
+   "rate_per_hr": 80,
+   "basis": "Per sf of department",
+   "src": [
+    "S4",
+    "S65"
+   ],
+   "confidence": "derived"
+  },
+  "Meat and seafood department finish cleaning": {
+   "unit": "sqft",
+   "low": 0.4,
+   "mid": 0.7,
+   "high": 1.15,
+   "min": 500,
+   "rate_per_hr": 70,
+   "basis": "Per sf of department",
+   "src": [
+    "S4",
+    "S65"
+   ],
+   "confidence": "derived"
+  },
+  "Produce department finish cleaning": {
+   "unit": "sqft",
+   "low": 0.2,
+   "mid": 0.35,
+   "high": 0.6,
+   "min": 300,
+   "rate_per_hr": 130,
+   "basis": "Per sf of department",
+   "src": [
+    "S4"
+   ],
+   "confidence": "derived"
+  },
+  "Checkstand and conveyor cleaning": {
+   "unit": "each",
+   "low": 20,
+   "mid": 35,
+   "high": 60,
+   "min": 100,
+   "rate_per_hr": 1.3,
+   "basis": "Per checkstand",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Receiving and loading bay cleaning": {
+   "unit": "sqft",
+   "low": 0.08,
+   "mid": 0.15,
+   "high": 0.25,
+   "min": 200,
+   "rate_per_hr": 330,
+   "basis": "Per sf",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Convenience store remodel cleanup": {
+   "unit": "sqft",
+   "low": 0.2,
+   "mid": 0.35,
+   "high": 0.6,
+   "min": 600,
+   "rate_per_hr": 130,
+   "basis": "Per sf; small-box minimum governs",
+   "src": [
+    "S3",
+    "S4"
+   ],
+   "confidence": "derived"
+  },
+  "Food plant post-construction cleaning": {
+   "unit": "sqft",
+   "low": 0.25,
+   "mid": 0.45,
+   "high": 0.8,
+   "min": 3000,
+   "rate_per_hr": 110,
+   "basis": "Per sf; sanitary design, overheads, documentation",
+   "src": [
+    "S3",
+    "S77"
+   ],
+   "confidence": "derived"
+  },
+  "Mechanical room cleaning": {
+   "unit": "sqft",
+   "low": 0.12,
+   "mid": 0.22,
+   "high": 0.38,
+   "min": 250,
+   "rate_per_hr": 220,
+   "basis": "Per sf",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Electrical room non-invasive cleaning": {
+   "unit": "sqft",
+   "low": 0.12,
+   "mid": 0.22,
+   "high": 0.38,
+   "min": 250,
+   "rate_per_hr": 200,
+   "basis": "Per sf; no contact with energized equipment",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Equipment exterior wipe-down": {
+   "unit": "each",
+   "low": 15,
+   "mid": 30,
+   "high": 60,
+   "min": 100,
+   "rate_per_hr": 1.5,
+   "basis": "Per piece of equipment",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Air handler exterior cleaning": {
+   "unit": "each",
+   "low": 40,
+   "mid": 75,
+   "high": 150,
+   "min": 150,
+   "rate_per_hr": 0.7,
+   "basis": "Per AHU casing",
+   "src": [
+    "S19"
+   ],
+   "confidence": "derived"
+  },
+  "Air handler interior cleaning": {
+   "unit": "each",
+   "low": 350,
+   "mid": 700,
+   "high": 1500,
+   "min": 350,
+   "basis": "Per AHU; state contract $68.50-98.50/hr x 5-12 hr; NADCA-certified sub",
+   "src": [
+    "S19"
+   ],
+   "confidence": "sourced"
+  },
+  "HVAC duct interior cleaning": {
+   "unit": "lf",
+   "low": 3.0,
+   "mid": 4.5,
+   "high": 10,
+   "min": 1500,
+   "rate_per_hr": 15,
+   "basis": "Per lf; Iowa contract $3.50-4.50 easy access, $9.50-10.25 difficult",
+   "src": [
+    "S19"
+   ],
+   "confidence": "sourced"
+  },
+  "Rooftop unit exterior and curb cleaning": {
+   "unit": "each",
+   "low": 50,
+   "mid": 90,
+   "high": 175,
+   "min": 150,
+   "rate_per_hr": 0.6,
+   "basis": "Per RTU",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Generator and switchgear exterior cleaning": {
+   "unit": "each",
+   "low": 75,
+   "mid": 150,
+   "high": 300,
+   "min": 150,
+   "basis": "Per unit; exterior only, coordinate with electrician",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Fire pump and riser room cleaning": {
+   "unit": "sqft",
+   "low": 0.12,
+   "mid": 0.22,
+   "high": 0.38,
+   "min": 150,
+   "rate_per_hr": 200,
+   "basis": "Per sf",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Telecom and IDF/MDF room cleaning": {
+   "unit": "each",
+   "low": 60,
+   "mid": 110,
+   "high": 200,
+   "basis": "Per room; anti-static, HEPA",
+   "src": [
+    "S54"
+   ],
+   "confidence": "derived"
+  },
+  "Elevator machine room cleaning": {
+   "unit": "each",
+   "low": 75,
+   "mid": 125,
+   "high": 225,
+   "basis": "Per room; escort by elevator contractor where required",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Chiller and boiler exterior cleaning": {
+   "unit": "each",
+   "low": 75,
+   "mid": 150,
+   "high": 300,
+   "basis": "Per unit",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Duct opening seal inspection and re-seal cleanup": {
+   "unit": "each",
+   "low": 2.0,
+   "mid": 4.0,
+   "high": 7.0,
+   "min": 75,
+   "rate_per_hr": 12,
+   "basis": "Per opening checked/re-taped",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Return grille temporary filter media change": {
+   "unit": "each",
+   "low": 4.0,
+   "mid": 7.0,
+   "high": 12,
+   "min": 75,
+   "rate_per_hr": 7.0,
+   "basis": "Per grille labor; media at cost",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Final HVAC filter replacement coordination": {
+   "unit": "hour",
+   "low": 45,
+   "mid": 55,
+   "high": 75,
+   "min": 110,
+   "basis": "Hourly coordination/assist; filters by mechanical",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Pre-flush-out final cleaning": {
+   "unit": "sqft",
+   "low": 0.04,
+   "mid": 0.07,
+   "high": 0.12,
+   "min": 300,
+   "rate_per_hr": 650,
+   "basis": "Per sf; extra HEPA pass before LEED flush-out",
+   "src": [
+    "S2",
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Construction IAQ photo documentation": {
+   "unit": "lot",
+   "low": 150,
+   "mid": 350,
+   "high": 800,
+   "basis": "Per report/period",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Low-VOC product log for cleaning materials": {
+   "unit": "lot",
+   "low": 100,
+   "mid": 250,
+   "high": 500,
+   "basis": "Per project",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Store opening clean": {
+   "unit": "sqft",
+   "low": 0.2,
+   "mid": 0.32,
+   "high": 0.55,
+   "min": 1200,
+   "rate_per_hr": 140,
+   "basis": "Per sf; commercial post-construction $0.15-0.75, 2011 store jobs 13-20c",
+   "src": [
+    "S3",
+    "S4"
+   ],
+   "confidence": "sourced"
+  },
+  "Gondola shelving detailing": {
+   "unit": "lf",
+   "low": 0.4,
+   "mid": 0.75,
+   "high": 1.4,
+   "min": 150,
+   "rate_per_hr": 60,
+   "basis": "Per lf of gondola run, all shelves",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Wall fixture and slatwall cleaning": {
+   "unit": "sqft",
+   "low": 0.15,
+   "mid": 0.28,
+   "high": 0.5,
+   "min": 150,
+   "rate_per_hr": 160,
+   "basis": "Per sf of fixture wall",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Display fixture and mannequin cleaning": {
+   "unit": "each",
+   "low": 6.0,
+   "mid": 12,
+   "high": 25,
+   "min": 75,
+   "rate_per_hr": 4.0,
+   "basis": "Per fixture/form",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Fitting room cleaning": {
+   "unit": "each",
+   "low": 15,
+   "mid": 25,
+   "high": 40,
+   "min": 75,
+   "rate_per_hr": 1.8,
+   "basis": "Per room",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Point-of-sale counter detailing": {
+   "unit": "each",
+   "low": 20,
+   "mid": 40,
+   "high": 75,
+   "min": 75,
+   "rate_per_hr": 1.1,
+   "basis": "Per POS station",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Merchandise set support cleaning": {
+   "unit": "hour",
+   "low": 38,
+   "mid": 45,
+   "high": 58,
+   "min": 180,
+   "basis": "Hourly during merchandising",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Stockroom and backroom cleaning": {
+   "unit": "sqft",
+   "low": 0.08,
+   "mid": 0.14,
+   "high": 0.25,
+   "min": 200,
+   "rate_per_hr": 330,
+   "basis": "Per sf",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Retail remodel overnight cleaning": {
+   "unit": "sqft",
+   "low": 0.05,
+   "mid": 0.09,
+   "high": 0.16,
+   "min": 600,
+   "rate_per_hr": 550,
+   "basis": "Per sf per night; night differential included",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Phased store remodel cleaning": {
+   "unit": "sqft",
+   "low": 0.15,
+   "mid": 0.25,
+   "high": 0.42,
+   "min": 1000,
+   "rate_per_hr": 180,
+   "basis": "Per sf per phase",
+   "src": [
+    "S3",
+    "S4"
+   ],
+   "confidence": "derived"
+  },
+  "Multi-site retail rollout cleaning": {
+   "unit": "sqft",
+   "low": 0.18,
+   "mid": 0.3,
+   "high": 0.5,
+   "min": 1500,
+   "rate_per_hr": 150,
+   "basis": "Per sf per store; add travel/per diem outside service area",
+   "src": [
+    "S3",
+    "S4"
+   ],
+   "confidence": "derived"
+  },
+  "Restaurant chain opening clean": {
+   "unit": "sqft",
+   "low": 0.3,
+   "mid": 0.5,
+   "high": 0.85,
+   "min": 1500,
+   "rate_per_hr": 90,
+   "basis": "Per sf; restaurants priced at a premium (35c in 2011)",
+   "src": [
+    "S4",
+    "S65"
+   ],
+   "confidence": "sourced"
+  },
+  "Bank branch opening clean": {
+   "unit": "sqft",
+   "low": 0.25,
+   "mid": 0.4,
+   "high": 0.65,
+   "min": 1000,
+   "rate_per_hr": 110,
+   "basis": "Per sf",
+   "src": [
+    "S3"
+   ],
+   "confidence": "derived"
+  },
+  "Pharmacy and clinic retail opening clean": {
+   "unit": "sqft",
+   "low": 0.25,
+   "mid": 0.42,
+   "high": 0.7,
+   "min": 1000,
+   "rate_per_hr": 105,
+   "basis": "Per sf",
+   "src": [
+    "S3",
+    "S8"
+   ],
+   "confidence": "derived"
+  },
+  "Healthcare post-construction terminal-style clean": {
+   "unit": "sqft",
+   "low": 0.4,
+   "mid": 0.7,
+   "high": 1.2,
+   "min": 1500,
+   "rate_per_hr": 60,
+   "basis": "Per sf; medical final ~50-80 sf/worker-hr, disinfectant protocols",
+   "src": [
+    "S8",
+    "S65"
+   ],
+   "confidence": "derived"
+  },
+  "Medical office post-construction clean": {
+   "unit": "sqft",
+   "low": 0.25,
+   "mid": 0.4,
+   "high": 0.65,
+   "min": 750,
+   "rate_per_hr": 110,
+   "basis": "Per sf",
+   "src": [
+    "S8",
+    "S3"
+   ],
+   "confidence": "derived"
+  },
+  "Dental office post-construction clean": {
+   "unit": "sqft",
+   "low": 0.28,
+   "mid": 0.45,
+   "high": 0.75,
+   "min": 750,
+   "rate_per_hr": 100,
+   "basis": "Per sf; operatories detailed",
+   "src": [
+    "S8",
+    "S3"
+   ],
+   "confidence": "derived"
+  },
+  "Operating room post-construction clean": {
+   "unit": "room",
+   "low": 400,
+   "mid": 750,
+   "high": 1500,
+   "basis": "Per OR; multi-pass top-down clean and disinfect before air balance/particle testing",
+   "src": [
+    "S8"
+   ],
+   "confidence": "derived"
+  },
+  "Laboratory post-construction clean": {
+   "unit": "sqft",
+   "low": 0.3,
+   "mid": 0.55,
+   "high": 0.95,
+   "min": 1000,
+   "rate_per_hr": 85,
+   "basis": "Per sf",
+   "src": [
+    "S8"
+   ],
+   "confidence": "derived"
+  },
+  "Fume hood exterior cleaning": {
+   "unit": "each",
+   "low": 20,
+   "mid": 35,
+   "high": 60,
+   "min": 75,
+   "rate_per_hr": 1.3,
+   "basis": "Per hood exterior and sash",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Cleanroom protocol cleaning": {
+   "unit": "sqft",
+   "low": 0.75,
+   "mid": 1.5,
+   "high": 3.0,
+   "min": 2500,
+   "rate_per_hr": 30,
+   "basis": "Per sf; gowned crew, multi-pass wipe, cleanroom consumables",
+   "src": [
+    "S8"
+   ],
+   "confidence": "derived"
+  },
+  "Pharmacy compounding room cleaning": {
+   "unit": "room",
+   "low": 300,
+   "mid": 600,
+   "high": 1200,
+   "basis": "Per room (USP 797/800 suite: ante + buffer)",
+   "src": [
+    "S8"
+   ],
+   "confidence": "derived"
+  },
+  "Data center post-construction cleaning": {
+   "unit": "sqft",
+   "low": 0.5,
+   "mid": 1.0,
+   "high": 1.75,
+   "min": 3000,
+   "rate_per_hr": 50,
+   "basis": "Per sf; ~$1/sf deep clean of 100,000 sf facility",
+   "src": [
+    "S54"
+   ],
+   "confidence": "sourced"
+  },
+  "Sub-floor plenum cleaning in data centers": {
+   "unit": "sqft",
+   "low": 0.75,
+   "mid": 1.5,
+   "high": 3.0,
+   "min": 2000,
+   "rate_per_hr": 35,
+   "basis": "Per sf of raised floor; tile lift, HEPA slab and pedestals",
+   "src": [
+    "S54"
+   ],
+   "confidence": "derived"
+  },
+  "Server rack exterior cleaning": {
+   "unit": "each",
+   "low": 10,
+   "mid": 20,
+   "high": 40,
+   "min": 100,
+   "rate_per_hr": 2.5,
+   "basis": "Per rack/cabinet exterior",
+   "src": [
+    "S54"
+   ],
+   "confidence": "derived"
+  },
+  "Controlled contamination cleaning": {
+   "unit": "sqft",
+   "low": 0.4,
+   "mid": 0.8,
+   "high": 1.5,
+   "min": 1500,
+   "rate_per_hr": 60,
+   "basis": "Per sf; specified protocols and verification",
+   "src": [
+    "S8"
+   ],
+   "confidence": "derived"
+  },
+  "Vivarium and animal facility cleaning": {
+   "unit": "sqft",
+   "low": 0.45,
+   "mid": 0.8,
+   "high": 1.4,
+   "min": 2000,
+   "rate_per_hr": 60,
+   "basis": "Per sf; sanitize-ready finish",
+   "src": [
+    "S8"
+   ],
+   "confidence": "derived"
+  },
+  "School post-construction cleaning": {
+   "unit": "sqft",
+   "low": 0.15,
+   "mid": 0.25,
+   "high": 0.4,
+   "min": 2000,
+   "rate_per_hr": 180,
+   "basis": "Per sf; final clean band",
+   "src": [
+    "S1",
+    "S2",
+    "S4"
+   ],
+   "confidence": "sourced"
+  },
+  "Classroom turnover cleaning": {
+   "unit": "room",
+   "low": 60,
+   "mid": 110,
+   "high": 200,
+   "basis": "Per classroom",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Dormitory and student housing turnover": {
+   "unit": "room",
+   "low": 60,
+   "mid": 100,
+   "high": 175,
+   "basis": "Per bedroom/suite room",
+   "src": [
+    "S64"
+   ],
+   "confidence": "derived"
+  },
+  "Hotel room post-construction cleaning": {
+   "unit": "room",
+   "low": 60,
+   "mid": 95,
+   "high": 160,
+   "basis": "Per key (~350 sf at $0.20-0.40/sf incl. bath)",
+   "src": [
+    "S2",
+    "S1"
+   ],
+   "confidence": "derived"
+  },
+  "Hotel public area post-construction cleaning": {
+   "unit": "sqft",
+   "low": 0.2,
+   "mid": 0.35,
+   "high": 0.6,
+   "min": 750,
+   "rate_per_hr": 130,
+   "basis": "Per sf",
+   "src": [
+    "S3"
+   ],
+   "confidence": "derived"
+  },
+  "Fitness center post-construction cleaning": {
+   "unit": "sqft",
+   "low": 0.2,
+   "mid": 0.35,
+   "high": 0.6,
+   "min": 500,
+   "rate_per_hr": 130,
+   "basis": "Per sf; equipment wipe extra",
+   "src": [
+    "S3"
+   ],
+   "confidence": "derived"
+  },
+  "Pool deck and natatorium cleaning": {
+   "unit": "sqft",
+   "low": 0.15,
+   "mid": 0.28,
+   "high": 0.5,
+   "min": 500,
+   "rate_per_hr": 160,
+   "basis": "Per sf",
+   "src": [
+    "S23"
+   ],
+   "confidence": "derived"
+  },
+  "Church and worship space post-construction cleaning": {
+   "unit": "sqft",
+   "low": 0.18,
+   "mid": 0.3,
+   "high": 0.5,
+   "min": 750,
+   "rate_per_hr": 150,
+   "basis": "Per sf; pews/seating priced separately",
+   "src": [
+    "S1",
+    "S3"
+   ],
+   "confidence": "derived"
+  },
+  "Theater and auditorium post-construction cleaning": {
+   "unit": "sqft",
+   "low": 0.2,
+   "mid": 0.35,
+   "high": 0.6,
+   "min": 1000,
+   "rate_per_hr": 130,
+   "basis": "Per sf; seats priced separately",
+   "src": [
+    "S3"
+   ],
+   "confidence": "derived"
+  },
+  "Arena and stadium post-construction cleaning": {
+   "unit": "sqft",
+   "low": 0.12,
+   "mid": 0.22,
+   "high": 0.4,
+   "min": 5000,
+   "rate_per_hr": 220,
+   "basis": "Per sf of concourse/floor; seats separately",
+   "src": [
+    "S3"
+   ],
+   "confidence": "derived"
+  },
+  "Library stack and shelving cleaning": {
+   "unit": "lf",
+   "low": 0.2,
+   "mid": 0.35,
+   "high": 0.6,
+   "min": 150,
+   "rate_per_hr": 130,
+   "basis": "Per lf of shelf",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Warehouse post-construction cleaning": {
+   "unit": "sqft",
+   "low": 0.06,
+   "mid": 0.11,
+   "high": 0.2,
+   "min": 1500,
+   "rate_per_hr": 450,
+   "basis": "Per sf; industrial clean ~$0.20/sf, open floor allows rider scrubbers",
+   "src": [
+    "S77",
+    "S1"
+   ],
+   "confidence": "sourced"
+  },
+  "Pallet rack cleaning": {
+   "unit": "each",
+   "low": 8.0,
+   "mid": 15,
+   "high": 30,
+   "min": 200,
+   "rate_per_hr": 3.0,
+   "basis": "Per bay (all beam levels) from lift",
+   "src": [
+    "S45"
+   ],
+   "confidence": "derived"
+  },
+  "Industrial equipment exterior cleaning": {
+   "unit": "hour",
+   "low": 45,
+   "mid": 55,
+   "high": 75,
+   "min": 220,
+   "basis": "Hourly; scope varies by equipment",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Conveyor system exterior cleaning": {
+   "unit": "lf",
+   "low": 0.5,
+   "mid": 1.0,
+   "high": 2.0,
+   "min": 200,
+   "rate_per_hr": 45,
+   "basis": "Per lf of conveyor",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Manufacturing plant post-construction cleaning": {
+   "unit": "sqft",
+   "low": 0.1,
+   "mid": 0.18,
+   "high": 0.32,
+   "min": 2500,
+   "rate_per_hr": 260,
+   "basis": "Per sf",
+   "src": [
+    "S77",
+    "S1"
+   ],
+   "confidence": "derived"
+  },
+  "Cold storage facility cleaning": {
+   "unit": "sqft",
+   "low": 0.12,
+   "mid": 0.22,
+   "high": 0.4,
+   "min": 2500,
+   "rate_per_hr": 200,
+   "basis": "Per sf; before pull-down",
+   "src": [
+    "S77"
+   ],
+   "confidence": "derived"
+  },
+  "Truck court and dock apron sweeping": {
+   "unit": "sqft",
+   "low": 0.008,
+   "mid": 0.015,
+   "high": 0.03,
+   "min": 350,
+   "rate_per_hr": 8000,
+   "basis": "Per sf; sweeper truck $115-135/hr at ~8,000 sf/hr",
+   "src": [
+    "S58"
+   ],
+   "confidence": "derived"
+  },
+  "Sidewalk pressure washing": {
+   "unit": "sqft",
+   "low": 0.08,
+   "mid": 0.15,
+   "high": 0.3,
+   "min": 300,
+   "rate_per_hr": 400,
+   "basis": "Per sf; county bid $0.075-0.20/sf, commercial flatwork $0.08-0.40",
+   "src": [
+    "S20",
+    "S23",
+    "S24"
+   ],
+   "confidence": "sourced"
+  },
+  "Parking lot sweeping": {
+   "unit": "hour",
+   "low": 95,
+   "mid": 125,
+   "high": 175,
+   "min": 250,
+   "basis": "Per sweeper-hour; municipal/contractor bids $115-195/hr",
+   "src": [
+    "S58"
+   ],
+   "confidence": "sourced"
+  },
+  "Parking lot washing": {
+   "unit": "sqft",
+   "low": 0.06,
+   "mid": 0.12,
+   "high": 0.22,
+   "min": 750,
+   "rate_per_hr": 700,
+   "basis": "Per sf; lot washing $0.08-0.25/sf basic",
+   "src": [
+    "S79",
+    "S23"
+   ],
+   "confidence": "sourced"
+  },
+  "Loading dock washing": {
+   "unit": "sqft",
+   "low": 0.1,
+   "mid": 0.18,
+   "high": 0.35,
+   "min": 250,
+   "rate_per_hr": 350,
+   "basis": "Per sf; degreasing included",
+   "src": [
+    "S23"
+   ],
+   "confidence": "derived"
+  },
+  "Dumpster pad degreasing": {
+   "unit": "each",
+   "low": 75,
+   "mid": 125,
+   "high": 225,
+   "basis": "Per pad",
+   "src": [
+    "S23"
+   ],
+   "confidence": "derived"
+  },
+  "Building facade washing": {
+   "unit": "sqft",
+   "low": 0.15,
+   "mid": 0.3,
+   "high": 0.6,
+   "min": 1000,
+   "rate_per_hr": 250,
+   "basis": "Per sf of facade; commercial wall wash $0.20-1.00, lift extra",
+   "src": [
+    "S69"
+   ],
+   "confidence": "sourced"
+  },
+  "Exterior soft washing": {
+   "unit": "sqft",
+   "low": 0.15,
+   "mid": 0.28,
+   "high": 0.5,
+   "min": 500,
+   "rate_per_hr": 260,
+   "basis": "Per sf; soft wash $0.15-0.60",
+   "src": [
+    "S69"
+   ],
+   "confidence": "sourced"
+  },
+  "Brick and masonry cleaning": {
+   "unit": "sqft",
+   "low": 0.4,
+   "mid": 0.65,
+   "high": 1.2,
+   "min": 500,
+   "rate_per_hr": 100,
+   "basis": "Per sf; Homewyse brick cleaning $0.54-0.68",
+   "src": [
+    "S59"
+   ],
+   "confidence": "sourced"
+  },
+  "Masonry efflorescence removal": {
+   "unit": "sqft",
+   "low": 0.75,
+   "mid": 1.5,
+   "high": 3.5,
+   "min": 300,
+   "rate_per_hr": 45,
+   "basis": "Per sf; acid/chemical $1.00-3.50",
+   "src": [
+    "S59"
+   ],
+   "confidence": "sourced"
+  },
+  "Stucco and EIFS cleaning": {
+   "unit": "sqft",
+   "low": 0.15,
+   "mid": 0.28,
+   "high": 0.5,
+   "min": 500,
+   "rate_per_hr": 260,
+   "basis": "Per sf; low-pressure soft wash only",
+   "src": [
+    "S69"
+   ],
+   "confidence": "sourced"
+  },
+  "Metal panel and canopy cleaning": {
+   "unit": "sqft",
+   "low": 0.15,
+   "mid": 0.3,
+   "high": 0.55,
+   "min": 300,
+   "rate_per_hr": 200,
+   "basis": "Per sf",
+   "src": [
+    "S69"
+   ],
+   "confidence": "derived"
+  },
+  "Paver and hardscape cleaning": {
+   "unit": "sqft",
+   "low": 0.15,
+   "mid": 0.25,
+   "high": 0.45,
+   "min": 300,
+   "rate_per_hr": 300,
+   "basis": "Per sf; flatwork washing (sealing separate $0.75-1.45 bundled)",
+   "src": [
+    "S23",
+    "S60"
+   ],
+   "confidence": "sourced"
+  },
+  "Paver joint sand cleanup": {
+   "unit": "sqft",
+   "low": 0.03,
+   "mid": 0.06,
+   "high": 0.12,
+   "min": 150,
+   "rate_per_hr": 800,
+   "basis": "Per sf",
+   "src": [
+    "S60"
+   ],
+   "confidence": "derived"
+  },
+  "Entryway and vestibule cleaning": {
+   "unit": "each",
+   "low": 45,
+   "mid": 85,
+   "high": 150,
+   "basis": "Per entry/vestibule",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Exterior signage and monument sign cleaning": {
+   "unit": "each",
+   "low": 50,
+   "mid": 100,
+   "high": 200,
+   "basis": "Per sign",
+   "src": [
+    "S69"
+   ],
+   "confidence": "derived"
+  },
+  "Exterior light fixture and pole base cleaning": {
+   "unit": "each",
+   "low": 15,
+   "mid": 30,
+   "high": 60,
+   "min": 150,
+   "rate_per_hr": 1.5,
+   "basis": "Per pole base/fixture to ~12 ft; tall heads need lift",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Site furniture and bike rack cleaning": {
+   "unit": "each",
+   "low": 8.0,
+   "mid": 15,
+   "high": 30,
+   "min": 75,
+   "rate_per_hr": 3.0,
+   "basis": "Per item",
+   "src": [
+    "S23"
+   ],
+   "confidence": "derived"
+  },
+  "Landscape bed debris removal": {
+   "unit": "sqft",
+   "low": 0.02,
+   "mid": 0.04,
+   "high": 0.08,
+   "min": 150,
+   "rate_per_hr": 1100,
+   "basis": "Per sf of bed",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Storm drain inlet protection cleanup": {
+   "unit": "each",
+   "low": 35,
+   "mid": 65,
+   "high": 120,
+   "min": 150,
+   "rate_per_hr": 0.7,
+   "basis": "Per inlet",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Silt fence and erosion control debris cleanup": {
+   "unit": "lf",
+   "low": 0.3,
+   "mid": 0.6,
+   "high": 1.2,
+   "min": 200,
+   "rate_per_hr": 80,
+   "basis": "Per lf; removal of fence itself usually by site contractor",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Curb and gutter cleaning": {
+   "unit": "lf",
+   "low": 0.15,
+   "mid": 0.3,
+   "high": 0.6,
+   "min": 150,
+   "rate_per_hr": 150,
+   "basis": "Per lf",
+   "src": [
+    "S23"
+   ],
+   "confidence": "derived"
+  },
+  "Wastewater recovery during washing": {
+   "unit": "sqft",
+   "low": 0.02,
+   "mid": 0.04,
+   "high": 0.08,
+   "min": 150,
+   "basis": "Adder per sf washed for vac/reclaim and proper discharge",
+   "src": [
+    "S23"
+   ],
+   "confidence": "derived"
+  },
+  "Graffiti removal": {
+   "unit": "sqft",
+   "low": 0.5,
+   "mid": 1.5,
+   "high": 4.0,
+   "min": 150,
+   "rate_per_hr": 40,
+   "basis": "Per sf; municipal bids $0.30-0.70 large areas, $0.35-4.25 full removal",
+   "src": [
+    "S21",
+    "S22"
+   ],
+   "confidence": "sourced"
+  },
+  "Roof debris removal": {
+   "unit": "sqft",
+   "low": 0.02,
+   "mid": 0.04,
+   "high": 0.08,
+   "min": 400,
+   "rate_per_hr": 1200,
+   "basis": "Per sf of roof; fall protection",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Gutter and downspout debris removal": {
+   "unit": "lf",
+   "low": 0.75,
+   "mid": 1.5,
+   "high": 2.75,
+   "min": 200,
+   "rate_per_hr": 40,
+   "basis": "Per lf; commercial gutter cleaning $0.75-2.75/lf",
+   "src": [
+    "S51"
+   ],
+   "confidence": "sourced"
+  },
+  "Balcony and terrace cleaning": {
+   "unit": "each",
+   "low": 25,
+   "mid": 45,
+   "high": 85,
+   "min": 100,
+   "rate_per_hr": 1.0,
+   "basis": "Per balcony incl. rail glass",
+   "src": [
+    "S23"
+   ],
+   "confidence": "derived"
+  },
+  "Solar array cleaning": {
+   "unit": "each",
+   "low": 3.0,
+   "mid": 6.0,
+   "high": 15,
+   "min": 300,
+   "rate_per_hr": 10,
+   "basis": "Per panel; $3-8 large arrays, $10-25 small residential",
+   "src": [
+    "S56"
+   ],
+   "confidence": "sourced"
+  },
+  "Paint overspray removal": {
+   "unit": "sqft",
+   "low": 0.3,
+   "mid": 0.6,
+   "high": 1.2,
+   "min": 150,
+   "rate_per_hr": 75,
+   "basis": "Per sf of affected finish (glass by pane)",
+   "src": [
+    "S27"
+   ],
+   "confidence": "derived"
+  },
+  "Paint drip and splatter removal": {
+   "unit": "sqft",
+   "low": 0.02,
+   "mid": 0.04,
+   "high": 0.08,
+   "min": 150,
+   "rate_per_hr": 1100,
+   "basis": "Per sf of floor area",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Adhesive residue removal": {
+   "unit": "sqft",
+   "low": 0.2,
+   "mid": 0.4,
+   "high": 0.8,
+   "min": 100,
+   "rate_per_hr": 110,
+   "basis": "Per sf affected",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Tape residue removal": {
+   "unit": "lf",
+   "low": 0.1,
+   "mid": 0.2,
+   "high": 0.4,
+   "min": 75,
+   "rate_per_hr": 220,
+   "basis": "Per lf of tape line",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Stucco and plaster splatter removal": {
+   "unit": "sqft",
+   "low": 0.3,
+   "mid": 0.6,
+   "high": 1.2,
+   "min": 150,
+   "rate_per_hr": 75,
+   "basis": "Per sf affected",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Concrete and mortar splatter removal": {
+   "unit": "sqft",
+   "low": 0.4,
+   "mid": 0.8,
+   "high": 1.6,
+   "min": 150,
+   "rate_per_hr": 55,
+   "basis": "Per sf affected",
+   "src": [
+    "S27"
+   ],
+   "confidence": "derived"
+  },
+  "Spray foam overspray removal": {
+   "unit": "sqft",
+   "low": 0.75,
+   "mid": 1.5,
+   "high": 3.0,
+   "min": 200,
+   "rate_per_hr": 30,
+   "basis": "Per sf; mechanical removal, slow",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Fireproofing overspray removal": {
+   "unit": "sqft",
+   "low": 0.6,
+   "mid": 1.25,
+   "high": 2.5,
+   "min": 200,
+   "rate_per_hr": 36,
+   "basis": "Per sf; cementitious overspray",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Joint compound film removal": {
+   "unit": "sqft",
+   "low": 0.05,
+   "mid": 0.1,
+   "high": 0.2,
+   "min": 150,
+   "rate_per_hr": 450,
+   "basis": "Per sf of floor/finish",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Pencil, marker and layout line removal": {
+   "unit": "sqft",
+   "low": 0.005,
+   "mid": 0.01,
+   "high": 0.02,
+   "min": 100,
+   "rate_per_hr": 4500,
+   "basis": "Per sf of floor area",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Label, sticker and UPC removal": {
+   "unit": "each",
+   "low": 0.5,
+   "mid": 1.0,
+   "high": 2.0,
+   "min": 75,
+   "rate_per_hr": 45,
+   "basis": "Per label",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Protective film removal from appliances and fixtures": {
+   "unit": "each",
+   "low": 3.0,
+   "mid": 6.0,
+   "high": 12,
+   "min": 75,
+   "rate_per_hr": 8.0,
+   "basis": "Per item",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Rust stain removal from finishes": {
+   "unit": "sqft",
+   "low": 1.0,
+   "mid": 2.0,
+   "high": 4.0,
+   "min": 100,
+   "rate_per_hr": 25,
+   "basis": "Per sf treated",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Water spot and mineral deposit removal": {
+   "unit": "sqft",
+   "low": 1.0,
+   "mid": 2.5,
+   "high": 5.0,
+   "min": 100,
+   "rate_per_hr": 20,
+   "basis": "Per sf; below glass restoration ($5-10/sf)",
+   "src": [
+    "S28"
+   ],
+   "confidence": "derived"
+  },
+  "Tar and roofing material removal": {
+   "unit": "sqft",
+   "low": 0.75,
+   "mid": 1.5,
+   "high": 3.0,
+   "min": 150,
+   "rate_per_hr": 30,
+   "basis": "Per sf affected",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Floor protection installation": {
+   "unit": "sqft",
+   "low": 0.35,
+   "mid": 0.5,
+   "high": 0.75,
+   "min": 300,
+   "rate_per_hr": 250,
+   "basis": "Per sf installed; Ram Board $0.19-0.26/sf material + tape + labor",
+   "src": [
+    "S44"
+   ],
+   "confidence": "sourced"
+  },
+  "Floor protection removal and disposal": {
+   "unit": "sqft",
+   "low": 0.03,
+   "mid": 0.06,
+   "high": 0.1,
+   "min": 150,
+   "rate_per_hr": 900,
+   "basis": "Per sf",
+   "src": [
+    "S44"
+   ],
+   "confidence": "derived"
+  },
+  "Adhesive under floor protection cleanup": {
+   "unit": "sqft",
+   "low": 0.05,
+   "mid": 0.1,
+   "high": 0.2,
+   "min": 150,
+   "rate_per_hr": 450,
+   "basis": "Per sf affected",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Elevator cab protection install and removal": {
+   "unit": "each",
+   "low": 150,
+   "mid": 275,
+   "high": 450,
+   "basis": "Per cab (pads/board install and removal)",
+   "src": [
+    "S44"
+   ],
+   "confidence": "derived"
+  },
+  "Door and frame protection removal": {
+   "unit": "each",
+   "low": 2.0,
+   "mid": 3.5,
+   "high": 6.0,
+   "min": 75,
+   "rate_per_hr": 13,
+   "basis": "Per opening",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Countertop and fixture protection removal": {
+   "unit": "each",
+   "low": 2.0,
+   "mid": 4.0,
+   "high": 7.0,
+   "min": 75,
+   "rate_per_hr": 12,
+   "basis": "Per item",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Carpet protection film removal": {
+   "unit": "sqft",
+   "low": 0.02,
+   "mid": 0.04,
+   "high": 0.07,
+   "min": 100,
+   "rate_per_hr": 1100,
+   "basis": "Per sf",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Temporary walk-off mat placement and removal": {
+   "unit": "each",
+   "low": 25,
+   "mid": 45,
+   "high": 80,
+   "basis": "Per mat placed and removed (monthly rental extra)",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Elevator cab interior detailing": {
+   "unit": "each",
+   "low": 75,
+   "mid": 125,
+   "high": 225,
+   "basis": "Per cab incl. stainless, ceiling, sill",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Elevator door and sill track cleaning": {
+   "unit": "opening",
+   "low": 15,
+   "mid": 25,
+   "high": 45,
+   "min": 75,
+   "rate_per_hr": 2.0,
+   "basis": "Per hoistway opening",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Elevator pit debris removal": {
+   "unit": "each",
+   "low": 75,
+   "mid": 150,
+   "high": 300,
+   "basis": "Per pit; elevator mechanic lockout fee extra",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Escalator and moving walk cleaning": {
+   "unit": "each",
+   "low": 600,
+   "mid": 1200,
+   "high": 2500,
+   "basis": "Per unit; restorative clean $800-2,500 planning range",
+   "src": [
+    "S57"
+   ],
+   "confidence": "derived"
+  },
+  "Stairwell cleaning top to bottom": {
+   "unit": "floor",
+   "low": 35,
+   "mid": 60,
+   "high": 100,
+   "min": 150,
+   "rate_per_hr": 0.8,
+   "basis": "Per flight/floor incl. rails and landings",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Corridor and hallway detailing": {
+   "unit": "sqft",
+   "low": 0.15,
+   "mid": 0.25,
+   "high": 0.4,
+   "min": 200,
+   "rate_per_hr": 180,
+   "basis": "Per sf; final-clean band",
+   "src": [
+    "S1",
+    "S2"
+   ],
+   "confidence": "derived"
+  },
+  "Lobby final detailing": {
+   "unit": "sqft",
+   "low": 0.3,
+   "mid": 0.5,
+   "high": 0.85,
+   "min": 400,
+   "rate_per_hr": 90,
+   "basis": "Per sf; glass/stone heavy",
+   "src": [
+    "S3"
+   ],
+   "confidence": "derived"
+  },
+  "Final clean of entire building": {
+   "unit": "sqft",
+   "low": 0.15,
+   "mid": 0.25,
+   "high": 0.4,
+   "min": 1000,
+   "rate_per_hr": 180,
+   "basis": "Per sf; final $0.15-0.30 (Cleaner Match), $0.20-0.50 large commercial; ~180 sf/worker-hr",
+   "src": [
+    "S1",
+    "S2",
+    "S3",
+    "S72",
+    "S4"
+   ],
+   "confidence": "sourced"
+  },
+  "Final clean by phase or floor": {
+   "unit": "sqft",
+   "low": 0.17,
+   "mid": 0.28,
+   "high": 0.45,
+   "min": 750,
+   "rate_per_hr": 160,
+   "basis": "Per sf; final-clean anchor plus re-mobilization",
+   "src": [
+    "S1",
+    "S2",
+    "S72"
+   ],
+   "confidence": "sourced"
+  },
+  "Light clean (phase 2)": {
+   "unit": "sqft",
+   "low": 0.06,
+   "mid": 0.1,
+   "high": 0.16,
+   "min": 400,
+   "rate_per_hr": 450,
+   "basis": "Per sf; between rough and final",
+   "src": [
+    "S2",
+    "S72"
+   ],
+   "confidence": "sourced"
+  },
+  "Touch-up clean before owner walk": {
+   "unit": "sqft",
+   "low": 0.05,
+   "mid": 0.08,
+   "high": 0.15,
+   "min": 350,
+   "rate_per_hr": 550,
+   "basis": "Per sf; touch-up $0.06-0.12 (Cleaner Match) or $150-500/visit",
+   "src": [
+    "S2",
+    "S72"
+   ],
+   "confidence": "sourced"
+  },
+  "Punch-list cleaning": {
+   "unit": "hour",
+   "low": 40,
+   "mid": 48,
+   "high": 60,
+   "min": 200,
+   "basis": "Hourly; billed per call-back",
+   "src": [
+    "S46",
+    "S48"
+   ],
+   "confidence": "derived"
+  },
+  "Pre-certificate of occupancy clean": {
+   "unit": "sqft",
+   "low": 0.06,
+   "mid": 0.1,
+   "high": 0.18,
+   "min": 500,
+   "rate_per_hr": 450,
+   "basis": "Per sf",
+   "src": [
+    "S2"
+   ],
+   "confidence": "derived"
+  },
+  "Pre-health inspection clean": {
+   "unit": "sqft",
+   "low": 0.15,
+   "mid": 0.25,
+   "high": 0.4,
+   "min": 400,
+   "rate_per_hr": 180,
+   "basis": "Per sf of food areas",
+   "src": [
+    "S65"
+   ],
+   "confidence": "derived"
+  },
+  "Pre-fire marshal inspection clean": {
+   "unit": "sqft",
+   "low": 0.03,
+   "mid": 0.05,
+   "high": 0.09,
+   "min": 300,
+   "rate_per_hr": 900,
+   "basis": "Per sf; egress, rooms, fire equipment",
+   "src": [
+    "S2"
+   ],
+   "confidence": "derived"
+  },
+  "Owner move-in clean": {
+   "unit": "sqft",
+   "low": 0.08,
+   "mid": 0.14,
+   "high": 0.24,
+   "min": 300,
+   "rate_per_hr": 320,
+   "basis": "Per sf",
+   "src": [
+    "S2"
+   ],
+   "confidence": "derived"
+  },
+  "Tenant improvement final clean": {
+   "unit": "sqft",
+   "low": 0.18,
+   "mid": 0.3,
+   "high": 0.5,
+   "min": 600,
+   "rate_per_hr": 150,
+   "basis": "Per sf; smaller suites price higher per sf",
+   "src": [
+    "S1",
+    "S3",
+    "S72"
+   ],
+   "confidence": "sourced"
+  },
+  "Phased occupancy cleaning": {
+   "unit": "sqft",
+   "low": 0.18,
+   "mid": 0.3,
+   "high": 0.5,
+   "min": 600,
+   "rate_per_hr": 150,
+   "basis": "Per sf per phase, occupied-area constraints",
+   "src": [
+    "S1",
+    "S2"
+   ],
+   "confidence": "derived"
+  },
+  "Post-furniture install clean": {
+   "unit": "sqft",
+   "low": 0.04,
+   "mid": 0.07,
+   "high": 0.12,
+   "min": 300,
+   "rate_per_hr": 650,
+   "basis": "Per sf; cartons, dust, vacuum",
+   "src": [
+    "S2"
+   ],
+   "confidence": "derived"
+  },
+  "Post-IT and AV install clean": {
+   "unit": "sqft",
+   "low": 0.03,
+   "mid": 0.05,
+   "high": 0.09,
+   "min": 250,
+   "rate_per_hr": 900,
+   "basis": "Per sf",
+   "src": [
+    "S2"
+   ],
+   "confidence": "derived"
+  },
+  "Model unit and show suite cleaning": {
+   "unit": "unit",
+   "low": 150,
+   "mid": 250,
+   "high": 450,
+   "basis": "Per unit; show-ready detail",
+   "src": [
+    "S7",
+    "S64"
+   ],
+   "confidence": "derived"
+  },
+  "Vacant space turnover cleaning": {
+   "unit": "sqft",
+   "low": 0.08,
+   "mid": 0.14,
+   "high": 0.24,
+   "min": 300,
+   "rate_per_hr": 320,
+   "basis": "Per sf",
+   "src": [
+    "S65"
+   ],
+   "confidence": "derived"
+  },
+  "Property management turnover cleaning": {
+   "unit": "unit",
+   "low": 175,
+   "mid": 275,
+   "high": 450,
+   "basis": "Per dwelling unit; multifamily flat $125-300+ by bed count",
+   "src": [
+    "S64"
+   ],
+   "confidence": "sourced"
+  },
+  "Post-renovation reset clean": {
+   "unit": "sqft",
+   "low": 0.1,
+   "mid": 0.18,
+   "high": 0.3,
+   "min": 300,
+   "rate_per_hr": 250,
+   "basis": "Per sf",
+   "src": [
+    "S1",
+    "S2"
+   ],
+   "confidence": "derived"
+  },
+  "Post-equipment installation cleaning": {
+   "unit": "hour",
+   "low": 40,
+   "mid": 48,
+   "high": 60,
+   "min": 200,
+   "basis": "Hourly",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Emergency or overnight turnaround clean": {
+   "unit": "hour",
+   "low": 55,
+   "mid": 68,
+   "high": 90,
+   "min": 400,
+   "basis": "Hourly; ~1.5x premium for nights/short notice",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Before-and-after photo documentation": {
+   "unit": "lot",
+   "low": 100,
+   "mid": 250,
+   "high": 600,
+   "basis": "Per project/phase report",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Room-by-room cleaning checklist sign-off": {
+   "unit": "room",
+   "low": 3.0,
+   "mid": 6.0,
+   "high": 10,
+   "basis": "Per room inspected and signed",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Cleaning product SDS and data sheet package": {
+   "unit": "lot",
+   "low": 75,
+   "mid": 150,
+   "high": 300,
+   "basis": "Per submittal package",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Attic stock and spare material staging": {
+   "unit": "hour",
+   "low": 38,
+   "mid": 45,
+   "high": 58,
+   "min": 180,
+   "basis": "Hourly",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Owner training area preparation": {
+   "unit": "each",
+   "low": 75,
+   "mid": 150,
+   "high": 275,
+   "basis": "Per room set",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Apartment unit post-construction clean": {
+   "unit": "unit",
+   "low": 225,
+   "mid": 350,
+   "high": 550,
+   "basis": "Per unit; construction-clean calculators assume $300-400 flat per unit",
+   "src": [
+    "S7",
+    "S64",
+    "S2"
+   ],
+   "confidence": "sourced"
+  },
+  "Condo unit final clean": {
+   "unit": "unit",
+   "low": 275,
+   "mid": 425,
+   "high": 700,
+   "basis": "Per unit; larger finishes/glass",
+   "src": [
+    "S7",
+    "S5"
+   ],
+   "confidence": "sourced"
+  },
+  "Townhome final clean": {
+   "unit": "unit",
+   "low": 350,
+   "mid": 550,
+   "high": 900,
+   "basis": "Per unit (1,600-2,200 sf at ~$0.25/sf)",
+   "src": [
+    "S5",
+    "S7"
+   ],
+   "confidence": "derived"
+  },
+  "Amenity space final clean": {
+   "unit": "sqft",
+   "low": 0.25,
+   "mid": 0.4,
+   "high": 0.65,
+   "min": 500,
+   "rate_per_hr": 110,
+   "basis": "Per sf",
+   "src": [
+    "S3"
+   ],
+   "confidence": "derived"
+  },
+  "Leasing office final clean": {
+   "unit": "sqft",
+   "low": 0.25,
+   "mid": 0.4,
+   "high": 0.65,
+   "min": 400,
+   "rate_per_hr": 110,
+   "basis": "Per sf",
+   "src": [
+    "S3"
+   ],
+   "confidence": "derived"
+  },
+  "Appliance interior and exterior cleaning": {
+   "unit": "each",
+   "low": 20,
+   "mid": 40,
+   "high": 75,
+   "min": 75,
+   "rate_per_hr": 1.1,
+   "basis": "Per new appliance (film, labels, interior wipe); deep add-ons $40-150",
+   "src": [
+    "S67"
+   ],
+   "confidence": "derived"
+  },
+  "Range hood and microwave detailing": {
+   "unit": "each",
+   "low": 12,
+   "mid": 20,
+   "high": 35,
+   "min": 50,
+   "rate_per_hr": 2.2,
+   "basis": "Per item",
+   "src": [
+    "S67"
+   ],
+   "confidence": "derived"
+  },
+  "Washer and dryer area cleaning": {
+   "unit": "each",
+   "low": 12,
+   "mid": 20,
+   "high": 35,
+   "min": 50,
+   "rate_per_hr": 2.2,
+   "basis": "Per laundry closet",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Dryer vent debris check": {
+   "unit": "each",
+   "low": 20,
+   "mid": 40,
+   "high": 75,
+   "min": 100,
+   "rate_per_hr": 1.2,
+   "basis": "Per vent check/clear; full vent cleaning $90-250",
+   "src": [
+    "S52"
+   ],
+   "confidence": "derived"
+  },
+  "Garage and storage unit cleaning": {
+   "unit": "each",
+   "low": 35,
+   "mid": 60,
+   "high": 110,
+   "min": 100,
+   "rate_per_hr": 0.75,
+   "basis": "Per garage/storage unit",
+   "src": [
+    "S46"
+   ],
+   "confidence": "derived"
+  },
+  "Mailroom and package room cleaning": {
+   "unit": "sqft",
+   "low": 0.15,
+   "mid": 0.25,
+   "high": 0.4,
+   "min": 150,
+   "rate_per_hr": 180,
+   "basis": "Per sf",
+   "src": [
+    "S1"
+   ],
+   "confidence": "derived"
+  },
+  "Trash room and chute room cleaning": {
+   "unit": "floor",
+   "low": 30,
+   "mid": 60,
+   "high": 100,
+   "min": 300,
+   "rate_per_hr": 0.8,
+   "basis": "Per floor; trash chute cleaning $30-40 (Cooperator) to $50-100 (FCAJ) per floor",
+   "src": [
+    "S50"
+   ],
+   "confidence": "sourced"
+  },
+  "Water damage cleanup": {
+   "unit": "sqft",
+   "low": 2.0,
+   "mid": 4.0,
+   "high": 8.0,
+   "min": 1000,
+   "basis": "Per sf affected; extraction to drying $2-12/sf; licensed restoration sub",
+   "src": [
+    "S80"
+   ],
+   "confidence": "sourced"
+  },
+  "Mold remediation": {
+   "unit": "sqft",
+   "low": 5.0,
+   "mid": 15,
+   "high": 30,
+   "min": 1500,
+   "basis": "Per sf of affected area; $10-30/sf (Fixr), $3-25 other guides; licensed in FL",
+   "src": [
+    "S36"
+   ],
+   "confidence": "sourced"
+  },
+  "Fire and smoke residue cleaning": {
+   "unit": "sqft",
+   "low": 2.0,
+   "mid": 4.5,
+   "high": 8.0,
+   "min": 1000,
+   "basis": "Per sf; standard fire/smoke cleanup $4-7/sf",
+   "src": [
+    "S39"
+   ],
+   "confidence": "sourced"
+  },
+  "Asbestos abatement": {
+   "unit": "sqft",
+   "low": 6.0,
+   "mid": 12,
+   "high": 25,
+   "min": 2500,
+   "basis": "Per sf; $8-25/sf with containment/disposal; licensed abatement only",
+   "src": [
+    "S38"
+   ],
+   "confidence": "sourced"
+  },
+  "Lead paint abatement": {
+   "unit": "sqft",
+   "low": 6.0,
+   "mid": 12,
+   "high": 20,
+   "min": 2000,
+   "basis": "Per sf; removal $8-17/sf, encapsulation $1-4",
+   "src": [
+    "S37"
+   ],
+   "confidence": "sourced"
+  },
+  "Biohazard and sharps cleanup on jobsites": {
+   "unit": "hour",
+   "low": 75,
+   "mid": 125,
+   "high": 200,
+   "min": 500,
+   "basis": "Per tech-hour; biohazard $60-140/hr typical",
+   "src": [
+    "S40"
+   ],
+   "confidence": "sourced"
+  },
+  "Bird and pest dropping removal": {
+   "unit": "sqft",
+   "low": 2.0,
+   "mid": 5.0,
+   "high": 12,
+   "min": 300,
+   "rate_per_hr": 15,
+   "basis": "Per sf; biohazard per-sf $4-12 band",
+   "src": [
+    "S40"
+   ],
+   "confidence": "sourced"
+  },
+  "Hazardous material spill cleanup": {
+   "unit": "hour",
+   "low": 95,
+   "mid": 150,
+   "high": 250,
+   "min": 1000,
+   "basis": "Per tech-hour, HAZWOPER responder; disposal at cost",
+   "src": [
+    "S40"
+   ],
+   "confidence": "derived"
+  },
+  "Disinfection service with registered products": {
+   "unit": "sqft",
+   "low": 0.05,
+   "mid": 0.12,
+   "high": 0.25,
+   "min": 250,
+   "rate_per_hr": 500,
+   "basis": "Per sf; EPA-registered product, label dwell time",
+   "src": [
+    "S65"
+   ],
+   "confidence": "derived"
+  },
+  "Post-event facility restoration": {
+   "unit": "sqft",
+   "low": 0.08,
+   "mid": 0.15,
+   "high": 0.3,
+   "min": 750,
+   "rate_per_hr": 300,
+   "basis": "Per sf",
+   "src": [
+    "S1",
+    "S65"
+   ],
+   "confidence": "derived"
+  }
+ }
+}
