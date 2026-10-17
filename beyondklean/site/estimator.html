@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Estimator | Beyond Klean</title>
+<meta name="description" content="Internal estimating tool.">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<link rel="canonical" href="https://beyondklean.com/estimator.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=IBM+Plex+Mono:wght@400;600&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="preview-bar">Preview build · not indexed · beyondklean.com</div>
+<header class="top">
+  <div class="wrap top-in">
+    <a class="brand" href="index.html" aria-label="Beyond Klean home">
+      <img class="logo-l" src="assets/logo.png" alt="Beyond Klean" width="634" height="243">
+      <img class="logo-d" src="assets/logo-dark.png" alt="" width="634" height="243">
+    </a>
+    <a class="btn btn-sm quote-m" href="quote.html">Request a Bid</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mainnav" aria-label="Open menu"><span></span><span></span><span></span></button>
+    <nav class="mainnav" id="mainnav" aria-label="Main"><a href="services.html">Services</a><a href="projects.html">Projects</a><a href="government.html">Government</a><a href="general-contractors.html">For GCs</a><a href="faq.html">FAQ</a><a href="about.html">About</a><a href="contact.html">Contact</a><a class="bidlink" href="quote.html" data-bidcount hidden>Bid list <span class="badge">0</span></a><a class="btn btn-sm" href="quote.html">Request a Bid</a></nav>
+  </div>
+</header>
+<main id="main">
+
+<section class="wrap lock" data-lock>
+  <form class="lock-card" data-lockform autocomplete="off">
+    <p class="eyebrow">Internal · authorized users only</p>
+    <h1>Beyond Klean Estimator</h1>
+    <p class="lock-sub">In-house bidding for construction cleaning and recurring contracts. Your costs on top, the job underneath, profit at the bottom.</p>
+    <label for="lock-pw">Password</label>
+    <div class="lock-row">
+      <input id="lock-pw" type="password" inputmode="numeric" autocomplete="current-password" required>
+      <button class="btn" type="submit">Unlock</button>
+    </div>
+    <p class="lock-err" role="alert" data-lockerr hidden></p>
+    <p class="small lock-note">The price book is encrypted. It only opens with the password.</p>
+  </form>
+</section>
+
+<section class="wrap est2" data-estimator hidden>
+  <div class="e-bar">
+    <div>
+      <p class="eyebrow">Internal estimating · Premium</p>
+      <h1>Estimator</h1>
+    </div>
+    <div class="e-tabs" role="tablist">
+      <button type="button" role="tab" class="chip is-on" data-tab="est" aria-selected="true">Estimate</button>
+      <button type="button" role="tab" class="chip" data-tab="bids" aria-selected="false">Bids</button>
+      <button type="button" role="tab" class="chip" data-tab="book" aria-selected="false">Price book</button>
+      <button type="button" role="tab" class="chip" data-tab="company" aria-selected="false">Company</button>
+      <button type="button" class="chip" data-lockout>Lock</button>
+    </div>
+  </div>
+
+  <!-- ================= ESTIMATE ================= -->
+  <div data-pane="est">
+    <div class="e-head">
+      <div class="e-id">
+        <span class="mono" data-show="no"></span>
+        <div class="seg" role="group" aria-label="Estimate type">
+          <button type="button" data-mode="project">Construction project</button>
+          <button type="button" data-mode="recurring">Recurring contract</button>
+        </div>
+        <label class="e-status">Status
+          <select data-k="status"><option>Draft</option><option>In review</option><option>Approved</option><option>Sent</option><option>Won</option><option>Lost</option></select>
+        </label>
+      </div>
+      <div class="e-actions">
+        <button type="button" class="btn btn-sm" data-act="save">Save to bids</button>
+        <button type="button" class="btn btn-sm btn-ghost" data-act="print-internal">Internal estimate PDF</button>
+        <button type="button" class="btn btn-sm btn-ghost" data-act="print-customer">Customer quote PDF</button>
+        <button type="button" class="btn btn-sm btn-ghost" data-act="csv">Spreadsheet (CSV)</button>
+        <details class="e-more">
+          <summary class="btn btn-sm btn-ghost">More</summary>
+          <div class="e-menu">
+            <button type="button" data-act="new">New estimate</button>
+            <button type="button" data-act="dup">Duplicate as new</button>
+            <button type="button" data-act="save-file">Save estimate file</button>
+            <label class="filebtn-plain">Open estimate file<input type="file" accept=".json,application/json" data-act="open-file"></label>
+            <button type="button" data-act="save-tpl">Save as template</button>
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <div class="e-tpl" data-tpls></div>
+
+    <!-- 1. Project -->
+    <section class="e-card">
+      <h2><span class="e-num">1</span>Project and client</h2>
+      <div class="e-grid">
+        <label>Project name<input data-k="project.name"></label>
+        <label>Building type<select data-k="project.type">
+          <option></option><option>Residential</option><option>Multifamily</option><option>Commercial office</option>
+          <option>Retail or store opening</option><option>Restaurant or food service</option><option>Hospitality</option>
+          <option>Industrial or warehouse</option><option>Healthcare</option><option>Education or institutional</option>
+          <option>Government</option><option>Military</option><option>Other</option></select></label>
+        <label>Building square feet<input data-k="project.sqft" inputmode="decimal" data-num></label>
+        <label>City, state<input data-k="project.city"></label>
+        <label>ZIP<input data-k="project.zip" inputmode="numeric"></label>
+        <label>Start date<input type="date" data-k="project.start"></label>
+        <label>Needed by<input type="date" data-k="project.due"></label>
+        <label>Client name<input data-k="client.name"></label>
+        <label>Client company<input data-k="client.company"></label>
+        <label>Client phone<input data-k="client.phone"></label>
+        <label>Client email<input data-k="client.email"></label>
+        <label>Salesperson / estimator<input data-k="review.preparedBy"></label>
+      </div>
+    </section>
+
+    <!-- 2. Your costs -->
+    <section class="e-card e-costs">
+      <div class="e-card-h">
+        <h2><span class="e-num">2</span>Your costs</h2>
+        <button type="button" class="btn btn-sm btn-ghost" data-act="reset-costs">Load my company defaults</button>
+      </div>
+      <p class="small muted">Enter your own numbers. These drive every labor, travel and equipment cost below.</p>
+      <div class="e-cols">
+        <div>
+          <h3>Labor</h3>
+          <table class="e-mini">
+            <thead><tr><th>Role</th><th class="num">Wage / hr</th><th class="num">Loaded / hr</th></tr></thead>
+            <tbody data-roles></tbody>
+          </table>
+          <div class="e-grid e-grid-2">
+            <label>Payroll burden (%)<input data-k="costs.burden" inputmode="decimal" data-num></label>
+            <label>Supervision (% of crew hours)<input data-k="costs.supPct" inputmode="decimal" data-num></label>
+            <label>Crew size on site<input data-k="costs.crew" inputmode="numeric" data-num></label>
+            <label>Shift length (hours)<input data-k="costs.shift" inputmode="decimal" data-num></label>
+            <label class="chk"><input type="checkbox" data-k="costs.night"> Night or weekend work</label>
+            <label>Night / weekend premium (%)<input data-k="costs.nightPct" inputmode="decimal" data-num></label>
+          </div>
+        </div>
+        <div data-only="project">
+          <h3>Travel</h3>
+          <div class="seg seg-sm" role="group" aria-label="Travel type">
+            <button type="button" data-travel="local">Local crew</button>
+            <button type="button" data-travel="travel">Travel crew</button>
+          </div>
+          <div class="e-grid e-grid-2">
+            <label>Vehicles<input data-k="costs.vehicles" inputmode="numeric" data-num></label>
+            <label>Cost per mile ($)<input data-k="costs.perMile" inputmode="decimal" data-num></label>
+            <label data-travel-only="local">Round-trip miles per day<input data-k="costs.dailyMiles" inputmode="decimal" data-num></label>
+            <label data-travel-only="travel">One-way miles to site<input data-k="costs.oneWay" inputmode="decimal" data-num></label>
+            <label data-travel-only="travel">Lodging per room / night ($)<input data-k="costs.lodging" inputmode="decimal" data-num></label>
+            <label data-travel-only="travel">People per room<input data-k="costs.perRoom" inputmode="numeric" data-num></label>
+            <label data-travel-only="travel">Per diem per person / day ($)<input data-k="costs.perDiem" inputmode="decimal" data-num></label>
+            <label data-travel-only="travel">Airfare, tolls, other ($)<input data-k="costs.travelOther" inputmode="decimal" data-num></label>
+          </div>
+        </div>
+        <div>
+          <h3>Equipment and site costs</h3>
+          <div data-equip></div>
+          <div class="e-addeq">
+            <select data-eq-pick aria-label="Add equipment"><option value="">+ Add equipment…</option></select>
+          </div>
+          <div class="e-grid e-grid-2">
+            <label>Dumpster / disposal ($)<input data-k="costs.disposal" inputmode="decimal" data-num></label>
+            <label>Permits, badging, other ($)<input data-k="costs.other" inputmode="decimal" data-num></label>
+            <label data-only="recurring">Monthly travel / mileage ($)<input data-k="costs.monthlyTravel" inputmode="decimal" data-num></label>
+          </div>
+        </div>
+        <div>
+          <h3>Pricing</h3>
+          <div class="e-grid e-grid-2">
+            <label>Overhead (% of direct cost)<input data-k="costs.overhead" inputmode="decimal" data-num></label>
+            <label>Target margin (%)<input data-k="costs.margin" inputmode="decimal" data-num></label>
+            <label data-only="project">Price lines by<select data-k="costs.method"><option value="market">Market rates (price book)</option><option value="costplus">My cost + target margin</option></select></label>
+            <label data-only="project">Market price level<select data-k="costs.level"><option value="low">Low (competitive)</option><option value="mid">Typical</option><option value="high">High (small / rush)</option></select></label>
+            <label class="chk"><input type="checkbox" data-k="costs.billExtras"> Bill travel, equipment and site costs as their own lines</label>
+            <label>Discount (%)<input data-k="costs.discount" inputmode="decimal" data-num></label>
+            <label>Sales tax (%)<input data-k="costs.tax" inputmode="decimal" data-num></label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. The job -->
+    <section class="e-card">
+      <div class="e-card-h">
+        <h2><span class="e-num">3</span>The job</h2>
+        <label class="small e-area-def">Area / phase for new lines<input data-k="ui.area" list="e-areas" placeholder="e.g. Level 1, Rough, Final"></label>
+        <datalist id="e-areas"></datalist>
+      </div>
+      <div class="finder finder-add e-finder" data-efinder>
+        <label for="e-q" class="small">Add a task</label>
+        <div class="finder-box">
+          <input id="e-q" type="text" autocomplete="off" spellcheck="false" placeholder="Type any task: “final clean”, “trash”, “VCT”, “windows”…" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="e-list">
+          <button type="button" class="btn btn-sm" data-act="custom">Custom line</button>
+        </div>
+        <ul class="finder-list" id="e-list" role="listbox" hidden></ul>
+      </div>
+      <div class="e-lines" data-lines></div>
+      <div class="e-photos">
+        <strong>Site photos</strong>
+        <span class="small muted">Coming soon: take a photo in the field, tag the task, and it drops into this estimate.</span>
+      </div>
+    </section>
+
+    <!-- 4. Summary -->
+    <section class="e-card e-sum">
+      <h2><span class="e-num">4</span>Job summary and profit</h2>
+      <div data-summary></div>
+      <div class="e-whatif">
+        <label for="e-adj"><strong>What if:</strong> adjust all prices <span data-adjv>0%</span></label>
+        <input id="e-adj" type="range" min="-25" max="25" step="1" data-k="costs.adjust">
+      </div>
+    </section>
+
+    <!-- 5. Review -->
+    <section class="e-card">
+      <h2><span class="e-num">5</span>Review and approval</h2>
+      <div class="e-grid">
+        <label>Prepared by<input data-k="review.preparedBy"></label>
+        <label>Reviewed by<input data-k="review.reviewedBy"></label>
+        <label>Approved on<input type="date" data-k="review.approvedOn"></label>
+        <label>Quote valid for (days)<input data-k="review.validDays" inputmode="numeric" data-num></label>
+      </div>
+      <label class="e-block">Internal notes (never printed on the customer quote)<textarea rows="3" data-k="review.notes"></textarea></label>
+      <label class="e-block">Customer terms<textarea rows="5" data-k="terms"></textarea></label>
+      <label class="chk"><input type="checkbox" data-k="ui.itemized"> Customer quote shows each line's price (off = totals by area)</label>
+      <label class="chk"><input type="checkbox" data-k="ui.scopeOnQuote"> Include what each task covers on the customer quote</label>
+    </section>
+  </div>
+
+  <!-- ================= BIDS ================= -->
+  <div data-pane="bids" hidden>
+    <div data-kpis class="e-kpis"></div>
+    <div class="e-actions">
+      <button type="button" class="btn btn-sm btn-ghost" data-act="bids-csv">Export for CRM (CSV)</button>
+    </div>
+    <div class="tablewrap"><table class="e-table"><thead><tr>
+      <th>Estimate</th><th>Date</th><th>Client / project</th><th>Type</th><th class="num">Value</th><th class="num">Margin</th><th>Status</th><th></th>
+    </tr></thead><tbody data-bids></tbody></table></div>
+    <p class="small muted">Bids are saved in this browser. Export regularly, or import the CSV into your CRM.</p>
+  </div>
+
+  <!-- ================= PRICE BOOK ================= -->
+  <div data-pane="book" hidden>
+    <p class="lede">Market prices and production rates for every task. Replace them with your own as you time your crews; changes are saved in this browser.</p>
+    <div class="seg" role="group" aria-label="Library">
+      <button type="button" data-lib="project" class="is-on">Construction tasks</button>
+      <button type="button" data-lib="routine">Routine and periodic tasks</button>
+    </div>
+    <div class="e-actions">
+      <button type="button" class="btn btn-sm btn-ghost" data-act="book-json">Export price book</button>
+      <label class="btn btn-sm btn-ghost filebtn">Import price book<input type="file" accept=".json,application/json" data-act="book-import"></label>
+      <button type="button" class="btn btn-sm btn-ghost" data-act="book-reset">Reset to defaults</button>
+    </div>
+    <div class="filter"><label for="pb-q" class="eyebrow">Search</label><input id="pb-q" type="search" autocomplete="off" data-pbq><p class="small muted" data-pbcount></p></div>
+    <div class="tablewrap"><table class="e-table pbt"><thead data-pbhead></thead><tbody data-pb></tbody></table></div>
+    <p class="small muted" data-pbmeta></p>
+  </div>
+
+  <!-- ================= COMPANY ================= -->
+  <div data-pane="company" hidden>
+    <p class="lede">Your company details print on customer quotes. Your default costs load into every new estimate.</p>
+    <div class="e-card">
+      <h2>Company</h2>
+      <div class="e-grid">
+        <label>Company name<input data-co="name" placeholder="Company performing the work"></label>
+        <label>License no.<input data-co="license"></label>
+        <label>Phone<input data-co="phone"></label>
+        <label>Email<input data-co="email"></label>
+        <label>Address<input data-co="address"></label>
+        <label>Website<input data-co="web"></label>
+      </div>
+    </div>
+    <div class="e-card">
+      <div class="e-card-h"><h2>Default costs</h2><button type="button" class="btn btn-sm btn-ghost" data-act="save-defaults">Use the current estimate's costs as my defaults</button></div>
+      <p class="small muted" data-defsum></p>
+    </div>
+    <div class="e-card">
+      <h2>Default terms</h2>
+      <textarea rows="6" data-co="terms" class="e-wide"></textarea>
+    </div>
+  </div>
+
+  <div class="printdoc" data-printdoc aria-hidden="true"></div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-grid">
+    <div>
+      <img class="logo-l foot-logo" src="assets/logo.png" alt="Beyond Klean" width="634" height="243">
+      <img class="logo-d foot-logo" src="assets/logo-dark.png" alt="" width="634" height="243">
+      <p class="small">Construction and specialty cleaning for general contractors, property managers and building owners. Itemized bids, our own crews, nationwide.</p>
+      
+    </div>
+    <div><h2 class="foot-h">Services</h2>
+      <a href="services.html">All services</a><a href="faq.html">FAQ</a><a href="glossary.html">Glossary</a><a href="methods.html">Our methods</a></div>
+    <div><h2 class="foot-h">Company</h2>
+      <a href="about.html">About Beyond Klean</a><a href="projects.html">Projects</a><a href="safety.html">Safety and compliance</a><a href="capability-statement.html">Capability statement</a><a href="contact.html">Contact</a></div>
+    <div><h2 class="foot-h">Work with us</h2>
+      <a href="quote.html">Request a bid</a><a href="quote.html#specs">Send your specs</a><a href="general-contractors.html">For general contractors</a><a href="government.html">Government contracting</a></div>
+    <div><h2 class="foot-h">Browse</h2>
+      <a href="facilities/index.html">By facility type</a><a href="phases/index.html">By project phase</a><a href="where-we-work.html">Where we work</a></div>
+    <div><h2 class="foot-h">Above eye level</h2>
+      <a href="families/overhead-high-dusting.html">Overhead &amp; high dusting</a><a href="https://aboveeyelevelcleaning.com" rel="noopener">AboveEyeLevelCleaning.com</a></div>
+  </div>
+  <div class="wrap small foot-note">© 2026 Beyond Klean. Regulated work such as mold remediation, abatement and hood cleaning is performed only by licensed, certified technicians where required.</div>
+</footer>
+<script src="estimator/pricebook.enc.js"></script><script src="estimator/estimator.js"></script>
+<script src="assets/site.js"></script>
+</body>
+</html>

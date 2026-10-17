@@ -46,6 +46,27 @@ trust_mod = load("trust")
 PHONE = company_mod.COMPANY["phone"] or PHONE
 OPERATOR = company_mod.COMPANY["operator"] or OPERATOR
 FAM = inhouse.deep(fam_mod.F)  # family name -> dict(slug, short, intro, faq)
+
+# Directory expansion: categories 21-24, services added to existing families, merged names as aliases
+exp = load("expansion")
+hubs = load("hubs")
+for _p in sorted(CONTENT.glob("famx*.py")):
+    FAM.update(inhouse.deep(load(_p.stem).F))
+for _fn in exp.NEW_FAMILIES:
+    FAM.setdefault(_fn, dict(slug=exp.SLUG[_fn], short=exp.SHORT[_fn], intro=_fn + ".", faq=[]))
+FAMILY_ICON.update(exp.ICONS)
+_seq = defaultdict(int)
+for _task, _fam, _grp, _phase, _tier, _al in exp.TASKS:
+    _fi = 21 + exp.NEW_FAMILIES.index(_fam) if _fam in exp.NEW_FAMILIES else 25
+    _seq[_fi] += 1
+    _why, _how = exp.GROUPS[_grp]
+    rows.append(dict(id=f"BK-{_fi:02d}{_seq[_fi]:04d}", family=_fam, group=_grp, task=_task,
+                     slug=re.sub(r"[^a-z0-9]+", "-", _task.lower()).strip("-"), phase=_phase, tier=_tier, aelc_feed="",
+                     aliases=_al, alias_count=len(_al.split("; ")), why_it_matters=_why, beyond_klean_method=_how,
+                     overlaps_with="", merge_into="", variant_of="", bundle=""))
+for _r in rows:
+    if _r["task"] in exp.MERGES:
+        _r["aliases"] = "; ".join(filter(None, [_r["aliases"]] + exp.MERGES[_r["task"]]))
 gen_mod.GENERAL_FAQ = inhouse.deep(gen_mod.GENERAL_FAQ)
 
 CONTENT_BY_TASK = {}
@@ -102,6 +123,7 @@ HINTS = {
     "Multifamily & Residential-Scale Turnover": "Apartments, condos, amenities",
     "Restoration & Regulated Work (Conditional)": "Water, mold, fire, abatement",
 }
+HINTS.update(exp.HINTS)
 for _fn in fams:
     FAM[_fn]["hint"] = HINTS.get(_fn, "")
 groups = defaultdict(list)
@@ -146,10 +168,12 @@ UNIT_LABEL = {"sqft": "Square foot", "lf": "Linear foot", "each": "Each", "hour"
 _pp = ROOT / "research" / "pricing.json"
 PRICING = json.loads(_pp.read_text()) if _pp.exists() else {"meta": {}, "items": {}}
 PRICEBOOK = PRICING["items"]
+for _p in sorted((ROOT / "research").glob("pricing_x*.json")):  # expansion services
+    PRICEBOOK.update(json.loads(_p.read_text()))
 
 
 # ---------------------------------------------------------------- layout
-NAV = [("services.html", "Services"), ("projects.html", "Projects"), ("capability-statement.html", "Government"),
+NAV = [("services.html", "Services"), ("projects.html", "Projects"), ("government.html", "Government"),
        ("general-contractors.html", "For GCs"), ("faq.html", "FAQ"), ("about.html", "About"), ("contact.html", "Contact")]
 
 
@@ -211,7 +235,7 @@ def page(path, title, desc, body, crumbs=None, schema=None, active=None, extra_j
 {bcw}
 {body}
 </main>
-{'' if path in ('quote.html', 'estimator/index.html') else mbar}
+{'' if path in ('quote.html', 'estimator.html') else mbar}
 <footer class="foot">
   <div class="wrap foot-grid">
     <div>
@@ -225,7 +249,9 @@ def page(path, title, desc, body, crumbs=None, schema=None, active=None, extra_j
     <div><h2 class="foot-h">Company</h2>
       <a href="{up}about.html">About Beyond Klean</a><a href="{up}projects.html">Projects</a><a href="{up}safety.html">Safety and compliance</a><a href="{up}capability-statement.html">Capability statement</a><a href="{up}contact.html">Contact</a></div>
     <div><h2 class="foot-h">Work with us</h2>
-      <a href="{up}quote.html">Request a bid</a><a href="{up}quote.html#specs">Send your specs</a><a href="{up}general-contractors.html">For general contractors</a></div>
+      <a href="{up}quote.html">Request a bid</a><a href="{up}quote.html#specs">Send your specs</a><a href="{up}general-contractors.html">For general contractors</a><a href="{up}government.html">Government contracting</a></div>
+    <div><h2 class="foot-h">Browse</h2>
+      <a href="{up}facilities/index.html">By facility type</a><a href="{up}phases/index.html">By project phase</a><a href="{up}where-we-work.html">Where we work</a></div>
     <div><h2 class="foot-h">Above eye level</h2>
       <a href="{up}families/{FAM[fams[3]]['slug']}.html">Overhead &amp; high dusting</a><a href="{AELC_URL}" rel="noopener">AboveEyeLevelCleaning.com</a></div>
   </div>
@@ -309,6 +335,9 @@ def build_task(t):
     also = ('<div class="also"><span class="eyebrow">Also called</span>' +
             "".join(f'<span class="chip chip-static">{e(a)}</span>' for a in t["alias_list"]) + "</div>"
             if t["alias_list"] else "")
+    facs = [f for f in FACILITY_HUBS if t["task"] in f["tasks"]]
+    fac_row = ('<div><dt>Common in</dt><dd class="fac-chips">' + "".join(
+        f'<a class="chip" href="{up}facilities/{f["slug"]}.html">{e(f["name"])}</a>' for f in facs[:4]) + "</dd></div>") if facs else ""
     more = lambda txt: (f'<div class="more" data-more><p>{e(txt)}</p></div>' if len(txt) > 260 else f"<p>{e(txt)}</p>")
     body = f"""
 <div class="band band-white task-top"><div class="wrap">
@@ -337,10 +366,11 @@ def build_task(t):
   </div>
   <aside class="spec" aria-label="Scope summary">
     <dl>
-      <div><dt>Project stage</dt><dd><a class="pill ph-{phase_k}" href="{up}services.html#{phase_k}">{e(t['phase'])}</a></dd></div>
+      <div><dt>Project stage</dt><dd><a class="pill ph-{phase_k}" href="{up}phases/{phase_k}.html">{e(t['phase'])}</a></dd></div>
       <div><dt>Typical spec section</dt><dd class="mono">{e(PHASE_SPEC[t['phase']])}</dd></div>
       {unit_row}
       <div><dt>Performed by</dt><dd><span class="pill tier-{tier_k}">{e(TIER_LABEL[t['tier']])}</span><span class="small block">{e(TIER_NOTE[t['tier']])}</span></dd></div>
+      {fac_row}
       <div><dt>Scope ID</dt><dd class="mono">{e(t['id'])}</dd></div>
     </dl>
     <button class="btn" type="button" data-add="{e(t['task'])}">Add to bid list</button>
@@ -432,8 +462,12 @@ def build_services():
   <p class="eyebrow">Service directory</p>
   <h1>Find the cleaning service you need</h1>
   <p class="lede">Every cleaning task a construction project can call for, from rough clean to turnover and recurring overhead care. Search by any name your spec or crew uses.</p>
-  <h2 class="h3">Browse by family</h2>
+  <h2 class="h3">Browse by type of work</h2>
   <div class="fgrid">{fam_cards('')}</div>
+  <h2 class="h3">Browse by facility type</h2>
+  <div class="chips hub-chips">{"".join(f'<a class="chip" href="facilities/{f["slug"]}.html">{e(f["name"])}</a>' for f in FACILITY_HUBS)}</div>
+  <h2 class="h3">Browse by project phase</h2>
+  <div class="chips hub-chips">{"".join(f'<a class="chip" href="phases/{k}.html">{e(lbl)}</a>' for k, _p, lbl, *_ in hubs.PHASES)}</div>
   <div class="filter" data-list="svc">
     <label for="q" class="eyebrow">Search services</label>
     <input id="q" type="search" placeholder="Try “grout haze”, “high dusting” or “FRP”" autocomplete="off">
@@ -517,8 +551,10 @@ def build_static(n_faq):
             task_options="", phone=PHONE)
     pages += [TRUST.projects_page(), TRUST.capability_page(), TRUST.safety_page(), TRUST.contact_page()]
     gi = lambda n: ic(n, "")
-    markets = "".join(f'<div class="mcard">{gi(i)}<strong>{e(n)}</strong><span class="small muted">{e(d)}</span></div>'
-                      for (n, d), i in zip(gen_mod.MARKETS, ["house", "office", "factory", "school", "capitol", "military"]))
+    mlinks = ["facilities/multifamily.html", "facilities/office.html", "facilities/industrial.html", "facilities/education.html",
+              "facilities/government.html", "families/government-military-defense.html"]
+    markets = "".join(f'<a class="mcard" href="{h}">{gi(i)}<strong>{e(n)}</strong><span class="small muted">{e(d)}</span></a>'
+                      for (n, d), i, h in zip(gen_mod.MARKETS, ["house", "office", "factory", "school", "capitol", "military"], mlinks))
     proof = TRUST.quotes_block() + TRUST.clients_block()
     blocks = {"<!--CRED-->": TRUST.cred_strip(), "<!--FEATURED-->": TRUST.featured(),
               "<!--PROOF-->": f'<div class="band band-white">{proof}</div>' if proof else "",
@@ -535,6 +571,138 @@ def build_static(n_faq):
              schema=[TRUST.org_schema(SITE_URL),
                      {"@context": "https://schema.org", "@type": "WebSite", "name": "Beyond Klean", "url": SITE_URL}]
              if path == "index.html" else None, active=active)
+
+
+# ---------------------------------------------------------------- hub pages: facility types, phases, where we work, government
+FACILITY_HUBS = []
+for _slug, _name, _icon, _intro, _fams, _kw, _faq in hubs.FACILITIES:
+    _rx = re.compile(_kw, re.I)
+    _ts = [t["task"] for t in tasks if t["family"] in _fams or _rx.search(t["task"] + " " + t["group"])]
+    _ts = list(dict.fromkeys(hubs.CORE + _ts))
+    FACILITY_HUBS.append(dict(slug=_slug, name=_name, icon=_icon, intro=_intro, faq=_faq, tasks=_ts))
+TASK_BY_NAME = {t["task"]: t for t in tasks}
+
+
+def task_groups_html(names, up):
+    by = defaultdict(list)
+    for n in names:
+        t = TASK_BY_NAME.get(n)
+        if t:
+            by[t["family"]].append(t)
+    return "".join(
+        f'<section class="group"><h2>{ic(FAMILY_ICON[fn], up)} <a href="{up}families/{FAM[fn]["slug"]}.html">{e(FAM[fn]["short"])}</a></h2>'
+        f'<ul class="tasklist">' + "".join(
+            f'<li><a href="{up}tasks/{t["slug"]}.html"><span>{e(t["task"])}</span>'
+            f'<span class="pill ph-{PHASE_KEY[t["phase"]]}">{e(t["phase"])}</span></a></li>' for t in ts) + "</ul></section>"
+        for fn, ts in sorted(by.items(), key=lambda kv: fams.index(kv[0])))
+
+
+def build_hubs():
+    up = "../"
+    for d in ("facilities", "phases"):
+        shutil.rmtree(SITE / d, ignore_errors=True)
+    cards = ""
+    for f in FACILITY_HUBS:
+        cards += (f'<a class="fcard" href="{f["slug"]}.html">{ic(f["icon"], up, "ic fc-ic")}<strong>{e(f["name"])}</strong>'
+                  f'<span class="small muted">{len(f["tasks"])} services</span></a>')
+        body = f"""
+<div class="band band-white fam-top"><section class="wrap fam-hero">
+  <div class="fam-head">{ic(f['icon'], up, "ic fam-ic")}<div><p class="eyebrow">Facility type</p><h1>{e(f['name'])}</h1></div></div>
+  <p class="lede">{e(f['intro'])}</p>
+  <p class="task-cta"><a class="btn btn-lg" href="{up}quote.html">Request a Bid</a> <a class="btn btn-ghost" href="#services">Services for this building type</a></p>
+</section></div>
+<section class="wrap mid"><h2>Questions about {e(f['name'].lower())}</h2>{qa_html(f['faq'], 'fq')}</section>
+<div class="wrap" id="services">{task_groups_html(f['tasks'], up)}</div>
+<section class="wrap"><p><a class="btn btn-ghost" href="index.html">All facility types</a> <a class="btn btn-ghost" href="{up}phases/index.html">Browse by project phase</a></p></section>"""
+        page(f"facilities/{f['slug']}.html", f"{f['name']} Construction Cleaning | Beyond Klean", f["intro"][:155], body,
+             crumbs=[("index.html", "Home"), ("facilities/index.html", "Facility types"), (None, f["name"])],
+             schema=[faq_schema(f["faq"])], active="services.html")
+    page("facilities/index.html", "Construction Cleaning by Facility Type | Beyond Klean",
+         "Construction cleaning services by building type: offices, retail, restaurants, warehouses, plants, healthcare, schools, housing, hotels, labs, government and infrastructure.",
+         f"""<section class="wrap"><p class="eyebrow">Facility types</p><h1>Construction cleaning by building type</h1>
+<p class="lede">Every building type has its own cleaning scope, schedule and rules. Pick yours to see the services that apply and the questions owners and contractors ask most.</p>
+<div class="fgrid">{cards}</div></section>""",
+         crumbs=[("index.html", "Home"), (None, "Facility types")], active="services.html")
+
+    pcards = ""
+    for k, phase, label, intro, when, spec in hubs.PHASES:
+        pts = [t["task"] for t in tasks if t["phase"] == phase]
+        pcards += (f'<a class="fcard" href="{k}.html"><strong>{e(label)}</strong>'
+                   f'<span class="small muted">{e(when)}</span></a>')
+        body = f"""
+<div class="band band-white fam-top"><section class="wrap fam-hero">
+  <p class="eyebrow">Project phase</p><h1>{e(label)}</h1>
+  <p class="lede">{e(intro)}</p>
+  {graphics.phase_strip(k)}
+  <dl class="facts phase-facts"><div><dt>When it happens</dt><dd>{e(when)}</dd></div><div><dt>Typical spec section</dt><dd class="mono">{e(spec)}</dd></div></dl>
+  <p class="task-cta"><a class="btn btn-lg" href="{up}quote.html">Request a Bid</a></p>
+</section></div>
+<section class="wrap mid"><h2>Where this fits in the schedule</h2>{graphics.three_cleans(lambda n: ic(n, up))}</section>
+<div class="wrap">{task_groups_html(pts, up)}</div>
+<section class="wrap"><p><a class="btn btn-ghost" href="index.html">All project phases</a> <a class="btn btn-ghost" href="{up}facilities/index.html">Browse by facility type</a></p></section>"""
+        page(f"phases/{k}.html", f"{label} Services | Beyond Klean", intro[:155], body,
+             crumbs=[("index.html", "Home"), ("phases/index.html", "Project phases"), (None, label)], active="services.html")
+    page("phases/index.html", "Construction Cleaning by Project Phase | Beyond Klean",
+         "Construction cleaning by phase: progress, rough, final, touch-up and punch, turnover, recurring and specialty.",
+         f"""<section class="wrap"><p class="eyebrow">Project phases</p><h1>Construction cleaning by project phase</h1>
+<p class="lede">Construction cleaning runs with the schedule. Each phase has its own scope, spec section and timing, and one bid can cover all of them.</p>
+{graphics.three_cleans(lambda n: ic(n, up))}<div class="fgrid">{pcards}</div></section>""",
+         crumbs=[("index.html", "Home"), (None, "Project phases")], active="services.html")
+
+    # Where we work
+    C = company_mod.COMPANY
+    body = f"""
+<section class="wrap"><p class="eyebrow">Where we work</p><h1>Construction cleaning nationwide</h1>
+<p class="lede">We take projects anywhere in the United States. Home crews cover the Southeast, and travel crews mobilize for larger scopes in every other state. Send the city, ZIP code and size, and we confirm crew availability before we bid.</p>
+<div class="split map-split"><div><h2 class="h3">Home crews and completed projects</h2>{TRUST.us_map()}</div>
+<div class="panel"><h2 class="h3">How travel crews work</h2>
+<ul class="check"><li>A crew lead and core team travel to the site, sized to the schedule.</li>
+<li>Lodging, per diem and mobilization are shown as their own lines on the bid.</li>
+<li>Local labor can be added under our supervision for very large scopes.</li>
+<li>The same methods, checklists and closeout documents as our home crews.</li></ul>
+<p><a class="btn" href="quote.html">Request a Bid</a></p></div></div>
+<h2>Service area</h2><p>{e(C['service_area'])}</p>
+<p>See the <a href="projects.html">projects</a> we have completed, or browse services by <a href="facilities/index.html">facility type</a> and <a href="phases/index.html">project phase</a>.</p>
+</section>"""
+    page("where-we-work.html", "Where We Work | Beyond Klean", "Construction cleaning nationwide: home crews in the Southeast and travel crews for larger projects in every state.",
+         body, crumbs=[("index.html", "Home"), (None, "Where we work")])
+
+    # Government contracting and procurement hub
+    items = "".join(f'<div class="card"><h3>{ic("doc", "")}{e(h)}</h3><p>{e(d)}</p></div>' for h, d in hubs.GOV_PROCUREMENT)
+    naics = "".join(f"<li><span class='mono'>{e(c)}</span> {e(d)}</li>" for c, d in C["naics"])
+    gfam = "Government, Military & Defense Facility Cleaning"
+    gsvc = [t for t in tasks if t["family"] == gfam]
+    body = f"""
+<div class="band band-white fam-top"><section class="wrap fam-hero">
+  <div class="fam-head">{ic("capitol", "", "ic fam-ic")}<div><p class="eyebrow">Government contracting and procurement</p><h1>Government, military and defense facility cleaning</h1></div></div>
+  <p class="lede">Construction and renovation cleaning for federal, state, municipal and military facilities, performed by our crews under the prime contractor's site plan and the facility's access rules. Send us your solicitation or bid package and we respond with an itemized bid and a capability statement.</p>
+  <p class="task-cta"><a class="btn btn-lg" href="#rfp">Send us an RFP</a> <a class="btn btn-ghost" href="capability-statement.html">Capability statement</a> <a class="btn btn-ghost" href="families/government-military-defense.html">All government services</a></p>
+</section></div>
+<section class="wrap"><h2>How we work with government buyers</h2><div class="duo gov-grid">{items}</div></section>
+<div class="band band-soft"><section class="wrap split">
+  <div><h2>NAICS codes</h2><ul class="codes">{naics}</ul>
+  <p class="small">Registrations such as SAM.gov UEI and CAGE are listed on the <a href="capability-statement.html">capability statement</a> once verified.</p></div>
+  <div class="panel"><h2 class="h3">What we never claim</h2><p>We do not claim security clearances, facility clearances, certifications, set-aside status or contract vehicles we have not verified. Restricted-access, hazardous-material and defense-related work is performed only by appropriately qualified and authorized personnel, arranged with the prime contractor and the facility.</p></div>
+</section></div>
+<section class="wrap"><h2>Government and military services</h2>{task_groups_html([t["task"] for t in gsvc], "")}</section>
+<section class="wrap narrow" id="rfp"><h2>Send us an RFP or bid package</h2>
+<form class="form panel" data-demo>
+  <div class="row"><label for="g-sol">Solicitation or project number<input id="g-sol" name="solicitation"></label>
+  <label for="g-due">Bid due date<input id="g-due" type="date" name="due"></label></div>
+  <div class="row"><label for="g-agency">Agency or prime contractor<input id="g-agency" name="agency"></label>
+  <label for="g-loc">Location (city, state, ZIP)<input id="g-loc" name="location"></label></div>
+  <div class="row"><label for="g-role">Our role<select id="g-role" name="role"><option>Subcontractor to the prime</option><option>Prime contractor</option><option>Not sure yet</option></select></label>
+  <label for="g-sf">Approximate square feet<input id="g-sf" name="sqft" inputmode="numeric"></label></div>
+  <label for="g-scope">Scope summary<textarea id="g-scope" name="scope" placeholder="Phases, buildings, access or security requirements, wage determination"></textarea></label>
+  <label for="g-files">Solicitation documents<input id="g-files" type="file" name="files" multiple></label>
+  <div class="row"><label for="g-name">Your name<input id="g-name" name="name" required></label>
+  <label for="g-email">Email<input id="g-email" type="email" name="email" required></label></div>
+  <button class="btn" type="submit">Send RFP</button>
+  <div class="notice" tabindex="-1" hidden><p><strong>Received. Reference <span class="mono" data-ref></span>.</strong> We'll confirm availability and respond before your due date.</p><p class="small">Preview build: requests aren't sent yet.</p></div>
+</form></section>"""
+    page("government.html", "Government and Military Facility Cleaning | Beyond Klean",
+         "Construction cleaning for federal, state, municipal and military facilities. Send an RFP, see NAICS codes and how access and security are handled.",
+         body, crumbs=[("index.html", "Home"), (None, "Government")], active="government.html")
 
 
 # ---------------------------------------------------------------- estimator (internal, unlinked)
@@ -574,8 +742,12 @@ def build_estimator():
         "window.BK_PB_ENC=" + json.dumps({"salt": b64(salt), "iv": b64(iv), "iter": iters, "ct": b64(ct)}) + ";\n")
     (SITE / "assets" / "pricebook.js").unlink(missing_ok=True)
     body = (CONTENT / "estimator.html").read_text()
-    page("estimator/index.html", "Estimator | Beyond Klean", "Internal estimating tool.", body,
-         extra_js='<script src="pricebook.enc.js"></script><script src="estimator.js"></script>',
+    (SITE / "estimator" / "index.html").write_text(  # old address forwards to /estimator.html
+        '<!doctype html><meta charset="utf-8"><meta name="robots" content="noindex, nofollow">'
+        '<meta http-equiv="refresh" content="0; url=../estimator.html"><title>Estimator</title>'
+        '<a href="../estimator.html">Open the estimator</a>\n')
+    page("estimator.html", "Estimator | Beyond Klean", "Internal estimating tool.", body,
+         extra_js='<script src="estimator/pricebook.enc.js"></script><script src="estimator/estimator.js"></script>',
          robots="noindex, nofollow, noarchive")
 
 
@@ -620,6 +792,7 @@ if __name__ == "__main__":
     n_faq = build_faq()
     build_glossary()
     build_static(n_faq)
+    build_hubs()
     build_estimator()
     (SITE / "assets" / "icons.svg").write_text(icons_mod.sprite())
     (SITE / "join.html").unlink(missing_ok=True)  # contractor network page retired
@@ -642,7 +815,7 @@ if __name__ == "__main__":
     (SITE / "sitemap.xml").write_text(
         '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
         "".join(f"  <url><loc>{SITE_URL}/{p.relative_to(SITE).as_posix()}</loc></url>\n"
-                for p in sorted(SITE.rglob("*.html")) if p.parts[-2] != "estimator") + "</urlset>\n")
+                for p in sorted(SITE.rglob("*.html")) if p.parts[-2] != "estimator" and p.name != "estimator.html") + "</urlset>\n")
     # artifact copy of the home page: the artifact host supplies its own document skeleton
     home = (SITE / "index.html").read_text()
     head = re.search(r"<head>(.*?)</head>", home, re.S).group(1)

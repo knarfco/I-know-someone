@@ -15,6 +15,7 @@ FAMILY_ROLE = {
     "Exterior, Hardscape & Building Envelope": "tech",
     "Overhead & Elevated Surfaces (Above Eye Level)": "lift",
     "Restoration & Regulated Work (Conditional)": "specialist", "Specialty & Controlled Environments": "specialist",
+    "Industrial & Technical Commissioning Cleaning": "tech", "Government, Military & Defense Facility Cleaning": "general",
 }
 
 # Chemicals and consumables as a share of the typical market price, by family
@@ -27,7 +28,9 @@ MATERIAL_SHARE = {
     "Specialty & Controlled Environments": .08, "Exterior, Hardscape & Building Envelope": .07,
     "Residue, Stain & Protective-Material Removal": .10, "Vertical Transportation & Circulation": .05,
     "Turnover, Punch & Closeout Support": .05, "Multifamily & Residential-Scale Turnover": .06,
-    "Restoration & Regulated Work (Conditional)": .12,
+    "Restoration & Regulated Work (Conditional)": .12, "Post-Demolition & Reconstruction Cleaning": .05,
+    "Industrial & Technical Commissioning Cleaning": .07, "Infrastructure & Transportation Cleaning": .06,
+    "Government, Military & Defense Facility Cleaning": .05,
 }
 
 EQUIPMENT = [  # name, $ per day (project) — recurring estimates treat the rate as $ per month

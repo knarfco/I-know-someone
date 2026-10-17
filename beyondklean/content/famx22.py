@@ -1,0 +1,14 @@
+F = {
+"Industrial & Technical Commissioning Cleaning": dict(slug="industrial-commissioning", short="Industrial Commissioning",
+ intro="Industrial and technical facilities have to be clean before they can be started, tested or qualified. This family covers pre-commissioning cleans, new machinery and production lines, blast residue cleanup, semiconductor and pharmaceutical final cleaning, and energy sites such as battery storage and solar. Our crews work under each site's lockout, energized-equipment and cleanroom rules, coordinated with the owner's commissioning, validation and electrical teams.",
+ faq=[
+  ("What makes industrial commissioning cleaning different from a regular final clean?", "It is tied to startup and testing. Cleaning follows the commissioning sequence, respects lockout and energized areas, reaches pits, trenches and equipment exteriors, and must leave systems free of debris that could damage fans, pumps or filters when they first run."),
+  ("Do your crews work under a plant's lockout and safety rules?", "Yes. Crews follow the site's energy control program, permit system and orientation requirements. They clean only equipment the authorized party has released and stay out of tagged or energized areas."),
+  ("Can you clean semiconductor and pharmaceutical facilities?", "Yes, under the owner's written protocols. Our crews follow the gowning, materials and sequence the owner sets, and the owner's certification or validation teams perform the testing that confirms the rooms are ready."),
+  ("Does Beyond Klean certify cleanrooms or validate GMP suites?", "No. Cleanroom certification and GMP validation are performed by the owner's independent testing agency and quality team. We prepare the rooms to the owner's protocol and provide cleaning records for their review."),
+  ("How do you clean around battery storage and solar equipment?", "With the electrical contractor's release and under the site's energized-equipment rules. Crews use dry HEPA methods near equipment, never use water around live components and stay on approved paths."),
+  ("Is blast residue cleanup safe if the old paint had lead?", "It can be handled safely when the project's lead plan is followed. That plan sets containment, worker protection and waste testing, and our crews work within it rather than improvising methods."),
+  ("How is commissioning cleaning scheduled?", "From the commissioning or startup schedule, system by system or room by room. We clean areas as construction releases them, then return for touch-ups after testing activity or final adjustments."),
+  ("How are industrial cleaning projects priced?", "Most are priced per square foot, per day or as a lot for a defined area, depending on protocol requirements, equipment density, access restrictions and how many passes the owner specifies."),
+ ]),
+}

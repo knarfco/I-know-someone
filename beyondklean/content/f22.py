@@ -1,0 +1,108 @@
+def T(a, y, m, s, w, q):
+    return dict(a=a, y=y, m=m, s=s, w=w, q=q)
+
+C = {
+"Pre-commissioning facility cleaning": T(
+ "Pre-commissioning facility cleaning is the detailed clean of a new plant or technical building before systems are started and tested. It removes construction dust, debris, packaging and residue from rooms, equipment exteriors, pits and trenches so startup begins in clean conditions.",
+ "Debris left in pits, trenches and equipment skids gets pulled into fans, pumps and filters at first startup. A clean facility also lets commissioning agents see leaks, stains and defects clearly.",
+ "Our crews work from the commissioning schedule, clearing system by system: debris removal, HEPA vacuuming, damp wiping of equipment exteriors and trench cleanout, with areas handed back as each system is released.",
+ ["Systems and rooms in commissioning order", "Equipment exteriors to wipe", "Pits, trenches and sumps", "Lockout and energized-area rules", "Hold points and sign-off"],
+ ["Crews do not touch equipment that is locked out, energized or under test.", "Cleaning inside process equipment belongs to the owner's startup team unless specifically assigned.", "Dust raised in one area can settle on systems already released for testing."],
+ [("What is cleaned before a facility is commissioned?", "Floors, walls, overhead surfaces, equipment exteriors, cable trays, trenches, pits and sumps. The goal is a building free of construction dust and debris before systems run for the first time."),
+  ("Why clean a plant before startup instead of after?", "Startup pulls air and fluids through new systems. Dust and debris left behind end up in filters, bearings and drains, which can delay testing and void early equipment warranties."),
+  ("Do your crews clean inside process piping or tanks?", "No. Internal flushing and process cleaning are handled by the owner's startup or mechanical teams. Our crews clean exteriors, rooms and open areas around the equipment."),
+  ("How do you work around equipment that is already being tested?", "We follow the site's lockout rules and the commissioning agent's area releases. Crews stay out of tagged zones and schedule cleaning around test windows the GC posts."),
+  ("Can pre-commissioning cleaning be phased by system?", "Yes, and it usually should be. We clean each room or system as construction finishes it, so commissioning can start in one area while trades still work in another."),
+  ("Who signs off that the facility is clean enough to commission?", "Usually the GC and the owner's commissioning agent walk each area together. We correct punch items on the spot and document completion by room or system.")]),
+
+"Production line and machinery cleaning": T(
+ "Production line and machinery cleaning removes construction dust, packing material, protective film, grease smears and installation debris from newly installed conveyors, machines and line equipment so the line is ready for trial runs and owner acceptance.",
+ "New lines often sit for weeks while trades finish around them. Dust and metal shavings on guards, belts and controls cause jams, sensor faults and a poor first impression at acceptance.",
+ "Crews coordinate with the equipment installer, confirm lockout, then vacuum, wipe and detail machine exteriors, frames, guards and floors beneath the line using cleaners approved for each surface.",
+ ["Line length and machine count", "Installer lockout coordination", "Approved cleaners per surface", "Film and packaging removal", "Under-machine floor cleaning"],
+ ["Machines must be locked out by the authorized party before crews clean them.", "Some coatings and food-contact surfaces need specific cleaners, so confirm before wiping.", "Removing protective film too early can expose finishes to more construction damage."],
+ [("Who cleans new machinery after it is installed?", "The installer typically handles internal components and calibration. A construction cleaning crew handles exteriors, frames, guards, floors and surrounding areas once the installer releases the machine."),
+  ("Is machinery cleaning done while the line is running?", "No. Our crews clean only equipment that is stopped and locked out by the authorized party, following the plant's energy control program."),
+  ("What do you use on stainless steel conveyor frames?", "Neutral cleaners and stainless polish wiped with the grain, unless the owner specifies a food-safe or validated product. We confirm chemicals before starting."),
+  ("Can you remove metal shavings from around new equipment?", "Yes. Crews use magnetic sweepers and HEPA vacuums to collect drilling and cutting shavings from frames, pans and the floor under the line."),
+  ("When should line cleaning be scheduled?", "After mechanical and electrical installation is complete and before trial runs or factory acceptance testing. A touch-up pass is often needed after final adjustments."),
+  ("How is production line cleaning priced?", "Usually per hour or per lot based on line length, machine density and access. Tight guarding and overhead conveyors take longer than open floor equipment.")]),
+
+"Abrasive blasting residue cleanup": T(
+ "Abrasive blasting residue cleanup removes spent blast media, paint chips, rust scale and fine dust left after sandblasting or media blasting, cleaning floors, ledges, steel and surrounding areas so coatings can be applied or the space returned to use.",
+ "Spent media and dust contaminate fresh coatings, clog drains and spread through the building. Old coatings may contain lead or other metals, so residue must be handled carefully.",
+ "Crews collect bulk media with shovels and vacuum loaders, HEPA vacuum steel and ledges, and bag or contain waste as the coating test results and site plan require.",
+ ["Blast area square footage", "Media type and volume", "Coating test results", "Waste containment and disposal", "Surfaces to recoat"],
+ ["Silica-containing media and dust require wet or HEPA methods, never dry sweeping.", "If the removed coating contains lead, cleanup follows the project's lead plan.", "Blast residue must stay out of storm drains and adjacent occupied areas."],
+ [("How do you clean up after sandblasting?", "Bulk media is shoveled or vacuum loaded first, then steel, ledges and floors are HEPA vacuumed. Waste is bagged and handled according to what the old coating contained."),
+  ("Is blast media dust dangerous?", "It can be. Silica sand and some coatings release harmful dust. Our crews use HEPA vacuums, wet methods and respiratory protection suited to the material."),
+  ("What if the paint that was blasted contained lead?", "Then cleanup follows the project's lead plan, including containment, worker protection and waste testing. The GC or owner provides the plan and testing results before work starts."),
+  ("Can spent blast media be reused or recycled?", "Some media such as steel grit and garnet can be recovered by the blasting contractor. We separate it when asked, otherwise it goes out as waste."),
+  ("Does blast residue need to be removed before painting?", "Yes. Coating manufacturers require surfaces free of dust and spent media. Even fine residue left on steel weakens adhesion of the new coating."),
+  ("How long does blast cleanup take?", "It depends on media volume and access. Open floors go quickly with vacuum loaders, while structural steel, ledges and enclosed areas take far longer per square foot.")]),
+
+"Semiconductor facility final cleaning": T(
+ "Semiconductor facility final cleaning is the protocol-driven clean of a new fab or cleanroom area that removes construction particles from walls, ceilings, floors and tool areas, bringing spaces to a condition ready for the owner's ISO 14644 certification testing.",
+ "Fabs are built to tight particle limits. A single missed surface can keep a room from passing certification and delay tool install for weeks.",
+ "Our crews gown to the owner's protocol and work top to bottom in staged passes with HEPA vacuums, approved wipes and cleanroom-compatible solutions, coordinating each step with the owner's cleanroom and quality teams.",
+ ["Target cleanroom class per room", "Owner's gowning and entry protocol", "Approved wipes and solutions", "Number of cleaning passes", "Coordination with certification testing"],
+ ["Only owner-approved wipes, chemicals and tools may enter the cleanroom.", "Cleaning must follow the room's airflow direction and top-to-bottom sequence.", "Certification is performed by the owner's testing agency, not by the cleaning crew."],
+ [("What does a semiconductor fab final clean involve?", "Multiple staged passes, from rough HEPA vacuuming through gowned wipe-downs of every surface with approved materials, ending when the room is ready for the owner's particle count and certification testing."),
+  ("Does Beyond Klean certify the cleanroom?", "No. Certification to ISO 14644 is performed by the owner's independent testing agency. Our crews clean to the owner's protocol so the room is ready for that testing."),
+  ("How many cleaning passes does a new fab need?", "Commonly three or more: a construction clean, a precision clean and a final wipe after the filters run. The owner's protocol sets the exact number and sequence."),
+  ("What cleaning materials can be used in a semiconductor cleanroom?", "Only what the owner approves, typically low-lint cleanroom wipes, filtered deionized water and specified solvents. Ordinary mops, paper towels and household cleaners are never allowed."),
+  ("When does cleaning start relative to fan filter startup?", "Heavy cleaning happens before filters run so debris does not load them. Final precision passes follow startup, under clean airflow, as the owner's protocol directs."),
+  ("Can cleaning crews work while tools are being installed?", "Yes, with the owner's permission and area controls. We coordinate around tool hookup so newly cleaned zones are protected and re-wiped after installation activity.")]),
+
+"Pharmaceutical and biotechnology facility cleaning": T(
+ "Pharmaceutical and biotechnology facility cleaning is the construction final clean of labs, production suites and cleanrooms, removing dust and residue under written protocols so the owner's validation and quality teams can begin qualification and GMP startup.",
+ "Regulated facilities must prove they are clean before qualification. Construction residue left on walls, ceilings or equipment can fail environmental monitoring and push back the validation schedule.",
+ "Our crews follow the owner's procedures for gowning, materials and sequence, clean top to bottom with approved agents, and document each room so the owner's quality team can review the record.",
+ ["Room classifications and grades", "Owner-approved cleaning agents", "Gowning and material transfer rules", "Documentation format required", "Handoff to validation team"],
+ ["Every cleaning agent and wipe must be approved by the owner's quality team.", "Cleaning records must match the format the owner's validation team requires.", "Re-entry by trades after cleaning can undo a room, so access controls matter."],
+ [("How is a new pharmaceutical facility cleaned before validation?", "In staged passes using the owner's approved agents and procedures, room by room, with written records. The owner's validation team then performs qualification and environmental monitoring."),
+  ("Do your crews follow GMP procedures?", "Our crews follow the owner's written procedures, which are built around GMP expectations. The owner's quality team sets the requirements and reviews the documentation we provide."),
+  ("What documentation comes with a biotech lab final clean?", "Typically room-by-room logs showing date, crew, materials and passes completed, in the format the owner's quality team specifies. We confirm the format before starting."),
+  ("Can a construction cleaner use disinfectants or sporicides in a new suite?", "Only those the owner's quality team approves and in the sequence they set. Disinfection steps are often performed or directed by the owner after our construction clean."),
+  ("What is the difference between a lab final clean and a GMP suite clean?", "A general lab needs a thorough dust-free clean. A GMP suite adds gowning, approved materials, room classification controls and documentation tied to the owner's validation plan."),
+  ("Who decides when a room is ready for qualification?", "The owner's quality and validation teams. We hand off each room clean and documented, then return for any corrections they find during walkthroughs.")]),
+
+"Battery energy storage facility cleaning": T(
+ "Battery energy storage facility cleaning removes construction debris, dust, packaging and cable scraps from battery enclosures, containers, inverter areas and yards, working under the site's energized-equipment rules so the system is ready for commissioning and turnover.",
+ "Debris and dust around battery racks, inverters and HVAC intakes create fire and cooling risks. Clean enclosures also make inspections and thermal checks easier for the commissioning team.",
+ "Crews coordinate daily with the electrical contractor, stay outside energized boundaries, use dry HEPA methods and hand tools near equipment, and never use water around live or connected components.",
+ ["Number of containers or enclosures", "Energized boundaries and permits", "Yard and gravel area cleanup", "HVAC intake and filter areas", "Packaging and cable scrap removal"],
+ ["No water or liquid cleaners are used near live or connected equipment.", "Crews enter enclosures only with the electrical contractor's release.", "Damaged battery modules are handled by the owner's team, never by cleaners."],
+ [("How do you clean a battery storage container safely?", "With the electrical contractor's release, using HEPA vacuums and dry wiping only. Crews stay outside energized boundaries and never use water inside or around live enclosures."),
+  ("What debris is common at a BESS site?", "Cable ties, wire insulation trimmings, packing foam, pallets, cardboard and concrete dust. Gravel yards also collect bolts, offcuts and trash that must be picked before turnover."),
+  ("Can pressure washing be used at a battery storage facility?", "Not near enclosures, inverters or connected equipment. Only isolated areas well away from electrical gear, approved by the electrical contractor, may be washed."),
+  ("Who coordinates cleaning with the electrical contractor?", "The GC usually sets access, and our crew lead checks in with the electrical contractor each shift to confirm which areas are released and which are energized."),
+  ("Why clean HVAC intakes on battery containers?", "Battery enclosures rely on cooling. Dust and debris on intakes and filters reduce airflow, which affects temperatures and can trigger alarms during commissioning."),
+  ("What happens if crews find a damaged battery module?", "They stop, leave the area and notify the GC and electrical contractor immediately. Damaged modules are handled only by the owner's trained personnel.")]),
+
+"Solar installation construction cleanup": T(
+ "Solar installation construction cleanup clears packaging, pallets, cardboard, wire scraps, hardware and trash from solar farm and rooftop array sites during and after installation, leaving rows, roads and equipment pads ready for inspection.",
+ "A large solar build produces enormous amounts of cardboard and pallets. Loose debris blows into panels, blocks drainage, and leaves hardware in rows where mowers and vehicles travel.",
+ "Crews walk rows in lines, pick and bag debris, stack pallets, collect hardware with magnets, and coordinate with the electrical contractor on energized blocks before entering.",
+ ["Acreage or megawatt size", "Cardboard and pallet volume", "Energized blocks and access rules", "Recycling and haul-off arrangements", "Row and road walk frequency"],
+ ["Energized blocks are entered only with the electrical contractor's approval.", "Wind can scatter cardboard across rows if it is not secured.", "Crews never step on or lean against installed modules."],
+ [("How is cardboard handled on a solar farm build?", "It is collected daily, flattened and loaded into recycling containers. Leaving it loose invites wind to scatter it across rows and neighboring property."),
+  ("Do you clean solar panels during construction cleanup?", "Panel washing is a separate scope. Construction cleanup focuses on debris, packaging and hardware. Module cleaning can be added under the site's electrical rules if requested."),
+  ("Why pick up hardware and wire scraps between rows?", "Loose bolts, clips and wire scraps damage mowers and tires and can puncture cables. Magnetic sweeps and line walks remove them before the site is handed over."),
+  ("Can cleanup crews work in energized solar blocks?", "Only with the electrical contractor's approval and under site safety rules. Crews avoid touching combiner boxes, cables and modules, and stay on approved walking paths."),
+  ("How often should a solar project site be cleaned?", "Daily debris pickup near active installation, with full row walks weekly and a final sweep before substantial completion and the owner's inspection."),
+  ("How is solar construction cleanup priced?", "Often by the day or by lot for a block of rows, based on acreage, packaging volume and how much hauling is included.")]),
+
+"Renewable energy facility turnover cleaning": T(
+ "Renewable energy facility turnover cleaning is the final clean of control buildings, substations, inverter pads, access roads and support structures at wind and solar plants, removing construction residue so the owner can accept the facility and begin operations.",
+ "Turnover is when the owner's operations team takes responsibility. Clean control rooms, pads and roads show the job is finished and make early operating issues easier to spot.",
+ "Crews final clean control and O&M buildings, sweep pads and walk roads, then work around energized equipment only with the electrical contractor's release and under the site's safety rules.",
+ ["Control and O&M building square footage", "Inverter and transformer pads", "Access roads and laydown yards", "Energized-equipment restrictions", "Owner walk date"],
+ ["Substations and energized yards are entered only under the site's safety rules.", "Water is not used around live electrical equipment.", "Remote sites need travel, lodging and water planned in advance."],
+ [("What is cleaned at turnover of a wind or solar plant?", "Control buildings, O&M offices, restrooms and warehouses get a full final clean. Inverter pads, laydown yards and access roads are cleared of debris and trash."),
+  ("Do your crews clean inside substations?", "Only non-energized areas released by the electrical contractor and owner. Crews follow the site's safety rules and never clean live equipment."),
+  ("How do you staff remote renewable sites?", "With travel crews that bring their own equipment and supplies. We plan lodging, water and waste disposal ahead because many sites have limited services."),
+  ("What does turnover cleaning include in the control building?", "Floors, windows, restrooms, break rooms, cabinets, light fixtures and equipment exteriors in control rooms, with dust removed from cable trays and raised floors where accessible."),
+  ("When should turnover cleaning be scheduled?", "After punch list work is largely complete and before the owner's acceptance walk. A short touch-up visit is often booked for the day before the walk."),
+  ("Can laydown yards be cleaned as part of turnover?", "Yes. Crews pick remaining debris, stack leftover materials for removal and leave the yard ready for restoration or reuse as the owner directs.")]),
+}

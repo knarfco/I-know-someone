@@ -1,0 +1,14 @@
+F = {
+"Government, Military & Defense Facility Cleaning": dict(slug="government-military-defense", short="Government & Military",
+ intro="Government, military and defense projects carry more paperwork, access rules and inspection steps than private work. This family covers construction cleaning for federal buildings, state and municipal facilities, courthouses, public safety stations, military installations and defense facilities. Our crews work under the prime contractor's site safety plan, clean to the agency's closeout checklist, and handle badging, background checks and wage requirements as each contract and facility requires.",
+ faq=[
+  ("How do we send an RFP or bid package for a government cleaning scope?", "Email the solicitation or your subcontract package with plans, the cleaning section of the specification, wage determinations and the schedule. We review the scope, ask any questions and return a priced proposal with crew plan and assumptions."),
+  ("Do you work as a subcontractor to prime contractors?", "Yes. Most of our government work is as a cleaning subcontractor to the prime or general contractor. We follow the prime's site safety plan, schedule and reporting, and coordinate agency access through them."),
+  ("How do your crews get access to a military base?", "Base access, background checks and badging are handled as the installation requires and arranged through the prime contractor. We submit crew information early, since access processing can take several weeks."),
+  ("Do you pay Davis-Bacon or Service Contract Act wages?", "When a contract includes Davis-Bacon or Service Contract Act wage determinations, or state and local prevailing wage rules, we pay cleaning labor as the contract requires and provide certified payroll where required."),
+  ("Do you hold security clearances for classified areas?", "We do not claim any clearance. Where a project involves restricted or secure areas, access requirements are set by the facility and the contract, and we discuss them with the prime contractor before bidding."),
+  ("Do you handle asbestos, lead or other regulated materials?", "No. Regulated materials are handled only by licensed technicians. Our crews work outside regulated areas and coordinate with hazardous-material surveys, abatement contractors and clearance testing on the project."),
+  ("How is government construction cleaning priced?", "Usually per square foot or per phase, based on our commercial rates with allowances for escorts, screening, documentation and wage rules. Government scopes often run somewhat higher than comparable private work for those reasons."),
+  ("Can you document the clean for the agency's closeout?", "Yes. We track areas against the agency's closeout checklist and the prime contractor's punch list, and provide daily reports and photos when the contract asks for them."),
+ ]),
+}

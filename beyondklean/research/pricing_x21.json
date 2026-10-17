@@ -1,0 +1,172 @@
+{
+ "Selective demolition cleanup": {
+  "unit": "sqft",
+  "low": 0.12,
+  "mid": 0.2,
+  "high": 0.35,
+  "min": 750,
+  "rate_per_hr": 250,
+  "basis": "Per sf of demo zone; Rough clean of entire building ($0.08-0.22, ~350 sf/hr) slowed by heavier debris and retained-finish protection; $42/hr cleaner",
+  "confidence": "derived"
+ },
+ "Interior gut-out cleanup": {
+  "unit": "sqft",
+  "low": 0.1,
+  "mid": 0.18,
+  "high": 0.3,
+  "min": 1000,
+  "rate_per_hr": 280,
+  "basis": "Per sf of shell; Rough clean of entire building plus Bulk debris pickup by floor and slab scraping; hauling/containers extra",
+  "confidence": "derived"
+ },
+ "Post-demolition dust and debris removal": {
+  "unit": "sqft",
+  "low": 0.1,
+  "mid": 0.17,
+  "high": 0.3,
+  "min": 750,
+  "rate_per_hr": 260,
+  "basis": "Per sf; Rough clean of entire building and Rough clean of plenum (overhead HEPA) analogs; wet/HEPA silica methods at $42-55/hr",
+  "confidence": "derived"
+ },
+ "Fire and flood reconstruction cleanup": {
+  "unit": "sqft",
+  "low": 0.15,
+  "mid": 0.28,
+  "high": 0.5,
+  "min": 1000,
+  "rate_per_hr": 180,
+  "basis": "Per sf; above Rough clean of entire building, below Fire and smoke residue cleaning ($2-8/sf, restoration scope); mix of $42 cleaner and $55 tech",
+  "confidence": "derived"
+ },
+ "Hurricane and storm reconstruction cleanup": {
+  "unit": "sqft",
+  "low": 0.12,
+  "mid": 0.25,
+  "high": 0.45,
+  "min": 1000,
+  "rate_per_hr": 200,
+  "basis": "Per sf interior; Rough clean of entire building plus Roof debris removal and sediment handling; heavy exterior debris better priced by load (Final haul-off)",
+  "confidence": "derived"
+ },
+ "Post-abatement cleaning": {
+  "unit": "sqft",
+  "low": 0.2,
+  "mid": 0.35,
+  "high": 0.6,
+  "min": 750,
+  "rate_per_hr": 150,
+  "basis": "Per sf of released area; Negative air zone final cleaning ($0.12-0.35, 220 sf/hr) at licensed/certified tech rate ~$55-70/hr; excludes abatement",
+  "confidence": "derived"
+ },
+ "Historic building restoration cleanup": {
+  "unit": "sqft",
+  "low": 0.25,
+  "mid": 0.45,
+  "high": 0.8,
+  "min": 750,
+  "rate_per_hr": 120,
+  "basis": "Per sf; Rough clean/final interior analogs slowed for test areas and gentle methods; $55-70/hr tech, lead-safe practices",
+  "confidence": "derived"
+ },
+ "Post-construction duct cleaning": {
+  "unit": "lf",
+  "low": 3.0,
+  "mid": 5.0,
+  "high": 10,
+  "min": 1500,
+  "rate_per_hr": 15,
+  "basis": "Per lf of duct; HVAC duct interior cleaning ($3-10/lf, 15 lf/hr) source removal per NADCA ACR methods; AHUs priced separately",
+  "confidence": "derived"
+ },
+ "Ventilation commissioning cleaning": {
+  "unit": "each",
+  "low": 200,
+  "mid": 400,
+  "high": 800,
+  "min": 400,
+  "rate_per_hr": 0.15,
+  "basis": "Per air handler or fan unit incl. coils, pans and plenum; between Air handler exterior cleaning ($40-150) and Air handler interior cleaning ($350-1,500); ~6.5 tech-hr at $55-70",
+  "confidence": "derived"
+ },
+ "Indoor air quality testing coordination": {
+  "unit": "lot",
+  "low": 250,
+  "mid": 500,
+  "high": 1000,
+  "min": 250,
+  "rate_per_hr": 0.125,
+  "basis": "Per test event: scheduling, pre-sampling detail clean and access control (~8 hr at $55); analog Low-VOC product log and Pre-fire marshal inspection clean; testing fees by independent firm excluded",
+  "confidence": "derived"
+ },
+ "Elevator shaft and hoistway cleanup": {
+  "unit": "opening",
+  "low": 25,
+  "mid": 45,
+  "high": 80,
+  "min": 250,
+  "rate_per_hr": 1.2,
+  "basis": "Per hoistway stop incl. sill, ledges and wall within reach; Elevator door and sill track cleaning ($15-45) plus share of Elevator pit debris removal ($75-300); elevator mechanic fees extra",
+  "confidence": "derived"
+ },
+ "Controlled-environment final decontamination": {
+  "unit": "sqft",
+  "low": 1.0,
+  "mid": 2.0,
+  "high": 4.0,
+  "min": 3000,
+  "rate_per_hr": 32,
+  "basis": "Per sf; Cleanroom protocol cleaning ($0.75-3.00, 30 sf/hr) with added final passes and logging; $70/hr specialist; consumables extra",
+  "confidence": "derived"
+ },
+ "Post-construction odor removal": {
+  "unit": "sqft",
+  "low": 0.04,
+  "mid": 0.08,
+  "high": 0.15,
+  "min": 350,
+  "rate_per_hr": 600,
+  "basis": "Per sf; Disinfection service ($0.05-0.25, 500 sf/hr) and Owner walkthrough prep clean analogs; source cleaning, fragrance-free products, $42/hr",
+  "confidence": "derived"
+ },
+ "Environmental verification preparation": {
+  "unit": "sqft",
+  "low": 0.1,
+  "mid": 0.2,
+  "high": 0.4,
+  "min": 500,
+  "rate_per_hr": 250,
+  "basis": "Per sf of test area; Negative air zone final cleaning ($0.12-0.35, 220 sf/hr) at $55/hr tech plus access control; testing excluded",
+  "confidence": "derived"
+ },
+ "Precast concrete cleaning": {
+  "unit": "sqft",
+  "low": 0.25,
+  "mid": 0.45,
+  "high": 0.85,
+  "min": 750,
+  "rate_per_hr": 140,
+  "basis": "Per sf of facade; between Building facade washing ($0.15-0.60) and Brick and masonry cleaning ($0.40-1.20); $70/hr specialist; lift or swing stage extra",
+  "confidence": "derived"
+ },
+ "Architectural metal cleaning": {
+  "unit": "sqft",
+  "low": 0.2,
+  "mid": 0.4,
+  "high": 0.7,
+  "min": 300,
+  "rate_per_hr": 140,
+  "basis": "Per sf; Stainless and metal wall panel cleaning ($0.20-0.70, 120 sf/hr) and Metal panel and canopy cleaning; $55/hr tech; film removal and lift extra",
+  "confidence": "derived"
+ },
+ "Sensitive historic masonry cleaning": {
+  "unit": "sqft",
+  "low": 0.75,
+  "mid": 1.5,
+  "high": 3.0,
+  "min": 750,
+  "rate_per_hr": 45,
+  "basis": "Per sf; Brick and masonry cleaning ($0.40-1.20) slowed to Masonry efflorescence removal pace (45 sf/hr) for test patches and low-pressure methods; $70/hr specialist",
+  "confidence": "derived"
+ }
+}

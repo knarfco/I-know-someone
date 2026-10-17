@@ -1,0 +1,106 @@
+def T(a, y, m, s, w, q):
+    return dict(a=a, y=y, m=m, s=s, w=w, q=q)
+
+C = {
+"Airport and terminal construction cleaning": T(
+ "Airport and terminal construction cleaning removes dust, debris and residue from new or renovated concourses, gate areas, baggage halls and concessions, often in phases next to live operations, so spaces open clean and safe for passengers.",
+ "Terminals stay open during construction. Dust and debris near gates and walkways reach travelers, and loose items airside become foreign object debris that can damage aircraft.",
+ "Our crews work under security badging and airside rules arranged through the GC and airport authority, clean behind barriers in night shifts, and control tools and debris carefully.",
+ ["Security badging and escort needs", "Landside versus airside areas", "Night shift and phasing windows", "Tool and debris control rules", "Glass, seating and finishes to detail"],
+ ["Every crew member needs the badging or escort the airport requires.", "Loose debris airside is a foreign object hazard and must be controlled.", "Work next to open gates needs barriers and quiet, dust-controlled methods."],
+ [("How do construction cleaners get access to an airport terminal?", "Through badging and escort arranged by the general contractor with the airport authority. Our crew members complete the required background checks and training before working."),
+  ("Can terminal cleaning happen while flights are operating?", "Yes, behind construction barriers and often overnight. Crews use HEPA vacuums and damp methods so dust does not escape into public concourses."),
+  ("What is FOD and why does it matter for cleaners?", "FOD means foreign object debris, any loose item that could be drawn into an engine or damage aircraft. Crews track tools and remove debris carefully near ramps and jet bridges."),
+  ("What areas of a terminal are included in a final clean?", "Gate holdrooms, concourses, restrooms, concessions, baggage claim, glass walls, seating, signage frames and back-of-house rooms, as listed in the GC's turnover plan."),
+  ("How are terminal phases handed back to the airport?", "Each phase gets a final clean and touch-up before the airport's walk. We clean to the GC's punch list and return for items found during inspection."),
+  ("Is overnight cleaning more expensive at an airport?", "Often yes, because of night premiums, escort time and slower security screening for tools and supplies. Bids should include those factors upfront.")]),
+
+"Railway and transit station cleaning": T(
+ "Railway and transit station cleaning is the construction cleanup and final clean of train, subway, light rail and bus stations, removing dust, debris and residue from platforms, concourses, stairs, elevators and canopies before the station opens or reopens.",
+ "Stations carry large crowds on hard surfaces. Construction dust on platforms becomes slippery, and debris near tracks creates safety hazards for trains and maintenance crews.",
+ "Crews work during track outages or night windows under the transit agency's safety rules, keep debris away from the trackway, and clean platforms, glass and finishes top to bottom.",
+ ["Platform and concourse area", "Track access windows and protection", "Elevators, escalators and stairs", "Glass canopies and shelters", "Signage and fare equipment exteriors"],
+ ["Crews never enter the trackway without the transit agency's protection and approval.", "Debris must be kept from falling onto tracks or into drainage.", "Escalators and elevators are cleaned only with the maintenance contractor's coordination."],
+ [("When are transit stations cleaned during construction?", "During night windows or scheduled track outages set by the transit agency. Final cleaning is scheduled just before the station opens or the platform returns to service."),
+  ("Do cleaners need safety training to work at a rail station?", "Yes. The transit agency or GC sets roadway worker or site safety training. Our crews complete what the project requires before working near tracks."),
+  ("What is cleaned on a new train platform?", "Platform surfaces, tactile warning strips, benches, shelters, glass, lighting fixtures, signage frames and railings. Debris near the platform edge is removed carefully away from the track."),
+  ("Can you clean escalators and elevators in a new station?", "We clean cab interiors, glass and exterior panels. Steps, combs and machinery are coordinated with the elevator and escalator contractor, who controls running and lockout."),
+  ("How do you remove concrete dust from station platforms?", "With HEPA vacuums and auto-scrubbers where water is allowed, and damp mopping elsewhere. Dry sweeping is avoided because it spreads silica dust into the air."),
+  ("Who arranges access to the station for cleaning crews?", "The general contractor coordinates with the transit agency for badges, escorts and work windows. We schedule crews to match the approved access plan.")]),
+
+"Cruise terminal construction cleanup": T(
+ "Cruise terminal construction cleanup removes dust, debris and residue from new or renovated passenger terminals, check-in halls, baggage areas and gangway structures at ports, while keeping construction waste and wash water out of the harbor.",
+ "Cruise terminals open to thousands of passengers on embarkation days. Dust, debris and stains at check-in or on glass make a poor first impression and can delay opening.",
+ "Our crews clean within port security and access rules arranged through the GC, contain debris near the waterside, and schedule final cleans around ship calls and turnover dates.",
+ ["Terminal square footage and levels", "Port access and security arrangements", "Waterside debris containment", "Glass walls and gangway exteriors", "Ship call schedule conflicts"],
+ ["Debris and wash water must never reach the harbor.", "Port access rules and credentials must be arranged before crews arrive.", "Salt air can redeposit grime on glass soon after cleaning."],
+ [("How long before a cruise terminal opens should the final clean happen?", "Usually in the final week, with a touch-up pass a day or two before the first ship call. Salt air and late punch work can resoil surfaces quickly."),
+  ("Do cleaning crews need port credentials?", "Usually yes. The general contractor arranges port access with the terminal operator, and our crews complete whatever credentialing the port requires before starting."),
+  ("How do you prevent construction debris from getting into the water?", "Crews cover drains, use containment along the waterside edge, bag debris immediately and avoid open washing near the apron. Wash water is collected rather than released."),
+  ("What areas are included in a cruise terminal cleanup?", "Check-in halls, waiting lounges, restrooms, baggage halls, security areas, offices, curbside canopies and exterior glass. Gangway exteriors can be added where accessible."),
+  ("Can cleaning continue on days when ships are in port?", "Sometimes, in areas closed to passengers and with the operator's approval. Most heavy cleaning is scheduled for non-call days to avoid conflicts.")]),
+
+"Parking garage construction cleanup": T(
+ "Parking garage construction cleanup removes concrete dust, curing compound residue, form debris, overspray and trash from new parking structures, cleaning decks, ramps, stairs, elevator lobbies and drains so the garage is ready for striping, inspection and opening.",
+ "New garages hold large amounts of concrete dust and slurry. Left behind, it clogs drains, ruins striping adhesion and gets tracked into the building on the first day.",
+ "Crews sweep and scrub decks with ride-on equipment, clean stair towers and lobbies, clear trench drains, and contain wash water rather than flushing it to storm systems.",
+ ["Deck square footage and levels", "Striping schedule", "Trench and floor drains", "Stair towers and elevator lobbies", "Wash water containment"],
+ ["Wash water from garage decks must not go straight to storm drains.", "Striping and sealers need dry decks, so timing matters.", "Low clearance limits which sweepers and scrubbers fit."],
+ [("How do you clean a new parking garage before it opens?", "Power sweep every level, scrub decks to remove slurry and dust, clean stair towers and elevator lobbies, then clear drains so the garage is ready for striping and inspection."),
+  ("Should a garage be cleaned before or after striping?", "Before. Striping paint needs a clean, dry deck. A light touch-up sweep after striping removes any dust that settled while lines cured."),
+  ("Can garage wash water go down the floor drains?", "Only if those drains connect to an approved oil separator or sanitary system. Otherwise water is recovered with the scrubber or contained and disposed of properly."),
+  ("What equipment fits under low garage ceilings?", "Compact ride-on sweepers and scrubbers built for parking structures. Crews check posted clearance and ramp grades before bringing equipment in."),
+  ("Do you clean garage stairwells and elevator lobbies too?", "Yes. Stair towers, handrails, lobby glass, elevator doors and signage are part of a full garage final clean."),
+  ("How much does parking garage cleanup cost?", "Usually priced per square foot of deck, influenced by levels, slurry buildup, drain count and whether wash water must be collected and hauled.")]),
+
+"EV charging facility construction cleaning": T(
+ "EV charging facility construction cleaning removes construction debris, concrete dust, packaging and cable scraps from new charging sites, equipment pads, canopies and parking areas, preparing chargers and surroundings for commissioning and public opening.",
+ "Charging sites open to the public right after commissioning. Debris near chargers and cable management systems looks unfinished, and dust on screens and connectors affects the first customer experience.",
+ "Crews coordinate with the electrical contractor, dry wipe charger exteriors only after release, sweep pads and stalls, and keep water away from chargers, cabinets and open conduit.",
+ ["Number of chargers and stalls", "Electrical release for charger exteriors", "Canopy and lighting cleaning", "Pad and stall sweeping", "Packaging and cable scrap removal"],
+ ["Water is never sprayed on chargers, cabinets or open electrical connections.", "Charger exteriors are wiped only after the electrical contractor releases them.", "Open stalls next to active parking need cones or traffic control."],
+ [("Can you pressure wash an EV charging station area?", "Not around chargers, cabinets or open conduit. Stall pavement away from equipment can be washed if the electrical contractor approves and drains are protected."),
+  ("What is cleaned at a new EV charging site?", "Charger and kiosk exteriors, screens, cable holsters, canopies, light fixtures, equipment pads, bollards and the parking stalls themselves."),
+  ("How do you clean charger screens without damage?", "With soft microfiber and a cleaner approved for the display, applied to the cloth rather than sprayed on the unit."),
+  ("When should EV site cleaning be scheduled?", "After installation and before the commissioning visit, with a quick touch-up before public opening. Some owners want a final pass after striping as well."),
+  ("Who handles leftover packaging from charger deliveries?", "Our crews break down and remove cardboard, foam and pallets as part of the cleanup, recycling what the local hauler accepts.")]),
+
+"Transportation maintenance facility cleaning": T(
+ "Transportation maintenance facility cleaning is the construction final clean of bus garages, fleet shops and vehicle maintenance buildings, removing dust and debris from service bays, pits, wash bays, parts rooms and offices before the agency or fleet operator moves in.",
+ "Maintenance buildings have pits, trench drains, oil separators and lifts that collect construction debris. Leaving it behind clogs systems and creates hazards on the first day of service.",
+ "Crews clean bays and pits, scrub sealed floors, clear trench drains, detail offices and parts rooms, and coordinate with trades on lifts, separators and wash equipment.",
+ ["Bay count and floor area", "Service pits and trench drains", "Oil separator and wash bay areas", "Offices, locker rooms and parts storage", "High dusting of steel and lighting"],
+ ["Service pits are fall hazards and need covers or barriers while crews work.", "Debris in trench drains can clog oil separators before startup.", "New floor coatings need full cure before scrubbing with heavy equipment."],
+ [("What is involved in cleaning a new bus maintenance garage?", "Sweeping and scrubbing service bays, cleaning pits and trench drains, high dusting steel and lights, and detailing offices, locker rooms and parts storage before move-in."),
+  ("Do you clean vehicle service pits?", "Yes. Crews remove debris and dust from pits, steps and lighting with fall protection or barriers in place, then wipe down rails and pit walls."),
+  ("Why do trench drains need cleaning before a fleet garage opens?", "Construction grit and debris settle in trench drains and flow into oil separators. Clearing them first keeps those systems working when vehicles start washing in."),
+  ("Can floor scrubbers be used on new epoxy shop floors?", "Yes, once the coating has cured to the manufacturer's schedule. Crews use pads and cleaners suited to the coating to avoid dulling or scratching."),
+  ("Is high dusting part of maintenance facility cleaning?", "It should be. Exposed steel, ductwork and high bay lights collect heavy dust that otherwise drops onto vehicles and equipment after opening."),
+  ("How is maintenance facility cleaning usually priced?", "Per square foot for the building, with pits, trench drains and high dusting sometimes listed separately because they take extra time and equipment.")]),
+
+"Marine and marina construction cleaning": T(
+ "Marine and marina construction cleaning removes debris, dust, packaging and residue from new docks, piers, boardwalks, marina buildings and fuel areas, keeping all waste and wash water out of the water while preparing the facility for opening.",
+ "Anything dropped near a marina ends up in the water. Cleaning that controls debris protects the harbor, keeps permits in good standing and avoids complaints from slip holders and neighbors.",
+ "Crews sweep and hand-pick decks, use catch measures at gaps and edges, collect wash water, and clean marina buildings, restrooms and dock boxes before turnover.",
+ ["Dock and pier length or area", "Debris catch and containment methods", "Marina buildings and restrooms", "Fuel dock and pump area restrictions", "Water access and tie-up for work boats"],
+ ["No debris, dust or wash water may enter the water.", "Decking gaps let small debris fall through, so catch methods are needed.", "Fuel areas have ignition and spill rules crews must follow."],
+ [("How do you clean new docks without polluting the water?", "Crews sweep and vacuum rather than hose down, place catch measures under gaps, bag debris immediately and collect any wash water for proper disposal."),
+  ("Can new composite decking be pressure washed?", "Only at low pressure with recovery, following the decking manufacturer's guidance. High pressure can scar composite boards, and runoff must be kept out of the water."),
+  ("What is included in a marina construction final clean?", "Docks, piers, gangways, dock boxes, power pedestal exteriors, harbor master offices, restrooms, showers, laundry rooms and boardwalks leading to the slips."),
+  ("Are cleaning crews allowed near the fuel dock?", "Yes, with care. Crews follow the site's ignition and spill rules, avoid pumps and dispensers, and coordinate with the fuel system contractor before cleaning."),
+  ("How is debris collected from under a pier?", "Where safe and approved, from a work boat or from shore with nets and reach tools. Floating debris is removed promptly before tide or wind carries it away."),
+  ("Who should be notified if debris reaches the water?", "The GC immediately, so the project's environmental contacts can respond. Our crews retrieve what they safely can and log the incident.")]),
+
+"Public infrastructure project cleaning": T(
+ "Public infrastructure project cleaning covers construction cleanup on publicly funded works such as pump stations, treatment plant buildings, bridges, tunnels, roadside facilities and municipal buildings, removing debris and dust so the agency can inspect and accept the project.",
+ "Public agencies inspect closely and often hold final payment until the site is clean. Clean structures, drains and surrounding right-of-way also protect stormwater systems and public safety.",
+ "Our crews follow the agency's site rules, traffic control plans and stormwater requirements, cleaning buildings, structures and right-of-way areas in the order the GC needs for inspection.",
+ ["Facility or structure type", "Traffic control and lane closures", "Stormwater and inlet protection", "Agency inspection and closeout dates", "Prevailing wage or certified payroll needs"],
+ ["Work in road right-of-way requires the project's traffic control plan.", "Storm inlets must be protected from sediment and wash water.", "Confined spaces such as vaults and wet wells need permits and procedures."],
+ [("What kinds of public projects need construction cleaning?", "Pump stations, treatment plant buildings, transit shelters, bridges, tunnels, rest areas, libraries, fire stations and other municipal or state facilities nearing acceptance."),
+  ("Do public works cleaning jobs require prevailing wage?", "Many do, depending on funding and location. The bid documents state the requirements, and we price and report payroll accordingly."),
+  ("How do you clean near traffic on a road project?", "Only within the work zone set by the project's traffic control plan. Crews wear high-visibility gear and do not work in open lanes."),
+  ("Can your crews clean inside utility vaults or wet wells?", "Only where the project has a confined space program and permits in place. Otherwise we clean surrounding areas and leave confined spaces to qualified entrants."),
+  ("Why does the agency inspect cleanliness at closeout?", "Final acceptance often includes a site walk. Debris in drains, dust in buildings or materials left in the right-of-way can hold up acceptance and final payment."),
+  ("How do you protect storm drains during public project cleanup?", "Inlet protection stays in place, crews sweep instead of washing where possible, and any wash water is recovered or directed to approved areas.")]),
+}
