@@ -102,7 +102,7 @@ C = {
   "Decorative plaster and gilding can loosen under even light wiping pressure."],
  [("How do you clean a historic building without damaging it?", "By using the gentlest method that works: soft brushes, low-suction HEPA vacuums and minimal moisture, tested on a hidden spot first and approved by the preservation team."),
   ("Do you follow the preservation architect's instructions on cleaning?", "Yes. The preservation plan and architect's guidance come first, and our crews ask before cleaning any original surface the plan does not address."),
-  ("Can you clean original woodwork and plaster after restoration work?", "Yes, with dry or barely damp methods matched to the finish. Our crews avoid oils, ammonia and abrasive pads that can change the look of original surfaces."),
+  ("Can you clean original woodwork and plaster after restoration work?", "Yes, with dry or barely damp methods suited to the finish. Our crews avoid oils, ammonia and abrasive pads that can change the look of original surfaces."),
   ("Is lead paint a concern in historic restoration cleanup?", "Often. Buildings painted before 1978 may contain lead, so our crews use lead-safe practices, HEPA capture and wet methods where original paint is present."),
   ("Do historic projects need more documentation than regular jobs?", "Usually. Preservation reviewers may want photos and product records, so our crews keep a log of methods and materials used in each historic area."),
   ("Is historic restoration cleanup more expensive than standard cleaning?", "Typically yes, because the work is slower, includes test areas and uses more careful methods, but it costs far less than repairing damaged original finishes.")]),

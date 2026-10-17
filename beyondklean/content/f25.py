@@ -74,7 +74,7 @@ C = {
   ("Who is allowed to do controlled-environment decontamination?", "Only technicians trained in the owner's protocol, with certifications where the owner or regulations require them. We assign the work case by case to qualified crews."),
   ("Does final decontamination guarantee the room will pass certification?", "No one can guarantee a test result. Following the owner's protocol exactly gives the room the best chance, and our crews reclean if the testing firm reports issues."),
   ("How many cleaning passes does a cleanroom need before testing?", "It depends on the cleanroom class and owner protocol. Many projects call for three or more passes, moving from top to bottom and from clean areas toward the exit."),
-  ("Do you supply your own cleanroom wipes and garments?", "We can, matched to the owner's specification, or use the owner's supplied consumables when their protocol requires approved lots."),
+  ("Do you supply your own cleanroom wipes and garments?", "We can, chosen to meet the owner's specification, or use the owner's supplied consumables when their protocol requires approved lots."),
   ("Do you keep records of the decontamination steps?", "Yes. Our crews log each pass, area, product and time, so the owner's validation team has a record to file with certification results.")]),
 
 "Post-construction odor removal": T(

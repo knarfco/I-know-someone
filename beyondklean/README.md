@@ -13,6 +13,8 @@ The site is marked **noindex** and `robots.txt` blocks crawlers until launch. Fo
 | `content/general.py` | Glossary, general FAQ, markets and the static pages (home, methods, GCs, quote, about) |
 | `content/company.py` | Company facts, credentials, projects, clients and quotes. Empty values show as Pending in preview; set `SHOW_SLOTS = False` at launch |
 | `content/trust.py` | Projects, capability statement, safety and contact pages, and the proof blocks on home and service pages |
+| `content/expansion.py` | Categories 21-24, services added to existing families, merged names; content in `f21`-`f25`, family intros in `famx*.py`, prices in `research/pricing_x*.json` |
+| `content/hubs.py` | Facility-type and project-phase hubs and the government procurement hub |
 | `content/inhouse.py` | Rewrites applied at build time that turn referral-network wording into in-house voice |
 | `content/estimator.html` | Body of the internal estimator page (`site/estimator/`) |
 | `research/pricing.json` | Price book: unit and low / typical / high rate per task, with sources (`PRICING.md`) |
@@ -41,7 +43,7 @@ python3 quality_scan.py -v # lists any task content that is still thin
 
 ## Estimator
 
-`site/estimator/` is the in-house estimating program, not linked from the site and opened with a password (`ESTIMATOR_PASSWORD` in `build_site.py`, default `12345`). Its data ships encrypted in `estimator/pricebook.enc.js` and is decrypted in the browser on unlock (https or localhost only).
+`site/estimator.html` is the in-house estimating program (its scripts and encrypted data live in `site/estimator/`, and `/estimator/` forwards to it), not linked from the site and opened with a password (`ESTIMATOR_PASSWORD` in `build_site.py`, default `12345`). Its data ships encrypted in `estimator/pricebook.enc.js` and is decrypted in the browser on unlock (https or localhost only).
 
 - **Your costs:** wages by crew role with payroll burden, supervision, crew size and shift, night premium, local or travel crew (mileage, lodging, per diem), equipment by the day, disposal, overhead and target margin.
 - **The job:** any number of line items from the 438 construction tasks or 70 routine janitorial tasks, each with its own quantity, unit, height, soil level and crew. Hours come from production rates; labor, materials, cost, price and margin are calculated per line. Lines price at market rates (low, typical, high) or at cost plus target margin.
