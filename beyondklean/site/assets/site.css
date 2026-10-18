@@ -329,6 +329,8 @@ main > section.hero { margin: 0; color: #ffffff; background: linear-gradient(90d
 .lock-card { width: min(100%, 460px); background: var(--navy); color: var(--navy-ink); border-radius: 10px; padding: clamp(1.5rem, 5vw, 2.5rem); box-shadow: 0 24px 60px rgba(4, 14, 30, .35); background-image: radial-gradient(circle at 85% 0%, rgba(92, 193, 95, .22), transparent 55%); }
 .lock-card .eyebrow { color: #8fd18f; }
 .lock-card h1 { color: #fff; font-size: clamp(1.8rem, 6vw, 2.4rem); margin: .3rem 0 .6rem; }
+.lock-card h1.lock-logo { margin: -.4rem auto .9rem; max-width: 340px; line-height: 0; }
+.lock-logo img { display: block; width: 100%; height: auto; filter: drop-shadow(0 10px 24px rgba(0, 120, 255, .25)); }
 .lock-sub { color: rgba(255,255,255,.82); margin: 0 0 1.4rem; }
 .lock-card label { font-weight: 700; display: block; margin-bottom: .35rem; }
 .lock-row { display: flex; gap: .5rem; }
