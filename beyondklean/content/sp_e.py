@@ -172,7 +172,7 @@ FAMILIES = [
         "faq": [
           ["Why are ballast tanks dangerous to enter?", "Corrosion consumes oxygen, so a closed ballast tank can have too little oxygen to breathe. Hydrogen sulfide can also form from decaying organic matter. Testing and ventilation are required before entry."],
           ["Does sediment matter for ballast water rules?", "Yes. Sediment can harbor organisms, and vessel ballast water management plans usually address sediment removal and disposal ashore."],
-          ["How often are ballast tanks cleaned?", "Most are cleaned during scheduled dry dockings or when inspections show heavy sediment or coating failure."]
+          ["How often are ballast tanks cleaned?", "Most are cleaned during scheduled dry dockings or when inspections show heavy sediment or coating failure. Vessels in muddy trades, such as river ports, tend to need it more often."]
         ],
         "industries": ["ports-marine"]
       },
@@ -250,7 +250,7 @@ FAMILIES = [
         "faq": [
           ["Why clean before inspection?", "Inspectors need bare metal to find cracks and corrosion. Grease and dirt can hide defects in welds and pins."],
           ["Can crane cleaning damage electrical systems?", "High-pressure water near motors, drives and junction boxes can cause faults. Crews should cover or avoid electrical components and follow the crane maker's guidance."],
-          ["Is rope access safe for crane work?", "Rope access is a recognized method when performed by certified technicians under SPRAT or IRATA practices with proper rescue plans."]
+          ["Is rope access safe for crane work?", "Rope access is a recognized method when performed by certified technicians under SPRAT or IRATA practices. Each job should have a written rescue plan and a technician qualified to supervise."]
         ],
         "industries": ["ports-marine", "warehouses-logistics"]
       },
@@ -371,7 +371,7 @@ FAMILIES = [
         "faq": [
           ["Can high pressure damage wood docks?", "Yes. Too much pressure raises the grain and gouges wood. Composite decking also has maker limits. Ask the contractor what settings they use."],
           ["Are cleaning chemicals allowed over water?", "Many cleaners can harm aquatic life. Contractors should use plain water where possible and capture runoff when chemicals are needed."],
-          ["How often should docks be washed?", "Most marinas wash at least once a season, more often in warm climates or heavy bird areas."]
+          ["How often should docks be washed?", "Most marinas wash at least once a season. Docks in warm climates or with heavy bird activity often need washing more often to stay safe underfoot."]
         ],
         "industries": ["ports-marine", "retail-hospitality"]
       },
@@ -546,9 +546,9 @@ FAMILIES = [
           "What surface profile will you leave for the coating?"
         ],
         "faq": [
-          ["Can we clean with aircraft in the hangar?", "Light scrubbing is possible with care. Grinding, shot blasting or heavy chemical work should happen with aircraft removed."],
-          ["Why clean trench drains?", "Drains collect fuel and fluids that create fire and odor issues and can overload separators."],
-          ["How long does coating prep take?", "It depends on floor size and profile needed. Large hangars may take several shifts."]
+          ["Can the floor be cleaned with aircraft in the hangar?", "Light scrubbing is possible with care. Grinding, shot blasting or heavy chemical work should happen with aircraft removed."],
+          ["Why clean trench drains?", "Trench drains collect fuel, hydraulic fluid and sludge that create fire and odor hazards. Heavy buildup can also overload the oil-water separator downstream."],
+          ["How long does coating prep take?", "It depends on floor size, existing coating and the profile the new system needs. Large hangars may take several shifts, plus time for moisture testing before coating."]
         ],
         "industries": ["aviation-transportation", "government-military"]
       },
@@ -627,8 +627,8 @@ FAMILIES = [
         ],
         "faq": [
           ["Is an empty tank car still hazardous?", "Yes. A tank car that held hazardous material is treated as hazardous until cleaned and purged of residue. DOT rules cover how it is shipped and handled."],
-          ["Can passenger cars be cleaned in the yard?", "Yes, with blue signal protection and approved wash water handling."],
-          ["Who regulates rail cleaning wastewater?", "EPA effluent guidelines and local pretreatment rules apply to many rail tank car cleaning facilities."]
+          ["Can passenger cars be cleaned in the yard?", "Yes, if blue signal protection is in place and wash water is handled under the yard's permits. Interior work can often be done during layovers."],
+          ["Who regulates rail cleaning wastewater?", "EPA's Transportation Equipment Cleaning guidelines and local pretreatment rules apply to many rail tank car cleaning facilities. Exterior-only washing is handled under general stormwater and sewer rules."]
         ],
         "industries": ["aviation-transportation", "oil-gas-chemical"]
       },
@@ -666,8 +666,8 @@ FAMILIES = [
         ],
         "faq": [
           ["Can mobile crews wash buses in our yard?", "Yes, if wash water is captured or the yard has approved drains. Check local rules first."],
-          ["How often should buses be deep cleaned?", "Many agencies deep clean on a set schedule and wash exteriors more often."],
-          ["How are fluid incidents handled?", "Crews trained in bloodborne pathogens clean and disinfect the area using approved products."]
+          ["How often should buses be deep cleaned?", "Many agencies wash exteriors several times a week and deep clean interiors on a monthly or mileage-based cycle. Contract terms usually spell out the frequency."],
+          ["How are fluid incidents handled?", "Crews trained under OSHA's bloodborne pathogens standard contain, clean and disinfect the area with an EPA-registered disinfectant. Contaminated materials are bagged and disposed of under local rules."]
         ],
         "industries": ["aviation-transportation", "education", "government-military"]
       },
@@ -705,7 +705,7 @@ FAMILIES = [
         ],
         "faq": [
           ["What is a wash ticket?", "A wash ticket documents the previous product, cleaning steps and inspection. Shippers often require it before loading."],
-          ["Can any tank wash clean any tank?", "No. Facilities have permits and equipment for certain products. Check before arriving."],
+          ["Can any tank wash clean any tank?", "No. Each wash facility has permits and equipment for certain products and may refuse others. Call ahead with the last product and safety data sheet."],
           ["Do food grade tanks need special cleaning?", "Yes. They need cleaning methods and records that prevent contamination of the next food load."]
         ],
         "industries": ["aviation-transportation", "food-beverage", "oil-gas-chemical"]
@@ -743,9 +743,9 @@ FAMILIES = [
           "How do you handle foreign object debris?"
         ],
         "faq": [
-          ["How often is rubber removed?", "It depends on traffic and friction test results. Busy runways need removal more often."],
+          ["How often is rubber removed?", "It depends on traffic and friction test results. Runways with many heavy jet landings need removal more often than those used mainly by smaller aircraft."],
           ["Does removal damage pavement?", "Poor technique can damage grooves or concrete. Experienced crews set pressure and speed to protect pavement."],
-          ["Can markings be removed at the same time?", "Yes, similar equipment can remove paint markings during the same closure."]
+          ["Can markings be removed at the same time?", "Yes. Similar water jetting equipment can remove paint markings, so many airports combine the work in one closure."]
         ],
         "industries": ["aviation-transportation", "government-military"]
       }
@@ -756,90 +756,91 @@ FAMILIES = [
     "name": "Fire, Smoke & Flood Restoration",
     "short": "Fire & Flood",
     "icon": "warn",
-    "intro": "This family covers cleaning and drying after fires, smoke events, floods, sewage backups and storms. Buyers include property managers, facility owners, insurers, and businesses that need to reopen quickly.",
-    "why": "Delays cause mold, corrosion and secondary damage, and insurers expect documented methods. Specialists bring drying equipment, contents handling and standards-based procedures that hold up to claims review.",
+    "intro": "This family covers cleanup and recovery after fires, smoke events, water losses, sewage backups and storms. Buyers include property managers, facility and plant managers, insurers, public agencies and businesses that need to reopen fast.",
+    "why": "Every day of delay adds mold growth, corrosion and lost revenue, and insurers expect work to follow recognized standards with clear records. Restoration specialists bring drying equipment, residue testing, contents handling and documentation that holds up in a claim review.",
     "faq": [
-      ["Which standards apply to restoration work?", "The IICRC publishes ANSI standards such as S500 for water damage restoration and S700 for fire and smoke damage restoration. Ask whether the contractor follows them and documents their work."],
-      ["Will insurance pay for the work?", "Coverage depends on your policy. Contractors can document work for claims, but the insurer decides payment. Keep photos, moisture logs and invoices."],
-      ["Do I need to wait for the adjuster?", "You usually need to act to prevent further damage. Document conditions first, then start mitigation. Check your policy terms."]
+      ["Which standards apply to restoration work?", "The IICRC publishes ANSI-accredited standards, including S500 for water damage restoration and S700 for fire and smoke damage restoration. Ask whether the contractor follows them and how they document compliance."],
+      ["Will insurance pay for the work?", "That depends on your policy and the cause of loss. A contractor can document conditions and work performed, but the insurer decides coverage. Keep photos, moisture logs, inventories and invoices together."],
+      ["Should I wait for the adjuster before starting?", "Most policies expect you to take reasonable steps to prevent further damage. Photograph conditions first, notify your insurer, then start emergency mitigation such as water extraction or board-up. Check your policy for specific notice terms."]
     ],
     "services": [
       {
         "slug": "fire-smoke-damage-restoration",
         "name": "Fire and smoke damage restoration",
-        "aka": ["fire cleanup", "smoke damage cleanup", "fire restoration", "post-fire cleaning"],
+        "aka": ["fire damage cleanup", "smoke damage cleanup", "fire restoration", "post-fire cleaning"],
         "regulated": False,
-        "summary": "Assessment, cleanup and restoration of buildings after a fire, including residue removal, odor control and HVAC cleaning.",
-        "what": "Fire and smoke restoration begins with an assessment of where residues traveled and what can be cleaned or must be removed. Crews secure the building, remove charred materials, and clean surfaces with methods matched to the residue. HVAC systems often spread smoke and need cleaning. Odor control follows source removal. The IICRC S700 standard describes assessment, cleaning and post-restoration evaluation. Older buildings may need asbestos or lead testing before demolition of damaged materials.",
+        "summary": "Assessing, cleaning and restoring a building after a fire, from board-up and debris removal to residue cleaning and final evaluation.",
+        "what": "Fire restoration starts with an assessment of how far residue and odor traveled, which materials can be cleaned and which must be removed. Crews board up openings, tarp roofs and remove charred debris. They then clean structure, finishes and building systems with methods matched to the residue, clean or isolate HVAC, and manage odor. ANSI/IICRC S700 covers assessment, source removal, HVAC, odor management, contents and post-restoration evaluation. In older buildings, damaged materials should be tested for asbestos and lead before they are torn out.",
         "when": [
-          "After any structure fire",
-          "Smoke spread from a nearby fire",
-          "Kitchen or equipment fires",
-          "Puffback from a furnace or boiler"
+          "After any structure fire, even a small one",
+          "Smoke migrated from a fire in an adjoining unit or nearby building",
+          "A furnace or boiler puffback spread soot through a building",
+          "An electrical or equipment fire in a plant, shop or data room"
         ],
         "credentials": [
-          "IICRC Fire and Smoke Restoration Technician certification",
-          "Familiarity with ANSI/IICRC S700",
-          "Asbestos and lead testing coordination for older buildings",
-          "General liability and pollution insurance"
+          "IICRC Fire and Smoke Restoration Technician (FSRT) certification for supervisors",
+          "Work methods consistent with ANSI/IICRC S700",
+          "Asbestos inspection before demolition or renovation where EPA NESHAP (40 CFR 61 Subpart M) or state rules require it",
+          "General liability and contractors pollution liability insurance"
         ],
         "scope": [
-          "Assess damage and residue spread",
-          "Secure the structure and protect contents",
-          "Remove charred materials",
-          "Clean surfaces and HVAC systems",
-          "Control odors",
-          "Evaluate results and document"
+          "Assess residue spread, structural safety and utility status",
+          "Board up, tarp and secure the site",
+          "Remove debris and unsalvageable materials",
+          "Clean structure, finishes and HVAC systems",
+          "Manage odor after source removal",
+          "Evaluate results and hand over records for the claim"
         ],
-        "pricing": "Usually priced by line item estimates based on square footage and tasks, often using insurance estimating software. Cost depends on damage extent, residue type and contents volume.",
+        "pricing": "Usually priced as an itemized estimate by task and square foot, often written in the insurance estimating software the carrier uses. Cost drives include affected area, residue type, demolition, HVAC work and contents volume.",
         "ask": [
-          "Do you follow IICRC S700?",
-          "How will you document work for my insurer?",
-          "Will you test for asbestos or lead before demolition?"
+          "Do you follow ANSI/IICRC S700, and who on your crew is FSRT certified?",
+          "How will you decide what to clean versus replace?",
+          "Will you test suspect materials for asbestos and lead before removal?",
+          "What documentation will you send to my insurer?"
         ],
         "faq": [
-          ["Can smoke damage be cleaned?", "Many surfaces can be cleaned. Porous materials with heavy damage may need removal."],
-          ["How long does restoration take?", "Small jobs may take days. Large fires can take weeks or months."],
-          ["Why clean the HVAC system?", "Smoke travels through ducts and can spread odor and residue after cleaning."]
+          ["Can a building with smoke damage be cleaned instead of rebuilt?", "Often, yes. Hard surfaces and many finishes clean well, while porous materials that are heavily affected or burned usually need removal. A proper assessment decides which is which."],
+          ["How long does fire restoration take?", "Light smoke jobs can finish in days. Large losses with demolition, HVAC cleaning and rebuild often take weeks or months, depending on permits and claim approvals."],
+          ["Why does the HVAC system matter?", "Running air systems carry smoke and soot into ducts and other rooms. If ducts are not cleaned or isolated, odor and residue can return after the rooms are cleaned."]
         ],
         "industries": ["commercial-buildings", "retail-hospitality", "warehouses-logistics"]
       },
       {
         "slug": "soot-removal-cleaning",
-        "name": "Soot removal and surface cleaning",
-        "aka": ["soot cleaning", "smoke residue removal", "dry sponge cleaning", "ceiling soot removal"],
+        "name": "Soot removal and residue cleaning",
+        "aka": ["soot cleaning", "smoke residue removal", "dry sponge cleaning", "dry ice blasting after fire"],
         "regulated": False,
-        "summary": "Removing dry, oily or protein soot from walls, ceilings, structure and equipment with methods matched to the residue type.",
-        "what": "Soot varies by what burned. Dry soot from fast fires wipes off with dry sponges and HEPA vacuums. Oily soot from plastics needs detergents or solvents. Protein residue from cooking fires is nearly invisible but has strong odor. Crews test small areas, then clean from top to bottom. Wrong methods, such as wet wiping dry soot, can smear residue deeper. Large warehouses may need lifts and dry ice or soda blasting for structure.",
+        "summary": "Removing dry, oily and protein soot from walls, ceilings, roof decks and equipment with methods matched to the residue type.",
+        "what": "Soot behaves differently depending on what burned. Dry soot from hot, fast fires lifts with HEPA vacuums and dry chemical sponges. Wet or oily soot from plastics and rubber smears and needs detergents or solvents. Protein residue from kitchen fires is hard to see but holds strong odor. Technicians test a small area, then clean from the top down. On open warehouse structure, crews often use lifts with dry ice, soda or other soft-media blasting. Wiping dry soot with a wet cloth first can drive it into surfaces and make it permanent.",
         "when": [
-          "Visible soot on walls, ceilings or equipment",
-          "Odor remains after fire",
-          "Smoke spread through a building",
-          "Before repainting after fire"
+          "Visible soot on walls, ceilings, deck or racking",
+          "Before painting or sealing after a fire",
+          "Smoke drifted into a warehouse or plant from an adjacent fire",
+          "Stock or equipment needs residue removed before use"
         ],
         "credentials": [
-          "IICRC Fire and Smoke Restoration Technician certification",
-          "Aerial lift training for high work",
-          "Respiratory protection program",
-          "Experience with dry ice or soda blasting if used"
+          "IICRC Fire and Smoke Restoration Technician (FSRT) training",
+          "Aerial lift operator training for high structure",
+          "A respiratory protection program meeting OSHA 29 CFR 1910.134",
+          "Experience with dry ice or soda blasting, including residue capture"
         ],
         "scope": [
-          "Test residue type",
-          "HEPA vacuum and dry sponge surfaces",
-          "Wet clean or solvent clean as needed",
-          "Blast structure if needed",
-          "Inspect results"
+          "Identify residue type with test cleaning",
+          "Protect floors, stock and equipment",
+          "HEPA vacuum and dry sponge loose soot",
+          "Wet clean, solvent clean or media blast as needed",
+          "Inspect with a white cloth wipe or similar check"
         ],
-        "pricing": "Usually priced per square foot of surface cleaned. Cost depends on residue type, height, surface materials and blasting needs.",
+        "pricing": "Typically priced per square foot of surface, with lift and blasting work priced by the day. Cost depends on residue type, ceiling height, surface texture and how much must be protected.",
         "ask": [
-          "What type of soot do we have?",
-          "Which methods will you use?",
-          "How will you protect equipment and stock?"
+          "What type of soot do we have, and how did you determine it?",
+          "Which methods will you use on each surface?",
+          "How will you protect inventory and machinery during blasting?"
         ],
         "faq": [
-          ["Why test before cleaning?", "Different soot types need different methods. Testing avoids smearing."],
-          ["Can soot damage electronics?", "Yes. Soot can be acidic and corrode metal."],
-          ["Is soda blasting safe?", "Soda blasting is gentle on many surfaces but residue must be cleaned up."]
+          ["Why not just wash the walls?", "Dry soot can smear and set when wet. Removing loose soot dry first usually gives a better result and less staining."],
+          ["Is soda blasting safe for all surfaces?", "Soda is soft but alkaline and can affect aluminum, some coatings and nearby plants. Dry ice leaves no media residue but is noisy and needs ventilation for carbon dioxide."],
+          ["Do we need to paint after soot cleaning?", "Not always. Painting or sealing is common when stains or odor remain after cleaning, or when the owner wants a uniform finish."]
         ],
         "industries": ["commercial-buildings", "warehouses-logistics", "manufacturing"]
       },
@@ -848,311 +849,723 @@ FAMILIES = [
         "name": "Smoke odor removal",
         "aka": ["fire odor removal", "thermal fogging", "ozone treatment", "hydroxyl odor treatment"],
         "regulated": False,
-        "summary": "Removing smoke odor after cleaning using sealing, thermal fogging, hydroxyl generators or ozone, with safety controls for occupied spaces.",
-        "what": "Smoke odor removal starts with source removal and cleaning. Remaining odor is treated with air scrubbers, thermal fogging, hydroxyl generators or ozone. Thermal fogging releases deodorizer particles that reach the same places as smoke. Ozone can be effective but is a lung irritant; spaces must be unoccupied during treatment and ventilated before reentry. OSHA limits worker exposure to ozone at 0.1 ppm averaged over eight hours. Some surfaces need sealing primers to lock in residual odor.",
+        "summary": "Treating lingering smoke odor after cleaning with air scrubbers, thermal fogging, hydroxyl generators, ozone or sealers.",
+        "what": "Smoke odor removal works only after the residue causing it has been cleaned or removed. Remaining odor is then treated. Thermal fogging releases a fine deodorizing mist that follows the same paths smoke did. Hydroxyl generators break down odor molecules and can run in occupied space. Ozone generators work faster but ozone harms lungs and can degrade rubber and some fabrics, so treated spaces must be empty and ventilated before reentry. OSHA limits worker ozone exposure to 0.1 ppm as an eight-hour average. Sealing primers lock in odor on structure that cannot be fully cleaned.",
         "when": [
-          "Odor remains after cleaning",
-          "Smoke from nearby fires",
-          "Before tenants return",
-          "Odor complaints from occupants"
+          "Odor persists after residue cleaning",
+          "Wildfire or neighboring-fire smoke entered the building",
+          "Occupants or tenants report odor before move-back",
+          "Odor rises on warm or humid days"
         ],
         "credentials": [
-          "IICRC Odor Control Technician certification",
-          "Safety procedures for ozone and fogging",
-          "Knowledge of OSHA ozone exposure limits",
-          "Equipment for air scrubbing and ventilation"
+          "IICRC Odor Control Technician (OCT) certification",
+          "Written safety procedures for ozone and fogging, including occupancy controls",
+          "Awareness of the OSHA ozone exposure limit in 29 CFR 1910.1000",
+          "Air scrubbers with HEPA and carbon filtration"
         ],
         "scope": [
-          "Confirm source removal and cleaning",
-          "Choose treatment method",
-          "Treat space and seal surfaces",
-          "Ventilate and verify"
+          "Confirm odor sources have been cleaned or removed",
+          "Select treatment method based on occupancy and materials",
+          "Run treatment with posted access controls",
+          "Seal surfaces where needed",
+          "Ventilate and check odor before reentry"
         ],
-        "pricing": "Usually priced per room, per square foot or per day of equipment use. Cost depends on space size, odor strength and method.",
+        "pricing": "Usually priced per room or per square foot treated, or by equipment day. Cost depends on space volume, odor strength, method and number of treatment cycles.",
         "ask": [
-          "Which method will you use?",
-          "Is ozone safe here?",
-          "When can people return?"
+          "Have all odor sources been removed first?",
+          "Will you use ozone, and how will you keep people out and confirm it is safe to return?",
+          "How many treatment cycles do you expect?"
         ],
         "faq": [
-          ["Is ozone safe?", "Ozone can harm lungs and materials. Spaces must be empty during treatment."],
-          ["Can odor come back?", "If source material remains, odor can return."],
-          ["Do sealers work?", "Sealers lock in odor on surfaces that cannot be fully cleaned."]
+          ["Is ozone safe to use?", "Ozone is a lung irritant. It should be used only in unoccupied spaces, with people, pets and plants removed, and followed by ventilation before reentry."],
+          ["Why does odor come back on hot days?", "Heat and humidity release odor from residue left in hidden cavities. That usually means a source was missed."],
+          ["What is the difference between fogging and air scrubbing?", "Air scrubbers filter particles and some odor from the air. Fogging places deodorizer on surfaces and in cracks where smoke settled."]
         ],
-        "industries": ["commercial-buildings", "retail-hospitality"]
+        "industries": ["commercial-buildings", "retail-hospitality", "education"]
       },
       {
         "slug": "water-extraction-structural-drying",
         "name": "Water extraction and structural drying",
-        "aka": ["water damage restoration", "flood drying", "water mitigation", "dehumidification drying"],
+        "aka": ["water damage mitigation", "water removal", "structural drying", "commercial dehumidification"],
         "regulated": False,
-        "summary": "Extracting water and drying buildings with dehumidifiers and air movers to IICRC S500 drying goals, with moisture logs.",
-        "what": "Water extraction removes standing water with pumps and extractors. Structural drying uses dehumidifiers and air movers to bring materials back to dry standard. Technicians map moisture with meters and thermal cameras and log readings daily. Wet materials that cannot be dried may be removed. IICRC S500 describes categories of water and classes of drying. Fast action limits mold growth.",
+        "summary": "Removing water and drying buildings to documented goals with dehumidifiers and air movers under IICRC S500 practices.",
+        "what": "Water mitigation begins by stopping the source and extracting standing water with truck-mounted or portable extractors and pumps. Technicians map wet areas with moisture meters and thermal cameras, remove materials that cannot be dried, and set dehumidifiers and air movers. Wall cavities and floors may need injection or mat drying. Readings are logged daily until materials reach the drying goal. ANSI/IICRC S500 describes water categories, drying classes and documentation. Fast drying limits mold growth and structural damage.",
         "when": [
-          "Pipe bursts or sprinkler discharges",
-          "Roof leaks",
-          "Appliance failures",
-          "Flooding from storms"
+          "A pipe, sprinkler or water heater failure",
+          "Roof or window leaks during heavy rain",
+          "Rising groundwater or minor surface flooding",
+          "Fire suppression water left after a fire"
         ],
         "credentials": [
-          "IICRC Water Damage Restoration Technician and Applied Structural Drying certifications",
-          "Familiarity with ANSI/IICRC S500",
-          "Moisture meters and documentation tools",
-          "General liability insurance"
+          "IICRC Water Damage Restoration Technician (WRT) and Applied Structural Drying (ASD) certifications",
+          "Work methods consistent with ANSI/IICRC S500",
+          "Calibrated moisture meters and thermal imaging",
+          "Large-loss capacity, including generators, for commercial jobs"
         ],
         "scope": [
-          "Inspect and categorize water",
-          "Extract water",
-          "Remove damaged materials",
-          "Set drying equipment",
-          "Monitor moisture daily",
-          "Verify dry standard"
+          "Stop the source and classify water category",
+          "Extract standing water",
+          "Map moisture and remove non-dryable materials",
+          "Place and adjust drying equipment",
+          "Log moisture readings daily",
+          "Confirm drying goals and remove equipment"
         ],
-        "pricing": "Usually priced per equipment day plus labor and materials. Cost depends on affected area, water category and drying time.",
+        "pricing": "Commonly billed per equipment unit per day plus labor, extraction and materials removed. Cost depends on affected area, water category, building materials and drying days.",
         "ask": [
-          "What water category do we have?",
-          "How will you document drying?",
-          "How long will drying take?"
+          "What category and class did you assign, and why?",
+          "How will you show materials are dry before rebuilding?",
+          "What will you remove, and what will you try to save?"
         ],
         "faq": [
-          ["How fast does mold grow?", "Mold can begin growing within days if materials stay wet."],
-          ["Can drywall be dried?", "Clean water damaged drywall can often be dried. Contaminated drywall is usually removed."],
-          ["What is a moisture log?", "A record of daily readings proving materials are drying."]
+          ["How soon should drying start?", "As soon as possible. Mold can begin to grow on wet materials within a few days."],
+          ["Can wet drywall be saved?", "Drywall wet with clean water and dried quickly can often stay. Drywall soaked with contaminated water is usually removed."],
+          ["Why keep a moisture log?", "The log shows the insurer and the rebuild contractor that materials reached a dry standard before being covered. It also helps defend against later mold claims."]
         ],
         "industries": ["commercial-buildings", "education", "healthcare"]
       },
       {
         "slug": "category-3-floodwater-sewage-cleanup",
         "name": "Category 3 floodwater and sewage cleanup",
-        "aka": ["sewage backup cleanup", "black water cleanup", "contaminated flood cleanup"],
+        "aka": ["black water cleanup", "contaminated flood cleanup", "sewage backup restoration"],
         "regulated": False,
-        "summary": "Removing sewage and contaminated floodwater, discarding affected porous materials, and cleaning and drying the structure.",
-        "what": "Category 3 water contains sewage, chemicals or pathogens. Cleanup starts with protecting workers and occupants. Crews extract water, remove porous materials such as carpet, pad and wet drywall, and clean and disinfect remaining surfaces. Drying follows S500 guidance. Contaminated materials are bagged and disposed of. This page covers building recovery after flooding; see sewage and biohazard cleanup services for related guidance.",
+        "summary": "Cleanup of buildings hit by sewage or contaminated floodwater: extraction, removal of porous materials, cleaning and drying.",
+        "what": "IICRC S500 classifies water that contains sewage, floodwater from outside or other gross contamination as Category 3. Recovery focuses on the building. Crews set containment to protect unaffected areas, extract water and solids, and remove porous materials that absorbed contaminated water, such as carpet, pad, insulation and the lower part of drywall. Remaining structure is cleaned, treated with an antimicrobial where appropriate, and dried. Waste is bagged and disposed of. For sewage spills that involve biohazard response in occupied healthcare or public spaces, see the biohazard and sewage cleanup services.",
         "when": [
-          "Sewer backups",
-          "River or coastal flooding",
-          "Toilet overflows beyond the bathroom",
-          "Flooded basements"
+          "A sewer main or lateral backs up into a building",
+          "River or coastal floodwater enters the structure",
+          "A toilet overflow spreads beyond a tiled area",
+          "Water sits long enough to become contaminated"
         ],
         "credentials": [
-          "IICRC Water Damage Restoration Technician certification",
-          "Personal protective equipment and hepatitis vaccination offered",
-          "Familiarity with ANSI/IICRC S500 for Category 3 water",
-          "Waste disposal arrangements"
+          "IICRC WRT and ASD certifications, with methods consistent with ANSI/IICRC S500",
+          "Personal protective equipment and a respiratory protection program",
+          "Hepatitis A and tetanus vaccination guidance for workers, per public health advice",
+          "Waste hauling and disposal arrangements that meet local rules"
         ],
         "scope": [
-          "Isolate and protect occupants",
-          "Extract water",
-          "Remove porous materials",
-          "Clean and disinfect",
-          "Dry structure",
-          "Verify cleanliness"
+          "Isolate the area and protect occupants",
+          "Extract water and solids",
+          "Remove affected porous materials",
+          "Clean and apply antimicrobial as appropriate",
+          "Dry the structure and verify",
+          "Dispose of waste and document"
         ],
-        "pricing": "Usually priced per square foot plus equipment days. Cost depends on depth, materials removed and drying time.",
+        "pricing": "Typically priced per square foot affected plus equipment days and disposal. Cost depends on contamination depth, materials removed, containment and drying time.",
         "ask": [
-          "Which materials will be removed?",
-          "How will you protect occupants?",
-          "How do you verify cleanup?"
+          "Which materials will you remove, and how high will you cut walls?",
+          "How will you keep contamination from spreading?",
+          "How will you show the area is clean before rebuilding?"
         ],
         "faq": [
-          ["Can carpet be saved?", "Carpet and pad soaked by sewage are usually discarded."],
-          ["Is sewage dangerous?", "Sewage contains bacteria and viruses."],
-          ["Who pays?", "Coverage depends on your policy and endorsements."]
+          ["Can carpet be cleaned after a sewage backup?", "Generally not. Carpet and pad soaked by sewage are discarded because they cannot be reliably decontaminated."],
+          ["Is it safe to stay in the building?", "Occupants should stay out of affected areas. Containment and air filtration can let unaffected areas stay in use."],
+          ["Is sewage backup covered by insurance?", "Many property policies exclude sewer backup unless you bought a specific endorsement. Check your coverage and limits with your agent."]
         ],
         "industries": ["commercial-buildings", "healthcare", "education"]
       },
       {
         "slug": "contents-pack-out-cleaning",
         "name": "Contents pack-out and cleaning",
-        "aka": ["pack-out services", "contents restoration", "inventory and storage"],
+        "aka": ["pack-out", "contents restoration", "contents inventory and storage", "pack-back"],
         "regulated": False,
-        "summary": "Inventorying, packing, cleaning and storing contents after fire or water damage, then returning them after restoration.",
-        "what": "Contents pack-out moves furniture, files, equipment and personal items out of a damaged building so the structure can be restored. Crews photograph and inventory each item, pack it, and move it to a secure facility. Items are cleaned with ultrasonic tanks, dry cleaning or hand methods. Non-salvageable items are documented for claims. Contents return after restoration.",
+        "summary": "Inventorying, packing and moving contents out of a damaged building, cleaning them off site, storing them and returning them.",
+        "what": "A pack-out clears a damaged building so structural work can proceed and protects salvageable contents. Crews photograph and inventory each item or box, often with barcodes, then pack and move everything to a secure warehouse. Items are cleaned by method: ultrasonic tanks for hard goods, specialty dry cleaning for textiles, and hand cleaning for furniture and art. Items that cannot be saved are documented for the claim. After restoration, contents are delivered back and set in place.",
         "when": [
-          "Restoration requires empty spaces",
-          "Contents need cleaning",
-          "Security concerns",
-          "Insurance claims need inventory"
+          "Structural repairs require empty rooms",
+          "Contents carry soot, odor or water damage",
+          "The building cannot be secured",
+          "The insurer needs an itemized inventory"
         ],
         "credentials": [
-          "Inventory software and photo documentation",
-          "Secure climate controlled storage",
-          "IICRC training in contents restoration",
-          "Insurance covering contents in care"
+          "Itemized, photo-based inventory system",
+          "Secure, climate-controlled storage",
+          "Contents cleaning training, such as IICRC courses",
+          "Insurance covering customer property in the contractor's care, custody and control"
         ],
         "scope": [
-          "Inventory and photograph contents",
-          "Pack and move",
-          "Clean items",
-          "Store securely",
-          "Return and reset"
+          "Photograph and inventory items",
+          "Pack, label and load",
+          "Clean items by type",
+          "Store in a secure facility",
+          "Return and reset contents"
         ],
-        "pricing": "Usually priced per box, per item or per hour, plus storage per month. Cost depends on volume, cleaning methods and storage time.",
+        "pricing": "Usually priced per box, per item and by labor hour, plus storage per vault or per month. Cost depends on volume, cleaning methods, storage time and fragile or high-value items.",
         "ask": [
-          "How do you inventory items?",
-          "Where will items be stored?",
-          "What insurance covers our contents?"
+          "Will I get an itemized, photo inventory?",
+          "Where and how will contents be stored?",
+          "What insurance covers my property while you have it?"
         ],
         "faq": [
-          ["Can all items be cleaned?", "Not always."],
-          ["How long are items stored?", "Until restoration finishes."],
-          ["Do I get an inventory?", "Yes, ask for it."]
+          ["Can all contents be restored?", "No. Items with heavy heat damage or deep contamination may not be restorable. They are documented as non-salvageable for the claim."],
+          ["How long will contents be gone?", "Usually until the building is restored. Storage can run weeks or months, depending on the size of the loss."],
+          ["Can I get something back early?", "Most contractors can retrieve specific items if the inventory is good. Ask how to request them."]
         ],
-        "industries": ["commercial-buildings", "retail-hospitality"]
+        "industries": ["commercial-buildings", "retail-hospitality", "healthcare"]
       },
       {
         "slug": "electronics-equipment-restoration",
-        "name": "Electronics and equipment restoration",
-        "aka": ["electronics cleaning after fire", "equipment decontamination", "server restoration"],
+        "name": "Electronics and equipment restoration after fire or flood",
+        "aka": ["electronics decontamination", "server and IT equipment cleaning", "control panel restoration"],
         "regulated": False,
-        "summary": "Cleaning soot, water and corrosive residues from electronics, controls and machinery to restore function after fire or flood.",
-        "what": "Electronics restoration removes residues that cause corrosion and failures. Technicians disassemble equipment, clean boards with deionized water or specialty solutions, dry them, and test function. Fire residues from burning plastics can contain chlorides that corrode metal quickly. Work is often coordinated with equipment makers to preserve warranties.",
+        "summary": "Cleaning soot, moisture and corrosive residue from electronics, controls and IT equipment so they can be tested and returned to service.",
+        "what": "Electronics restoration removes contamination that causes shorts and corrosion. Technicians power down and tag equipment, assess what can be saved, then disassemble and clean boards and components with deionized water, specialty solutions or controlled dry methods. Parts are dried and inspected, then function tested before return. Residue from burning PVC and other plastics is often acidic, so speed matters. Work is usually coordinated with the equipment maker or service provider to protect warranties and service agreements.",
         "when": [
-          "Equipment exposed to smoke",
-          "Water reaches electronics",
-          "Corrosion appears after an event",
-          "Insurers ask whether equipment can be saved"
+          "Smoke or soot reached servers, controls or office electronics",
+          "Water or fire suppression agents contacted equipment",
+          "Corrosion appears on connectors after an event",
+          "The insurer asks whether equipment can be restored rather than replaced"
         ],
         "credentials": [
-          "Electronics restoration experience",
-          "ESD controls",
-          "Coordination with equipment makers",
-          "Testing procedures"
+          "Documented electronics restoration procedures and testing",
+          "Electrostatic discharge (ESD) controls",
+          "Coordination with equipment makers and service providers",
+          "Insurance covering equipment in the contractor's care"
         ],
         "scope": [
-          "Assess equipment",
-          "Disassemble and clean",
-          "Dry and test",
-          "Document results"
+          "Power down, tag and assess equipment",
+          "Stabilize humidity in the space",
+          "Disassemble and clean components",
+          "Dry and inspect",
+          "Function test and report"
         ],
-        "pricing": "Usually priced per unit or by labor hour. Cost depends on equipment type, damage and testing.",
+        "pricing": "Usually priced per unit or per rack, or by technician hour for large systems. Cost depends on equipment type, contamination level, disassembly and testing.",
         "ask": [
-          "Can you preserve warranties?",
-          "How do you test equipment?",
-          "What is your success rate?"
+          "How will cleaning affect our warranties or service contracts?",
+          "What tests will you run before returning equipment?",
+          "What do you do with equipment you cannot restore?"
         ],
         "faq": [
-          ["Can electronics be saved?", "Often, if cleaned quickly."],
-          ["Why act quickly?", "Corrosion speeds over time."],
-          ["Will warranties hold?", "Check with makers."]
+          ["Should we power equipment on to check it?", "Usually not. Powering wet or contaminated equipment can cause shorts. Ask a restoration specialist first."],
+          ["Why is speed important?", "Acidic residues and moisture start corroding metal right away. Early cleaning improves the chance of saving equipment."],
+          ["Is restoration cheaper than replacement?", "Often for expensive equipment, but not always. Lead times, warranty status and data risk also matter."]
         ],
         "industries": ["data-centers", "manufacturing", "healthcare"]
       },
       {
         "slug": "document-records-freeze-drying",
         "name": "Document and records drying",
-        "aka": ["document freeze drying", "vacuum freeze drying", "wet records recovery"],
+        "aka": ["vacuum freeze-drying", "wet document recovery", "book drying", "records recovery"],
         "regulated": False,
-        "summary": "Freezing and vacuum freeze-drying wet documents, books and records to prevent mold and preserve legibility.",
-        "what": "Wet documents should be frozen quickly to stop mold and ink bleeding. Vacuum freeze-drying turns ice into vapor without passing through liquid, which limits distortion. Records are packed, inventoried and shipped frozen. After drying, documents may be cleaned and sanitized. Medical and legal records need chain of custody.",
+        "summary": "Freezing and vacuum freeze-drying wet paper records, books and files to stop mold and limit distortion.",
+        "what": "Wet paper starts growing mold within days and inks can bleed. Records should be packed and frozen quickly to stabilize them. Vacuum freeze-drying then removes moisture by turning ice directly to vapor in a vacuum chamber, which limits swelling, sticking and ink movement. Records are boxed, inventoried and moved under chain of custody, then cleaned, sanitized or copied after drying as needed. Medical, legal and financial records need confidential handling throughout.",
         "when": [
-          "Flooded file rooms",
-          "Sprinkler discharges",
-          "Wet archives",
-          "Fire suppression water"
+          "Flooding in file rooms, archives or libraries",
+          "Sprinkler or fire hose water on records",
+          "Roof leaks over storage areas",
+          "Wet records with retention requirements"
         ],
         "credentials": [
-          "Vacuum freeze-drying chamber access",
-          "Chain of custody procedures",
-          "HIPAA-compliant handling for medical records",
-          "Secure transport"
+          "Access to vacuum freeze-drying chambers",
+          "Chain of custody and box-level inventory procedures",
+          "HIPAA-aligned handling for protected health information",
+          "Secure, refrigerated or frozen transport"
         ],
         "scope": [
           "Pack and inventory records",
           "Freeze quickly",
-          "Freeze-dry",
-          "Clean and return"
+          "Vacuum freeze-dry",
+          "Clean, sanitize or copy as needed",
+          "Return under chain of custody"
         ],
-        "pricing": "Usually priced per cubic foot of records. Cost depends on volume, handling and cleaning.",
+        "pricing": "Usually priced per cubic foot of records, with added fees for packing, cleaning and copying. Cost depends on volume, record type and turnaround.",
         "ask": [
-          "How fast can you freeze records?",
-          "How do you track records?",
-          "Do you handle confidential files?"
+          "How fast can you get our records frozen?",
+          "How will records be tracked and kept confidential?",
+          "What condition should we expect after drying?"
         ],
         "faq": [
-          ["Why freeze documents?", "Freezing stops mold growth."],
-          ["Will documents look normal?", "Some distortion may remain."],
-          ["How long does drying take?", "Weeks depending on volume."]
+          ["Why freeze wet documents?", "Freezing stops mold growth and ink bleeding. It buys time to plan drying without further damage."],
+          ["Will documents look like new?", "Not always. Some cockling or staining may remain, but text is usually preserved and readable."],
+          ["Can we air-dry records ourselves?", "Small amounts can be air-dried. Large volumes or bound books usually need freeze-drying to avoid mold and distortion."]
         ],
         "industries": ["healthcare", "government-military", "education"]
       },
       {
         "slug": "post-fire-corrosion-control",
-        "name": "Post-fire corrosion control",
-        "aka": ["corrosion mitigation after fire", "chloride decontamination", "machinery corrosion control"],
+        "name": "Post-fire corrosion control for machinery and metal",
+        "aka": ["chloride decontamination", "corrosion mitigation after fire", "machinery decontamination"],
         "regulated": False,
         "summary": "Testing and neutralizing corrosive fire residues on machinery and metal surfaces before rust causes lasting damage.",
-        "what": "Smoke from burning PVC and other plastics releases chloride compounds that combine with moisture to form acids on metal. Corrosion control starts with surface testing, then cleaning and neutralizing residues, followed by protective coatings. Humidity control slows damage. Machinery may need disassembly.",
+        "what": "Burning PVC and other chlorinated plastics releases hydrogen chloride that settles on metal as corrosive residue. With humidity, rust can form within hours. Corrosion control begins by lowering humidity with dehumidifiers. Technicians test surfaces for chloride contamination, then clean and neutralize residues with methods suited to each part. Precision surfaces may be treated with temporary corrosion inhibitors. Retesting confirms results. Machinery may need partial disassembly, coordinated with the equipment maker or plant maintenance.",
         "when": [
-          "Fires involving plastics",
-          "Rust appears after fire",
-          "Machinery exposed to smoke",
-          "Insurers require testing"
+          "A fire involved plastics, cable or PVC",
+          "Flash rust appears on machinery after a fire",
+          "Production equipment was exposed to smoke",
+          "The insurer wants test data before deciding on replacement"
         ],
         "credentials": [
-          "Chloride testing methods",
-          "Industrial cleaning experience",
-          "Humidity control equipment",
+          "Surface chloride testing methods and records",
+          "Industrial cleaning and machinery experience",
+          "Dehumidification capacity for large spaces",
           "Coordination with equipment makers"
         ],
         "scope": [
-          "Test surfaces",
-          "Control humidity",
-          "Clean and neutralize",
-          "Apply protection",
-          "Retest"
+          "Lower humidity right away",
+          "Test surfaces for chlorides",
+          "Clean and neutralize residues",
+          "Apply corrosion inhibitors",
+          "Retest and report"
         ],
-        "pricing": "Usually priced by labor and equipment days. Cost depends on equipment size and contamination.",
+        "pricing": "Usually priced by crew-day and equipment day, sometimes per machine. Cost depends on equipment count and complexity, contamination level and disassembly needs.",
         "ask": [
-          "How do you test for chlorides?",
-          "How fast can you start?",
-          "What protective coatings do you use?"
+          "How will you test for chlorides, and what results will you report?",
+          "How fast can you get dehumidifiers on site?",
+          "Will your methods affect machine warranties?"
         ],
         "faq": [
-          ["How fast does corrosion start?", "Within hours or days in humid air."],
-          ["Can machinery be saved?", "Often, if treated quickly."],
-          ["Why control humidity?", "Moisture speeds corrosion."]
+          ["How fast does corrosion start?", "In humid conditions, flash rust can appear within hours to days after a fire. Dehumidification is the first step to slow it."],
+          ["Can machinery be saved?", "Often, yes. Results are best when humidity is controlled right away and residues are removed before pitting starts."],
+          ["Why test before and after?", "Testing shows where contamination is and how heavy it is. Retesting after cleaning gives the owner and insurer proof that the work succeeded."]
         ],
         "industries": ["manufacturing", "power-utilities", "data-centers"]
       },
       {
         "slug": "storm-debris-mud-out",
         "name": "Storm debris removal and mud-out",
-        "aka": ["hurricane cleanup", "mud-out", "flood debris removal", "storm cleanup"],
+        "aka": ["hurricane cleanup", "flood mud-out", "storm debris cleanup", "flood gutting"],
         "regulated": False,
-        "summary": "Removing mud, debris and wet materials from buildings after hurricanes and floods so drying and rebuilding can begin.",
-        "what": "Mud-out removes silt, sediment and damaged materials left by floodwater. Crews shovel mud, remove wet drywall and insulation, and wash structure. Debris is sorted for disposal. Floodwater is Category 3. Older buildings may need asbestos and lead checks before removing materials.",
+        "summary": "Removing mud, sediment, debris and wet materials from buildings after hurricanes and floods so drying and rebuilding can start.",
+        "what": "Mud-out clears silt, sediment and debris left by floodwater. Crews first check structural, electrical and gas safety. They shovel and squeegee mud, remove wet drywall, insulation and flooring, and wash structure. Debris is sorted for disposal as local programs require. Because floodwater is treated as Category 3, structure is cleaned and dried before rebuilding. In older buildings, suspect materials may need asbestos and lead checks before removal.",
         "when": [
-          "After hurricanes",
-          "After river flooding",
-          "After storm surge",
-          "Before rebuilding"
+          "Hurricanes or tropical storms flood a building",
+          "River or flash flooding leaves mud inside",
+          "Storm surge pushes sand and debris indoors",
+          "Owners need a clean structure before insurance or aid inspections"
         ],
         "credentials": [
-          "IICRC water damage training",
-          "Asbestos and lead awareness",
-          "Debris hauling permits",
-          "Personal protective equipment"
+          "IICRC water damage training, such as WRT",
+          "Asbestos inspection before demolition where NESHAP or state rules apply",
+          "Debris hauling permits or registration as required locally",
+          "Personal protective equipment and respiratory protection for crews"
         ],
         "scope": [
-          "Assess safety",
-          "Remove mud and debris",
-          "Remove wet materials",
-          "Wash and disinfect",
-          "Dry structure"
+          "Check structural, electrical and gas safety",
+          "Shovel and squeegee mud and sediment",
+          "Remove wet drywall, insulation and flooring",
+          "Wash and treat structure",
+          "Dry the structure",
+          "Sort and haul debris"
         ],
-        "pricing": "Usually priced per square foot or per crew day plus disposal. Cost depends on depth, debris volume and access.",
+        "pricing": "Usually priced per square foot or per crew-day, plus disposal per load or ton. Cost depends on mud depth, debris volume, access and local disposal rules.",
         "ask": [
-          "Will you test for asbestos?",
+          "Will you test suspect materials before removal?",
           "Where will debris go?",
           "How fast can you mobilize?"
         ],
         "faq": [
-          ["Is mud dangerous?", "Flood mud can carry sewage and chemicals."],
-          ["Can drywall stay?", "Usually not after floodwater."],
-          ["Will FEMA help?", "Check with FEMA and local programs."]
+          ["Is flood mud dangerous?", "Yes. Flood mud can carry sewage, chemicals and fuel, so workers need gloves, boots, eye protection and often respirators."],
+          ["Can wet drywall stay?", "Usually not. Drywall and insulation soaked by floodwater are typically cut out above the water line and discarded."],
+          ["Is there disaster assistance?", "After a declared disaster, FEMA and state or local programs may help some owners. Check with your local emergency management office and your insurer."]
         ],
         "industries": ["commercial-buildings", "government-military", "education"]
+      }
+    ]
+  },
+  {
+    "slug": "construction-demolition-cleaning",
+    "name": "Specialized Construction & Demolition Cleaning",
+    "short": "Construction",
+    "icon": "demo",
+    "intro": "This family covers cleanup tied to demolition, renovation, surface preparation and decommissioning. Buyers include general contractors, developers, property managers, plant owners, transportation agencies and public facility managers.",
+    "why": "Construction cleanup often involves silica dust, lead paint, high-pH slurry, hazardous waste and stormwater permits. Specialists bring the equipment, training and paperwork to handle these without stopping the schedule or exposing the owner to fines.",
+    "faq": [
+      ["Do I need an asbestos survey before demolition?", "EPA's asbestos NESHAP, 40 CFR 61 Subpart M, requires a thorough inspection for asbestos before demolition or renovation of most buildings, with notification for demolitions. State and local rules may add requirements."],
+      ["Who is responsible for silica on a jobsite?", "Each employer must protect its workers under OSHA 29 CFR 1926.1153. General contractors usually coordinate controls."],
+      ["Where does construction waste go?", "Debris goes to permitted facilities. Hazardous waste needs testing and manifests. Requirements vary by state."]
+    ],
+    "services": [
+      {
+        "slug": "demolition-debris-removal",
+        "name": "Demolition debris removal and haul-off",
+        "aka": ["C&D debris removal", "demo debris hauling", "construction waste removal", "roll-off debris cleanup"],
+        "regulated": False,
+        "summary": "Loading, sorting and hauling demolition debris to permitted landfills and recyclers, with weight tickets and diversion records.",
+        "what": "Demolition debris removal clears concrete, masonry, wood, metal, drywall and mixed waste after a structure or interior is taken down. Crews load debris with skid steers, excavators or by hand into roll-offs or dump trucks. Material is sorted on site or at a transfer station so concrete, metal and clean wood can be recycled. Haulers deliver to permitted construction and demolition landfills or recyclers and return weight tickets. Asbestos-containing material must be identified and removed before demolition, and suspect items such as fluorescent lamps or PCB ballasts are pulled separately.",
+        "when": [
+          "After full or partial structure demolition",
+          "Site clearing before new construction",
+          "Green building projects that need diversion records",
+          "Storm-damaged structures being taken down"
+        ],
+        "credentials": [
+          "Asbestos inspection completed before demolition under EPA NESHAP, 40 CFR 61.145",
+          "Familiarity with OSHA demolition rules in 29 CFR Part 1926 Subpart T",
+          "Hauler licensing or registration and permitted disposal sites; requirements vary by state and city",
+          "Commercial auto and general liability insurance"
+        ],
+        "scope": [
+          "Confirm hazardous materials have been surveyed and removed",
+          "Stage roll-offs and plan truck access",
+          "Load and sort debris by material",
+          "Haul to permitted landfills and recyclers",
+          "Sweep and grade the site as specified",
+          "Deliver weight tickets and diversion reports"
+        ],
+        "pricing": "Usually priced per load, per container pull or per ton, sometimes as a lump sum for the site. Cost depends on debris volume and weight, sorting, haul distance and disposal fees.",
+        "ask": [
+          "Where will each type of debris go, and will we get weight tickets?",
+          "Can you track recycling and diversion rates for our green building goals?",
+          "Has the building been surveyed for asbestos and other hazardous materials?"
+        ],
+        "faq": [
+          ["Can concrete be recycled?", "Yes. Clean concrete is often crushed for base material. Sorting it from other debris lowers disposal cost."],
+          ["Who is responsible for proper disposal?", "The generator, usually the owner or contractor, remains responsible if waste goes to an improper site. Weight tickets show where it went."],
+          ["What items need separate handling?", "Fluorescent lamps, PCB ballasts, mercury switches, refrigerants and asbestos need separate removal. Federal and state rules control how each is handled and where it goes."]
+        ],
+        "industries": ["commercial-buildings", "government-military", "manufacturing"]
+      },
+      {
+        "slug": "selective-interior-demolition-cleanup",
+        "name": "Selective and interior demolition cleanup",
+        "aka": ["interior demo cleanup", "soft strip cleanup", "gut-out cleanup", "tenant demo debris removal"],
+        "regulated": False,
+        "summary": "Cleaning up after interior and selective demolition in occupied or adjoining buildings, with dust control and protected paths.",
+        "what": "Selective demolition removes ceilings, partitions, flooring, fixtures and finishes while the building structure stays. Cleanup in these jobs often happens next to occupied floors or tenants. Crews set dust barriers and negative air, protect elevators and corridors, and move debris through agreed routes and times. They sweep, HEPA vacuum and wipe down surfaces so the next trade or tenant can start. Dry sweeping of silica-containing debris is restricted, so wet methods or HEPA vacuums are used.",
+        "when": [
+          "Office or retail fit-out removal",
+          "Hospital or school renovation in an occupied building",
+          "Preparing a floor for a new tenant",
+          "Removing damaged finishes after a loss"
+        ],
+        "credentials": [
+          "Dust control plan meeting OSHA 29 CFR 1926.1153 housekeeping limits",
+          "Infection control risk assessment procedures for healthcare projects",
+          "Building access and after-hours work coordination",
+          "General liability insurance"
+        ],
+        "scope": [
+          "Set barriers and negative air",
+          "Protect paths, elevators and finishes",
+          "Remove debris on set routes and schedules",
+          "HEPA vacuum and wet wipe",
+          "Remove barriers and final clean"
+        ],
+        "pricing": "Usually priced per square foot of floor area or per crew shift. Cost depends on occupancy, after-hours work, elevator access and debris volume.",
+        "ask": [
+          "How will you control dust near occupied areas?",
+          "When and how will debris move through the building?",
+          "Will you follow our infection control requirements?"
+        ],
+        "faq": [
+          ["Why not just sweep?", "Dry sweeping spreads fine dust, including silica. HEPA vacuums and wet methods keep dust down."],
+          ["Can work happen during business hours?", "Quiet tasks can. Loud work and debris moves are often scheduled after hours to limit disruption."],
+          ["What is negative air?", "Negative air uses fans with HEPA filters to pull air out of the work area. This keeps air flowing into the work zone so dust does not escape."]
+        ],
+        "industries": ["commercial-buildings", "healthcare", "retail-hospitality"]
+      },
+      {
+        "slug": "concrete-washout-slurry-cleanup",
+        "name": "Concrete washout and slurry cleanup",
+        "aka": ["concrete washout service", "slurry vacuum cleanup", "saw cutting slurry removal", "washout bin service"],
+        "regulated": False,
+        "summary": "Providing and servicing concrete washout containers and vacuuming saw-cut and grinding slurry so high-pH water stays out of storm drains.",
+        "what": "Concrete truck chutes, pumps and tools must be washed out, and saw cutting, coring and grinding create a gray slurry. Both are highly alkaline and can harm waterways. Washout services place lined containers or portable bins on site, then pump out water and remove hardened solids. Slurry cleanup uses wet vacuums to collect slurry at the source. Water may be settled, neutralized or hauled. EPA's Construction General Permit and state stormwater permits require concrete washout to be contained and kept out of storm drains.",
+        "when": [
+          "Concrete pours on permitted construction sites",
+          "Saw cutting, coring or grinding indoors or on paving",
+          "A stormwater inspection finds washout violations",
+          "Polished concrete floor projects"
+        ],
+        "credentials": [
+          "Knowledge of the project's stormwater pollution prevention plan under the Construction General Permit or state equivalent",
+          "Licensed hauling of washout water and solids where required",
+          "Silica controls under OSHA 29 CFR 1926.1153 during slurry handling"
+        ],
+        "scope": [
+          "Place lined washout containers at agreed locations",
+          "Vacuum slurry at saw cutting and grinding points",
+          "Pump out water and remove solids",
+          "Neutralize or haul water as required",
+          "Provide service logs for stormwater inspections"
+        ],
+        "pricing": "Usually priced per container per month plus service visits, or per hour for slurry vacuum work. Cost depends on pour schedule, volume, haul distance and disposal rules.",
+        "ask": [
+          "How often will containers be serviced?",
+          "Where does washout water and solids go?",
+          "Will your logs satisfy our stormwater inspector?"
+        ],
+        "faq": [
+          ["Why is concrete washout a stormwater issue?", "Washout water has high pH and fine solids. If it reaches a storm drain, it can harm fish and plants and lead to permit violations."],
+          ["Can slurry go down the sanitary sewer?", "Usually not without approval. Many cities ban it because solids settle and harden in pipes."],
+          ["What happens to hardened washout?", "Hardened washout is often broken up and recycled with other concrete debris. Liners and bags are disposed of separately."]
+        ],
+        "industries": ["commercial-buildings", "government-military"]
+      },
+      {
+        "slug": "silica-dust-cleanup",
+        "name": "Construction silica dust cleanup",
+        "aka": ["crystalline silica cleanup", "HEPA dust cleanup", "concrete dust cleanup", "silica-safe housekeeping"],
+        "regulated": True,
+        "summary": "Cleaning concrete, masonry and stone dust with HEPA vacuums and wet methods that meet OSHA's construction silica standard.",
+        "what": "Cutting, drilling, grinding and demolishing concrete, brick, block and stone releases respirable crystalline silica. Settled dust can be stirred back into the air by sweeping or blowing. OSHA's construction silica standard, 29 CFR 1926.1153, bars dry sweeping or brushing where it could contribute to exposure unless wet sweeping, HEPA vacuuming or other low-exposure methods are not feasible, and it bars compressed air for cleaning unless used with a ventilation system that captures the dust. Cleanup crews use HEPA vacuums, wet methods and respirators when required, then dispose of dust in sealed bags.",
+        "when": [
+          "After concrete cutting, coring or grinding",
+          "Masonry demolition inside buildings",
+          "Final cleaning before occupancy",
+          "Dust complaints from adjoining tenants"
+        ],
+        "credentials": [
+          "Compliance with OSHA 29 CFR 1926.1153, including the employer's written exposure control plan",
+          "HEPA vacuums that meet the standard's definition",
+          "Respiratory protection program under 29 CFR 1910.134 when respirators are required",
+          "Worker training on silica hazards"
+        ],
+        "scope": [
+          "Review the project's exposure control plan",
+          "HEPA vacuum surfaces top to bottom",
+          "Wet wipe or wet sweep as needed",
+          "Bag and dispose of dust",
+          "Inspect for remaining dust"
+        ],
+        "pricing": "Usually priced per square foot or per crew shift. Cost depends on dust volume, height, surfaces and respirator needs.",
+        "ask": [
+          "How do your methods meet OSHA's silica housekeeping rules?",
+          "Do your HEPA vacuums meet the standard?",
+          "Will your crew need respirators, and do you have a respiratory program?"
+        ],
+        "faq": [
+          ["Why is silica dust a concern?", "Respirable crystalline silica can cause silicosis, lung cancer, COPD and kidney disease. Fine dust stays airborne and can be breathed in long after cutting stops."],
+          ["Can we use leaf blowers to clear dust?", "No. Blowers and compressed air throw dust back into the air. The standard restricts compressed air unless it is used with a system that captures the dust."],
+          ["Do cleanup crews need respirators?", "It depends on exposure levels. The employer's exposure assessment and written control plan decide when respirators are required."]
+        ],
+        "industries": ["commercial-buildings", "manufacturing", "education"]
+      },
+      {
+        "slug": "hydrodemolition-cleanup",
+        "name": "Hydrodemolition cleanup and slurry management",
+        "aka": ["hydrodemolition water treatment", "hydrodemo cleanup", "bridge deck hydrodemolition cleanup"],
+        "regulated": False,
+        "summary": "Vacuuming, settling and treating high-pH water and concrete debris from hydrodemolition on bridges, garages and dams.",
+        "what": "Hydrodemolition uses very high-pressure water to remove deteriorated concrete while leaving rebar intact. It makes large volumes of water mixed with concrete fines, debris and high pH. Cleanup crews vacuum slurry and rubble, pump water to settling tanks, and adjust pH before discharge or hauling. Debris is removed for recycling or disposal. Discharge must meet project permits, and parking garages and bridges need drains protected. Crews coordinate with the hydrodemolition operator so cleanup keeps pace with removal.",
+        "when": [
+          "Bridge deck rehabilitation",
+          "Parking garage repair",
+          "Dam and water structure repair",
+          "Industrial floor or tank repair"
+        ],
+        "credentials": [
+          "Water treatment equipment for settling and pH adjustment",
+          "Discharge permits or approvals for treated water",
+          "Training under WJTA-IMCA recommended practices for work near high-pressure waterjets",
+          "Traffic control certification for roadway work where required"
+        ],
+        "scope": [
+          "Protect drains and set containment",
+          "Vacuum slurry and debris",
+          "Settle and adjust pH",
+          "Discharge or haul water",
+          "Remove debris and clean surfaces"
+        ],
+        "pricing": "Usually priced per day or per square foot of concrete removed, with water treatment as a separate item. Cost depends on water volume, discharge options and debris volume.",
+        "ask": [
+          "How will you treat and discharge water?",
+          "What pH and solids limits will you meet?",
+          "How will cleanup keep pace with the demolition crew?"
+        ],
+        "faq": [
+          ["Why is hydrodemolition water high in pH?", "Concrete contains calcium hydroxide that dissolves in water. That raises pH to levels harmful to waterways."],
+          ["Can water be reused?", "Some systems treat and recycle water back to the hydrodemolition unit. It depends on equipment, water quality needs and project specs."],
+          ["What happens to debris?", "Concrete rubble is often recycled as aggregate. Debris mixed with coatings or contaminants may need testing first."]
+        ],
+        "industries": ["government-military", "power-utilities", "commercial-buildings"]
+      },
+      {
+        "slug": "abrasive-blasting-cleanup",
+        "name": "Abrasive blasting containment and cleanup",
+        "aka": ["blast media cleanup", "lead paint blasting cleanup", "sandblasting cleanup", "spent abrasive removal"],
+        "regulated": True,
+        "summary": "Containing, collecting and disposing of spent blast media and paint debris from bridges, tanks and structures, including lead-bearing waste.",
+        "what": "Abrasive blasting removes coatings and rust from steel and concrete but produces large amounts of spent media mixed with paint chips. When old coatings contain lead, chromium or other metals, the debris may be hazardous waste. Containment uses tarps, shrouds or full enclosures with dust collection, following guides such as SSPC Guide 6. Cleanup vacuums media, cleans containment and surfaces, and samples debris to characterize it. Workers need lead and silica protection, and waste needs proper storage and manifests.",
+        "when": [
+          "Bridge or water tank repainting",
+          "Industrial structure coating removal",
+          "Lead paint removal from steel",
+          "Blasting near public areas or water"
+        ],
+        "credentials": [
+          "Lead exposure controls under OSHA 29 CFR 1926.62",
+          "Silica controls under OSHA 29 CFR 1926.1153",
+          "AMPP (formerly SSPC) QP 2 certification for hazardous coating removal where specified",
+          "Waste characterization and RCRA manifests under 40 CFR Parts 261 and 262"
+        ],
+        "scope": [
+          "Set containment and dust collection",
+          "Monitor air and worker exposure",
+          "Collect spent media",
+          "Sample and characterize waste",
+          "Clean containment and surfaces",
+          "Ship waste with manifests"
+        ],
+        "pricing": "Usually priced per square foot of surface or per ton of waste, with containment priced separately. Cost depends on coating hazards, containment class, waste volume and disposal.",
+        "ask": [
+          "What containment class will you use?",
+          "How will you test and dispose of waste?",
+          "Are your crews trained for lead work?"
+        ],
+        "faq": [
+          ["Is spent blast media hazardous?", "It depends on what was removed. Testing such as TCLP determines whether it is hazardous waste."],
+          ["Why is containment needed?", "Containment keeps lead, paint chips and dust from reaching people, soil and water. Owners and agencies often specify a containment class in the contract."],
+          ["Can media be recycled?", "Some steel grit systems recycle media on site, which cuts waste volume. Expendable media such as coal slag is usually used once."]
+        ],
+        "industries": ["government-military", "power-utilities", "oil-gas-chemical"]
+      },
+      {
+        "slug": "lead-safe-renovation-cleaning",
+        "name": "Post-renovation lead-safe cleaning and cleaning verification",
+        "aka": ["RRP cleaning verification", "lead-safe cleanup", "post-renovation lead cleaning", "lead dust cleanup after remodeling"],
+        "regulated": True,
+        "summary": "Specialized cleaning after renovation in pre-1978 housing and child-occupied facilities, ending with EPA RRP cleaning verification.",
+        "what": "Renovation that disturbs paint in pre-1978 homes and child-occupied facilities is covered by EPA's Renovation, Repair and Painting rule, 40 CFR Part 745 Subpart E. After work, crews mist and remove plastic sheeting, HEPA vacuum all surfaces, and wet wipe and mop with a two-bucket method. A certified renovator then performs cleaning verification, wiping floors and sills with wet disposable cloths and comparing them to the EPA verification card, recleaning until they pass. Some projects use dust wipe testing by an accredited lab instead.",
+        "when": [
+          "Renovations in homes or schools built before 1978",
+          "Window replacement or paint removal in older buildings",
+          "Daycares or kindergartens with renovation",
+          "Federally assisted housing projects"
+        ],
+        "credentials": [
+          "EPA RRP Certified Firm and Certified Renovator, or a state program authorized by EPA",
+          "Knowledge of 40 CFR 745.85 cleaning and cleaning verification steps",
+          "HUD Lead Safe Housing Rule compliance for federally assisted housing",
+          "HEPA vacuums and lead-safe work practice equipment"
+        ],
+        "scope": [
+          "Mist and remove plastic sheeting",
+          "HEPA vacuum surfaces",
+          "Wet wipe and mop",
+          "Perform cleaning verification",
+          "Reclean until surfaces pass",
+          "Document results"
+        ],
+        "pricing": "Usually priced per room or per work area, or as part of the renovation contract. Cost depends on work area size, number of verification rounds and any lab testing.",
+        "ask": [
+          "Is your firm EPA RRP certified, and who is the Certified Renovator?",
+          "How will you perform and record cleaning verification?",
+          "Will you provide dust wipe testing if required?"
+        ],
+        "faq": [
+          ["What is cleaning verification?", "A procedure where a certified renovator wipes surfaces with wet cloths and compares them to an EPA card. Surfaces must pass before the area is released."],
+          ["Is cleaning verification the same as clearance testing?", "No. Clearance testing uses lab-analyzed dust samples and is required for abatement and some housing programs."],
+          ["Does this apply to commercial buildings?", "The federal RRP rule applies to target housing and child-occupied facilities. Some states and cities add rules for other buildings."]
+        ],
+        "industries": ["education", "commercial-buildings", "government-military"]
+      },
+      {
+        "slug": "tenant-decommissioning-clean-out",
+        "name": "Tenant decommissioning and clean-out",
+        "aka": ["lease-end clean-out", "space decommissioning", "facility clean-out", "lab decommissioning"],
+        "regulated": False,
+        "summary": "Clearing equipment, furniture, chemicals and waste from vacated spaces so they can be returned to the landlord or reused.",
+        "what": "Tenant decommissioning gets a vacated office, lab, warehouse or shop ready for handback. Crews inventory and remove furniture, equipment, records and leftover chemicals. Universal waste, such as lamps and batteries, and electronic waste are separated for recyclers. Labs may need decontamination following ANSI/ASSE Z9.11. Spaces are then cleaned to the lease standard. Documentation helps show the space was returned in the required condition.",
+        "when": [
+          "A lease is ending and the space must be returned broom clean or better",
+          "A lab or research space is closing",
+          "A warehouse or shop is consolidating",
+          "A building is being sold or transferred"
+        ],
+        "credentials": [
+          "Universal waste handling under 40 CFR Part 273 or state equivalents",
+          "Laboratory decommissioning practice consistent with ANSI/ASSE Z9.11 when labs are involved",
+          "Certified data destruction for records and drives",
+          "General liability insurance"
+        ],
+        "scope": [
+          "Walk the space with the tenant and landlord to confirm handback terms",
+          "Inventory and remove furniture, equipment and records",
+          "Separate universal waste, electronics and leftover chemicals",
+          "Decontaminate lab benches, hoods and storage if present",
+          "Clean the space and deliver photos and disposal records"
+        ],
+        "pricing": "Usually priced as a lump sum per space, or by crew-day plus disposal. Cost depends on volume left behind, waste types, data destruction and any lab decontamination.",
+        "ask": [
+          "How will you handle chemicals and universal waste?",
+          "Will you destroy records and drives securely?",
+          "What documentation will you provide for the landlord?"
+        ],
+        "faq": [
+          ["What is universal waste?", "Universal waste is a group of common hazardous wastes, such as lamps, batteries and mercury devices. It has simpler handling rules but must still go to proper recyclers."],
+          ["Do labs need special handling?", "Yes. Labs may have chemical, biological or radioactive residues. Decontamination and documentation should be finished before the space is released."],
+          ["Can furniture be donated?", "Often, yes. Many clean-out contractors work with donation and resale partners to reduce landfill waste."]
+        ],
+        "industries": ["commercial-buildings", "healthcare", "warehouses-logistics"]
+      },
+      {
+        "slug": "industrial-decommissioning-cleanup",
+        "name": "Industrial plant decommissioning cleanup",
+        "aka": ["plant decommissioning", "facility decontamination", "plant shutdown cleanup", "pre-demolition decontamination"],
+        "regulated": True,
+        "summary": "Draining, decontaminating and clearing process equipment, tanks and buildings at closing plants before sale, reuse or demolition.",
+        "what": "Industrial decommissioning cleans out a closing plant or process area. Crews drain and flush process lines, vessels and tanks, remove residues and sludge, and decontaminate equipment so it can be sold, scrapped or demolished. Regulated items such as PCB transformers and capacitors, mercury devices and refrigerants are removed separately. Asbestos and lead must be surveyed before work disturbs them. Waste is characterized and shipped with manifests. Where a site held hazardous waste units, the work may also tie into RCRA or state closure requirements.",
+        "when": [
+          "A plant or production line is closing",
+          "Process equipment is being sold or scrapped",
+          "A property sale requires a clean site",
+          "Buildings are being prepared for demolition"
+        ],
+        "credentials": [
+          "OSHA HAZWOPER training under 29 CFR 1910.120 where hazardous substances are involved",
+          "PCB handling under 40 CFR Part 761",
+          "Refrigerant recovery by EPA Section 608 certified technicians under 40 CFR Part 82 Subpart F",
+          "RCRA waste characterization and manifests"
+        ],
+        "scope": [
+          "Review process history and survey for asbestos, lead and other hazards",
+          "Lock out, drain and flush process systems",
+          "Remove residues and sludge from vessels and tanks",
+          "Remove PCB, mercury and refrigerant-containing items separately",
+          "Decontaminate equipment and building surfaces",
+          "Ship waste with manifests and hand over a closeout report"
+        ],
+        "pricing": "Usually priced as a lump sum by area or system, or on time and materials for uncertain scopes. Cost depends on plant size, residue volume, waste types and disposal routes, and the cleanliness standard required.",
+        "ask": [
+          "What wastes do you expect, and where will each go?",
+          "How will you document decontamination for buyers or regulators?",
+          "Are your crews HAZWOPER trained, and who holds Section 608 certification?"
+        ],
+        "faq": [
+          ["Why decommission before demolition?", "Removing chemicals, residues and regulated materials first protects demolition workers. It also keeps clean debris from becoming contaminated and costly to dispose of."],
+          ["Who owns the waste?", "It usually belongs to the plant owner, as the generator under RCRA. The owner stays responsible for proper disposal even after waste leaves the site."],
+          ["Do state rules apply?", "Yes. Requirements vary by state, and some states require formal closure plans or approvals."]
+        ],
+        "industries": ["manufacturing", "oil-gas-chemical", "power-utilities"]
+      },
+      {
+        "slug": "hydroblasting-surface-preparation",
+        "name": "High-pressure water jetting for surface preparation",
+        "aka": ["hydroblasting", "UHP water jetting", "waterjet surface prep", "coating removal by water jetting"],
+        "regulated": False,
+        "summary": "Using high and ultra-high pressure water to strip coatings, rust and contaminants from steel and concrete before recoating or repair.",
+        "what": "Water jetting removes coatings, rust, scale and soluble salts using water at high or ultra-high pressure, often with robotic or hand-held tools. It produces little dust and leaves no spent abrasive, though it does not create a new surface profile. Cleanliness grades follow joint AMPP standards for waterjet cleaning, often cited as SSPC-SP WJ-1 through WJ-4 and NACE WJ-1 through WJ-4. Crews follow WJTA-IMCA recommended practices for safe operation. Water and debris must be captured and may need testing.",
+        "when": [
+          "Coating removal on steel tanks, piping or structures",
+          "Concrete surface preparation before overlays or coatings",
+          "Removing soluble salts before recoating",
+          "Work in operating plants where abrasive dust is not allowed"
+        ],
+        "credentials": [
+          "WJTA-IMCA recommended practices for waterjet safety",
+          "Familiarity with SSPC-SP WJ and NACE WJ cleanliness standards",
+          "Coating inspector support where specified",
+          "Water capture and waste handling plan"
+        ],
+        "scope": [
+          "Review coating type and any hazardous content",
+          "Set up water and debris capture",
+          "Jet surfaces to the specified cleanliness grade",
+          "Test cleanliness and soluble salts",
+          "Test, filter and dispose of water and debris"
+        ],
+        "pricing": "Usually priced per square foot of surface prepared or per shift with a crew and pump. Cost depends on coating thickness and type, cleanliness grade, access and water capture and treatment.",
+        "ask": [
+          "What cleanliness grade will you meet?",
+          "How will you capture water?",
+          "Do your crews follow WJTA-IMCA practices?"
+        ],
+        "faq": [
+          ["Does water jetting create a profile?", "No. Water jetting removes coatings and rust but does not cut a new profile. It exposes the profile that was already there."],
+          ["Is it safer than blasting?", "It produces far less dust but brings its own hazards, including injection injuries. Trained operators and safety equipment are essential."],
+          ["Can it remove lead paint?", "Yes, with water and debris capture. Waste must be tested and handled as lead-containing material if results require it."]
+        ],
+        "industries": ["oil-gas-chemical", "power-utilities", "ports-marine"]
       }
     ]
   }
