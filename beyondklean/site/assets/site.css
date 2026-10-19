@@ -822,3 +822,5 @@ a.mcard:hover { border-left-color: var(--green); transform: translateY(-2px); }
 .form .sp-consent input { width: auto; margin-top: .3rem; }
 .sp-guide h2 { margin-top: 1.6rem; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .pill.sp-reg, :root:not([data-theme="light"]) .sp-regbox { background: #3a1512; color: #ffd9d4; border-color: #7a2b23; } :root:not([data-theme="light"]) .sp-disc { color: #ff8a80; } }
+.sp-finder { margin: 0 0 1.5rem; max-width: 46rem; } .sp-sit .card p { margin: 0; line-height: 1.8; }
+.sp-finder .finder-label { color: var(--ink); }

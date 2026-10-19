@@ -574,6 +574,12 @@ def build_static(n_faq):
 
 # ---------------------------------------------------------------- hub pages: facility types, phases, where we work, government
 FACILITY_HUBS = []
+FACILITY_HINT = {"office": "Suites, floors and tenant build-outs", "retail": "Openings, fixtures and storefronts",
+                 "restaurants": "Kitchens, FRP and health inspections", "warehouse": "Roof decks, racking and big floors",
+                 "industrial": "Equipment and pre-startup cleaning", "healthcare": "ICRA, clinics and patient areas",
+                 "education": "Classrooms, gyms and summer deadlines", "multifamily": "Units, amenities and lease-up",
+                 "hospitality": "Guest rooms, lobbies and openings", "data-labs": "Data halls, labs and clean spaces",
+                 "government": "Secure sites and agency rules", "infrastructure": "Airports, transit and public works"}
 for _slug, _name, _icon, _intro, _fams, _kw, _faq in hubs.FACILITIES:
     _rx = re.compile(_kw, re.I)
     _ts = [t["task"] for t in tasks if t["family"] in _fams or _rx.search(t["task"] + " " + t["group"])]
@@ -603,7 +609,7 @@ def build_hubs():
     cards = ""
     for f in FACILITY_HUBS:
         cards += (f'<a class="fcard" href="{f["slug"]}.html">{ic(f["icon"], up, "ic fc-ic")}<strong>{e(f["name"])}</strong>'
-                  f'<span class="small muted">{len(f["tasks"])} services</span></a>')
+                  f'<span class="small muted">{e(FACILITY_HINT.get(f["slug"], ""))}</span></a>')
         body = f"""
 <div class="band band-white fam-top"><section class="wrap fam-hero">
   <div class="fam-head">{ic(f['icon'], up, "ic fam-ic")}<div><p class="eyebrow">Facility type</p><h1>{e(f['name'])}</h1></div></div>
@@ -661,7 +667,7 @@ def build_hubs():
 <li>The same methods, checklists and closeout documents as our home crews.</li></ul>
 <p><a class="btn" href="quote.html">Request a Bid</a></p></div></div>
 <h2>Service area</h2><p>{e(C['service_area'])}</p>
-<div class="panel i4-promo"><h2 class="h3">Central Florida: the I-4 corridor</h2><p>Every ZIP code within 15 minutes of I-4, from Tampa through Lakeland and Orlando to Daytona Beach.</p><p><a class="btn" href="i-4/index.html">See the I-4 corridor</a></p></div>
+<div class="panel i4-promo"><h2 class="h3">Central Florida: the I-4 corridor</h2><p>Tampa, Lakeland, Orlando, Sanford and Daytona Beach, and every community along the way.</p><p><a class="btn" href="i-4/index.html">See the I-4 corridor</a></p></div>
 <p>See the <a href="projects.html">projects</a> we have completed, or browse services by <a href="facilities/index.html">facility type</a> and <a href="phases/index.html">project phase</a>.</p>
 </section>"""
     page("where-we-work.html", "Where We Work | Beyond Klean", "Construction cleaning nationwide: home crews in the Southeast and travel crews for larger projects in every state.",
@@ -754,14 +760,14 @@ def build_i4():
             anc = "start" if cx < 90 else "end" if cx > 910 else "middle"
             out.append(f'<a href="{p["slug"]}.html"><text x="{cx:.0f}" y="{y}" text-anchor="{anc}" class="i4-lbl{" on" if p["key"] == hi else ""}">{e(p["name"])}</text></a>')
         return (f'<figure class="i4-strip"><svg viewBox="0 0 {W} {H}" role="img" aria-label="Cities along I-4 from Tampa to Daytona Beach">'
-                + "".join(out) + '</svg><figcaption class="small muted">I-4 from I-275 in Tampa to I-95 at Daytona Beach. Each dot is a city or community we serve.</figcaption></figure>')
+                + "".join(out) + '</svg><figcaption class="small muted">Tampa to Daytona Beach along I-4. Tap a city.</figcaption></figure>')
 
     def zip_table(rows, link_city=True):
         tr = "".join(
             f'<tr id="z{z["zip"]}"><td class="mono">{z["zip"]}</td>'
             + (f'<td><a href="{slug(show(z["city"]))}.html">{e(show(z["city"]))}</a></td><td>{e(z["county"])}</td>' if link_city else "")
-            + f'<td>{z["miles"]:.0f} mi</td></tr>' for z in rows)
-        head = "<th>ZIP</th>" + ("<th>City</th><th>County</th>" if link_city else "") + "<th>From I-4</th>"
+            + '</tr>' for z in rows)
+        head = "<th>ZIP</th>" + ("<th>City</th><th>County</th>" if link_city else "") + ""
         return f'<div class="tbl-wrap"><table class="ziptable"><thead><tr>{head}</tr></thead><tbody>{tr}</tbody></table></div>'
 
     short = lambda pf: re.split(r" \(| ?;| \+| and | via ", pf or "Bids")[0].strip() or "Bids"
@@ -778,7 +784,7 @@ def build_i4():
 
     def svc_block(hubslugs):
         fac = "".join(f'<a class="fcard" href="{up}facilities/{h}.html">{ic(hub_by[h]["icon"], up, "ic fc-ic")}<strong>{e(hub_by[h]["name"])}</strong>'
-                      f'<span class="small muted">{len(hub_by[h]["tasks"])} services</span></a>' for h in hubslugs if h in hub_by)
+                      f'<span class="small muted">{e(FACILITY_HINT.get(h, ""))}</span></a>' for h in hubslugs if h in hub_by)
         return fac
 
     core = [TASK_BY_NAME[n] for n in ["Rough clean of entire building", "Final clean of entire building", "Touch-up clean before owner walk",
@@ -814,43 +820,36 @@ def build_i4():
         cty = []
         qas = [
             (f"Do you provide construction cleaning in {p['name']}?",
-             f"Yes. {p['name']} is in {p['county']} County on the I-4 corridor, and we cover all {nz} of its ZIP code{'s' if nz > 1 else ''} we serve here ({zl}). "
+             f"Yes. {p['name']} is in {p['county']} County in Central Florida, and we cover ZIP codes {zl}. "
              f"Send the address, square footage and schedule and we return an itemized bid."),
-            (f"How far is {p['name']} from I-4?",
-             f"The {p['name']} ZIP codes we serve sit {dist} from the interstate, about 15 minutes or less for a crew. "
-             f"Along the corridor, its closest neighbors are {nb_txt}."),
+            (f"Do you also cover the cities around {p['name']}?",
+             f"Yes. Crews working in {p['name']} also cover nearby {nb_txt}, and the rest of Central Florida from Tampa to Daytona Beach."),
             (f"What kinds of buildings do you clean in {p['name']}?",
              f"Mostly {', '.join(hub_by[h]['name'].lower() for h in p['hubs'] if h in hub_by)}. Every project gets the same rough, final and touch-up "
              f"sequence, and specialty work such as floors, glass and high dusting can be added to the same bid."),
-            (f"Where do public agencies in {p['name']} post cleaning bids?",
-             (f"{p['county']} County agencies post solicitations through their own purchasing portals" +
-              (f", including {', '.join(x['name'] for x in (local + cty)[:3])}" if (local + cty) else "") +
-              ". We watch those channels and bid as a prime or as a subcontractor to the general contractor.")),
+            (f"Do you work with general contractors and public agencies in {p['name']}?",
+             f"Yes. We bid directly to owners and property managers, as a subcontractor to general contractors, and on public work for {p['county']} County agencies, schools and cities."),
         ]
         body = f"""
 <div class="band band-white fam-top"><section class="wrap fam-hero">
   <p class="eyebrow">{e(i4.NAME)} · {e(p['county'])} County</p>
   <h1>Construction cleaning in {e(p['name'])}, FL</h1>
   <p class="lede">{e(p['desc'])} Beyond Klean covers {e(p['name'])} for rough, final and touch-up construction cleans, plus floors, glass, high dusting and pressure washing.</p>
-  <p class="task-cta"><a class="btn btn-lg" href="{up}quote.html">Request a Bid</a> <a class="btn btn-ghost" href="#zips">{nz} ZIP code{'s' if nz > 1 else ''} we serve</a></p>
+  <p class="task-cta"><a class="btn btn-lg" href="{up}quote.html">Request a Bid</a> <a class="btn btn-ghost" href="#zips">Your ZIP code</a></p>
 </section></div>
 <section class="wrap">{strip(p['key'])}
 <dl class="facts i4-facts"><div><dt>County</dt><dd><a href="{c['slug']}.html">{e(p['county'])} County</a> (seat: {e(c['seat'])})</dd></div>
 <div><dt>Type</dt><dd>{e(kind.title())}</dd></div>
-<div><dt>Distance from I-4</dt><dd>{e(dist)}</dd></div>
-<div><dt>Along I-4</dt><dd>About {p['at']:.0f} miles east of downtown Tampa</dd></div>
-<div><dt>Neighbors on the corridor</dt><dd>{' · '.join(f'<a href="{q["slug"]}.html">{e(q["name"])}</a>' for q in nb)}</dd></div></dl></section>
+<div><dt>Nearby</dt><dd>{' · '.join(f'<a href="{q["slug"]}.html">{e(q["name"])}</a>' for q in nb)}</dd></div></dl></section>
 <section class="wrap" id="zips"><h2>ZIP codes we serve in {e(p['name'])}</h2>
 <div class="chips">{''.join(f'<span class="pill" id="z{z["zip"]}">{z["zip"]}</span>' for z in p['zips'])}</div></section>
 <section class="wrap"><h2>Buildings we clean in {e(p['name'])}</h2><div class="fgrid">{svc_block(p['hubs'])}</div></section>
-<section class="wrap split"><div><h2>Most requested here</h2>{core_html}</div>
-<div class="panel"><h2 class="h3">Where local agencies post bids</h2>{bid_list((local + cty)[:8])}
-<p class="small">See every channel on the <a href="index.html#bids">I-4 corridor page</a>.</p></div></section>
+<section class="wrap"><h2>Most requested here</h2>{core_html}</section>
 <section class="wrap"><h2>All service groups</h2><div class="fgrid">{fam_cards(up)}</div></section>
 <section class="wrap mid"><h2>Questions about {e(p['name'])}</h2>{qa_html(qas, 'lq')}</section>
 <section class="wrap"><p><a class="btn" href="{up}quote.html">Request a Bid in {e(p['name'])}</a> <a class="btn btn-ghost" href="index.html">The whole I-4 corridor</a></p></section>"""
         page(f"{D}/{p['slug']}.html", f"Construction Cleaning {p['name']}, FL | Beyond Klean",
-             f"Construction cleaning in {p['name']}, {p['county']} County, FL. Rough, final and touch-up cleans, floors, glass and high dusting in ZIP codes {zl}."[:158],
+             f"Construction cleaning in {p['name']}, {p['county']} County, FL: rough, final and touch-up cleans, floors, glass, high dusting and pressure washing."[:158],
              body, crumbs=crumbs0 + [(f"{D}/index.html", "I-4 corridor"), (f"{D}/{c['slug']}.html", f"{p['county']} County"), (None, p["name"])],
              schema=[faq_schema(qas), {"@context": "https://schema.org", "@type": "Service", "serviceType": "Construction cleaning",
                                         "provider": {"@type": "Organization", "name": "Beyond Klean", "url": SITE_URL},
@@ -862,29 +861,27 @@ def build_i4():
         ps = [p for p in order if p["county"] == cn]
         zs = [z for z in zips if z["county"] == cn]
         pcards = "".join(f'<a class="fcard fc-plain" href="{p["slug"]}.html"><strong>{e(p["name"])}</strong>'
-                         f'<span class="small muted">{len(p["zips"])} ZIP{"s" if len(p["zips"]) > 1 else ""} · {e(p["kind"])}</span></a>' for p in ps)
+                         f'<span class="small muted">{e(p["kind"].title())}</span></a>' for p in ps)
         body = f"""
 <div class="band band-white fam-top"><section class="wrap fam-hero">
   <p class="eyebrow">{e(i4.NAME)}</p><h1>Construction cleaning in {e(cn)} County, FL</h1>
   <p class="lede">{e(c['desc'])}</p>
   <p class="task-cta"><a class="btn btn-lg" href="{up}quote.html">Request a Bid</a></p>
 </section></div>
-<section class="wrap"><dl class="facts i4-facts"><div><dt>County seat</dt><dd>{e(c['seat'])}</dd></div>
-<div><dt>Corridor cities and communities</dt><dd>{len(ps)}</dd></div><div><dt>ZIP codes within 15 minutes of I-4</dt><dd>{len(zs)}</dd></div></dl>
+<section class="wrap"><dl class="facts i4-facts"><div><dt>County seat</dt><dd>{e(c['seat'])}</dd></div></dl>
 <h2>Cities and communities</h2><div class="fgrid fgrid-sm">{pcards}</div></section>
 <section class="wrap"><h2>Buildings we clean in {e(cn)} County</h2><div class="fgrid">{svc_block(c['hubs'])}</div></section>
-<section class="wrap" id="bids"><h2>Where {e(cn)} County agencies post bids</h2>{bid_list(ents_for(cn))}</section>
-<section class="wrap"><h2>Every ZIP code we serve in {e(cn)} County</h2>{zip_table(zs)}</section>
+<section class="wrap"><h2>ZIP codes we serve in {e(cn)} County</h2>{zip_table(zs)}</section>
 <section class="wrap"><p><a class="btn" href="{up}quote.html">Request a Bid</a> <a class="btn btn-ghost" href="index.html">The whole I-4 corridor</a></p></section>"""
         page(f"{D}/{c['slug']}.html", f"Construction Cleaning {cn} County, FL | Beyond Klean",
-             f"Construction cleaning across {cn} County, FL on the I-4 corridor: {len(ps)} cities and communities, {len(zs)} ZIP codes, and where county agencies post bids.",
+             f"Construction cleaning across {cn} County, FL: rough, final and touch-up cleans for contractors, owners and property managers in {', '.join(p['name'] for p in ps[:4])} and nearby.",
              body, crumbs=crumbs0 + [(f"{D}/index.html", "I-4 corridor"), (None, f"{cn} County")])
 
     # ---- corridor hub
     ccards = "".join(f'<a class="fcard fc-plain" href="{i4.COUNTIES[cn]["slug"]}.html"><strong>{e(cn)} County</strong>'
-                     f'<span class="small muted">{sum(1 for z in zips if z["county"] == cn)} ZIP codes · seat: {e(i4.COUNTIES[cn]["seat"])}</span></a>' for cn in counties)
+                     f'<span class="small muted">{e(", ".join([p["name"] for p in order if p["county"] == cn][:4]))}</span></a>' for cn in counties)
     pl = "".join(f'<a class="fcard fc-plain" href="{p["slug"]}.html"><strong>{e(p["name"])}</strong>'
-                 f'<span class="small muted">{e(p["county"])} · {len(p["zips"])} ZIP{"s" if len(p["zips"]) > 1 else ""}</span></a>' for p in order)
+                 f'<span class="small muted">{e(p["county"])} County</span></a>' for p in order)
     groups = defaultdict(list)
     for x in proc:
         groups[x.get("type", "other")].append(x)
@@ -897,8 +894,8 @@ def build_i4():
     bids += "".join(f'<div class="card"><h3 class="h3">{e(k.title())}</h3>{bid_list(groups[k])}</div>' for k in extra)
     hub_all = list(dict.fromkeys(h for cn in counties for h in i4.COUNTIES[cn]["hubs"]))
     qas = [("What is the I-4 corridor?", "Interstate 4 across Central Florida, about 132 miles from downtown Tampa to I-95 at Daytona Beach, through Plant City, Lakeland, Orlando, Sanford and DeLand."),
-           ("Which ZIP codes do you cover on I-4?", f"All {len(zips)} ZIP codes whose centers sit within about 10 miles of the interstate, roughly 15 minutes of driving, across {len(counties)} counties. The full list is on this page."),
-           ("Do you bid public work on the corridor?", "Yes. Counties, cities, school districts, colleges, airports and transit agencies along I-4 post cleaning and construction solicitations on their own portals. We bid as a prime or as a subcontractor to the general contractor."),
+           ("Which areas do you cover in Central Florida?", "Tampa, Brandon, Plant City, Lakeland, Winter Haven, Kissimmee, Orlando, Winter Park, Altamonte Springs, Lake Mary, Sanford, DeLand, Daytona Beach and the communities around them. Look up your ZIP code on this page."),
+           ("Do you bid public work in Central Florida?", "Yes. We bid on cleaning and construction work for counties, cities, school districts, colleges, airports and transit agencies, as a prime or as a subcontractor to the general contractor."),
            ("Can one bid cover sites in several corridor cities?", "Yes. Multi-site work such as retail rollouts, school programs and apartment portfolios can be priced on one bid with a line for each site.")]
     body = f"""
 <div class="band band-white fam-top"><section class="wrap fam-hero">
@@ -906,20 +903,16 @@ def build_i4():
   <p class="lede">{e(i4.INTRO)}</p>
   <p class="task-cta"><a class="btn btn-lg" href="{up}quote.html">Request a Bid</a> <a class="btn btn-ghost" href="#zips">Find your ZIP code</a></p>
 </section></div>
-<section class="wrap">{strip()}
-<div class="stats i4-stats"><div><strong>{len(zips)}</strong><span>ZIP codes</span></div><div><strong>{len(order)}</strong><span>cities and communities</span></div>
-<div><strong>{len(counties)}</strong><span>counties</span></div><div><strong>132</strong><span>miles of interstate</span></div></div></section>
+<section class="wrap">{strip()}</section>
 <section class="wrap"><h2>Counties</h2><div class="fgrid fgrid-sm">{ccards}</div>
 <h2>Cities and communities, west to east</h2><div class="fgrid fgrid-sm">{pl}</div></section>
 <section class="wrap"><h2>Buildings we clean on the corridor</h2><div class="fgrid">{svc_block(hub_all)}</div></section>
-<section class="wrap" id="bids"><h2>Where corridor agencies post bids</h2>
-<p>Public work on I-4 is posted agency by agency. These are the purchasing channels we watch.</p><div class="duo">{bids or '<p class="small muted">Being verified.</p>'}</div></section>
-<section class="wrap" id="zips"><h2>Every ZIP code we serve on I-4</h2>
+<section class="wrap" id="zips"><h2>Find your ZIP code</h2>
 <p><label class="small" for="zipq">Find a ZIP or city</label><input id="zipq" class="zipq" inputmode="search" placeholder="e.g. 32801 or Lakeland" data-zipfilter></p>{zip_table(zips)}</section>
 <section class="wrap"><h2>All service groups</h2><div class="fgrid">{fam_cards(up)}</div></section>
 <section class="wrap mid"><h2>Questions about the I-4 corridor</h2>{qa_html(qas, 'iq')}</section>"""
     page(f"{D}/index.html", "I-4 Corridor Construction Cleaning, Tampa to Daytona | Beyond Klean",
-         f"Construction cleaning in all {len(zips)} ZIP codes along I-4 from Tampa to Daytona Beach: {len(order)} cities, {len(counties)} counties, and where agencies post bids.",
+         "Construction cleaning along I-4 from Tampa to Daytona Beach: Lakeland, Orlando, Kissimmee, Sanford, DeLand and every community in between.",
          body, crumbs=crumbs0 + [(None, "I-4 corridor")], schema=[faq_schema(qas)])
     return len(order), len(zips)
 
@@ -930,6 +923,9 @@ SP_DISC = ("Beyond Klean provides marketing, procurement research, and consultin
            "project performance, and related responsibilities belong solely to the contractor.")
 SP_ADNOTE = ("Listings on this page are advertisements. Beyond Klean does not perform, verify or guarantee specialty work. "
              "Confirm each contractor's licenses, certifications and insurance before hiring.")
+
+
+SP_INDEX = []
 
 
 def build_specialty():
@@ -1039,7 +1035,7 @@ def build_specialty():
 <div class="band band-white fam-top"><section class="wrap fam-hero">
   <div class="fam-head">{ic(icn(f['icon']), up, "ic fam-ic")}<div><p class="eyebrow">Specialty</p><h1>{e(f['name'])}</h1></div></div>
   <p class="lede">{e(f['intro'])}</p><p>{e(f['why'])}</p>
-  <p class="task-cta"><a class="btn btn-lg" href="#services">{len(f['services'])} services</a> <a class="btn btn-ghost" href="advertise.html">Advertise in this group</a></p>
+  <p class="task-cta"><a class="btn btn-lg" href="#services">See the services</a> <a class="btn btn-ghost" href="advertise.html">Advertise in this group</a></p>
 </section></div>
 <section class="wrap" id="services"><h2>Services</h2><div class="fgrid">{''.join(svc_card(f, s, up) for s in f['services'])}</div></section>
 <section class="wrap mid"><h2>Questions about {e(f['short'].lower())}</h2>{qa_html(qas, 'fq')}</section>
@@ -1110,12 +1106,25 @@ def build_specialty():
     page(f"{D}/advertise.html", "Advertise with Beyond Klean Specialty", "Advertise your specialty cleaning or remediation company on the pages buyers read. Listings, featured spots, exclusive sponsorships and quote requests.",
          body, crumbs=crumbs0 + [(None, "Advertise")], active=f"{D}/index.html")
     # ---- hub
+    def hint(svcs, n=3):
+        t = ", ".join(re.sub(r"\s*\(.*?\)", "", x["name"]) for x in svcs[:n])
+        return t[:1].upper() + t[1:]
     fcards = "".join(f'<a class="fcard" href="{f["slug"]}.html">{ic(icn(f["icon"]), up, "ic fc-ic")}<strong>{e(f["short"])}</strong>'
-                     f'<span class="small muted">{len(f["services"])} services</span></a>' for f in families)
+                     f'<span class="small muted">{e(hint(f["services"]))}</span></a>' for f in families)
     icards = "".join(f'<a class="fcard" href="industries/{k}.html">{ic(icn(v["icon"]), up, "ic fc-ic")}<strong>{e(v["name"])}</strong>'
-                     f'<span class="small muted">{len(by_ind.get(k, []))} services</span></a>' for k, v in INDS.items())
+                     f'<span class="small muted">{e(hint([x[1] for x in by_ind.get(k, [])]))}</span></a>' for k, v in INDS.items())
+    fam_by = {f["slug"]: f for f in families}
+    SITS = [("Something spilled, leaked or got contaminated", ["hazardous-waste-environmental-cleanup", "biohazard-infectious-cleanup"]),
+            ("After a fire, smoke or flood", ["fire-smoke-flood-restoration"]),
+            ("Mold, odor or air quality", ["mold-microbial-remediation", "commercial-hvac-ventilation"]),
+            ("Plant shutdown, tanks or equipment", ["industrial-shutdown-turnaround", "industrial-equipment-machinery", "power-generation-utilities"]),
+            ("Tall buildings, exteriors and big spaces", ["high-rise-facade-exterior", "large-facility-overhead"]),
+            ("Food safety, healthcare and clean spaces", ["food-processing-sanitation", "healthcare-controlled-environments", "data-center-sensitive-equipment"]),
+            ("Ships, ports, aircraft and fleets", ["marine-shipyard-port", "transportation-aviation"]),
+            ("Demolition and heavy construction", ["construction-demolition-cleaning"])]
+    sits = "".join(f'<div class="card"><h3 class="h3">{e(t)}</h3><p>' + " · ".join(f'<a href="{k}.html">{e(fam_by[k]["short"])}</a>' for k in ks if k in fam_by) + "</p></div>" for t, ks in SITS)
+    STARTS = [x["name"][0].upper() + x["name"][1:] for k in ["industrial-shutdown-turnaround", "mold-microbial-remediation", "fire-smoke-flood-restoration", "commercial-hvac-ventilation", "high-rise-facade-exterior", "hazardous-waste-environmental-cleanup"] if k in fam_by for x in fam_by[k]["services"][:1]]
     gl = "".join(f'<li><a href="guides/{g["slug"]}.html">{e(g["title"])}</a></li>' for g in GUIDES)
-    nreg = sum(1 for _, s in svc_all if s.get("regulated"))
     qas = [("What is Beyond Klean Specialty?", "A guide and advertising platform for specialty cleaning and remediation. Buyers learn what a job involves and which credentials to ask for, then contact the specialists who advertise on the page."),
            ("Does Beyond Klean perform specialty work?", "No. " + SP_DISC),
            ("How do I find a specialist?", "Open the service you need, read the guide, then call an advertiser listed on the page or send one request through the Get quotes form."),
@@ -1124,9 +1133,13 @@ def build_specialty():
 <div class="band band-white fam-top"><section class="wrap fam-hero"><p class="eyebrow">Beyond Klean Specialty</p>
 <h1>Find specialty cleaning and remediation contractors</h1>
 <p class="lede">Industrial, environmental, restoration, high-rise, healthcare, food plant, marine and data center work, explained in plain words. Read what the job takes, then contact the specialists who advertise here.</p>
-<p class="task-cta"><a class="btn btn-lg" href="#groups">Browse {len(svc_all)} services</a> <a class="btn btn-ghost" href="advertise.html">Advertise with us</a></p></section></div>
-<section class="wrap"><div class="stats i4-stats"><div><strong>{len(svc_all)}</strong><span>specialty services</span></div><div><strong>{len(families)}</strong><span>service groups</span></div>
-<div><strong>{len(INDS)}</strong><span>industries</span></div><div><strong>{nreg}</strong><span>licensed, regulated services</span></div></div>
+<p class="task-cta"><a class="btn btn-lg" href="#find">Find your specialty</a> <a class="btn btn-ghost" href="advertise.html">Advertise with us</a></p></section></div>
+<section class="wrap" id="find"><form class="finder sp-finder" data-finder data-up="../" data-scope="Specialty" data-starters="{e("|".join(STARTS))}" role="search" action="#groups">
+  <label for="sp-q" class="finder-label">What needs cleaning?</label>
+  <div class="finder-box"><input id="sp-q" name="q" type="text" autocomplete="off" spellcheck="false" placeholder="Try “tank cleaning”, “mold” or “smoke damage”" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="sp-list">
+  <button class="btn" type="submit">Find it</button></div>
+  <ul class="finder-list" id="sp-list" role="listbox" hidden></ul></form>
+<h2>What happened?</h2><div class="duo sp-sit">{sits}</div>
 <h2>How it works</h2><div class="duo"><div class="card"><h3>1. Read the guide</h3><p>What the work is, when you need it, the credentials to ask for and how it is priced.</p></div>
 <div class="card"><h3>2. See the specialists</h3><p>Contractors who advertise for that service and area, with a call button and website.</p></div>
 <div class="card"><h3>3. Call or get quotes</h3><p>Contact them directly, or send one request to all advertisers on the page.</p></div></div></section>
@@ -1137,8 +1150,9 @@ def build_specialty():
 <section class="wrap"><div class="panel"><h2 class="h3">Construction cleaning?</h2><p>Rough, final and touch-up cleans for new construction and renovation are on the main Beyond Klean site.</p><p><a class="btn" href="{up}services.html">Construction cleaning services</a></p></div></section>
 {disc(up)}"""
     page(f"{D}/index.html", "Beyond Klean Specialty: Specialty Cleaning and Remediation Contractors",
-         f"Find specialty cleaning and remediation contractors: {len(svc_all)} services across industrial, environmental, restoration, high-rise, healthcare and more.",
+         "Find specialty cleaning and remediation contractors for spills, fire and flood, mold, plant shutdowns, high-rise exteriors, food plants, healthcare and more.",
          body, crumbs=[("index.html", "Home"), (None, "Specialty")], schema=[faq_schema(qas)], active=f"{D}/index.html")
+    SP_INDEX[:] = [[s["name"][0].upper() + s["name"][1:], s.get("aka", []), "Specialty · " + f["short"], f"{D}/services/{s['slug']}.html", 1, []] for f, s in svc_all]
     return len(svc_all)
 
 
@@ -1249,6 +1263,7 @@ if __name__ == "__main__":
     idx = [[t["task"], t["alias_list"], FAM[t["family"]]["short"], f"tasks/{t['slug']}.html",
             TIERW[t["tier"]] + POPULAR.get(t["task"], 0), EXTRA.get(t["task"], [])] for t in tasks]
     idx += [[FAM[fn]["short"], [], "Service family", f"families/{FAM[fn]['slug']}.html", 2, [fn]] for fn in fams]
+    idx += SP_INDEX
     (SITE / "assets" / "search-index.js").write_text("window.BK_INDEX=" + json.dumps(idx, ensure_ascii=False, separators=(",", ":")) + ";\n")
     (SITE / "robots.txt").write_text("# Preview build: keep out of search until launch\nUser-agent: *\nDisallow: /\n")
     (SITE / "sitemap.xml").write_text(

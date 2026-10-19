@@ -70,12 +70,13 @@
     return esc(text.slice(0, i)) + "<b>" + esc(text.slice(i, i + q.length)) + "</b>" + esc(text.slice(i + q.length));
   };
   var wordStart = function (hay, q) { return hay.indexOf(q) === 0 || hay.indexOf(" " + q) !== -1; };
-  var search = function (raw, tasksOnly) {
+  var search = function (raw, tasksOnly, scope) {
     var q = norm(raw), words = q.split(" ").filter(Boolean);
     if (q.length < 2) return [];
     var out = [];
     data.forEach(function (d) {
-      if (tasksOnly && d.fam === "Service family") return;
+      if (tasksOnly && (d.fam === "Service family" || d.fam.indexOf("Specialty") === 0)) return;
+      if (scope && d.fam.indexOf(scope) !== 0) return;
       var best = 0, via = "";
       var test = function (hay, isAlt, label) {
         if (!words.every(function (w) { return hay.indexOf(w) !== -1; })) return;
@@ -95,6 +96,8 @@
   document.querySelectorAll("[data-finder]").forEach(function (finder) {
     if (!data.length) return;
     var addMode = finder.getAttribute("data-mode") === "add";
+    var up = finder.getAttribute("data-up") || "", scope = finder.getAttribute("data-scope") || "";
+    var starters = finder.getAttribute("data-starters") ? finder.getAttribute("data-starters").split("|") : STARTERS;
     var input = finder.querySelector("input");
     var list = finder.querySelector(".finder-list");
     var lid = list.id;
@@ -103,21 +106,22 @@
     var render = function () {
       var raw = input.value.trim(), q = norm(raw), html = "";
       if (q.length < 2) {
-        shown = STARTERS.map(function (n) { return data.filter(function (d) { return d.name === n; })[0]; })
+        shown = starters.map(function (n) { return data.filter(function (d) { return d.name === n; })[0]; })
           .filter(Boolean).map(function (d) { return { d: d, via: "" }; });
         html = '<li class="hint-row" role="presentation">Popular requests</li>';
       } else {
-        shown = search(raw, addMode);
+        shown = search(raw, addMode, scope);
       }
       shown.forEach(function (r, i) {
         var name = r.via ? esc(r.d.name) : mark(r.d.name, q);
         var aka = r.via ? '<span class="aka">also called ' + mark(r.via, q) + "</span>" : "";
-        html += '<li role="option" id="' + lid + "-" + i + '" aria-selected="' + (i === active) + '"><a href="' + esc(r.d.url) + '" data-pick="' + i + '"><span>' + name + aka +
+        html += '<li role="option" id="' + lid + "-" + i + '" aria-selected="' + (i === active) + '"><a href="' + esc(up + r.d.url) + '" data-pick="' + i + '"><span>' + name + aka +
           '</span><span class="fam">' + (addMode ? "+ Add" : esc(r.d.fam)) + "</span></a></li>";
       });
       if (q.length >= 2 && !shown.length) {
         html = addMode ? '<li class="none"><a href="#" data-typed>Add “' + esc(raw) + '” to your list →</a></li>'
-                       : '<li class="none"><a href="quote.html">Can’t find it? Tell us what you need →</a></li>';
+                       : scope ? '<li class="none"><a href="#groups">Can’t find it? Browse every specialty group →</a></li>'
+                       : '<li class="none"><a href="' + up + 'quote.html">Can’t find it? Tell us what you need →</a></li>';
       }
       list.innerHTML = html;
       list.hidden = false;
@@ -127,7 +131,7 @@
     var close = function () { list.hidden = true; active = -1; input.setAttribute("aria-expanded", "false"); };
     var take = function (r) {
       if (addMode) { addToList(r ? r.d.name : input.value); input.value = ""; close(); input.focus(); }
-      else if (r) location.href = r.d.url;
+      else if (r) location.href = up + r.d.url;
     };
 
     input.addEventListener("input", function () { active = -1; render(); });

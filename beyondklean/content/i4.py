@@ -11,7 +11,7 @@ SPAN = "Tampa to Daytona Beach"
 INTRO = ("Interstate 4 runs about 132 miles across Central Florida, from downtown Tampa to I-95 at Daytona Beach. "
          "It ties together two major metros, the logistics belt of Polk County, the theme-park and convention district "
          "of Orlando and Kissimmee, the office parks of Seminole County and the coastal market of Volusia County. "
-         "We cover every ZIP code within about 15 minutes of the interstate, end to end.")
+         "We cover the whole corridor, from downtown Tampa to the beach.")
 
 # slug, name, seat, description, facility hub slugs most common in the county
 COUNTIES = {
