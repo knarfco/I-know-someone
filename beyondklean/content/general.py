@@ -84,7 +84,7 @@ GENERAL_FAQ = [
   ("What kinds of cleaning do you handle?", "Everything a construction project can need cleaned, from debris and rough clean through final clean, glass, floors, kitchens, overhead high dusting and closeout, searchable by the names contractors, specs and buyers actually use."),
   ("Is there a cost to request a bid?", "No. Bids are free for general contractors, property managers and building owners."),
   ("What do you need from me to bid?", "Five things: the type of project, when it needs to be done, the city and ZIP code, the approximate square footage and the tasks you need. Plans and specs help but are not required."),
-  ("What is the relationship with Above Eye Level Cleaning?", "Above Eye Level Cleaning is our sister brand for recurring overhead and high-dusting work. Beyond Klean handles construction turnover, and AELC keeps overhead surfaces clean after the building opens."),
+  ("Do you offer recurring high dusting after construction?", "Yes. Beyond Klean handles construction turnover and can keep overhead surfaces clean after the building opens with quarterly, semiannual or annual high-dusting programs."),
  ]),
  ("For general contractors", [
   ("How do I get a cleaning crew on my project?", "Request a bid or send your specs. We review the scope, phases, schedule and site, confirm crew availability and send an itemized bid."),
@@ -99,7 +99,7 @@ GENERAL_FAQ = [
  ("For owners and property managers", [
   ("When should cleaning be planned on a construction project?", "Early. Overhead cleaning, glass, floors and kitchen equipment are often missed in scopes. Writing them in during bidding prevents change orders at the end."),
   ("Why is my new building still dusty after the final clean?", "Usually because overhead surfaces were not in scope, or dust was moved instead of captured. HEPA capture and overhead cleaning fix the cause, not just the symptom."),
-  ("Can Beyond Klean help after we open?", "Yes. Recurring overhead and high dusting goes through Above Eye Level Cleaning, and floor, glass and specialty services can be scheduled as needed."),
+  ("Can Beyond Klean help after we open?", "Yes. Beyond Klean runs recurring overhead and high dusting, and floor, glass and specialty services can be scheduled as needed."),
   ("Is construction cleaning the same as janitorial service?", "No. Construction cleaning removes construction residue from new finishes: dust, labels, adhesive, grout haze and debris. Janitorial service maintains an occupied building."),
   ("How do I know the cleaning was done right?", "Ask for room checklists and before-and-after photos, and walk the space with the punch list. Our crews provide both and re-clean punch items before sign-off."),
   ("Can cleaning be scheduled around our operations?", "Yes. Remodels in operating stores, offices and healthcare facilities are commonly cleaned overnight or in phases."),
@@ -144,7 +144,7 @@ MARKETS = [
 ]
 
 
-def static_pages(n_tasks, n_names, n_faq, fam_cards, AELC_URL, phase_counts, task_options, phone=""):
+def static_pages(n_tasks, n_names, n_faq, fam_cards, phase_counts, task_options, phone=""):
     tel = "".join(c for c in phone if c.isdigit() or c == "+")
     call = f'<a class="btn btn-light" href="tel:{tel}">Call {e(phone)}</a>' if phone else ""
     markets = "".join(f'<div class="mcard"><strong>{e(n)}</strong><span class="small muted">{e(d)}</span></div>'
@@ -226,10 +226,10 @@ def static_pages(n_tasks, n_names, n_faq, fam_cards, AELC_URL, phase_counts, tas
     <p><a href="methods.html">How we clean differently</a></p>
   </div>
   <div class="panel">
-    <p class="eyebrow">Above Eye Level Cleaning</p>
+    <p class="eyebrow">Overhead and high dusting</p>
     <h2>The ceiling gets cleaned once. Then it gets dusty again.</h2>
-    <p>Open decks, beams, ducts and fixtures collect dust long after turnover. Our sister brand schedules recurring high dusting for stores, warehouses and food facilities.</p>
-    <p><a href="families/overhead-high-dusting.html">Overhead services</a> · <a href="{AELC_URL}" rel="noopener">AboveEyeLevelCleaning.com</a></p>
+    <p>Open decks, beams, ducts and fixtures collect dust long after turnover. Beyond Klean schedules recurring high dusting for stores, warehouses and food facilities.</p>
+    <p><a href="families/overhead-high-dusting.html">Overhead services</a></p>
   </div>
 </section></div>
 """
@@ -372,8 +372,8 @@ def static_pages(n_tasks, n_names, n_faq, fam_cards, AELC_URL, phase_counts, tas
 <!--LEADERSHIP-->
   <h2>Proof and paperwork</h2>
   <p>See our <a href="projects.html">projects</a>, how our crews work under our <a href="safety.html">safety and compliance</a> program, our <a href="methods.html">cleaning methods</a>, and the <a href="capability-statement.html">capability statement</a> for government and institutional buyers.</p>
-  <h2>Our sister brand</h2>
-  <p>Recurring overhead and high dusting is handled through <a href="{AELC_URL}" rel="noopener">Above Eye Level Cleaning</a>, which keeps open ceilings, structure and fixtures clean after the building opens.</p>
+  <h2>After the building opens</h2>
+  <p>Beyond Klean also runs recurring <a href="families/overhead-high-dusting.html">overhead and high dusting</a> programs that keep open ceilings, structure and fixtures clean after turnover.</p>
   <p><a class="btn" href="quote.html">Request a Bid</a></p>
 </section>"""
 

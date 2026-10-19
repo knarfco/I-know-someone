@@ -360,7 +360,7 @@ C = {
  ["Skipping a quarter can double the next visit's workload.", "Operating sites need lift exclusion zones and coordination with store or plant management."],
  [("What does a quarterly high dusting program include?", "Scheduled overhead cleaning of the deck, structure, ducts, pipes, lights and signs four times a year, with documentation."),
   ("Is quarterly high dusting enough?", "For most retail and warehouse spaces it is. Very dusty operations or food facilities may need more frequent service."),
-  ("Who runs quarterly high dusting programs?", "Our partner program, Above Eye Level Cleaning, focuses on recurring overhead work."),
+  ("Who runs quarterly high dusting programs?", "Beyond Klean runs recurring overhead programs, scheduled quarterly, semiannually or annually around your operations."),
   ("Can high dusting be scheduled around business hours?", "Yes. It is usually done overnight or before opening.")]),
 "Semiannual overhead cleaning program": T(
  "A semiannual overhead cleaning program schedules overhead dust removal twice a year, a common rhythm for offices, schools, churches and lower-dust retail spaces.",

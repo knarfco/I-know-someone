@@ -1189,7 +1189,7 @@
  },
  {
   "id": "BK-040101",
-  "family": "Overhead & Elevated Surfaces (Above Eye Level)",
+  "family": "Overhead & Elevated Surfaces",
   "group": "Ceilings, decks and structure",
   "task": "Open ceiling deck cleaning",
   "slug": "open-ceiling-deck-cleaning",
@@ -1207,7 +1207,7 @@
  },
  {
   "id": "BK-040102",
-  "family": "Overhead & Elevated Surfaces (Above Eye Level)",
+  "family": "Overhead & Elevated Surfaces",
   "group": "Ceilings, decks and structure",
   "task": "Exposed structural steel beam cleaning",
   "slug": "exposed-structural-steel-beam-cleaning",
@@ -1225,7 +1225,7 @@
  },
  {
   "id": "BK-040103",
-  "family": "Overhead & Elevated Surfaces (Above Eye Level)",
+  "family": "Overhead & Elevated Surfaces",
   "group": "Ceilings, decks and structure",
   "task": "Bar joist cleaning",
   "slug": "bar-joist-cleaning",
@@ -1243,7 +1243,7 @@
  },
  {
   "id": "BK-040104",
-  "family": "Overhead & Elevated Surfaces (Above Eye Level)",
+  "family": "Overhead & Elevated Surfaces",
   "group": "Ceilings, decks and structure",
   "task": "Wood truss and glulam cleaning",
   "slug": "wood-truss-and-glulam-cleaning",
@@ -1261,7 +1261,7 @@
  },
  {
   "id": "BK-040105",
-  "family": "Overhead & Elevated Surfaces (Above Eye Level)",
+  "family": "Overhead & Elevated Surfaces",
   "group": "Ceilings, decks and structure",
   "task": "Gymnasium rafter cleaning",
   "slug": "gymnasium-rafter-cleaning",
@@ -1279,7 +1279,7 @@
  },
  {
   "id": "BK-040106",
-  "family": "Overhead & Elevated Surfaces (Above Eye Level)",
+  "family": "Overhead & Elevated Surfaces",
   "group": "Ceilings, decks and structure",
   "task": "Warehouse ceiling dust removal",
   "slug": "warehouse-ceiling-dust-removal",
@@ -1297,7 +1297,7 @@
  },
  {
   "id": "BK-040107",
-  "family": "Overhead & Elevated Surfaces (Above Eye Level)",
+  "family": "Overhead & Elevated Surfaces",
   "group": "Ceilings, decks and structure",
   "task": "Retail store ceiling dust capture",
   "slug": "retail-store-ceiling-dust-capture",
@@ -1315,7 +1315,7 @@
  },
  {
   "id": "BK-040108",
-  "family": "Overhead & Elevated Surfaces (Above Eye Level)",
+  "family": "Overhead & Elevated Surfaces",
   "group": "Ceilings, decks and structure",
   "task": "Exposed concrete ceiling cleaning",
   "slug": "exposed-concrete-ceiling-cleaning",
@@ -1333,7 +1333,7 @@
  },
  {
   "id": "BK-040109",
-  "family": "Overhead & Elevated Surfaces (Above Eye Level)",
+  "family": "Overhead & Elevated Surfaces",
   "group": "Ceilings, decks and structure",
   "task": "Acoustic deck and sound panel dusting",
   "slug": "acoustic-deck-and-sound-panel-dusting",
@@ -1351,7 +1351,7 @@
  },
  {
   "id": "BK-040110",
-  "family": "Overhead & Elevated Surfaces (Above Eye Level)",
+  "family": "Overhead & Elevated Surfaces",
   "group": "Ceilings, decks and structure",
   "task": "Spray-applied fireproofing area light dusting",
   "slug": "spray-applied-fireproofing-area-light-dusting",
@@ -1369,7 +1369,7 @@
  },
  {
   "id": "BK-040111",
-  "family": "Overhead & Elevated Surfaces (Above Eye Level)",
+  "family": "Overhead & Elevated Surfaces",
   "group": "Ceilings, decks and structure",
   "task": "Mezzanine underside cleaning",
   "slug": "mezzanine-underside-cleaning",
@@ -1387,7 +1387,7 @@
  },
  {
   "id": "BK-040112",
-  "family": "Overhead & Elevated Surfaces (Above Eye Level)",
+  "family": "Overhead & Elevated Surfaces",
   "group": "Ceilings, decks and structure",
   "task": "Atrium and lobby high ceiling cleaning",
   "slug": "atrium-and-lobby-high-ceiling-cleaning",
@@ -1405,7 +1405,7 @@
  },
  {
   "id": "BK-040113",
-  "family": "Overhead & Elevated Surfaces (Above Eye Level)",
+  "family": "Overhead & Elevated Surfaces",
   "group": "Ceilings, decks and structure",
   "task": "Skylight well and light shaft cleaning",
   "slug": "skylight-well-and-light-shaft-cleaning",
@@ -1423,7 +1423,7 @@
  },
  {
   "id": "BK-040201",
-  "family": "Overhead & Elevated Surfaces (Above Eye Level)",
+  "family": "Overhead & Elevated Surfaces",
   "group": "Overhead MEP exterior surfaces",
   "task": "Duct exterior cleaning",
   "slug": "duct-exterior-cleaning",
@@ -1441,7 +1441,7 @@
  },
  {
   "id": "BK-040202",
-  "family": "Overhead & Elevated Surfaces (Above Eye Level)",
+  "family": "Overhead & Elevated Surfaces",
   "group": "Overhead MEP exterior surfaces",
   "task": "Fabric duct sock cleaning",
   "slug": "fabric-duct-sock-cleaning",
@@ -1459,7 +1459,7 @@
  },
  {
   "id": "BK-040203",
-  "family": "Overhead & Elevated Surfaces (Above Eye Level)",
+  "family": "Overhead & Elevated Surfaces",
   "group": "Overhead MEP exterior surfaces",
   "task": "Overhead piping exterior cleaning",
   "slug": "overhead-piping-exterior-cleaning",
@@ -1477,7 +1477,7 @@
  },
  {
   "id": "BK-040204",
-  "family": "Overhead & Elevated Surfaces (Above Eye Level)",
+  "family": "Overhead & Elevated Surfaces",
   "group": "Overhead MEP exterior surfaces",
   "task": "Sprinkler pipe exterior dusting",
   "slug": "sprinkler-pipe-exterior-dusting",
@@ -1495,7 +1495,7 @@
  },
  {
   "id": "BK-040205",
-  "family": "Overhead & Elevated Surfaces (Above Eye Level)",
+  "family": "Overhead & Elevated Surfaces",
   "group": "Overhead MEP exterior surfaces",
   "task": "Sprinkler head careful dusting",
   "slug": "sprinkler-head-careful-dusting",
@@ -1513,7 +1513,7 @@
  },
  {
   "id": "BK-040206",
-  "family": "Overhead & Elevated Surfaces (Above Eye Level)",
+  "family": "Overhead & Elevated Surfaces",
   "group": "Overhead MEP exterior surfaces",
   "task": "Cable tray exterior dusting",
   "slug": "cable-tray-exterior-dusting",
@@ -1531,7 +1531,7 @@
  },
  {
   "id": "BK-040207",
-  "family": "Overhead & Elevated Surfaces (Above Eye Level)",
+  "family": "Overhead & Elevated Surfaces",
   "group": "Overhead MEP exterior surfaces",
   "task": "Conduit run dusting",
   "slug": "conduit-run-dusting",
@@ -1549,7 +1549,7 @@
  },
  {
   "id": "BK-040208",
-  "family": "Overhead & Elevated Surfaces (Above Eye Level)",
+  "family": "Overhead & Elevated Surfaces",
   "group": "Overhead MEP exterior surfaces",
   "task": "Unit heater exterior cleaning",
   "slug": "unit-heater-exterior-cleaning",
@@ -1567,7 +1567,7 @@
  },
  {
   "id": "BK-040209",
-  "family": "Overhead & Elevated Surfaces (Above Eye Level)",
+  "family": "Overhead & Elevated Surfaces",
   "group": "Overhead MEP exterior surfaces",
   "task": "Overhead exhaust fan exterior cleaning",
   "slug": "overhead-exhaust-fan-exterior-cleaning",
@@ -1585,7 +1585,7 @@
  },
  {
   "id": "BK-040210",
-  "family": "Overhead & Elevated Surfaces (Above Eye Level)",
+  "family": "Overhead & Elevated Surfaces",
   "group": "Overhead MEP exterior surfaces",
   "task": "HVLS ceiling fan cleaning",
   "slug": "hvls-ceiling-fan-cleaning",
@@ -1603,7 +1603,7 @@
  },
  {
   "id": "BK-040211",
-  "family": "Overhead & Elevated Surfaces (Above Eye Level)",
+  "family": "Overhead & Elevated Surfaces",
   "group": "Overhead MEP exterior surfaces",
   "task": "Ceiling fan cleaning",
   "slug": "ceiling-fan-cleaning",
@@ -1621,7 +1621,7 @@
  },
  {
   "id": "BK-040301",
-  "family": "Overhead & Elevated Surfaces (Above Eye Level)",
+  "family": "Overhead & Elevated Surfaces",
   "group": "Lighting and fixtures at height",
   "task": "High-bay light fixture cleaning",
   "slug": "high-bay-light-fixture-cleaning",
@@ -1639,7 +1639,7 @@
  },
  {
   "id": "BK-040302",
-  "family": "Overhead & Elevated Surfaces (Above Eye Level)",
+  "family": "Overhead & Elevated Surfaces",
   "group": "Lighting and fixtures at height",
   "task": "Pendant and suspended light cleaning",
   "slug": "pendant-and-suspended-light-cleaning",
@@ -1657,7 +1657,7 @@
  },
  {
   "id": "BK-040303",
-  "family": "Overhead & Elevated Surfaces (Above Eye Level)",
+  "family": "Overhead & Elevated Surfaces",
   "group": "Lighting and fixtures at height",
   "task": "Linear light fixture and lens cleaning",
   "slug": "linear-light-fixture-and-lens-cleaning",
@@ -1675,7 +1675,7 @@
  },
  {
   "id": "BK-040304",
-  "family": "Overhead & Elevated Surfaces (Above Eye Level)",
+  "family": "Overhead & Elevated Surfaces",
   "group": "Lighting and fixtures at height",
   "task": "Chandelier and decorative fixture cleaning",
   "slug": "chandelier-and-decorative-fixture-cleaning",
@@ -1693,7 +1693,7 @@
  },
  {
   "id": "BK-040305",
-  "family": "Overhead & Elevated Surfaces (Above Eye Level)",
+  "family": "Overhead & Elevated Surfaces",
   "group": "Lighting and fixtures at height",
   "task": "Track lighting cleaning",
   "slug": "track-lighting-cleaning",
@@ -1711,7 +1711,7 @@
  },
  {
   "id": "BK-040306",
-  "family": "Overhead & Elevated Surfaces (Above Eye Level)",
+  "family": "Overhead & Elevated Surfaces",
   "group": "Lighting and fixtures at height",
   "task": "Exit sign and emergency light cleaning",
   "slug": "exit-sign-and-emergency-light-cleaning",
@@ -1729,7 +1729,7 @@
  },
  {
   "id": "BK-040307",
-  "family": "Overhead & Elevated Surfaces (Above Eye Level)",
+  "family": "Overhead & Elevated Surfaces",
   "group": "Lighting and fixtures at height",
   "task": "Clerestory and upper window cleaning",
   "slug": "clerestory-and-upper-window-cleaning",
@@ -1747,7 +1747,7 @@
  },
  {
   "id": "BK-040308",
-  "family": "Overhead & Elevated Surfaces (Above Eye Level)",
+  "family": "Overhead & Elevated Surfaces",
   "group": "Lighting and fixtures at height",
   "task": "Elevated signage and banner cleaning",
   "slug": "elevated-signage-and-banner-cleaning",
@@ -1765,7 +1765,7 @@
  },
  {
   "id": "BK-040309",
-  "family": "Overhead & Elevated Surfaces (Above Eye Level)",
+  "family": "Overhead & Elevated Surfaces",
   "group": "Lighting and fixtures at height",
   "task": "Upper wall ledge and soffit cleaning",
   "slug": "upper-wall-ledge-and-soffit-cleaning",
@@ -1783,7 +1783,7 @@
  },
  {
   "id": "BK-040310",
-  "family": "Overhead & Elevated Surfaces (Above Eye Level)",
+  "family": "Overhead & Elevated Surfaces",
   "group": "Lighting and fixtures at height",
   "task": "Top of shelving and racking dusting",
   "slug": "top-of-shelving-and-racking-dusting",
@@ -1801,7 +1801,7 @@
  },
  {
   "id": "BK-040311",
-  "family": "Overhead & Elevated Surfaces (Above Eye Level)",
+  "family": "Overhead & Elevated Surfaces",
   "group": "Lighting and fixtures at height",
   "task": "Top of walk-in cooler box dusting",
   "slug": "top-of-walk-in-cooler-box-dusting",
@@ -1819,7 +1819,7 @@
  },
  {
   "id": "BK-040312",
-  "family": "Overhead & Elevated Surfaces (Above Eye Level)",
+  "family": "Overhead & Elevated Surfaces",
   "group": "Lighting and fixtures at height",
   "task": "Top of millwork and display dusting",
   "slug": "top-of-millwork-and-display-dusting",
@@ -1837,7 +1837,7 @@
  },
  {
   "id": "BK-040401",
-  "family": "Overhead & Elevated Surfaces (Above Eye Level)",
+  "family": "Overhead & Elevated Surfaces",
   "group": "Recurring overhead maintenance",
   "task": "Quarterly high dusting program",
   "slug": "quarterly-high-dusting-program",
@@ -1855,7 +1855,7 @@
  },
  {
   "id": "BK-040402",
-  "family": "Overhead & Elevated Surfaces (Above Eye Level)",
+  "family": "Overhead & Elevated Surfaces",
   "group": "Recurring overhead maintenance",
   "task": "Semiannual overhead cleaning program",
   "slug": "semiannual-overhead-cleaning-program",
@@ -1873,7 +1873,7 @@
  },
  {
   "id": "BK-040403",
-  "family": "Overhead & Elevated Surfaces (Above Eye Level)",
+  "family": "Overhead & Elevated Surfaces",
   "group": "Recurring overhead maintenance",
   "task": "Annual deep overhead cleaning",
   "slug": "annual-deep-overhead-cleaning",
@@ -1891,7 +1891,7 @@
  },
  {
   "id": "BK-040404",
-  "family": "Overhead & Elevated Surfaces (Above Eye Level)",
+  "family": "Overhead & Elevated Surfaces",
   "group": "Recurring overhead maintenance",
   "task": "Pre-audit overhead cleaning for food facilities",
   "slug": "pre-audit-overhead-cleaning-for-food-facilities",
@@ -1909,7 +1909,7 @@
  },
  {
   "id": "BK-040405",
-  "family": "Overhead & Elevated Surfaces (Above Eye Level)",
+  "family": "Overhead & Elevated Surfaces",
   "group": "Recurring overhead maintenance",
   "task": "Overnight high dusting in operating stores",
   "slug": "overnight-high-dusting-in-operating-stores",

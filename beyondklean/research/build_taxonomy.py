@@ -115,7 +115,7 @@ fam("Fine Dust, Drywall Dust & Controlled-Dust Cleaning", [
     ]),
 ])
 
-fam("Overhead & Elevated Surfaces (Above Eye Level)", [
+fam("Overhead & Elevated Surfaces", [
   g("Ceilings, decks and structure",
     "Overhead dust falls onto finished floors, food areas and merchandise; inspectors and owners look up, and dirty structure reads as unfinished work.",
     "HEPA vacuum capture at height with dry microfiber and low-moisture methods — no blowing dust down onto finished space.",

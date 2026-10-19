@@ -13,7 +13,7 @@ ROLES = [  # key, label, default wage $/hr
 FAMILY_ROLE = {
     "Hard Floors": "tech", "Carpet & Soft Surfaces": "tech", "Glass, Windows & Glazing": "tech",
     "Exterior, Hardscape & Building Envelope": "tech",
-    "Overhead & Elevated Surfaces (Above Eye Level)": "lift",
+    "Overhead & Elevated Surfaces": "lift",
     "Restoration & Regulated Work (Conditional)": "specialist", "Specialty & Controlled Environments": "specialist",
     "Industrial & Technical Commissioning Cleaning": "tech", "Government, Military & Defense Facility Cleaning": "general",
 }
@@ -21,7 +21,7 @@ FAMILY_ROLE = {
 # Chemicals and consumables as a share of the typical market price, by family
 MATERIAL_SHARE = {
     "Site, Debris & Waste Management": .04, "Rough Clean": .04, "Fine Dust, Drywall Dust & Controlled-Dust Cleaning": .05,
-    "Overhead & Elevated Surfaces (Above Eye Level)": .04, "Walls, Ceilings & Interior Finishes": .05,
+    "Overhead & Elevated Surfaces": .04, "Walls, Ceilings & Interior Finishes": .05,
     "Doors, Hardware, Millwork & Casework": .05, "Glass, Windows & Glazing": .05, "Hard Floors": .15,
     "Carpet & Soft Surfaces": .08, "Restrooms & Plumbing Fixtures": .06, "Kitchens, Food Facilities & FRP": .07,
     "Mechanical, Electrical & Construction IAQ": .10, "Retail Fixtures & Store Opening": .05,

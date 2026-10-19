@@ -64,7 +64,7 @@ FAMILY_ICON = {
     "Site, Debris & Waste Management": "debris",
     "Rough Clean": "broom",
     "Fine Dust, Drywall Dust & Controlled-Dust Cleaning": "dust",
-    "Overhead & Elevated Surfaces (Above Eye Level)": "overhead",
+    "Overhead & Elevated Surfaces": "overhead",
     "Walls, Ceilings & Interior Finishes": "walls",
     "Doors, Hardware, Millwork & Casework": "door",
     "Glass, Windows & Glazing": "glass",

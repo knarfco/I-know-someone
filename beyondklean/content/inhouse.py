@@ -26,8 +26,6 @@ EXACT = [
      "Beyond Klean confirms crew availability before promising a time"),
     ("Requests are reviewed and routed to qualified restoration providers where coverage exists, with clear communication about capacity after major events",
      "Requests are reviewed and assigned to qualified restoration crews, with clear communication about capacity after major events"),
-    ("Our partner program, Above Eye Level Cleaning,", "Our sister brand, Above Eye Level Cleaning,"),
-    ("Our partner program focused on overhead cleaning", "Our sister brand focused on overhead cleaning"),
     ("route only to qualified providers", "assign only qualified technicians"),
     ("they are listed so buyers can find them, but routed only to properly licensed providers",
      "they are assigned only to properly licensed technicians"),

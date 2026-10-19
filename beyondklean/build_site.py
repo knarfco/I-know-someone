@@ -16,7 +16,6 @@ from pathlib import Path
 ROOT = Path(__file__).parent
 SITE = ROOT / "site"
 CONTENT = ROOT / "content"
-AELC_URL = "https://aboveeyelevelcleaning.com"
 SITE_URL = "https://beyondklean.com"
 PHONE = ""      # business phone, e.g. "(813) 555-0100"; shows Call buttons when set
 ESTIMATOR_PASSWORD = "12345"  # unlocks /estimator/ and decrypts its price book; change and rebuild to rotate
@@ -105,7 +104,7 @@ HINTS = {
     "Site, Debris & Waste Management": "Debris haul-off, daily sweeps, recycling",
     "Rough Clean": "Phase one: slabs, stud bays, plenums",
     "Fine Dust, Drywall Dust & Controlled-Dust Cleaning": "Drywall dust, silica-safe housekeeping",
-    "Overhead & Elevated Surfaces (Above Eye Level)": "Decks, beams, ducts, high dusting",
+    "Overhead & Elevated Surfaces": "Decks, beams, ducts, high dusting",
     "Walls, Ceilings & Interior Finishes": "Walls, ceiling tile, grid, diffusers",
     "Doors, Hardware, Millwork & Casework": "Doors, hardware, cabinets, counters",
     "Glass, Windows & Glazing": "Construction windows, storefronts, mirrors",
@@ -252,8 +251,6 @@ def page(path, title, desc, body, crumbs=None, schema=None, active=None, extra_j
       <a href="{up}quote.html">Request a bid</a><a href="{up}quote.html#specs">Send your specs</a><a href="{up}general-contractors.html">For general contractors</a><a href="{up}government.html">Government contracting</a></div>
     <div><h2 class="foot-h">Browse</h2>
       <a href="{up}facilities/index.html">By facility type</a><a href="{up}phases/index.html">By project phase</a><a href="{up}where-we-work.html">Where we work</a><a href="{up}i-4/index.html">I-4 corridor</a></div>
-    <div><h2 class="foot-h">Above eye level</h2>
-      <a href="{up}families/{FAM[fams[3]]['slug']}.html">Overhead &amp; high dusting</a><a href="{AELC_URL}" rel="noopener">AboveEyeLevelCleaning.com</a></div>
   </div>
   <div class="wrap small foot-note">© 2026 Beyond Klean.{op_note} Regulated work such as mold remediation, abatement and hood cleaning is performed only by licensed, certified technicians where required.</div>
 </footer>
@@ -326,9 +323,9 @@ def build_task(t):
 
     aelc = ""
     if t["aelc_feed"]:
-        aelc = (f'<div class="aelc"><strong>Keep it clean after turnover.</strong> Overhead dust comes back. '
-                f'Recurring high dusting for this surface is handled through our sister brand, '
-                f'<a href="{AELC_URL}" rel="noopener">AboveEyeLevelCleaning.com</a>.</div>')
+        aelc = (f'<div class="keepclean"><strong>Keep it clean after turnover.</strong> Overhead dust comes back. '
+                f'Beyond Klean can put this surface on a recurring high-dusting schedule after the building opens. '
+                f'<a href="{up}quote.html">Ask for a recurring bid</a>.</div>')
 
     pb = PRICEBOOK.get(t["task"])
     unit_row = (f'<div><dt>Bid by</dt><dd>{e(UNIT_LABEL.get(pb["unit"], pb["unit"]))}</dd></div>' if pb else "")
@@ -413,9 +410,9 @@ def build_family(fname, idx):
 <ul class="tasklist">{items}</ul></section>"""
     aelc = ""
     if ftasks and ftasks[0]["aelc_feed"]:
-        aelc = (f'<div class="aelc wide"><strong>Above Eye Level Cleaning.</strong> Construction gets the overhead '
-                f'clean once. Our sister brand keeps it clean with scheduled high dusting for stores, warehouses '
-                f'and food facilities. <a href="{AELC_URL}" rel="noopener">Visit AboveEyeLevelCleaning.com</a></div>')
+        aelc = (f'<div class="keepclean wide"><strong>Keep it clean after it opens.</strong> Construction gets the overhead '
+                f'clean once. Beyond Klean keeps it clean with scheduled high dusting for stores, warehouses '
+                f'and food facilities. <a href="{up}quote.html">Ask for a recurring bid</a></div>')
     prev_f, next_f = fams[idx - 1], fams[(idx + 1) % len(fams)]
     body = f"""
 <div class="band band-white fam-top"><section class="wrap fam-hero">
@@ -546,7 +543,7 @@ def build_glossary():
 def build_static(n_faq):
     pages = gen_mod.static_pages(
             n_tasks=len(tasks), n_names=sum(1 + len(t['alias_list']) for t in tasks),
-            n_faq=n_faq, fam_cards=fam_cards(""), AELC_URL=AELC_URL,
+            n_faq=n_faq, fam_cards=fam_cards(""),
             phase_counts=[(p, PHASE_KEY[p], sum(1 for t in tasks if t["phase"] == p)) for p in PHASE_ORDER],
             task_options="", phone=PHONE)
     pages += [TRUST.projects_page(), TRUST.capability_page(), TRUST.safety_page(), TRUST.contact_page()]

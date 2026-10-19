@@ -17,7 +17,7 @@ P = {
 "Quarterly high dusting program": dict(q=[
   ("What does a quarterly high dusting program include?", "Scheduled overhead cleaning of the deck, structure, ducts, pipes, lights and signs four times a year, with photo documentation."),
   ("Is quarterly high dusting often enough?", "For most retail and warehouse spaces it is. Very dusty operations and food facilities may need more frequent service."),
-  ("Who runs recurring high dusting programs?", "Our partner program, Above Eye Level Cleaning, focuses on recurring overhead work."),
+  ("Who runs recurring high dusting programs?", "Beyond Klean runs recurring overhead programs, scheduled quarterly, semiannually or annually around your operations."),
   ("Can high dusting be scheduled around business hours?", "Yes. It is usually done overnight, before opening or during low-activity periods.")]),
 "Semiannual overhead cleaning program": dict(q=[
   ("When is semiannual high dusting enough?", "In offices, churches, schools and low-dust retail, where dust builds slowly."),
