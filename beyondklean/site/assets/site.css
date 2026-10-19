@@ -783,3 +783,28 @@ a.mcard:hover { border-left-color: var(--green); transform: translateY(-2px); }
 .phase-facts { max-width: 640px; margin-top: 1rem; }
 .group h2 .ic { width: 1.3rem; height: 1.3rem; }
 .group h2 a { color: inherit; text-decoration: none; }
+
+/* I-4 corridor */
+.i4-strip { margin: 0 0 1.25rem; overflow-x: auto; }
+.i4-strip svg { display: block; min-width: 640px; width: 100%; height: auto; }
+.i4-road { stroke: var(--ink); stroke-width: 6; stroke-linecap: round; }
+.i4-dot { fill: var(--surface); stroke: var(--green); stroke-width: 2.5; }
+.i4-dot.on { fill: var(--green); }
+.i4-lbl { font: 600 13px var(--mono); fill: var(--muted); }
+.i4-lbl.on { fill: var(--green); font-weight: 800; font-size: 15px; }
+.i4-strip a:hover .i4-lbl { fill: var(--green); }
+.i4-end { font: 700 11px var(--mono); fill: var(--ink); }
+.i4-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr)); gap: .75rem; margin: 0 0 1.5rem; }
+.i4-stats > div { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: .9rem 1rem; display: grid; }
+.i4-stats strong { font: 800 2rem/1.1 var(--display); color: var(--green); }
+.i4-stats span { color: var(--muted); font-size: .92rem; }
+.tbl-wrap { overflow-x: auto; max-height: 34rem; border: 1px solid var(--line); border-radius: var(--radius); }
+.ziptable { width: 100%; border-collapse: collapse; font-size: .95rem; }
+.ziptable th { position: sticky; top: 0; background: var(--surface); text-align: left; padding: .55rem .75rem; border-bottom: 2px solid var(--line); }
+.ziptable td { padding: .45rem .75rem; border-bottom: 1px solid var(--line); }
+.ziptable tr[hidden] { display: none; }
+.zipq { width: min(100%, 320px); padding: .6rem .75rem; border: 1px solid var(--line); border-radius: var(--radius); font: inherit; display: block; margin-top: .3rem; }
+.bidch li { overflow-wrap: anywhere; }
+.i4-promo { margin-top: 1rem; }
+.fcard.fc-plain { grid-template-columns: 1fr; }
+.fgrid-sm { grid-template-columns: repeat(auto-fill, minmax(min(100%, 150px), 1fr)); }

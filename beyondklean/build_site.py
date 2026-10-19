@@ -251,7 +251,7 @@ def page(path, title, desc, body, crumbs=None, schema=None, active=None, extra_j
     <div><h2 class="foot-h">Work with us</h2>
       <a href="{up}quote.html">Request a bid</a><a href="{up}quote.html#specs">Send your specs</a><a href="{up}general-contractors.html">For general contractors</a><a href="{up}government.html">Government contracting</a></div>
     <div><h2 class="foot-h">Browse</h2>
-      <a href="{up}facilities/index.html">By facility type</a><a href="{up}phases/index.html">By project phase</a><a href="{up}where-we-work.html">Where we work</a></div>
+      <a href="{up}facilities/index.html">By facility type</a><a href="{up}phases/index.html">By project phase</a><a href="{up}where-we-work.html">Where we work</a><a href="{up}i-4/index.html">I-4 corridor</a></div>
     <div><h2 class="foot-h">Above eye level</h2>
       <a href="{up}families/{FAM[fams[3]]['slug']}.html">Overhead &amp; high dusting</a><a href="{AELC_URL}" rel="noopener">AboveEyeLevelCleaning.com</a></div>
   </div>
@@ -662,6 +662,7 @@ def build_hubs():
 <li>The same methods, checklists and closeout documents as our home crews.</li></ul>
 <p><a class="btn" href="quote.html">Request a Bid</a></p></div></div>
 <h2>Service area</h2><p>{e(C['service_area'])}</p>
+<div class="panel i4-promo"><h2 class="h3">Central Florida: the I-4 corridor</h2><p>Every ZIP code within 15 minutes of I-4, from Tampa through Lakeland and Orlando to Daytona Beach.</p><p><a class="btn" href="i-4/index.html">See the I-4 corridor</a></p></div>
 <p>See the <a href="projects.html">projects</a> we have completed, or browse services by <a href="facilities/index.html">facility type</a> and <a href="phases/index.html">project phase</a>.</p>
 </section>"""
     page("where-we-work.html", "Where We Work | Beyond Klean", "Construction cleaning nationwide: home crews in the Southeast and travel crews for larger projects in every state.",
@@ -703,6 +704,222 @@ def build_hubs():
     page("government.html", "Government and Military Facility Cleaning | Beyond Klean",
          "Construction cleaning for federal, state, municipal and military facilities. Send an RFP, see NAICS codes and how access and security are handled.",
          body, crumbs=[("index.html", "Home"), (None, "Government")], active="government.html")
+
+
+
+# ---------------------------------------------------------------- I-4 corridor
+def slug(s):
+    return re.sub(r"[^a-z0-9]+", "-", s.lower()).strip("-")
+
+
+def build_i4():
+    i4 = load("i4")
+    zips = json.loads((ROOT / "research" / "i4_zips.json").read_text())
+    procf = ROOT / "research" / "i4_procurement.json"
+    proc = json.loads(procf.read_text())["entities"] if procf.exists() else []
+    D = "i-4"
+    shutil.rmtree(SITE / D, ignore_errors=True)
+    up = "../"
+    show = lambda c: i4.DISPLAY.get(c, c)
+    hub_by = {f["slug"]: f for f in FACILITY_HUBS}
+    places = {}
+    for z in zips:
+        p = places.setdefault(z["city"], dict(name=show(z["city"]), county=z["county"], zips=[], mp=[], miles=[]))
+        p["zips"].append(z); p["zips"].sort(key=lambda r: r["zip"]); p["mp"].append(z["mp"]); p["miles"].append(z["miles"])
+    for k, p in places.items():
+        kind, desc, hubs_ = i4.PLACES[k]
+        p.update(key=k, slug=slug(p["name"]), kind=kind, desc=desc, hubs=hubs_,
+                 at=sum(p["mp"]) / len(p["mp"]), near=min(p["miles"]), far=max(p["miles"]))
+    order = sorted(places.values(), key=lambda p: p["at"])
+    for i, p in enumerate(order):
+        p["prev"] = order[i - 1] if i else None
+        p["next"] = order[i + 1] if i + 1 < len(order) else None
+    counties = sorted({p["county"] for p in order}, key=lambda c: min(q["at"] for q in order if q["county"] == c))
+    ZS = {"STANDARD"}
+
+    def strip(hi=None):
+        """Corridor line: a dot for every city by its distance along I-4, labels for the anchors and the current city."""
+        W, H, L, R = 1000, 120, 40, 960
+        span = max(p["at"] for p in order) or 1
+        x = lambda m: L + (R - L) * m / span
+        anchors = ["Tampa", "Plant City", "Lakeland", "Davenport", "Orlando", "Sanford", "Deland", "Daytona Beach"]
+        hx = x(places[hi]["at"]) if hi else None
+        lab = [p for p in order if p["key"] == hi or (p["key"] in anchors and (hx is None or abs(x(p["at"]) - hx) > 70))]
+        out = [f'<line x1="{L}" y1="60" x2="{R}" y2="60" class="i4-road"/>']
+        for p in order:
+            on = p["key"] == hi
+            out.append(f'<a href="{p["slug"]}.html"><circle cx="{x(p["at"]):.0f}" cy="60" r="{8 if on else 5}" class="i4-dot{" on" if on else ""}">'
+                       f'<title>{e(p["name"])}</title></circle></a>')
+        for i, p in enumerate(lab):
+            cx = x(p["at"]); y = 36 if i % 2 == 0 else 94
+            anc = "start" if cx < 90 else "end" if cx > 910 else "middle"
+            out.append(f'<a href="{p["slug"]}.html"><text x="{cx:.0f}" y="{y}" text-anchor="{anc}" class="i4-lbl{" on" if p["key"] == hi else ""}">{e(p["name"])}</text></a>')
+        return (f'<figure class="i4-strip"><svg viewBox="0 0 {W} {H}" role="img" aria-label="Cities along I-4 from Tampa to Daytona Beach">'
+                + "".join(out) + '</svg><figcaption class="small muted">I-4 from I-275 in Tampa to I-95 at Daytona Beach. Each dot is a city or community we serve.</figcaption></figure>')
+
+    def zip_table(rows, link_city=True):
+        tr = "".join(
+            f'<tr id="z{z["zip"]}"><td class="mono">{z["zip"]}</td>'
+            + (f'<td><a href="{slug(show(z["city"]))}.html">{e(show(z["city"]))}</a></td><td>{e(z["county"])}</td>' if link_city else "")
+            + f'<td>{z["miles"]:.0f} mi</td></tr>' for z in rows)
+        head = "<th>ZIP</th>" + ("<th>City</th><th>County</th>" if link_city else "") + "<th>From I-4</th>"
+        return f'<div class="tbl-wrap"><table class="ziptable"><thead><tr>{head}</tr></thead><tbody>{tr}</tbody></table></div>'
+
+    def bid_list(ents):
+        if not ents:
+            return '<p class="small muted">Bid channels for this area are being verified.</p>'
+        li = "".join(
+            f'<li><strong>{e(x["name"])}</strong>'
+            + (f' · <a href="{e(x["url"])}" rel="nofollow noopener">{e(x.get("platform") or "Bids")}</a>' if x.get("url") else
+               (f' · {e(x["platform"])}' if x.get("platform") else ""))
+            + "</li>" for x in ents)
+        return f'<ul class="codes bidch">{li}</ul>'
+
+    def svc_block(hubslugs):
+        fac = "".join(f'<a class="fcard" href="{up}facilities/{h}.html">{ic(hub_by[h]["icon"], up, "ic fc-ic")}<strong>{e(hub_by[h]["name"])}</strong>'
+                      f'<span class="small muted">{len(hub_by[h]["tasks"])} services</span></a>' for h in hubslugs if h in hub_by)
+        return fac
+
+    core = [TASK_BY_NAME[n] for n in ["Rough clean of entire building", "Final clean of entire building", "Touch-up clean before owner walk",
+                                       "Interior window cleaning", "Open ceiling deck cleaning", "Grout haze removal", "VCT initial floor finish",
+                                       "Sidewalk pressure washing", "Carpet extraction", "Commercial kitchen post-construction clean"] if n in TASK_BY_NAME]
+    core_html = '<ul class="tasklist">' + "".join(
+        f'<li><a href="{up}tasks/{t["slug"]}.html"><span>{e(t["task"])}</span><span class="pill ph-{PHASE_KEY[t["phase"]]}">{e(t["phase"])}</span></a></li>'
+        for t in core) + "</ul>"
+
+    def ents_for(county, place=None):
+        out = []
+        for x in proc:
+            if x.get("type") in ("state", "federal") and not place:
+                continue
+            if place and x["name"].lower().startswith(("city of " + place.lower(), place.lower())):
+                out.append(x)
+            elif not place and x.get("county") and county.lower() in x["county"].lower():
+                out.append(x)
+        return out
+
+    crumbs0 = [("index.html", "Home"), ("where-we-work.html", "Where we work")]
+    # ---- city pages
+    for p in order:
+        c = i4.COUNTIES[p["county"]]
+        nz = len(p["zips"])
+        zl = ", ".join(z["zip"] for z in p["zips"])
+        kind = {"city": "city", "town": "town", "community": "community"}[p["kind"]]
+        nb = [q for q in (p["prev"], p["next"]) if q]
+        nb_txt = " and ".join(q["name"] for q in nb)
+        dist = f'{p["near"]:.0f} to {p["far"]:.0f} miles' if round(p["near"]) != round(p["far"]) else f'about {p["near"]:.0f} miles'
+        local = ents_for(p["county"], p["name"])
+        cty = [x for x in ents_for(p["county"]) if x not in local]
+        qas = [
+            (f"Do you provide construction cleaning in {p['name']}?",
+             f"Yes. {p['name']} is in {p['county']} County on the I-4 corridor, and we cover all {nz} of its ZIP code{'s' if nz > 1 else ''} we serve here ({zl}). "
+             f"Send the address, square footage and schedule and we return an itemized bid."),
+            (f"How far is {p['name']} from I-4?",
+             f"The {p['name']} ZIP codes we serve sit {dist} from the interstate, about 15 minutes or less for a crew. "
+             f"Along the corridor, its closest neighbors are {nb_txt}."),
+            (f"What kinds of buildings do you clean in {p['name']}?",
+             f"Mostly {', '.join(hub_by[h]['name'].lower() for h in p['hubs'] if h in hub_by)}. Every project gets the same rough, final and touch-up "
+             f"sequence, and specialty work such as floors, glass and high dusting can be added to the same bid."),
+            (f"Where do public agencies in {p['name']} post cleaning bids?",
+             (f"{p['county']} County agencies post solicitations through their own purchasing portals" +
+              (f", including {', '.join(x['name'] for x in (local + cty)[:3])}" if (local + cty) else "") +
+              ". We watch those channels and bid as a prime or as a subcontractor to the general contractor.")),
+        ]
+        body = f"""
+<div class="band band-white fam-top"><section class="wrap fam-hero">
+  <p class="eyebrow">{e(i4.NAME)} · {e(p['county'])} County</p>
+  <h1>Construction cleaning in {e(p['name'])}, FL</h1>
+  <p class="lede">{e(p['desc'])} Beyond Klean covers {e(p['name'])} for rough, final and touch-up construction cleans, plus floors, glass, high dusting and pressure washing.</p>
+  <p class="task-cta"><a class="btn btn-lg" href="{up}quote.html">Request a Bid</a> <a class="btn btn-ghost" href="#zips">{nz} ZIP code{'s' if nz > 1 else ''} we serve</a></p>
+</section></div>
+<section class="wrap">{strip(p['key'])}
+<dl class="facts i4-facts"><div><dt>County</dt><dd><a href="{c['slug']}.html">{e(p['county'])} County</a> (seat: {e(c['seat'])})</dd></div>
+<div><dt>Type</dt><dd>{e(kind.title())}</dd></div>
+<div><dt>Distance from I-4</dt><dd>{e(dist)}</dd></div>
+<div><dt>Along I-4</dt><dd>About {p['at']:.0f} miles east of downtown Tampa</dd></div>
+<div><dt>Neighbors on the corridor</dt><dd>{' · '.join(f'<a href="{q["slug"]}.html">{e(q["name"])}</a>' for q in nb)}</dd></div></dl></section>
+<section class="wrap" id="zips"><h2>ZIP codes we serve in {e(p['name'])}</h2>
+<div class="chips">{''.join(f'<span class="pill" id="z{z["zip"]}">{z["zip"]}</span>' for z in p['zips'])}</div></section>
+<section class="wrap"><h2>Buildings we clean in {e(p['name'])}</h2><div class="fgrid">{svc_block(p['hubs'])}</div></section>
+<section class="wrap split"><div><h2>Most requested here</h2>{core_html}</div>
+<div class="panel"><h2 class="h3">Where local agencies post bids</h2>{bid_list((local + cty)[:8])}
+<p class="small">See every channel on the <a href="index.html#bids">I-4 corridor page</a>.</p></div></section>
+<section class="wrap"><h2>All service groups</h2><div class="fgrid">{fam_cards(up)}</div></section>
+<section class="wrap mid"><h2>Questions about {e(p['name'])}</h2>{qa_html(qas, 'lq')}</section>
+<section class="wrap"><p><a class="btn" href="{up}quote.html">Request a Bid in {e(p['name'])}</a> <a class="btn btn-ghost" href="index.html">The whole I-4 corridor</a></p></section>"""
+        page(f"{D}/{p['slug']}.html", f"Construction Cleaning {p['name']}, FL | Beyond Klean",
+             f"Construction cleaning in {p['name']}, {p['county']} County, FL. Rough, final and touch-up cleans, floors, glass and high dusting in ZIP codes {zl}."[:158],
+             body, crumbs=crumbs0 + [(f"{D}/index.html", "I-4 corridor"), (f"{D}/{c['slug']}.html", f"{p['county']} County"), (None, p["name"])],
+             schema=[faq_schema(qas), {"@context": "https://schema.org", "@type": "Service", "serviceType": "Construction cleaning",
+                                        "provider": {"@type": "Organization", "name": "Beyond Klean", "url": SITE_URL},
+                                        "areaServed": {"@type": "City", "name": f"{p['name']}, FL"}}])
+
+    # ---- county pages
+    for cn in counties:
+        c = i4.COUNTIES[cn]
+        ps = [p for p in order if p["county"] == cn]
+        zs = [z for z in zips if z["county"] == cn]
+        pcards = "".join(f'<a class="fcard fc-plain" href="{p["slug"]}.html"><strong>{e(p["name"])}</strong>'
+                         f'<span class="small muted">{len(p["zips"])} ZIP{"s" if len(p["zips"]) > 1 else ""} · {e(p["kind"])}</span></a>' for p in ps)
+        body = f"""
+<div class="band band-white fam-top"><section class="wrap fam-hero">
+  <p class="eyebrow">{e(i4.NAME)}</p><h1>Construction cleaning in {e(cn)} County, FL</h1>
+  <p class="lede">{e(c['desc'])}</p>
+  <p class="task-cta"><a class="btn btn-lg" href="{up}quote.html">Request a Bid</a></p>
+</section></div>
+<section class="wrap"><dl class="facts i4-facts"><div><dt>County seat</dt><dd>{e(c['seat'])}</dd></div>
+<div><dt>Corridor cities and communities</dt><dd>{len(ps)}</dd></div><div><dt>ZIP codes within 15 minutes of I-4</dt><dd>{len(zs)}</dd></div></dl>
+<h2>Cities and communities</h2><div class="fgrid fgrid-sm">{pcards}</div></section>
+<section class="wrap"><h2>Buildings we clean in {e(cn)} County</h2><div class="fgrid">{svc_block(c['hubs'])}</div></section>
+<section class="wrap" id="bids"><h2>Where {e(cn)} County agencies post bids</h2>{bid_list(ents_for(cn))}</section>
+<section class="wrap"><h2>Every ZIP code we serve in {e(cn)} County</h2>{zip_table(zs)}</section>
+<section class="wrap"><p><a class="btn" href="{up}quote.html">Request a Bid</a> <a class="btn btn-ghost" href="index.html">The whole I-4 corridor</a></p></section>"""
+        page(f"{D}/{c['slug']}.html", f"Construction Cleaning {cn} County, FL | Beyond Klean",
+             f"Construction cleaning across {cn} County, FL on the I-4 corridor: {len(ps)} cities and communities, {len(zs)} ZIP codes, and where county agencies post bids.",
+             body, crumbs=crumbs0 + [(f"{D}/index.html", "I-4 corridor"), (None, f"{cn} County")])
+
+    # ---- corridor hub
+    ccards = "".join(f'<a class="fcard fc-plain" href="{i4.COUNTIES[cn]["slug"]}.html"><strong>{e(cn)} County</strong>'
+                     f'<span class="small muted">{sum(1 for z in zips if z["county"] == cn)} ZIP codes · seat: {e(i4.COUNTIES[cn]["seat"])}</span></a>' for cn in counties)
+    pl = "".join(f'<a class="fcard fc-plain" href="{p["slug"]}.html"><strong>{e(p["name"])}</strong>'
+                 f'<span class="small muted">{e(p["county"])} · {len(p["zips"])} ZIP{"s" if len(p["zips"]) > 1 else ""}</span></a>' for p in order)
+    groups = defaultdict(list)
+    for x in proc:
+        groups[x.get("type", "other")].append(x)
+    TL = [("county", "Counties"), ("city", "Cities"), ("school", "School districts"), ("college", "Colleges and universities"),
+          ("airport", "Airports and ports"), ("transit", "Transit and expressways"), ("housing", "Housing authorities"),
+          ("state", "State agencies"), ("federal", "Federal")]
+    bids = "".join(f'<div class="card"><h3 class="h3">{e(lbl)}</h3>{bid_list(sorted(groups[k], key=lambda x: x["name"]))}</div>'
+                   for k, lbl in TL if groups.get(k))
+    extra = [k for k in groups if k not in dict(TL)]
+    bids += "".join(f'<div class="card"><h3 class="h3">{e(k.title())}</h3>{bid_list(groups[k])}</div>' for k in extra)
+    hub_all = list(dict.fromkeys(h for cn in counties for h in i4.COUNTIES[cn]["hubs"]))
+    qas = [("What is the I-4 corridor?", "Interstate 4 across Central Florida, about 132 miles from downtown Tampa to I-95 at Daytona Beach, through Plant City, Lakeland, Orlando, Sanford and DeLand."),
+           ("Which ZIP codes do you cover on I-4?", f"All {len(zips)} ZIP codes whose centers sit within about 10 miles of the interstate, roughly 15 minutes of driving, across {len(counties)} counties. The full list is on this page."),
+           ("Do you bid public work on the corridor?", "Yes. Counties, cities, school districts, colleges, airports and transit agencies along I-4 post cleaning and construction solicitations on their own portals. We bid as a prime or as a subcontractor to the general contractor."),
+           ("Can one bid cover sites in several corridor cities?", "Yes. Multi-site work such as retail rollouts, school programs and apartment portfolios can be priced on one bid with a line for each site.")]
+    body = f"""
+<div class="band band-white fam-top"><section class="wrap fam-hero">
+  <p class="eyebrow">Central Florida · {e(i4.SPAN)}</p><h1>Construction cleaning along the I-4 corridor</h1>
+  <p class="lede">{e(i4.INTRO)}</p>
+  <p class="task-cta"><a class="btn btn-lg" href="{up}quote.html">Request a Bid</a> <a class="btn btn-ghost" href="#zips">Find your ZIP code</a></p>
+</section></div>
+<section class="wrap">{strip()}
+<div class="stats i4-stats"><div><strong>{len(zips)}</strong><span>ZIP codes</span></div><div><strong>{len(order)}</strong><span>cities and communities</span></div>
+<div><strong>{len(counties)}</strong><span>counties</span></div><div><strong>132</strong><span>miles of interstate</span></div></div></section>
+<section class="wrap"><h2>Counties</h2><div class="fgrid fgrid-sm">{ccards}</div>
+<h2>Cities and communities, west to east</h2><div class="fgrid fgrid-sm">{pl}</div></section>
+<section class="wrap"><h2>Buildings we clean on the corridor</h2><div class="fgrid">{svc_block(hub_all)}</div></section>
+<section class="wrap" id="bids"><h2>Where corridor agencies post bids</h2>
+<p>Public work on I-4 is posted agency by agency. These are the purchasing channels we watch.</p><div class="duo">{bids or '<p class="small muted">Being verified.</p>'}</div></section>
+<section class="wrap" id="zips"><h2>Every ZIP code we serve on I-4</h2>
+<p><label class="small" for="zipq">Find a ZIP or city</label><input id="zipq" class="zipq" inputmode="search" placeholder="e.g. 32801 or Lakeland" data-zipfilter></p>{zip_table(zips)}</section>
+<section class="wrap"><h2>All service groups</h2><div class="fgrid">{fam_cards(up)}</div></section>
+<section class="wrap mid"><h2>Questions about the I-4 corridor</h2>{qa_html(qas, 'iq')}</section>"""
+    page(f"{D}/index.html", "I-4 Corridor Construction Cleaning, Tampa to Daytona | Beyond Klean",
+         f"Construction cleaning in all {len(zips)} ZIP codes along I-4 from Tampa to Daytona Beach: {len(order)} cities, {len(counties)} counties, and where agencies post bids.",
+         body, crumbs=crumbs0 + [(None, "I-4 corridor")], schema=[faq_schema(qas)])
+    return len(order), len(zips)
 
 
 # ---------------------------------------------------------------- estimator (internal, unlinked)
@@ -793,6 +1010,7 @@ if __name__ == "__main__":
     build_glossary()
     build_static(n_faq)
     build_hubs()
+    print('I-4 corridor (places, zips):', build_i4())
     build_estimator()
     (SITE / "assets" / "icons.svg").write_text(icons_mod.sprite())
     (SITE / "join.html").unlink(missing_ok=True)  # contractor network page retired

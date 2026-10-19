@@ -1,0 +1,1786 @@
+[
+ {
+  "zip": "33602",
+  "city": "Tampa",
+  "county": "Hillsborough",
+  "lat": 27.9614,
+  "lon": -82.4597,
+  "miles": 0.4,
+  "mp": 0.0,
+  "near": "I-275 (downtown Tampa)",
+  "area_codes": [
+   "656",
+   "813"
+  ]
+ },
+ {
+  "zip": "33603",
+  "city": "Tampa",
+  "county": "Hillsborough",
+  "lat": 27.9845,
+  "lon": -82.463,
+  "miles": 1.7,
+  "mp": 0.0,
+  "near": "I-275 (downtown Tampa)",
+  "area_codes": [
+   "656",
+   "813"
+  ]
+ },
+ {
+  "zip": "33604",
+  "city": "Tampa",
+  "county": "Hillsborough",
+  "lat": 28.0173,
+  "lon": -82.4578,
+  "miles": 3.8,
+  "mp": 0.0,
+  "near": "I-275 (downtown Tampa)",
+  "area_codes": [
+   "656",
+   "813"
+  ]
+ },
+ {
+  "zip": "33606",
+  "city": "Tampa",
+  "county": "Hillsborough",
+  "lat": 27.9475,
+  "lon": -82.4584,
+  "miles": 1.0,
+  "mp": 0.0,
+  "near": "I-275 (downtown Tampa)",
+  "area_codes": [
+   "656",
+   "813"
+  ]
+ },
+ {
+  "zip": "33607",
+  "city": "Tampa",
+  "county": "Hillsborough",
+  "lat": 27.9625,
+  "lon": -82.4895,
+  "miles": 2.2,
+  "mp": 0.0,
+  "near": "I-275 (downtown Tampa)",
+  "area_codes": [
+   "656",
+   "813"
+  ]
+ },
+ {
+  "zip": "33609",
+  "city": "Tampa",
+  "county": "Hillsborough",
+  "lat": 27.9425,
+  "lon": -82.5057,
+  "miles": 3.4,
+  "mp": 0.0,
+  "near": "I-275 (downtown Tampa)",
+  "area_codes": [
+   "656",
+   "813"
+  ]
+ },
+ {
+  "zip": "33611",
+  "city": "Tampa",
+  "county": "Hillsborough",
+  "lat": 27.8914,
+  "lon": -82.5067,
+  "miles": 5.9,
+  "mp": 0.0,
+  "near": "I-275 (downtown Tampa)",
+  "area_codes": [
+   "656",
+   "813"
+  ]
+ },
+ {
+  "zip": "33614",
+  "city": "Tampa",
+  "county": "Hillsborough",
+  "lat": 28.0091,
+  "lon": -82.5034,
+  "miles": 4.4,
+  "mp": 0.0,
+  "near": "I-275 (downtown Tampa)",
+  "area_codes": [
+   "656",
+   "813"
+  ]
+ },
+ {
+  "zip": "33615",
+  "city": "Tampa",
+  "county": "Hillsborough",
+  "lat": 28.0081,
+  "lon": -82.5805,
+  "miles": 8.3,
+  "mp": 0.0,
+  "near": "I-275 (downtown Tampa)",
+  "area_codes": [
+   "656",
+   "813"
+  ]
+ },
+ {
+  "zip": "33616",
+  "city": "Tampa",
+  "county": "Hillsborough",
+  "lat": 27.8742,
+  "lon": -82.5203,
+  "miles": 7.3,
+  "mp": 0.0,
+  "near": "I-275 (downtown Tampa)",
+  "area_codes": [
+   "656",
+   "813"
+  ]
+ },
+ {
+  "zip": "33618",
+  "city": "Tampa",
+  "county": "Hillsborough",
+  "lat": 28.0763,
+  "lon": -82.4852,
+  "miles": 8.1,
+  "mp": 0.0,
+  "near": "I-275 (downtown Tampa)",
+  "area_codes": [
+   "656",
+   "813"
+  ]
+ },
+ {
+  "zip": "33621",
+  "city": "Tampa",
+  "county": "Hillsborough",
+  "lat": 27.8491,
+  "lon": -82.4946,
+  "miles": 8.2,
+  "mp": 0.0,
+  "near": "I-275 (downtown Tampa)",
+  "area_codes": [
+   "656",
+   "813"
+  ]
+ },
+ {
+  "zip": "33624",
+  "city": "Tampa",
+  "county": "Hillsborough",
+  "lat": 28.079,
+  "lon": -82.5268,
+  "miles": 9.2,
+  "mp": 0.0,
+  "near": "I-275 (downtown Tampa)",
+  "area_codes": [
+   "656",
+   "813"
+  ]
+ },
+ {
+  "zip": "33625",
+  "city": "Tampa",
+  "county": "Hillsborough",
+  "lat": 28.0726,
+  "lon": -82.559,
+  "miles": 10.0,
+  "mp": 0.0,
+  "near": "I-275 (downtown Tampa)",
+  "area_codes": [
+   "656",
+   "813"
+  ]
+ },
+ {
+  "zip": "33629",
+  "city": "Tampa",
+  "county": "Hillsborough",
+  "lat": 27.921,
+  "lon": -82.5079,
+  "miles": 4.4,
+  "mp": 0.0,
+  "near": "I-275 (downtown Tampa)",
+  "area_codes": [
+   "656",
+   "813"
+  ]
+ },
+ {
+  "zip": "33634",
+  "city": "Tampa",
+  "county": "Hillsborough",
+  "lat": 28.0068,
+  "lon": -82.556,
+  "miles": 7.0,
+  "mp": 0.0,
+  "near": "I-275 (downtown Tampa)",
+  "area_codes": [
+   "656",
+   "813"
+  ]
+ },
+ {
+  "zip": "33605",
+  "city": "Tampa",
+  "county": "Hillsborough",
+  "lat": 27.9671,
+  "lon": -82.4334,
+  "miles": 0.2,
+  "mp": 1.3,
+  "near": "Ybor City",
+  "area_codes": [
+   "656",
+   "813"
+  ]
+ },
+ {
+  "zip": "33612",
+  "city": "Tampa",
+  "county": "Hillsborough",
+  "lat": 28.0502,
+  "lon": -82.45,
+  "miles": 6.1,
+  "mp": 1.6,
+  "near": "Ybor City",
+  "area_codes": [
+   "656",
+   "813"
+  ]
+ },
+ {
+  "zip": "33613",
+  "city": "Tampa",
+  "county": "Hillsborough",
+  "lat": 28.0772,
+  "lon": -82.4455,
+  "miles": 7.8,
+  "mp": 2.2,
+  "near": "50th St",
+  "area_codes": [
+   "656",
+   "813"
+  ]
+ },
+ {
+  "zip": "33534",
+  "city": "Gibsonton",
+  "county": "Hillsborough",
+  "lat": 27.8411,
+  "lon": -82.3698,
+  "miles": 9.1,
+  "mp": 3.1,
+  "near": "50th St",
+  "area_codes": [
+   "656",
+   "813"
+  ]
+ },
+ {
+  "zip": "33610",
+  "city": "Tampa",
+  "county": "Hillsborough",
+  "lat": 27.9951,
+  "lon": -82.4046,
+  "miles": 1.7,
+  "mp": 3.6,
+  "near": "50th St",
+  "area_codes": [
+   "656",
+   "813"
+  ]
+ },
+ {
+  "zip": "33578",
+  "city": "Riverview",
+  "county": "Hillsborough",
+  "lat": 27.8633,
+  "lon": -82.3499,
+  "miles": 8.0,
+  "mp": 3.8,
+  "near": "50th St",
+  "area_codes": [
+   "656",
+   "813"
+  ]
+ },
+ {
+  "zip": "33619",
+  "city": "Tampa",
+  "county": "Hillsborough",
+  "lat": 27.9382,
+  "lon": -82.3756,
+  "miles": 2.6,
+  "mp": 4.0,
+  "near": "50th St",
+  "area_codes": [
+   "656",
+   "813"
+  ]
+ },
+ {
+  "zip": "33617",
+  "city": "Tampa",
+  "county": "Hillsborough",
+  "lat": 28.0384,
+  "lon": -82.3949,
+  "miles": 4.4,
+  "mp": 5.1,
+  "near": "50th St",
+  "area_codes": [
+   "656",
+   "813"
+  ]
+ },
+ {
+  "zip": "33569",
+  "city": "Riverview",
+  "county": "Hillsborough",
+  "lat": 27.845,
+  "lon": -82.3125,
+  "miles": 9.9,
+  "mp": 5.6,
+  "near": "I-75",
+  "area_codes": [
+   "656",
+   "813"
+  ]
+ },
+ {
+  "zip": "33637",
+  "city": "Tampa",
+  "county": "Hillsborough",
+  "lat": 28.0338,
+  "lon": -82.3659,
+  "miles": 3.5,
+  "mp": 6.7,
+  "near": "I-75",
+  "area_codes": [
+   "656",
+   "813"
+  ]
+ },
+ {
+  "zip": "33511",
+  "city": "Brandon",
+  "county": "Hillsborough",
+  "lat": 27.9056,
+  "lon": -82.2881,
+  "miles": 6.4,
+  "mp": 8.0,
+  "near": "I-75",
+  "area_codes": [
+   "656",
+   "813"
+  ]
+ },
+ {
+  "zip": "33510",
+  "city": "Brandon",
+  "county": "Hillsborough",
+  "lat": 27.9551,
+  "lon": -82.2966,
+  "miles": 3.1,
+  "mp": 8.8,
+  "near": "I-75",
+  "area_codes": [
+   "656",
+   "813"
+  ]
+ },
+ {
+  "zip": "33647",
+  "city": "Tampa",
+  "county": "Hillsborough",
+  "lat": 28.1147,
+  "lon": -82.3678,
+  "miles": 8.8,
+  "mp": 8.8,
+  "near": "I-75",
+  "area_codes": [
+   "656",
+   "813"
+  ]
+ },
+ {
+  "zip": "33584",
+  "city": "Seffner",
+  "county": "Hillsborough",
+  "lat": 27.9922,
+  "lon": -82.2863,
+  "miles": 0.9,
+  "mp": 10.3,
+  "near": "Mango",
+  "area_codes": [
+   "656",
+   "813"
+  ]
+ },
+ {
+  "zip": "33592",
+  "city": "Thonotosassa",
+  "county": "Hillsborough",
+  "lat": 28.0617,
+  "lon": -82.3082,
+  "miles": 4.1,
+  "mp": 10.4,
+  "near": "Mango",
+  "area_codes": [
+   "656",
+   "813"
+  ]
+ },
+ {
+  "zip": "33596",
+  "city": "Valrico",
+  "county": "Hillsborough",
+  "lat": 27.8925,
+  "lon": -82.243,
+  "miles": 8.3,
+  "mp": 11.1,
+  "near": "Mango",
+  "area_codes": [
+   "656",
+   "813"
+  ]
+ },
+ {
+  "zip": "33594",
+  "city": "Valrico",
+  "county": "Hillsborough",
+  "lat": 27.9408,
+  "lon": -82.242,
+  "miles": 5.1,
+  "mp": 12.0,
+  "near": "McIntosh Rd",
+  "area_codes": [
+   "656",
+   "813"
+  ]
+ },
+ {
+  "zip": "33527",
+  "city": "Dover",
+  "county": "Hillsborough",
+  "lat": 27.992,
+  "lon": -82.2138,
+  "miles": 1.8,
+  "mp": 14.9,
+  "near": "Branch Forbes Rd",
+  "area_codes": [
+   "656",
+   "813"
+  ]
+ },
+ {
+  "zip": "33565",
+  "city": "Plant City",
+  "county": "Hillsborough",
+  "lat": 28.0699,
+  "lon": -82.1576,
+  "miles": 2.9,
+  "mp": 19.1,
+  "near": "Plant City",
+  "area_codes": [
+   "656",
+   "813",
+   "863"
+  ]
+ },
+ {
+  "zip": "33567",
+  "city": "Plant City",
+  "county": "Hillsborough",
+  "lat": 27.922,
+  "lon": -82.1216,
+  "miles": 7.5,
+  "mp": 19.4,
+  "near": "Plant City",
+  "area_codes": [
+   "656",
+   "813",
+   "863"
+  ]
+ },
+ {
+  "zip": "33563",
+  "city": "Plant City",
+  "county": "Hillsborough",
+  "lat": 28.013,
+  "lon": -82.1339,
+  "miles": 1.2,
+  "mp": 19.8,
+  "near": "Plant City",
+  "area_codes": [
+   "656",
+   "813"
+  ]
+ },
+ {
+  "zip": "33566",
+  "city": "Plant City",
+  "county": "Hillsborough",
+  "lat": 28.0094,
+  "lon": -82.1138,
+  "miles": 1.7,
+  "mp": 20.9,
+  "near": "Plant City",
+  "area_codes": [
+   "656",
+   "813",
+   "863"
+  ]
+ },
+ {
+  "zip": "33811",
+  "city": "Lakeland",
+  "county": "Polk",
+  "lat": 27.9865,
+  "lon": -82.0139,
+  "miles": 4.9,
+  "mp": 25.0,
+  "near": "County Line Rd",
+  "area_codes": [
+   "656",
+   "813",
+   "863"
+  ]
+ },
+ {
+  "zip": "33815",
+  "city": "Lakeland",
+  "county": "Polk",
+  "lat": 28.0496,
+  "lon": -82.0069,
+  "miles": 1.5,
+  "mp": 27.5,
+  "near": "Memorial Blvd",
+  "area_codes": [
+   "863"
+  ]
+ },
+ {
+  "zip": "33813",
+  "city": "Lakeland",
+  "county": "Polk",
+  "lat": 27.9611,
+  "lon": -81.9398,
+  "miles": 8.8,
+  "mp": 27.7,
+  "near": "Memorial Blvd",
+  "area_codes": [
+   "863"
+  ]
+ },
+ {
+  "zip": "33803",
+  "city": "Lakeland",
+  "county": "Polk",
+  "lat": 28.014,
+  "lon": -81.9523,
+  "miles": 5.4,
+  "mp": 27.9,
+  "near": "Memorial Blvd",
+  "area_codes": [
+   "863"
+  ]
+ },
+ {
+  "zip": "33810",
+  "city": "Lakeland",
+  "county": "Polk",
+  "lat": 28.1479,
+  "lon": -82.0372,
+  "miles": 4.8,
+  "mp": 29.3,
+  "near": "Kathleen Rd",
+  "area_codes": [
+   "656",
+   "813",
+   "863"
+  ]
+ },
+ {
+  "zip": "33849",
+  "city": "Kathleen",
+  "county": "Polk",
+  "lat": 28.1975,
+  "lon": -82.0396,
+  "miles": 8.1,
+  "mp": 29.3,
+  "near": "Kathleen Rd",
+  "area_codes": [
+   "352",
+   "656",
+   "813",
+   "863"
+  ]
+ },
+ {
+  "zip": "33805",
+  "city": "Lakeland",
+  "county": "Polk",
+  "lat": 28.072,
+  "lon": -81.9609,
+  "miles": 1.4,
+  "mp": 31.4,
+  "near": "US-98 (Lakeland)",
+  "area_codes": [
+   "863"
+  ]
+ },
+ {
+  "zip": "33801",
+  "city": "Lakeland",
+  "county": "Polk",
+  "lat": 28.0381,
+  "lon": -81.9392,
+  "miles": 4.0,
+  "mp": 31.8,
+  "near": "US-98 (Lakeland)",
+  "area_codes": [
+   "863"
+  ]
+ },
+ {
+  "zip": "33812",
+  "city": "Lakeland",
+  "county": "Polk",
+  "lat": 27.9729,
+  "lon": -81.8931,
+  "miles": 9.2,
+  "mp": 32.5,
+  "near": "US-98 (Lakeland)",
+  "area_codes": [
+   "863"
+  ]
+ },
+ {
+  "zip": "33809",
+  "city": "Lakeland",
+  "county": "Polk",
+  "lat": 28.1762,
+  "lon": -81.9591,
+  "miles": 5.3,
+  "mp": 34.9,
+  "near": "SR-33",
+  "area_codes": [
+   "352",
+   "863"
+  ]
+ },
+ {
+  "zip": "33823",
+  "city": "Auburndale",
+  "county": "Polk",
+  "lat": 28.0724,
+  "lon": -81.8122,
+  "miles": 5.5,
+  "mp": 39.0,
+  "near": "Polk Pkwy",
+  "area_codes": [
+   "863"
+  ]
+ },
+ {
+  "zip": "33881",
+  "city": "Winter Haven",
+  "county": "Polk",
+  "lat": 28.0452,
+  "lon": -81.7325,
+  "miles": 9.5,
+  "mp": 42.8,
+  "near": "Polk City",
+  "area_codes": [
+   "863"
+  ]
+ },
+ {
+  "zip": "33868",
+  "city": "Polk City",
+  "county": "Polk",
+  "lat": 28.1987,
+  "lon": -81.8083,
+  "miles": 2.1,
+  "mp": 43.3,
+  "near": "Polk City",
+  "area_codes": [
+   "352",
+   "863"
+  ]
+ },
+ {
+  "zip": "33850",
+  "city": "Lake Alfred",
+  "county": "Polk",
+  "lat": 28.0895,
+  "lon": -81.7271,
+  "miles": 6.8,
+  "mp": 44.4,
+  "near": "CR-557",
+  "area_codes": [
+   "863"
+  ]
+ },
+ {
+  "zip": "33844",
+  "city": "Haines City",
+  "county": "Polk",
+  "lat": 28.1145,
+  "lon": -81.6201,
+  "miles": 7.8,
+  "mp": 51.5,
+  "near": "US-27",
+  "area_codes": [
+   "321",
+   "407",
+   "689",
+   "863"
+  ]
+ },
+ {
+  "zip": "33837",
+  "city": "Davenport",
+  "county": "Polk",
+  "lat": 28.1963,
+  "lon": -81.6079,
+  "miles": 3.2,
+  "mp": 53.0,
+  "near": "US-27",
+  "area_codes": [
+   "321",
+   "407",
+   "689",
+   "863"
+  ]
+ },
+ {
+  "zip": "33896",
+  "city": "Davenport",
+  "county": "Polk",
+  "lat": 28.2531,
+  "lon": -81.6509,
+  "miles": 1.3,
+  "mp": 54.2,
+  "near": "US-27",
+  "area_codes": [
+   "321",
+   "407",
+   "689",
+   "863"
+  ]
+ },
+ {
+  "zip": "33897",
+  "city": "Davenport",
+  "county": "Polk",
+  "lat": 28.3112,
+  "lon": -81.6643,
+  "miles": 4.5,
+  "mp": 56.8,
+  "near": "ChampionsGate",
+  "area_codes": [
+   "321",
+   "352",
+   "407",
+   "689",
+   "863"
+  ]
+ },
+ {
+  "zip": "34758",
+  "city": "Kissimmee",
+  "county": "Osceola",
+  "lat": 28.1984,
+  "lon": -81.487,
+  "miles": 8.8,
+  "mp": 57.6,
+  "near": "World Dr",
+  "area_codes": [
+   "321",
+   "407",
+   "689",
+   "863"
+  ]
+ },
+ {
+  "zip": "34747",
+  "city": "Kissimmee",
+  "county": "Osceola",
+  "lat": 28.3037,
+  "lon": -81.5898,
+  "miles": 0.6,
+  "mp": 59.3,
+  "near": "World Dr",
+  "area_codes": [
+   "321",
+   "407",
+   "689",
+   "863"
+  ]
+ },
+ {
+  "zip": "34746",
+  "city": "Kissimmee",
+  "county": "Osceola",
+  "lat": 28.268,
+  "lon": -81.4675,
+  "miles": 6.3,
+  "mp": 62.8,
+  "near": "US-192 (Celebration)",
+  "area_codes": [
+   "321",
+   "407",
+   "689"
+  ]
+ },
+ {
+  "zip": "34741",
+  "city": "Kissimmee",
+  "county": "Osceola",
+  "lat": 28.3051,
+  "lon": -81.4242,
+  "miles": 6.8,
+  "mp": 65.5,
+  "near": "Lake Buena Vista",
+  "area_codes": [
+   "321",
+   "407",
+   "689"
+  ]
+ },
+ {
+  "zip": "34744",
+  "city": "Kissimmee",
+  "county": "Osceola",
+  "lat": 28.3078,
+  "lon": -81.3681,
+  "miles": 9.4,
+  "mp": 67.3,
+  "near": "Lake Buena Vista",
+  "area_codes": [
+   "321",
+   "407",
+   "689"
+  ]
+ },
+ {
+  "zip": "32836",
+  "city": "Orlando",
+  "county": "Orange",
+  "lat": 28.4115,
+  "lon": -81.525,
+  "miles": 2.5,
+  "mp": 67.8,
+  "near": "Lake Buena Vista",
+  "area_codes": [
+   "321",
+   "407",
+   "689"
+  ]
+ },
+ {
+  "zip": "34743",
+  "city": "Kissimmee",
+  "county": "Osceola",
+  "lat": 28.3306,
+  "lon": -81.3544,
+  "miles": 9.2,
+  "mp": 68.8,
+  "near": "Lake Buena Vista",
+  "area_codes": [
+   "321",
+   "407",
+   "689"
+  ]
+ },
+ {
+  "zip": "32821",
+  "city": "Orlando",
+  "county": "Orange",
+  "lat": 28.3957,
+  "lon": -81.4666,
+  "miles": 1.0,
+  "mp": 68.9,
+  "near": "Lake Buena Vista",
+  "area_codes": [
+   "321",
+   "407",
+   "689"
+  ]
+ },
+ {
+  "zip": "32837",
+  "city": "Orlando",
+  "county": "Orange",
+  "lat": 28.3949,
+  "lon": -81.4179,
+  "miles": 3.5,
+  "mp": 70.4,
+  "near": "SR-528",
+  "area_codes": [
+   "321",
+   "407",
+   "689"
+  ]
+ },
+ {
+  "zip": "32819",
+  "city": "Orlando",
+  "county": "Orange",
+  "lat": 28.4522,
+  "lon": -81.4678,
+  "miles": 1.2,
+  "mp": 72.1,
+  "near": "Sand Lake Rd",
+  "area_codes": [
+   "321",
+   "407",
+   "689"
+  ]
+ },
+ {
+  "zip": "32824",
+  "city": "Orlando",
+  "county": "Orange",
+  "lat": 28.3932,
+  "lon": -81.3622,
+  "miles": 6.4,
+  "mp": 72.2,
+  "near": "Sand Lake Rd",
+  "area_codes": [
+   "321",
+   "407",
+   "689"
+  ]
+ },
+ {
+  "zip": "32827",
+  "city": "Orlando",
+  "county": "Orange",
+  "lat": 28.4317,
+  "lon": -81.343,
+  "miles": 6.4,
+  "mp": 72.8,
+  "near": "Sand Lake Rd",
+  "area_codes": [
+   "321",
+   "407",
+   "689"
+  ]
+ },
+ {
+  "zip": "34786",
+  "city": "Windermere",
+  "county": "Orange",
+  "lat": 28.5006,
+  "lon": -81.5354,
+  "miles": 5.4,
+  "mp": 74.3,
+  "near": "Universal",
+  "area_codes": [
+   "321",
+   "407",
+   "689"
+  ]
+ },
+ {
+  "zip": "34787",
+  "city": "Winter Garden",
+  "county": "Orange",
+  "lat": 28.5423,
+  "lon": -81.5911,
+  "miles": 9.7,
+  "mp": 74.3,
+  "near": "Universal",
+  "area_codes": [
+   "321",
+   "352",
+   "407",
+   "689",
+   "863"
+  ]
+ },
+ {
+  "zip": "34734",
+  "city": "Gotha",
+  "county": "Orange",
+  "lat": 28.5384,
+  "lon": -81.5208,
+  "miles": 6.1,
+  "mp": 74.7,
+  "near": "Universal",
+  "area_codes": [
+   "321",
+   "407",
+   "689"
+  ]
+ },
+ {
+  "zip": "32835",
+  "city": "Orlando",
+  "county": "Orange",
+  "lat": 28.5289,
+  "lon": -81.4787,
+  "miles": 3.9,
+  "mp": 76.0,
+  "near": "Turnpike",
+  "area_codes": [
+   "321",
+   "407",
+   "689"
+  ]
+ },
+ {
+  "zip": "32809",
+  "city": "Orlando",
+  "county": "Orange",
+  "lat": 28.4637,
+  "lon": -81.3948,
+  "miles": 2.9,
+  "mp": 76.4,
+  "near": "Turnpike",
+  "area_codes": [
+   "321",
+   "407",
+   "689"
+  ]
+ },
+ {
+  "zip": "32811",
+  "city": "Orlando",
+  "county": "Orange",
+  "lat": 28.5163,
+  "lon": -81.4516,
+  "miles": 2.1,
+  "mp": 76.4,
+  "near": "Turnpike",
+  "area_codes": [
+   "321",
+   "407",
+   "689"
+  ]
+ },
+ {
+  "zip": "32839",
+  "city": "Orlando",
+  "county": "Orange",
+  "lat": 28.4871,
+  "lon": -81.4082,
+  "miles": 1.2,
+  "mp": 76.9,
+  "near": "Turnpike",
+  "area_codes": [
+   "321",
+   "407",
+   "689"
+  ]
+ },
+ {
+  "zip": "32805",
+  "city": "Orlando",
+  "county": "Orange",
+  "lat": 28.5302,
+  "lon": -81.4045,
+  "miles": 0.6,
+  "mp": 79.3,
+  "near": "Downtown Orlando",
+  "area_codes": [
+   "321",
+   "407",
+   "689"
+  ]
+ },
+ {
+  "zip": "32806",
+  "city": "Orlando",
+  "county": "Orange",
+  "lat": 28.514,
+  "lon": -81.357,
+  "miles": 2.4,
+  "mp": 80.1,
+  "near": "Downtown Orlando",
+  "area_codes": [
+   "321",
+   "407",
+   "689"
+  ]
+ },
+ {
+  "zip": "32812",
+  "city": "Orlando",
+  "county": "Orange",
+  "lat": 28.4998,
+  "lon": -81.3288,
+  "miles": 4.3,
+  "mp": 80.4,
+  "near": "Downtown Orlando",
+  "area_codes": [
+   "321",
+   "407",
+   "689"
+  ]
+ },
+ {
+  "zip": "32801",
+  "city": "Orlando",
+  "county": "Orange",
+  "lat": 28.5399,
+  "lon": -81.3727,
+  "miles": 0.7,
+  "mp": 80.6,
+  "near": "Downtown Orlando",
+  "area_codes": [
+   "321",
+   "407",
+   "689"
+  ]
+ },
+ {
+  "zip": "32822",
+  "city": "Orlando",
+  "county": "Orange",
+  "lat": 28.4944,
+  "lon": -81.2902,
+  "miles": 6.5,
+  "mp": 80.6,
+  "near": "Downtown Orlando",
+  "area_codes": [
+   "321",
+   "407",
+   "689"
+  ]
+ },
+ {
+  "zip": "32825",
+  "city": "Orlando",
+  "county": "Orange",
+  "lat": 28.5469,
+  "lon": -81.2571,
+  "miles": 7.7,
+  "mp": 80.6,
+  "near": "Downtown Orlando",
+  "area_codes": [
+   "321",
+   "407",
+   "689"
+  ]
+ },
+ {
+  "zip": "32807",
+  "city": "Orlando",
+  "county": "Orange",
+  "lat": 28.5515,
+  "lon": -81.3051,
+  "miles": 4.8,
+  "mp": 81.1,
+  "near": "Downtown Orlando",
+  "area_codes": [
+   "321",
+   "407",
+   "689"
+  ]
+ },
+ {
+  "zip": "32803",
+  "city": "Orlando",
+  "county": "Orange",
+  "lat": 28.5559,
+  "lon": -81.3535,
+  "miles": 1.9,
+  "mp": 81.5,
+  "near": "Downtown Orlando",
+  "area_codes": [
+   "321",
+   "407",
+   "689"
+  ]
+ },
+ {
+  "zip": "32834",
+  "city": "Orlando",
+  "county": "Orange",
+  "lat": 28.5663,
+  "lon": -81.2608,
+  "miles": 7.6,
+  "mp": 81.9,
+  "near": "Princeton St",
+  "area_codes": [
+   "407"
+  ]
+ },
+ {
+  "zip": "32814",
+  "city": "Orlando",
+  "county": "Orange",
+  "lat": 28.5702,
+  "lon": -81.3265,
+  "miles": 3.6,
+  "mp": 82.4,
+  "near": "Princeton St",
+  "area_codes": [
+   "321",
+   "407",
+   "689"
+  ]
+ },
+ {
+  "zip": "32817",
+  "city": "Orlando",
+  "county": "Orange",
+  "lat": 28.5891,
+  "lon": -81.2277,
+  "miles": 9.7,
+  "mp": 82.6,
+  "near": "Princeton St",
+  "area_codes": [
+   "321",
+   "407",
+   "689"
+  ]
+ },
+ {
+  "zip": "32804",
+  "city": "Orlando",
+  "county": "Orange",
+  "lat": 28.5754,
+  "lon": -81.3955,
+  "miles": 0.5,
+  "mp": 83.1,
+  "near": "Princeton St",
+  "area_codes": [
+   "321",
+   "407",
+   "689"
+  ]
+ },
+ {
+  "zip": "32792",
+  "city": "Winter Park",
+  "county": "Orange",
+  "lat": 28.5974,
+  "lon": -81.3036,
+  "miles": 5.3,
+  "mp": 83.6,
+  "near": "Princeton St",
+  "area_codes": [
+   "321",
+   "407",
+   "689"
+  ]
+ },
+ {
+  "zip": "32808",
+  "city": "Orlando",
+  "county": "Orange",
+  "lat": 28.5803,
+  "lon": -81.4396,
+  "miles": 3.1,
+  "mp": 83.9,
+  "near": "Lee Rd",
+  "area_codes": [
+   "321",
+   "407",
+   "689"
+  ]
+ },
+ {
+  "zip": "32789",
+  "city": "Winter Park",
+  "county": "Orange",
+  "lat": 28.5978,
+  "lon": -81.3534,
+  "miles": 2.3,
+  "mp": 84.2,
+  "near": "Lee Rd",
+  "area_codes": [
+   "321",
+   "407",
+   "689"
+  ]
+ },
+ {
+  "zip": "32818",
+  "city": "Orlando",
+  "county": "Orange",
+  "lat": 28.5801,
+  "lon": -81.4846,
+  "miles": 5.8,
+  "mp": 84.4,
+  "near": "Lee Rd",
+  "area_codes": [
+   "321",
+   "407",
+   "689"
+  ]
+ },
+ {
+  "zip": "34761",
+  "city": "Ocoee",
+  "county": "Orange",
+  "lat": 28.5837,
+  "lon": -81.5326,
+  "miles": 8.6,
+  "mp": 84.6,
+  "near": "Lee Rd",
+  "area_codes": [
+   "321",
+   "407",
+   "689"
+  ]
+ },
+ {
+  "zip": "32810",
+  "city": "Orlando",
+  "county": "Orange",
+  "lat": 28.6214,
+  "lon": -81.4294,
+  "miles": 2.5,
+  "mp": 85.9,
+  "near": "Maitland Blvd",
+  "area_codes": [
+   "321",
+   "407",
+   "689"
+  ]
+ },
+ {
+  "zip": "32751",
+  "city": "Maitland",
+  "county": "Orange",
+  "lat": 28.6255,
+  "lon": -81.3646,
+  "miles": 1.4,
+  "mp": 86.5,
+  "near": "Maitland Blvd",
+  "area_codes": [
+   "321",
+   "407",
+   "689"
+  ]
+ },
+ {
+  "zip": "32703",
+  "city": "Apopka",
+  "county": "Orange",
+  "lat": 28.6354,
+  "lon": -81.4888,
+  "miles": 6.0,
+  "mp": 87.8,
+  "near": "Altamonte Springs",
+  "area_codes": [
+   "321",
+   "352",
+   "407",
+   "689"
+  ]
+ },
+ {
+  "zip": "32714",
+  "city": "Altamonte Springs",
+  "county": "Seminole",
+  "lat": 28.6625,
+  "lon": -81.4117,
+  "miles": 1.2,
+  "mp": 88.8,
+  "near": "Altamonte Springs",
+  "area_codes": [
+   "321",
+   "407",
+   "689"
+  ]
+ },
+ {
+  "zip": "32712",
+  "city": "Apopka",
+  "county": "Orange",
+  "lat": 28.712,
+  "lon": -81.5136,
+  "miles": 8.3,
+  "mp": 89.0,
+  "near": "Altamonte Springs",
+  "area_codes": [
+   "321",
+   "352",
+   "407",
+   "689"
+  ]
+ },
+ {
+  "zip": "32730",
+  "city": "Casselberry",
+  "county": "Seminole",
+  "lat": 28.6513,
+  "lon": -81.3418,
+  "miles": 3.0,
+  "mp": 89.6,
+  "near": "Altamonte Springs",
+  "area_codes": [
+   "321",
+   "407",
+   "689"
+  ]
+ },
+ {
+  "zip": "32701",
+  "city": "Altamonte Springs",
+  "county": "Seminole",
+  "lat": 28.6666,
+  "lon": -81.365,
+  "miles": 1.2,
+  "mp": 90.0,
+  "near": "Longwood",
+  "area_codes": [
+   "321",
+   "407",
+   "689"
+  ]
+ },
+ {
+  "zip": "32707",
+  "city": "Casselberry",
+  "county": "Seminole",
+  "lat": 28.6617,
+  "lon": -81.3122,
+  "miles": 4.3,
+  "mp": 91.1,
+  "near": "Longwood",
+  "area_codes": [
+   "321",
+   "407",
+   "689"
+  ]
+ },
+ {
+  "zip": "32779",
+  "city": "Longwood",
+  "county": "Seminole",
+  "lat": 28.7168,
+  "lon": -81.4126,
+  "miles": 2.8,
+  "mp": 92.2,
+  "near": "Longwood",
+  "area_codes": [
+   "321",
+   "407",
+   "689"
+  ]
+ },
+ {
+  "zip": "32708",
+  "city": "Winter Springs",
+  "county": "Seminole",
+  "lat": 28.6831,
+  "lon": -81.2814,
+  "miles": 5.5,
+  "mp": 92.6,
+  "near": "Longwood",
+  "area_codes": [
+   "321",
+   "407",
+   "689"
+  ]
+ },
+ {
+  "zip": "32750",
+  "city": "Longwood",
+  "county": "Seminole",
+  "lat": 28.712,
+  "lon": -81.3552,
+  "miles": 0.7,
+  "mp": 93.0,
+  "near": "Longwood",
+  "area_codes": [
+   "321",
+   "407",
+   "689"
+  ]
+ },
+ {
+  "zip": "32746",
+  "city": "Lake Mary",
+  "county": "Seminole",
+  "lat": 28.7577,
+  "lon": -81.3508,
+  "miles": 0.1,
+  "mp": 96.1,
+  "near": "Lake Mary",
+  "area_codes": [
+   "321",
+   "352",
+   "407",
+   "689"
+  ]
+ },
+ {
+  "zip": "32773",
+  "city": "Sanford",
+  "county": "Seminole",
+  "lat": 28.7644,
+  "lon": -81.282,
+  "miles": 3.6,
+  "mp": 98.1,
+  "near": "Sanford (SR-46)",
+  "area_codes": [
+   "321",
+   "407",
+   "689"
+  ]
+ },
+ {
+  "zip": "32771",
+  "city": "Sanford",
+  "county": "Seminole",
+  "lat": 28.8013,
+  "lon": -81.285,
+  "miles": 2.6,
+  "mp": 100.0,
+  "near": "Sanford (SR-46)",
+  "area_codes": [
+   "321",
+   "352",
+   "386",
+   "407",
+   "689"
+  ]
+ },
+ {
+  "zip": "32713",
+  "city": "Debary",
+  "county": "Volusia",
+  "lat": 28.8846,
+  "lon": -81.3065,
+  "miles": 1.9,
+  "mp": 105.0,
+  "near": "US-17/92",
+  "area_codes": [
+   "321",
+   "352",
+   "386",
+   "407",
+   "689"
+  ]
+ },
+ {
+  "zip": "32764",
+  "city": "Osteen",
+  "county": "Volusia",
+  "lat": 28.8426,
+  "lon": -81.1562,
+  "miles": 7.0,
+  "mp": 107.9,
+  "near": "DeBary",
+  "area_codes": [
+   "321",
+   "386",
+   "407",
+   "689"
+  ]
+ },
+ {
+  "zip": "32725",
+  "city": "Deltona",
+  "county": "Volusia",
+  "lat": 28.8989,
+  "lon": -81.2473,
+  "miles": 0.2,
+  "mp": 108.0,
+  "near": "DeBary",
+  "area_codes": [
+   "321",
+   "386",
+   "407",
+   "689"
+  ]
+ },
+ {
+  "zip": "32763",
+  "city": "Orange City",
+  "county": "Volusia",
+  "lat": 28.9453,
+  "lon": -81.2995,
+  "miles": 4.2,
+  "mp": 108.9,
+  "near": "DeBary",
+  "area_codes": [
+   "352",
+   "386"
+  ]
+ },
+ {
+  "zip": "32720",
+  "city": "Deland",
+  "county": "Volusia",
+  "lat": 29.0266,
+  "lon": -81.3349,
+  "miles": 9.4,
+  "mp": 110.8,
+  "near": "Saxon Blvd",
+  "area_codes": [
+   "352",
+   "386"
+  ]
+ },
+ {
+  "zip": "32738",
+  "city": "Deltona",
+  "county": "Volusia",
+  "lat": 28.9093,
+  "lon": -81.1922,
+  "miles": 2.5,
+  "mp": 110.9,
+  "near": "Saxon Blvd",
+  "area_codes": [
+   "321",
+   "386",
+   "407",
+   "689"
+  ]
+ },
+ {
+  "zip": "32744",
+  "city": "Lake Helen",
+  "county": "Volusia",
+  "lat": 28.9806,
+  "lon": -81.2334,
+  "miles": 2.6,
+  "mp": 113.2,
+  "near": "Orange City",
+  "area_codes": [
+   "386"
+  ]
+ },
+ {
+  "zip": "32724",
+  "city": "Deland",
+  "county": "Volusia",
+  "lat": 29.0422,
+  "lon": -81.2863,
+  "miles": 7.5,
+  "mp": 117.1,
+  "near": "SR-44 (DeLand)",
+  "area_codes": [
+   "386"
+  ]
+ },
+ {
+  "zip": "32124",
+  "city": "Daytona Beach",
+  "county": "Volusia",
+  "lat": 29.1419,
+  "lon": -81.1402,
+  "miles": 1.6,
+  "mp": 125.6,
+  "near": "US-92",
+  "area_codes": [
+   "386"
+  ]
+ },
+ {
+  "zip": "32114",
+  "city": "Daytona Beach",
+  "county": "Volusia",
+  "lat": 29.2012,
+  "lon": -81.0371,
+  "miles": 4.2,
+  "mp": 128.9,
+  "near": "I-95 (Daytona Beach)",
+  "area_codes": [
+   "386"
+  ]
+ },
+ {
+  "zip": "32117",
+  "city": "Daytona Beach",
+  "county": "Volusia",
+  "lat": 29.2353,
+  "lon": -81.0658,
+  "miles": 5.7,
+  "mp": 128.9,
+  "near": "I-95 (Daytona Beach)",
+  "area_codes": [
+   "386"
+  ]
+ },
+ {
+  "zip": "32118",
+  "city": "Daytona Beach",
+  "county": "Volusia",
+  "lat": 29.2219,
+  "lon": -81.0095,
+  "miles": 6.4,
+  "mp": 128.9,
+  "near": "I-95 (Daytona Beach)",
+  "area_codes": [
+   "386"
+  ]
+ },
+ {
+  "zip": "32119",
+  "city": "Daytona Beach",
+  "county": "Volusia",
+  "lat": 29.16,
+  "lon": -81.0269,
+  "miles": 3.3,
+  "mp": 128.9,
+  "near": "I-95 (Daytona Beach)",
+  "area_codes": [
+   "386"
+  ]
+ },
+ {
+  "zip": "32127",
+  "city": "Port Orange",
+  "county": "Volusia",
+  "lat": 29.1383,
+  "lon": -80.9956,
+  "miles": 5.3,
+  "mp": 128.9,
+  "near": "I-95 (Daytona Beach)",
+  "area_codes": [
+   "386"
+  ]
+ },
+ {
+  "zip": "32128",
+  "city": "Port Orange",
+  "county": "Volusia",
+  "lat": 29.1383,
+  "lon": -80.9956,
+  "miles": 5.3,
+  "mp": 128.9,
+  "near": "I-95 (Daytona Beach)",
+  "area_codes": [
+   "386"
+  ]
+ },
+ {
+  "zip": "32129",
+  "city": "Port Orange",
+  "county": "Volusia",
+  "lat": 29.1372,
+  "lon": -81.0241,
+  "miles": 3.6,
+  "mp": 128.9,
+  "near": "I-95 (Daytona Beach)",
+  "area_codes": [
+   "386"
+  ]
+ },
+ {
+  "zip": "32174",
+  "city": "Ormond Beach",
+  "county": "Volusia",
+  "lat": 29.2833,
+  "lon": -81.0882,
+  "miles": 8.9,
+  "mp": 128.9,
+  "near": "I-95 (Daytona Beach)",
+  "area_codes": [
+   "386"
+  ]
+ }
+]

@@ -260,3 +260,14 @@
     });
   });
 })();
+
+// I-4 corridor: filter the ZIP table by ZIP or city
+(function () {
+  var q = document.querySelector('[data-zipfilter]');
+  if (!q) return;
+  var rows = Array.prototype.slice.call(document.querySelectorAll('.ziptable tbody tr'));
+  q.addEventListener('input', function () {
+    var v = q.value.trim().toLowerCase();
+    rows.forEach(function (r) { r.hidden = v && r.textContent.toLowerCase().indexOf(v) < 0; });
+  });
+})();
