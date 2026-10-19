@@ -765,13 +765,15 @@ def build_i4():
         head = "<th>ZIP</th>" + ("<th>City</th><th>County</th>" if link_city else "") + "<th>From I-4</th>"
         return f'<div class="tbl-wrap"><table class="ziptable"><thead><tr>{head}</tr></thead><tbody>{tr}</tbody></table></div>'
 
+    short = lambda pf: re.split(r" \(| ?;| \+| and | via ", pf or "Bids")[0].strip() or "Bids"
+
     def bid_list(ents):
         if not ents:
             return '<p class="small muted">Bid channels for this area are being verified.</p>'
         li = "".join(
             f'<li><strong>{e(x["name"])}</strong>'
-            + (f' · <a href="{e(x["url"])}" rel="nofollow noopener">{e(x.get("platform") or "Bids")}</a>' if x.get("url") else
-               (f' · {e(x["platform"])}' if x.get("platform") else ""))
+            + (f' · <a href="{e(x["url"])}" rel="nofollow noopener">{e(short(x.get("platform")))}</a>' if x.get("url") else
+               (f' · {e(short(x["platform"]))}' if x.get("platform") else ""))
             + "</li>" for x in ents)
         return f'<ul class="codes bidch">{li}</ul>'
 
@@ -787,16 +789,17 @@ def build_i4():
         f'<li><a href="{up}tasks/{t["slug"]}.html"><span>{e(t["task"])}</span><span class="pill ph-{PHASE_KEY[t["phase"]]}">{e(t["phase"])}</span></a></li>'
         for t in core) + "</ul>"
 
+    TYPEMAP = {"port": "airport", "authority": "transit"}
+    proc = [dict(x, type=TYPEMAP.get(x.get("type"), x.get("type"))) for x in proc if x.get("confidence") != "low"]
+
     def ents_for(county, place=None):
-        out = []
-        for x in proc:
-            if x.get("type") in ("state", "federal") and not place:
-                continue
-            if place and x["name"].lower().startswith(("city of " + place.lower(), place.lower())):
-                out.append(x)
-            elif not place and x.get("county") and county.lower() in x["county"].lower():
-                out.append(x)
-        return out
+        """A city's own purchasing office, then the county, school, college, airport and transit channels in its county."""
+        inc = [x for x in proc if x.get("county") and county.lower() in x["county"].lower() and x["type"] not in ("state", "federal")]
+        if not place:
+            return inc
+        own = [x for x in inc if x["type"] == "city" and x["name"].lower().startswith("city of " + place.lower() + " ")]
+        rank = {"county": 0, "school": 1, "college": 2, "airport": 3, "transit": 4, "housing": 5}
+        return own + sorted([x for x in inc if x["type"] != "city"], key=lambda x: rank.get(x["type"], 9))
 
     crumbs0 = [("index.html", "Home"), ("where-we-work.html", "Where we work")]
     # ---- city pages
@@ -809,7 +812,7 @@ def build_i4():
         nb_txt = " and ".join(q["name"] for q in nb)
         dist = f'{p["near"]:.0f} to {p["far"]:.0f} miles' if round(p["near"]) != round(p["far"]) else f'about {p["near"]:.0f} miles'
         local = ents_for(p["county"], p["name"])
-        cty = [x for x in ents_for(p["county"]) if x not in local]
+        cty = []
         qas = [
             (f"Do you provide construction cleaning in {p['name']}?",
              f"Yes. {p['name']} is in {p['county']} County on the I-4 corridor, and we cover all {nz} of its ZIP code{'s' if nz > 1 else ''} we serve here ({zl}). "
@@ -887,7 +890,7 @@ def build_i4():
     for x in proc:
         groups[x.get("type", "other")].append(x)
     TL = [("county", "Counties"), ("city", "Cities"), ("school", "School districts"), ("college", "Colleges and universities"),
-          ("airport", "Airports and ports"), ("transit", "Transit and expressways"), ("housing", "Housing authorities"),
+          ("airport", "Airports and ports"), ("transit", "Transit, expressways and authorities"), ("housing", "Housing authorities"),
           ("state", "State agencies"), ("federal", "Federal")]
     bids = "".join(f'<div class="card"><h3 class="h3">{e(lbl)}</h3>{bid_list(sorted(groups[k], key=lambda x: x["name"]))}</div>'
                    for k, lbl in TL if groups.get(k))
