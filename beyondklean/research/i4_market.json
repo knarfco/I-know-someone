@@ -1,0 +1,1620 @@
+{
+  "as_of": "2026-10",
+  "scope": "Florida I-4 corridor: Tampa, Plant City, Lakeland, Orlando, Sanford, DeLand, Daytona Beach (Hillsborough, Polk, Osceola, Orange, Seminole, Volusia)",
+  "method": "WebSearch only. WebFetch and direct HTTP were blocked in this environment, so facts come from search-result snippets and need spot-checking. null = unconfirmed.",
+  "key_takeaways": [
+    "Healthcare is the biggest vertical driver: more than $3B in active or announced towers and hospitals (AdventHealth, Orlando Health, TGH, BayCare, LRH). Robins & Morton, Brasfield & Gorrie, Skanska and Gilbane hold much of it.",
+    "Aviation and sports megaprojects: TPA Airside D (Hensel Phelps), USF stadium (Manhattan), Rays ballpark (financing approved Aug 2026, GC TBD), MCO Terminal C phase 2 planning.",
+    "Polk County industrial and data centers: Lakeland Central Park, CFILP (Chick-fil-A, PepsiCo), Fort Meade/Cielo data-center proposals. Local industrial GCs include Marcobay and Frampton.",
+    "Public schools are mostly renovations and continuing-service CM pools (Volusia, Seminole). OCPS is pausing new campuses until about 2031.",
+    "Multifamily remains large in Orlando (~11k-17k units underway) and Tampa (Gasworx, Water Street area)."
+  ],
+  "contractors": [
+    {
+      "name": "Turner Construction Company",
+      "corridor_office": "Orlando; Tampa (4300 W. Cypress St.)",
+      "sectors": [
+        "healthcare",
+        "mixed-use",
+        "sports",
+        "higher education",
+        "aviation"
+      ],
+      "website": "https://www.turnerconstruction.com",
+      "confidence": "high",
+      "notes": "GC for $500M Westcourt Orlando (2026 award); ranked #1 on UCF CM/GC $7.5M continuing services (2025); Tampa office lists Steinbrenner Field, Orlando Health, Sarasota Memorial work; Turner-Kiewit JV did MCO Terminal C landside.",
+      "source_url": "https://turnerconstruction.com/insights/turner-selected-for-500-million-westcourt-orlando-mixed-use-development"
+    },
+    {
+      "name": "Skanska USA Building",
+      "corridor_office": "Orlando (Central Florida operations)",
+      "sectors": [
+        "healthcare"
+      ],
+      "website": "https://www.usa.skanska.com",
+      "confidence": "medium",
+      "notes": "CM for Orlando Health Watson Clinic Lakeland Highlands Hospital (USD 166M additional contract, 302 beds) and Orlando Health Jewett Orthopedic Institute; local office address not confirmed in search.",
+      "source_url": "https://www.skanska.com/group/en/media/press-releases/2024/skanska-signs-additional-contract-with-orlando-health-in-florida-usa-worth-usd-166m-about-sek-1.7-billion"
+    },
+    {
+      "name": "Brasfield & Gorrie",
+      "corridor_office": "Orlando (office in Winter Park, est. 1984)",
+      "sectors": [
+        "healthcare",
+        "office",
+        "commercial"
+      ],
+      "website": "https://www.brasfieldgorrie.com/office/orlando",
+      "confidence": "high",
+      "notes": "GC for AdventHealth $660M downtown Orlando 14-story tower (start 2026), AdventHealth Lake Nona ($423M) and Minneola hospitals. No Tampa office found.",
+      "source_url": "https://www.constructionbriefing.com/generale/news/brasfield-gorrie-awarded-us660m-medical-tower-build-in-us/8062305.article"
+    },
+    {
+      "name": "Robins & Morton",
+      "corridor_office": "Orlando (since 1999); Tampa",
+      "sectors": [
+        "healthcare",
+        "hospitality",
+        "higher education",
+        "entertainment"
+      ],
+      "website": "https://www.robinsmorton.com",
+      "confidence": "high",
+      "notes": "Building AdventHealth Daytona Beach $220M vertical expansion (fall 2026); built Halifax Health Deltona hospital and AdventHealth Tampa Taneja surgical tower; ranked #3 on UCF CM/GC list (2025).",
+      "source_url": "https://www.robinsmorton.com/?p=15926"
+    },
+    {
+      "name": "Hensel Phelps",
+      "corridor_office": "Orlando (Southeast Regional Office, 6557 Hazeltine National Dr.)",
+      "sectors": [
+        "aviation",
+        "public",
+        "healthcare"
+      ],
+      "website": "https://www.henselphelps.com",
+      "confidence": "high",
+      "notes": "Design-builder of Tampa International Airport Airside D (~$1.5B, opening 2028-29); CMAR for MCO South Terminal C airside.",
+      "source_url": "https://www.henselphelps.com/?p=6186"
+    },
+    {
+      "name": "PCL Construction",
+      "corridor_office": "Orlando (Buildings, 6700 Forum Dr., since 1978); Tampa (PCL Civil Constructors)",
+      "sectors": [
+        "hospitality",
+        "entertainment",
+        "public",
+        "aviation",
+        "civil"
+      ],
+      "website": "https://www.pcl.com",
+      "confidence": "high",
+      "notes": "Awarded South Terminal C airside Phase I work at MCO per trade press.",
+      "source_url": "https://www.pcl.com/ca/en/who-we-are/our-offices/orlando-buildings"
+    },
+    {
+      "name": "Barton Malow",
+      "corridor_office": "Orlando (340 N. Primrose Dr.)",
+      "sectors": [
+        "sports",
+        "healthcare",
+        "higher education",
+        "entertainment"
+      ],
+      "website": "https://www.bartonmalow.com/orlando",
+      "confidence": "high",
+      "notes": "Clients include Walt Disney World, Orlando Health, UCF, AdventHealth, Universal; selected CM for Daytona State College Airframe & Power Plant building.",
+      "source_url": "https://www.bartonmalow.com/orlando"
+    },
+    {
+      "name": "Gilbane Building Company",
+      "corridor_office": "Orlando; Tampa (downtown, opened 2017)",
+      "sectors": [
+        "healthcare",
+        "K-12 education",
+        "public",
+        "higher education"
+      ],
+      "website": "https://www.gilbaneco.com",
+      "confidence": "high",
+      "notes": "Orlando Health continuing CM; Orange/Seminole/Osceola schools clients; bidder on Seminole County Public Schools CMAR.",
+      "source_url": "https://www.gilbaneco.com/location/orlando-florida/"
+    },
+    {
+      "name": "Clark Construction Group",
+      "corridor_office": "Tampa (2502 N. Rocky Point Dr.)",
+      "sectors": [
+        "federal/military",
+        "public",
+        "convention"
+      ],
+      "website": "https://www.clarkconstruction.com",
+      "confidence": "medium",
+      "notes": "Built CENTCOM HQ at MacDill AFB; Tampa office info is from older sources.",
+      "source_url": "https://rebusinessonline.com/firm-close-to-breaking-ground-on-central-command-headquarters/"
+    },
+    {
+      "name": "Moss (Moss & Associates)",
+      "corridor_office": "Tampa (5401 W. Kennedy Blvd., Mid-Florida office); Orlando",
+      "sectors": [
+        "multifamily",
+        "mixed-use",
+        "office",
+        "hospitality",
+        "public"
+      ],
+      "website": "https://moss.com",
+      "confidence": "high",
+      "notes": "Acquired Tampa-based Ellison Construction (Dec 2025; Armature Works, Sparkman Wharf); building Gasworx office (1301 Fourth Ave., Ybor).",
+      "source_url": "https://moss.com/press-release/moss-acquires-ellison-construction-to-strengthen-mid-florida-presence/"
+    },
+    {
+      "name": "Hoar Construction",
+      "corridor_office": "Orlando (Florida division since 1998); Tampa (100 S. Ashley Dr., Ste 1120)",
+      "sectors": [
+        "healthcare",
+        "multifamily",
+        "commercial",
+        "higher education"
+      ],
+      "website": "https://hoar.com",
+      "confidence": "high",
+      "notes": null,
+      "source_url": "https://hoar.com/contact-tampa/"
+    },
+    {
+      "name": "Ajax Building Company",
+      "corridor_office": "Florida HQ Midway/Tallahassee area; corridor office not confirmed",
+      "sectors": [
+        "public",
+        "K-12 education",
+        "higher education",
+        "government"
+      ],
+      "website": "https://www.ajaxbuilding.com",
+      "confidence": "medium",
+      "notes": "Active in corridor: Orlando Utilities Commission joint-use facility; bidder on Seminole County Public Schools CMAR. Website URL not seen in sources.",
+      "source_url": "https://stobuildinggroup.com/tag/ajax-building-company/"
+    },
+    {
+      "name": "Whiting-Turner Contracting",
+      "corridor_office": "Orlando (800 N. Magnolia Ave., Ste 1550); Tampa (302 Knights Run Ave., Ste 930)",
+      "sectors": [
+        "commercial",
+        "entertainment",
+        "healthcare",
+        "industrial",
+        "higher education"
+      ],
+      "website": "https://www.whiting-turner.com",
+      "confidence": "high",
+      "notes": null,
+      "source_url": "https://www.whiting-turner.com/contact-us/"
+    },
+    {
+      "name": "DPR Construction",
+      "corridor_office": "Orlando (Central Florida business unit); Tampa",
+      "sectors": [
+        "corporate/office",
+        "healthcare",
+        "advanced tech",
+        "sports"
+      ],
+      "website": "https://www.dpr.com/company/locations/orlando-florida",
+      "confidence": "high",
+      "notes": "Built KPMG Lake Nona learning facility and USTA National Campus; #1 on ENR Texas & Southeast 2026 Florida ranking.",
+      "source_url": "https://www.dpr.com/company/locations/orlando-florida"
+    },
+    {
+      "name": "Manhattan Construction Group",
+      "corridor_office": "Florida office listed in Naples; corridor office not confirmed",
+      "sectors": [
+        "sports",
+        "public",
+        "higher education"
+      ],
+      "website": "https://manhattanconstructiongroup.com",
+      "confidence": "medium",
+      "notes": "Lead CM (with H.J. Russell and DuCon) on $340M USF on-campus stadium, Tampa; #1 on Business Observer 2026 Top 50 ($2.24B 2025 revenue).",
+      "source_url": "https://manhattanconstructiongroup.com/manhattan-construction-company/usf-football-stadium/"
+    },
+    {
+      "name": "Balfour Beatty (US Buildings - Florida)",
+      "corridor_office": "Orlando",
+      "sectors": [
+        "hospitality/theme parks",
+        "civic",
+        "commercial",
+        "higher education"
+      ],
+      "website": "https://www.balfourbeattyus.com",
+      "confidence": "high",
+      "notes": "2025 ABC Central Florida Eagle Awards for Super Nintendo World (Epic Universe) and Tiana's Bayou Adventure; ranked #2 on UCF CM/GC list.",
+      "source_url": "https://businesswire.com/news/home/20251117339650/en/Balfour-Beatty-Receives-Five-ABC-Eagle-Awards-Across-Florida"
+    },
+    {
+      "name": "Austin Commercial",
+      "corridor_office": "Orlando (Southeast office, 333 S. Garland Ave.)",
+      "sectors": [
+        "hospitality",
+        "corporate/office",
+        "healthcare",
+        "aviation"
+      ],
+      "website": "https://www.austin-ind.com/locations/orlando",
+      "confidence": "high",
+      "notes": "Built SeaWorld corporate office, Truist Tower at Church Street Station.",
+      "source_url": "https://www.austin-ind.com/locations/orlando"
+    },
+    {
+      "name": "Ryan Companies US",
+      "corridor_office": "Tampa",
+      "sectors": [
+        "industrial",
+        "healthcare",
+        "office",
+        "design-build/development"
+      ],
+      "website": "https://www.ryancompanies.com",
+      "confidence": "high",
+      "notes": "Pursuing 570,000 sf spec industrial on 44 acres in Tampa; Exalt rehab hospital in Riverview (2027); built Feeding Tampa Bay facilities.",
+      "source_url": "https://www.connectcre.com/awards/2025-women-in-real-estate-awards/atlanta-southeast/kathleen-bonesz/"
+    },
+    {
+      "name": "KAST Construction",
+      "corridor_office": "Tampa (opened 2016)",
+      "sectors": [
+        "multifamily",
+        "mixed-use",
+        "commercial",
+        "hospitality"
+      ],
+      "website": "https://kastconstruction.com",
+      "confidence": "high",
+      "notes": "HQ West Palm Beach.",
+      "source_url": "https://tbbwmag.com/?p=8368"
+    },
+    {
+      "name": "EMJ Construction",
+      "corridor_office": "Land O' Lakes, FL listing (Tampa Bay area); verify",
+      "sectors": [
+        "retail",
+        "commercial",
+        "industrial"
+      ],
+      "website": "https://www.emjcorp.com",
+      "confidence": "low",
+      "notes": "HQ Chattanooga; Florida office address from a directory that may be outdated.",
+      "source_url": "https://levelset.com/contractors/emj-corporation/about/"
+    },
+    {
+      "name": "CORE Construction",
+      "corridor_office": "Orlando (Florida HQ Fort Lauderdale)",
+      "sectors": [
+        "K-12 education",
+        "public",
+        "commercial"
+      ],
+      "website": "https://www.coreconstruction.com",
+      "confidence": "medium",
+      "notes": null,
+      "source_url": "https://www.constructionowners.com/ca/press-release/core-construction-opens-fort-lauderdale-hq-expands-florida-reach"
+    },
+    {
+      "name": "Batson-Cook Construction",
+      "corridor_office": "Tampa",
+      "sectors": [
+        "healthcare",
+        "industrial",
+        "K-12 education",
+        "commercial"
+      ],
+      "website": "https://www.batson-cook.com",
+      "confidence": "medium",
+      "notes": "Tampa office info is from a 2014 source.",
+      "source_url": "https://www.bdcnetwork.com/building-team/contractors/article/55147854/batson-cook-appoints-rygiel-vp-business-development-for-tampa-office"
+    },
+    {
+      "name": "Walbridge",
+      "corridor_office": "Tampa (Florida group)",
+      "sectors": [
+        "aviation",
+        "public",
+        "industrial",
+        "commercial"
+      ],
+      "website": "https://www.walbridge.com",
+      "confidence": "medium",
+      "notes": "GC on Orlando Sanford International Airport $60M terminal project; built Tampa Bay History Center. Office info from 2016.",
+      "source_url": "https://www.walbridge.com/about/news-events/news-item/construction-veteran-rygiel-joins-walbridge-lead-florida-group/"
+    },
+    {
+      "name": "Doster Construction",
+      "corridor_office": "Orlando (per D&B)",
+      "sectors": [
+        "healthcare",
+        "commercial"
+      ],
+      "website": "https://www.doster.com",
+      "confidence": "medium",
+      "notes": null,
+      "source_url": "https://www.dnb.com/business-directory/company-profiles.doster_construction_company_inc.836964932f12812dac5601df1d0a5c16.html"
+    },
+    {
+      "name": "Suffolk Construction",
+      "corridor_office": null,
+      "sectors": [
+        "K-12 education",
+        "healthcare",
+        "commercial"
+      ],
+      "website": "https://www.suffolk.com",
+      "confidence": "medium",
+      "notes": "Rebuilt Elbert Elementary for Polk County Public Schools (ribbon cutting Sept 2025); corridor office not confirmed.",
+      "source_url": "https://secure.businesswire.com/news/home/20250912247243/en/Suffolk-and-Polk-County-Public-Schools-Celebrate-Rebuild-of-Elbert-Elementary-With-Ribbon-Cutting-Ceremony"
+    },
+    {
+      "name": "Juneau Construction Company",
+      "corridor_office": null,
+      "sectors": [
+        "multifamily",
+        "mixed-use"
+      ],
+      "website": "https://www.juneauconstruction.com",
+      "confidence": "medium",
+      "notes": "GC for Gasworx phase 1 and Gasworx W2 (Ybor City, Tampa; completion Q3 2026). Atlanta-based; Tampa office not confirmed.",
+      "source_url": "https://floridayimby.com/2024/05/construction-starts-on-gasworx-w2-at-1502-nick-nuccio-parkway-tampa-fl.html"
+    },
+    {
+      "name": "CBG Building Company",
+      "corridor_office": null,
+      "sectors": [
+        "multifamily",
+        "mixed-use"
+      ],
+      "website": null,
+      "confidence": "medium",
+      "notes": "One of four firms on Gasworx (Tampa) as of April 2025.",
+      "source_url": "https://www.businessobserverfl.com/news/2025/apr/26/tampa-gasworx-project-visual-updates/"
+    },
+    {
+      "name": "Summit Contracting Group",
+      "corridor_office": "Jacksonville HQ; active in Orlando and Tampa",
+      "sectors": [
+        "multifamily"
+      ],
+      "website": null,
+      "confidence": "medium",
+      "notes": "Many Orlando/Tampa apartment projects (older coverage, 2019-2021).",
+      "source_url": "https://www.siteline.com/general-contractor/contractor/summit-contracting-group"
+    },
+    {
+      "name": "Capstone Building Corp.",
+      "corridor_office": null,
+      "sectors": [
+        "multifamily"
+      ],
+      "website": null,
+      "confidence": "medium",
+      "notes": "GC for 270-unit The Gateway near MCO (started July 2026, done late 2027).",
+      "source_url": "https://www.constructionowners.com/press-release/capstone-building-corp-begins-construction-on-417-000-sq-ft-luxury-multifamily-development-in-orlando-florida"
+    },
+    {
+      "name": "LandSouth Construction",
+      "corridor_office": null,
+      "sectors": [
+        "multifamily"
+      ],
+      "website": null,
+      "confidence": "medium",
+      "notes": "Building 364-unit Integra Towers at Nona South, 12401 Boggy Creek Rd, Orlando.",
+      "source_url": "https://www.multihousingnews.com/integra-begins-development-on-orlando-tower/"
+    },
+    {
+      "name": "Metrolina Builders",
+      "corridor_office": "Orlando (downtown office opened 2023; HQ Charlotte)",
+      "sectors": [
+        "multifamily",
+        "commercial"
+      ],
+      "website": null,
+      "confidence": "medium",
+      "notes": null,
+      "source_url": null
+    },
+    {
+      "name": "Berglund Construction",
+      "corridor_office": null,
+      "sectors": [
+        "healthcare"
+      ],
+      "website": null,
+      "confidence": "medium",
+      "notes": "GC for Orlando Health/Acadia 144-bed behavioral hospital, Apopka.",
+      "source_url": "https://www.orlandohealth.com/content-hub/orlando-health-and-acadia-healthcare-hold-groundbreaking-ceremony-for-new-behavioral-health-hospital"
+    },
+    {
+      "name": "Frampton Construction",
+      "corridor_office": null,
+      "sectors": [
+        "industrial/warehouse"
+      ],
+      "website": null,
+      "confidence": "medium",
+      "notes": "Built Lakeland Commerce Center @ County Line (4-building spec industrial); also Tampa industrial work. HQ Charlotte.",
+      "source_url": "https://airfreight.news/articles/full/construction-begins-on-lakeland-commerce-center-county-line"
+    },
+    {
+      "name": "Kiewit",
+      "corridor_office": null,
+      "sectors": [
+        "aviation",
+        "civil/transportation"
+      ],
+      "website": "https://www.kiewit.com",
+      "confidence": "medium",
+      "notes": "Turner-Kiewit JV led MCO South Terminal C landside; #2 on ENR Texas & Southeast 2026 Florida list. Corridor office not confirmed.",
+      "source_url": "https://www.aviationpros.com/airports/press-release/21281572/greater-orlando-aviation-authority-goaa-a-world-class-design-for-orlando-international-airports-new-terminal-c"
+    },
+    {
+      "name": "Wharton-Smith, Inc.",
+      "corridor_office": "Sanford (HQ, 750 Monroe Rd.); Tampa (4912 W. La Salle St.)",
+      "sectors": [
+        "water/wastewater",
+        "public",
+        "commercial",
+        "K-12 education"
+      ],
+      "website": "https://www.whartonsmith.com",
+      "confidence": "high",
+      "notes": "ENR Top 400 firm.",
+      "source_url": "https://www.tampabaychamber.com/membership/corporate/wharton-smith-inc./"
+    },
+    {
+      "name": "The Williams Company",
+      "corridor_office": "Orlando (HQ)",
+      "sectors": [
+        "retail",
+        "commercial",
+        "industrial",
+        "K-12 education"
+      ],
+      "website": null,
+      "confidence": "high",
+      "notes": "Founded 1920, employee-owned; bidder on Seminole County Public Schools CMAR.",
+      "source_url": "https://www.siteline.com/general-contractor/contractor/williams-company"
+    },
+    {
+      "name": "WELBRO Building Corporation",
+      "corridor_office": "Maitland (HQ, 2301 Maitland Center Pkwy)",
+      "sectors": [
+        "K-12 education",
+        "higher education",
+        "hospitality",
+        "industrial",
+        "municipal"
+      ],
+      "website": "https://welbro.com",
+      "confidence": "high",
+      "notes": "In 2026 Volusia County Schools CM continuing-services pool; bidder on Seminole schools CMAR.",
+      "source_url": "https://business.winterpark.org/list/member/welbro-building-corporation-5103678"
+    },
+    {
+      "name": "Jack Jennings & Sons",
+      "corridor_office": "Orlando (HQ, 1030 Wilfred Dr.)",
+      "sectors": [
+        "commercial",
+        "K-12 education",
+        "healthcare",
+        "public"
+      ],
+      "website": "https://jackjennings.com",
+      "confidence": "high",
+      "notes": "Family-owned since 1948.",
+      "source_url": "https://levelset.com/contractors/jack-jennings-sons-inc"
+    },
+    {
+      "name": "Andrew General Contractors",
+      "corridor_office": "Orlando (HQ, 2301 Mercator Dr.)",
+      "sectors": [
+        "commercial",
+        "office",
+        "industrial"
+      ],
+      "website": "https://www.andrewgc.com",
+      "confidence": "high",
+      "notes": null,
+      "source_url": "https://www.andrewgc.com/"
+    },
+    {
+      "name": "JK2 Construction",
+      "corridor_office": "Apopka (HQ)",
+      "sectors": [
+        "themed entertainment",
+        "retail",
+        "commercial"
+      ],
+      "website": "https://jk2construction.com",
+      "confidence": "high",
+      "notes": "#29 on OBJ Central Florida's 60 largest GCs (2025); Universal Studios projects.",
+      "source_url": "https://jk2construction.com/jk2-construction-recognized-on-orlando-business-journals-list-of-central-floridas-60-largest-general-contractors/"
+    },
+    {
+      "name": "Charles Perry Partners, Inc. (CPPI)",
+      "corridor_office": "Orlando; Tampa (HQ Gainesville)",
+      "sectors": [
+        "K-12 education",
+        "higher education",
+        "public",
+        "commercial"
+      ],
+      "website": "https://cppi.com",
+      "confidence": "medium",
+      "notes": null,
+      "source_url": "https://cppi.com/?p=6464"
+    },
+    {
+      "name": "Walker & Company",
+      "corridor_office": "Winter Park (HQ)",
+      "sectors": [
+        "commercial",
+        "cultural/museum",
+        "higher education",
+        "office"
+      ],
+      "website": null,
+      "confidence": "medium",
+      "notes": "Commercial GC/CM since 1974 (Rollins College, Orlando Museum of Art).",
+      "source_url": "https://business.winterpark.org/list/member/walker-company-5007738"
+    },
+    {
+      "name": "Roger B. Kennedy Construction",
+      "corridor_office": "Altamonte Springs (HQ)",
+      "sectors": [
+        "commercial",
+        "hospitality"
+      ],
+      "website": null,
+      "confidence": "medium",
+      "notes": "Ranking info dated 2017.",
+      "source_url": "https://www.24-7pressrelease.com/press-release/442770/roger-b-kennedy-construction-ranks-as-12th-largest-florida-based-general-building-contractor-81st-largest-among-southeasts-top-contractors"
+    },
+    {
+      "name": "KEL Constructors",
+      "corridor_office": "Orlando",
+      "sectors": [
+        "commercial"
+      ],
+      "website": null,
+      "confidence": "low",
+      "notes": "Family-owned GC est. 2001.",
+      "source_url": null
+    },
+    {
+      "name": "Oelrich Construction",
+      "corridor_office": null,
+      "sectors": [
+        "higher education",
+        "commercial"
+      ],
+      "website": null,
+      "confidence": "medium",
+      "notes": "#2 on UCF $500K GC continuing services shortlist (2024).",
+      "source_url": "https://www.fp.ucf.edu/?p=4074"
+    },
+    {
+      "name": "Gomez Construction Company",
+      "corridor_office": null,
+      "sectors": [
+        "higher education",
+        "commercial"
+      ],
+      "website": null,
+      "confidence": "medium",
+      "notes": "#1 on UCF $500K GC continuing services shortlist (2024).",
+      "source_url": "https://www.fp.ucf.edu/?p=4074"
+    },
+    {
+      "name": "Rodda Construction",
+      "corridor_office": "Lakeland (HQ, 250 E. Highland Dr.)",
+      "sectors": [
+        "commercial",
+        "public",
+        "K-12 education",
+        "industrial"
+      ],
+      "website": null,
+      "confidence": "high",
+      "notes": "Founded 1989; serves Tampa to Orlando.",
+      "source_url": "https://lakelandedc.com/company/rodda-construction"
+    },
+    {
+      "name": "Marcobay Construction",
+      "corridor_office": "Lakeland (HQ, 116 Kentucky Ave S)",
+      "sectors": [
+        "industrial/warehouse",
+        "commercial"
+      ],
+      "website": null,
+      "confidence": "high",
+      "notes": "GC for LCP 300 (261,000 sf) at Lakeland Central Park Phase II.",
+      "source_url": "https://www.levelset.com/contractors/marcobay-construction/about"
+    },
+    {
+      "name": "Strickland Construction",
+      "corridor_office": "Lakeland",
+      "sectors": [
+        "commercial",
+        "industrial",
+        "government",
+        "medical",
+        "education"
+      ],
+      "website": null,
+      "confidence": "medium",
+      "notes": null,
+      "source_url": "https://web.lakelandchamber.com/General-Contractors/Strickland-Construction,-Inc-1140"
+    },
+    {
+      "name": "Register Construction & Engineering",
+      "corridor_office": "Lakeland",
+      "sectors": [
+        "commercial"
+      ],
+      "website": null,
+      "confidence": "medium",
+      "notes": null,
+      "source_url": "https://web.lakelandchamber.com/General-Contractors"
+    },
+    {
+      "name": "Vogel Bros. Building Co.",
+      "corridor_office": "Lakeland",
+      "sectors": [
+        "commercial",
+        "industrial"
+      ],
+      "website": null,
+      "confidence": "medium",
+      "notes": null,
+      "source_url": "https://web.lakelandchamber.com/General-Contractors"
+    },
+    {
+      "name": "SEMCO Construction",
+      "corridor_office": "Bartow",
+      "sectors": [
+        "commercial"
+      ],
+      "website": null,
+      "confidence": "low",
+      "notes": null,
+      "source_url": "https://web.lakelandchamber.com/General-Contractors"
+    },
+    {
+      "name": "Jr. Davis Construction",
+      "corridor_office": null,
+      "sectors": [
+        "site/civil infrastructure"
+      ],
+      "website": null,
+      "confidence": "medium",
+      "notes": "Infrastructure GC at Lakeland Central Park Phase II (site work, not vertical).",
+      "source_url": "https://rebusinessonline.com/?p=447025"
+    },
+    {
+      "name": "Creative Contractors",
+      "corridor_office": "Clearwater (HQ); Tampa and Lakeland locations listed",
+      "sectors": [
+        "retail",
+        "commercial",
+        "healthcare",
+        "industrial"
+      ],
+      "website": null,
+      "confidence": "medium",
+      "notes": "One of the largest commercial builders in Tampa Bay; founded 1974.",
+      "source_url": "https://levelset.com/contractors/creative-contractors-fl/about"
+    },
+    {
+      "name": "Biltmore Construction",
+      "corridor_office": "Belleair (Tampa Bay)",
+      "sectors": [
+        "municipal",
+        "K-12 education",
+        "healthcare"
+      ],
+      "website": null,
+      "confidence": "high",
+      "notes": "Founded 1954.",
+      "source_url": "https://www.buildzoom.com/contractor/biltmore-construction-co-inc-fl"
+    },
+    {
+      "name": "Bandes Construction",
+      "corridor_office": "Dunedin (Tampa Bay)",
+      "sectors": [
+        "commercial",
+        "public"
+      ],
+      "website": null,
+      "confidence": "medium",
+      "notes": null,
+      "source_url": "https://lakelandedc.com/company/bandes-construction/"
+    },
+    {
+      "name": "J. Kokolakis Contracting",
+      "corridor_office": "Tarpon Springs (FL office)",
+      "sectors": [
+        "public",
+        "K-12 education"
+      ],
+      "website": null,
+      "confidence": "low",
+      "notes": null,
+      "source_url": "https://www.levelset.com/contractors/j-kokolakis-contracting-1/about/"
+    },
+    {
+      "name": "DuCon, LLC",
+      "corridor_office": "Sarasota/Tampa",
+      "sectors": [
+        "sports",
+        "public"
+      ],
+      "website": null,
+      "confidence": "medium",
+      "notes": "Part of the USF stadium CM team.",
+      "source_url": "https://www.usforacle.com/?p=83932"
+    },
+    {
+      "name": "Ripa & Associates",
+      "corridor_office": "Tampa (1409 Tech Blvd.)",
+      "sectors": [
+        "site/civil",
+        "utilities"
+      ],
+      "website": null,
+      "confidence": "medium",
+      "notes": "Civil/site work rather than vertical building.",
+      "source_url": "https://www.levelset.com/contractors/ripa-associates-llc/about"
+    },
+    {
+      "name": "A.M. Weigel Construction",
+      "corridor_office": "Daytona Beach",
+      "sectors": [
+        "K-12 education",
+        "commercial",
+        "residential"
+      ],
+      "website": null,
+      "confidence": "medium",
+      "notes": "In 2026 Volusia County Schools CM pool; Daytona State College prequalified (<$10M).",
+      "source_url": "https://app.govly.com/public/opportunities/16361170"
+    },
+    {
+      "name": "Bean Construction, Inc.",
+      "corridor_office": "Volusia County area",
+      "sectors": [
+        "K-12 education",
+        "commercial"
+      ],
+      "website": null,
+      "confidence": "low",
+      "notes": "In 2026 Volusia County Schools CM pool.",
+      "source_url": "https://app.govly.com/public/opportunities/16361170"
+    },
+    {
+      "name": "D.E. Scorpio Corporation (Scorpio)",
+      "corridor_office": "Gainesville (HQ); active in Volusia",
+      "sectors": [
+        "K-12 education",
+        "higher education"
+      ],
+      "website": null,
+      "confidence": "medium",
+      "notes": "In 2026 Volusia County Schools CM pool.",
+      "source_url": "https://app.govly.com/public/opportunities/16361170"
+    },
+    {
+      "name": "RUSH Construction",
+      "corridor_office": "Titusville (Brevard; works in Volusia)",
+      "sectors": [
+        "healthcare",
+        "retail",
+        "commercial"
+      ],
+      "website": null,
+      "confidence": "low",
+      "notes": "Did work at Halifax Health Medical Center, Daytona.",
+      "source_url": "https://rushinc.com/project/publix-pharmacy-at-halifax-health-medical-center/"
+    }
+  ],
+  "contractor_verification_notes": [
+    {
+      "name": "Elkins Constructors",
+      "finding": "Jacksonville firm that wound down in 2015 (assets sold 2017); no current corridor presence found. Excluded."
+    },
+    {
+      "name": "Pospiech Contracting",
+      "finding": "Found only as a heavy civil/utility contractor HQ'd in Inverness; no corridor building-GC presence confirmed. Excluded."
+    },
+    {
+      "name": "Wright Construction Group",
+      "finding": "Fort Myers-based; no corridor office found. Excluded."
+    },
+    {
+      "name": "Brooks & Freund",
+      "finding": "Southwest Florida base; Tampa office not confirmed. Excluded."
+    },
+    {
+      "name": "Mortenson",
+      "finding": "No Orlando/Tampa office confirmed in search. Excluded."
+    },
+    {
+      "name": "Haskell",
+      "finding": "Jacksonville HQ; corridor office not confirmed. Excluded."
+    },
+    {
+      "name": "Manhattan Construction",
+      "finding": "Active (USF stadium); Florida office listed in Naples. Corridor office unconfirmed."
+    },
+    {
+      "name": "Ajax Building Company",
+      "finding": "Active in corridor; Orlando/Tampa office address not confirmed."
+    },
+    {
+      "name": "Brasfield & Gorrie",
+      "finding": "Orlando office confirmed; no Tampa office found."
+    }
+  ],
+  "projects": [
+    {
+      "name": "AdventHealth Orlando 14-story surgical & inpatient tower",
+      "city": "Orlando",
+      "county": "Orange",
+      "type": "healthcare",
+      "size_or_value": "$660M",
+      "status": "Construction expected to start 2026; completion targeted 2030",
+      "contractor": "Brasfield & Gorrie",
+      "source_url": "https://www.constructionbriefing.com/generale/news/brasfield-gorrie-awarded-us660m-medical-tower-build-in-us/8062305.article",
+      "confidence": "high",
+      "notes": null
+    },
+    {
+      "name": "AdventHealth Lake Nona hospital",
+      "city": "Orlando (Lake Nona)",
+      "county": "Orange",
+      "type": "healthcare",
+      "size_or_value": "$423M; 10 stories; opens with 80 beds, shell for 320",
+      "status": "Opening expected 2026",
+      "contractor": "Brasfield & Gorrie",
+      "source_url": "https://www.connectcre.com/stories/adventhealth-adding-423m-lake-nona-hospital/",
+      "confidence": "high",
+      "notes": null
+    },
+    {
+      "name": "AdventHealth Daytona Beach vertical expansion",
+      "city": "Daytona Beach",
+      "county": "Volusia",
+      "type": "healthcare",
+      "size_or_value": "$220M; +104 beds (to 466)",
+      "status": "Under construction; completion fall 2026",
+      "contractor": "Robins & Morton",
+      "source_url": "https://www.asianhhm.com/projects/us-271-million-is-invested-to-construct-new-hospital-in-florida-usa",
+      "confidence": "medium",
+      "notes": "Third-party source; check completion date."
+    },
+    {
+      "name": "Orlando Health Watson Clinic Lakeland Highlands Hospital",
+      "city": "Lakeland",
+      "county": "Polk",
+      "type": "healthcare",
+      "size_or_value": "580,000 sf; 7 stories; 302 beds; USD 166M additional Skanska contract",
+      "status": "Scheduled to open June 2026; open status not confirmed",
+      "contractor": "Skanska",
+      "source_url": "https://www.wusf.org/health-news-florida/2025-03-24/watson-clinic-joins-forces-with-orlando-health-for-new-hospital-in-lakeland",
+      "confidence": "high",
+      "notes": null
+    },
+    {
+      "name": "Orlando Health Orange City freestanding ER",
+      "city": "Orange City",
+      "county": "Volusia",
+      "type": "healthcare",
+      "size_or_value": "11,600 sf",
+      "status": "Under construction; completion 2027",
+      "contractor": null,
+      "source_url": "https://www.orlandohealth.com/content-hub/orlando-health-begins-construction-on-new-freestanding-emergency-room-in-orange-city",
+      "confidence": "high",
+      "notes": null
+    },
+    {
+      "name": "Tampa General Hospital Taneja Surgical, Neuroscience & Transplant Tower",
+      "city": "Tampa (Davis Islands)",
+      "county": "Hillsborough",
+      "type": "healthcare",
+      "size_or_value": "$520M; 565,000 sf; 144 beds; 32 ORs",
+      "status": "Under construction (broke ground Apr 2024); occupancy targeted summer 2027",
+      "contractor": null,
+      "source_url": "https://www.fox13news.com/news/tampa-general-hospital-breaks-ground-on-new-surgical-tower-hard-to-put-into-words",
+      "confidence": "high",
+      "notes": "GC not identified in search."
+    },
+    {
+      "name": "BayCare Pagidipati Children's Hospital at St. Joseph's",
+      "city": "Tampa",
+      "county": "Hillsborough",
+      "type": "healthcare",
+      "size_or_value": ">$650M",
+      "status": "Construction began April 2026; opening 2030",
+      "contractor": null,
+      "source_url": "https://baycare.org/newsroom/2026/january/baycare-unveils-vision-for-pagidipati-childrens-hospital-at-st-josephs",
+      "confidence": "high",
+      "notes": "Architect Page (now Stantec); GC not identified."
+    },
+    {
+      "name": "BayCare South Lakeland freestanding emergency department",
+      "city": "Lakeland (5501 S. Florida Ave.)",
+      "county": "Polk",
+      "type": "healthcare",
+      "size_or_value": null,
+      "status": "Construction 2025; opening late 2026",
+      "contractor": null,
+      "source_url": "https://baycare.org/newsroom/2024/december/baycare-building-new-emergency-department-in-lakeland",
+      "confidence": "high",
+      "notes": null
+    },
+    {
+      "name": "BayCare Valrico freestanding emergency facility",
+      "city": "Valrico",
+      "county": "Hillsborough",
+      "type": "healthcare",
+      "size_or_value": "12,000 sf; 15 treatment spaces",
+      "status": "Announced Aug 2025",
+      "contractor": null,
+      "source_url": "https://baycare.org/newsroom/2025/august/baycare-bringing-new-emergency-care-facility-to-valrico",
+      "confidence": "high",
+      "notes": null
+    },
+    {
+      "name": "Lakeland Regional Health two freestanding EDs",
+      "city": "Winter Haven area; Lakeland (US 98 N at Marcum Rd)",
+      "county": "Polk",
+      "type": "healthcare",
+      "size_or_value": "$55M total",
+      "status": "Winter Haven mid-2027; Lakeland early 2028",
+      "contractor": null,
+      "source_url": "https://www.beckershospitalreview.com/capital/lakeland-regional-health-plans-2-freestanding-eds/",
+      "confidence": "high",
+      "notes": null
+    },
+    {
+      "name": "USF on-campus football stadium",
+      "city": "Tampa",
+      "county": "Hillsborough",
+      "type": "sports/higher education",
+      "size_or_value": "$340M; 35,000 seats",
+      "status": "Under construction; opening for fall 2027 season",
+      "contractor": "Manhattan Construction / H.J. Russell / DuCon (CM team)",
+      "source_url": "https://enr.com/articles/58480-university-of-south-florida-fields-new-cm-team-for-340m-stadium-project",
+      "confidence": "high",
+      "notes": null
+    },
+    {
+      "name": "Tampa Bay Rays ballpark & mixed-use district (Hillsborough College Dale Mabry campus)",
+      "city": "Tampa",
+      "county": "Hillsborough",
+      "type": "sports/mixed-use",
+      "size_or_value": "~$2.3B; ~28,000-31,000 seats",
+      "status": "Financing approved by City (Aug 2026) and County ($796M, Aug 28 2026); target Opening Day 2029",
+      "contractor": null,
+      "source_url": "https://www.businessobserverfl.com/news/2026/aug/28/new-rays-stadium-advances/",
+      "confidence": "high",
+      "notes": "GC not announced in sources."
+    },
+    {
+      "name": "Gasworx (Ybor City / Channel District)",
+      "city": "Tampa",
+      "county": "Hillsborough",
+      "type": "mixed-use/multifamily/office",
+      "size_or_value": "~50 acres; 15-block plan; W2 building $70.8M loan",
+      "status": "Phased; W2 completion Q3 2026; Stevedore early 2026; Luisa spring 2027; Olivette summer 2027",
+      "contractor": "Juneau Construction (W2/phase 1); Moss (office building); Ellison, CBG also on site",
+      "source_url": "https://tbbwmag.com/?p=88712",
+      "confidence": "high",
+      "notes": null
+    },
+    {
+      "name": "Water Street Tampa entertainment district (proposed venue)",
+      "city": "Tampa",
+      "county": "Hillsborough",
+      "type": "entertainment/mixed-use",
+      "size_or_value": "~3,500-seat performance venue",
+      "status": "Proposed; groundbreaking aimed for 2027",
+      "contractor": null,
+      "source_url": "https://hoodline.com/2026/04/live-nation-moves-in-on-gasworx-as-ybor-s-next-big-stage/",
+      "confidence": "low",
+      "notes": null
+    },
+    {
+      "name": "Tampa International Airport Airside D",
+      "city": "Tampa",
+      "county": "Hillsborough",
+      "type": "aviation",
+      "size_or_value": "~$1.5B; 600,000 sf; 16 gates",
+      "status": "Vertical construction (July 2026); opening 2028-2029",
+      "contractor": "Hensel Phelps (design-build); Crisdel Group (airfield)",
+      "source_url": "https://www.mysuncoast.com/2026/07/03/inside-fence-tampa-international-airport-opens-airside-d-construction-site-media/",
+      "confidence": "high",
+      "notes": null
+    },
+    {
+      "name": "Orlando International Airport South Terminal C (new gates; Phase 2 planning)",
+      "city": "Orlando",
+      "county": "Orange",
+      "type": "aviation",
+      "size_or_value": "Phase 1: 5 new gates opened July 2026; Phase 2 planned 16-24 gates",
+      "status": "Phase 1 gates open; Phase 2 in program definition",
+      "contractor": "Hensel Phelps (airside), Turner-Kiewit JV (landside) on original terminal",
+      "source_url": "https://hoodline.com/2026/07/orlando-airport-s-new-terminal-c-wing-snags-five-new-gates-to-ease-travel-crush/",
+      "confidence": "medium",
+      "notes": null
+    },
+    {
+      "name": "Westcourt Orlando mixed-use district",
+      "city": "Orlando (by Kia Center)",
+      "county": "Orange",
+      "type": "mixed-use/hospitality/residential/office",
+      "size_or_value": "$500M; 900,000 sf; Kimpton hotel, residences, office, venue",
+      "status": "GC selected April 2026; enabling work underway",
+      "contractor": "Turner Construction",
+      "source_url": "https://www.orlandoweekly.com/news/orlando-area-news/turner-construction-brought-on-board-for-westcourt-orlando-mixed-use-project-downtown/",
+      "confidence": "high",
+      "notes": null
+    },
+    {
+      "name": "Epic Universe expansion and resort area",
+      "city": "Orlando",
+      "county": "Orange",
+      "type": "theme park/hospitality",
+      "size_or_value": "Permit (Nov 2025) for utilities/foundation of a 150,000 sf building; park opened May 2025",
+      "status": "Expansion groundwork underway (2026)",
+      "contractor": null,
+      "source_url": "https://insidethemagic.net/2026/01/universal-epic-universe-expansion-news-rumors-emd1/",
+      "confidence": "medium",
+      "notes": null
+    },
+    {
+      "name": "W Hotel (Marriott) near Epic Universe",
+      "city": "Orlando",
+      "county": "Orange",
+      "type": "hospitality",
+      "size_or_value": "400 rooms; 10 acres",
+      "status": "Proposed; current status unconfirmed",
+      "contractor": null,
+      "source_url": "https://conventionsouth.com/?p=66100",
+      "confidence": "low",
+      "notes": null
+    },
+    {
+      "name": "Brightline Orlando-Tampa extension",
+      "city": "Orlando to Tampa",
+      "county": "Orange/Osceola/Polk/Hillsborough",
+      "type": "rail/transit",
+      "size_or_value": null,
+      "status": "No confirmed schedule; operator finances in question (2026)",
+      "contractor": null,
+      "source_url": "https://railwaynews.net/brightline-high-speed-rail-project-florida-miami-orlando-tampa.html",
+      "confidence": "medium",
+      "notes": null
+    },
+    {
+      "name": "Lake Nona growth (permits, multifamily, civic)",
+      "city": "Orlando (Lake Nona)",
+      "county": "Orange",
+      "type": "multifamily/civic/healthcare",
+      "size_or_value": "Ellison Nona 377 units (2027); Royal Palm at Nona 320 units; $13M Southeast Community & Government Center",
+      "status": "Under construction",
+      "contractor": null,
+      "source_url": "https://www.multihousingnews.com/flournoy-development-group-jv-kicks-off-orlando-project/",
+      "confidence": "medium",
+      "notes": null
+    },
+    {
+      "name": "The Gateway apartments",
+      "city": "Orlando (7250 Shadowridge Dr., near MCO)",
+      "county": "Orange",
+      "type": "multifamily",
+      "size_or_value": "270 units",
+      "status": "Started July 2026; completion late 2027",
+      "contractor": "Capstone Building Corp.",
+      "source_url": "https://hoodline.com/2026/08/270-unit-gateway-apartments-rise-near-orlando-airport-amid-housing-crunch/",
+      "confidence": "medium",
+      "notes": null
+    },
+    {
+      "name": "Integra Towers at Nona South",
+      "city": "Orlando (12401 Boggy Creek Rd)",
+      "county": "Orange",
+      "type": "multifamily",
+      "size_or_value": "364 units",
+      "status": "Under construction",
+      "contractor": "LandSouth Construction",
+      "source_url": "https://www.multihousingnews.com/integra-begins-development-on-orlando-tower/",
+      "confidence": "medium",
+      "notes": null
+    },
+    {
+      "name": "Orlando-metro multifamily pipeline",
+      "city": "Orlando metro",
+      "county": "Orange/Osceola/Seminole",
+      "type": "multifamily",
+      "size_or_value": "17,557 units underway (Yardi, Jan 2026); 11,367 per Cushman & Wakefield YE2025",
+      "status": "Ongoing",
+      "contractor": null,
+      "source_url": "https://www.multihousingnews.com/orlando-multifamily-report-march-2026/",
+      "confidence": "medium",
+      "notes": null
+    },
+    {
+      "name": "Lakeland Central Park (Phase II incl. LCP 300)",
+      "city": "Lakeland",
+      "county": "Polk",
+      "type": "industrial/warehouse",
+      "size_or_value": "$750M, 740-acre park; LCP 300 = 261,000 sf cross-dock; $40.67M loan",
+      "status": "Phase II under construction",
+      "contractor": "Marcobay Construction (LCP 300); Jr. Davis Construction (infrastructure)",
+      "source_url": "https://rebusinessonline.com/?p=447025",
+      "confidence": "high",
+      "notes": null
+    },
+    {
+      "name": "Chick-fil-A Supply distribution center (Central Florida Integrated Logistics Park)",
+      "city": "Winter Haven",
+      "county": "Polk",
+      "type": "industrial/distribution",
+      "size_or_value": "$150M; 244,000 sf",
+      "status": "Planned; opening 2027",
+      "contractor": null,
+      "source_url": "https://www.businessobserverfl.com/news/2025/nov/25/chick-fil-a-open-distribution-center-polk",
+      "confidence": "high",
+      "notes": null
+    },
+    {
+      "name": "Polk County industrial pipeline",
+      "city": "Polk County",
+      "county": "Polk",
+      "type": "industrial/warehouse",
+      "size_or_value": "916,104 sf under construction (Dec 2025); PepsiCo 1,218,800 sf lease at CFILP (Q3 2025)",
+      "status": "Ongoing",
+      "contractor": null,
+      "source_url": "https://irp.cdn-website.com/a3c1dcdd/files/uploaded/Polk+County+Industrial+Market+Report+-+Dec+2025.pdf",
+      "confidence": "medium",
+      "notes": null
+    },
+    {
+      "name": "Fort Meade data center campus (Stonebridge)",
+      "city": "Fort Meade",
+      "county": "Polk",
+      "type": "data center",
+      "size_or_value": "~1,100-1,300 acres",
+      "status": "Development agreement approved; water supply and final approvals pending (sources conflict)",
+      "contractor": null,
+      "source_url": "https://www.datacenterdynamics.com/en/news/plans-to-build-1300-acre-data-center-in-fort-meade-florida-gets-go-ahead-from-officials/",
+      "confidence": "medium",
+      "notes": null
+    },
+    {
+      "name": "Cielo Digital Infrastructure hyperscale campus",
+      "city": "Polk County",
+      "county": "Polk",
+      "type": "data center",
+      "size_or_value": "300 MW; 74 acres",
+      "status": "Reported in development",
+      "contractor": null,
+      "source_url": "https://thebirmgroup.com/major-construction-projects-in-florida-2026/",
+      "confidence": "low",
+      "notes": "Industry roundup source; verify."
+    },
+    {
+      "name": "Orlando data center near I-4 and Lee Road",
+      "city": "Orlando",
+      "county": "Orange",
+      "type": "data center",
+      "size_or_value": "$100M",
+      "status": "Moving forward (June 2026)",
+      "contractor": null,
+      "source_url": "https://baynews9.com/fl/tampa/news/2026/06/23/lake-county-puts-data-centers-on-pause-while-orlando-moves-forward-with-massive-new-facility",
+      "confidence": "medium",
+      "notes": null
+    },
+    {
+      "name": "HostDime data center",
+      "city": "Maitland",
+      "county": "Orange",
+      "type": "data center",
+      "size_or_value": "100,000 sf",
+      "status": "Completing; Q3 2026 opening",
+      "contractor": null,
+      "source_url": "https://www.axios.com/local/tampa-bay/2026/03/04/florida-data-center-boom-ai-citrus-polk",
+      "confidence": "medium",
+      "notes": null
+    },
+    {
+      "name": "Drury Plaza Hotel Daytona Speedway",
+      "city": "Daytona Beach (2600 W. International Speedway Blvd)",
+      "county": "Volusia",
+      "type": "hospitality",
+      "size_or_value": "180 rooms; 7 stories",
+      "status": "Under construction; opening June 2027",
+      "contractor": null,
+      "source_url": "https://www.hotelmanagement.net/development/drury-hotels-begins-construction-daytona-beach-property",
+      "confidence": "high",
+      "notes": null
+    },
+    {
+      "name": "Volusia County Sheriff Administration Complex",
+      "city": "Daytona Beach area",
+      "county": "Volusia",
+      "type": "public",
+      "size_or_value": "$42M design-build",
+      "status": "Planned FY25/26; current status unclear",
+      "contractor": null,
+      "source_url": "https://www.volusia.org/file/5943/CPS_Final_FY24-25_Q2_ADA.pdf",
+      "confidence": "medium",
+      "notes": null
+    },
+    {
+      "name": "Daytona Beach Lift Station 34 replacement / Beach Street Streetscape Phase II",
+      "city": "Daytona Beach",
+      "county": "Volusia",
+      "type": "public/civil",
+      "size_or_value": "$10.9M / $9.1M",
+      "status": "Lift station completion Apr 2026; streetscape construction from summer 2026",
+      "contractor": null,
+      "source_url": "https://publication.daytonabeach.gov/view/897330449",
+      "confidence": "high",
+      "notes": null
+    },
+    {
+      "name": "Volusia County Schools CM continuing services",
+      "city": "Volusia County",
+      "county": "Volusia",
+      "type": "K-12 education",
+      "size_or_value": "Up to $7,725,000 per project (CM at-risk, GMP)",
+      "status": "Awarded to multi-firm pool (2026)",
+      "contractor": "WELBRO, A.M. Weigel, Bean Construction, D.E. Scorpio, others",
+      "source_url": "https://app.govly.com/public/opportunities/16361170",
+      "confidence": "medium",
+      "notes": null
+    },
+    {
+      "name": "NeoCity (AdventHealth hospital site, lab, city center, performing arts center)",
+      "city": "Kissimmee",
+      "county": "Osceola",
+      "type": "healthcare/research/mixed-use",
+      "size_or_value": "AdventHealth 20 acres (80 to 200 beds); $17.5M multi-use lab (2026); ~$150M performing arts center",
+      "status": "Approved/planning; lab breaking ground 2026",
+      "contractor": null,
+      "source_url": "https://www.aroundosceola.com/index.php/news/county-approves-neocity-deals-adventhealth-new-york-developer",
+      "confidence": "medium",
+      "notes": null
+    },
+    {
+      "name": "Orange County Public Schools construction program",
+      "city": "Orange County",
+      "county": "Orange",
+      "type": "K-12 education",
+      "size_or_value": "Two new schools opening 2026",
+      "status": "District pausing new campuses until ~2031",
+      "contractor": null,
+      "source_url": "https://www.asumag.com/facility-planning/article/55291711/orange-county-florida-district-will-halt-new-school-construction-for-4-years",
+      "confidence": "high",
+      "notes": "Renovation/replacement work continues; new-school pipeline is thin."
+    },
+    {
+      "name": "Hillsborough County Public Schools Wimauma middle school",
+      "city": "Wimauma",
+      "county": "Hillsborough",
+      "type": "K-12 education",
+      "size_or_value": "$72M; 1,600 students",
+      "status": "Under construction; opening Aug 2027",
+      "contractor": null,
+      "source_url": "https://www.tampabay28.com/news/region-hillsborough/hillsborough-county-public-schools-has-several-construction-projects-underway",
+      "confidence": "medium",
+      "notes": null
+    },
+    {
+      "name": "Seminole County Public Schools CMAR renovations (Sanford MS, South Seminole MS, Rock Lake MS)",
+      "city": "Sanford / Seminole County",
+      "county": "Seminole",
+      "type": "K-12 education",
+      "size_or_value": null,
+      "status": "Solicitations 2025-2026",
+      "contractor": "Bidders included Ajax, Gilbane, Williams Company, WELBRO",
+      "source_url": "https://app.govly.com/public/opportunities/16361301",
+      "confidence": "medium",
+      "notes": null
+    },
+    {
+      "name": "Polk County government CMAR projects (Agricultural Center complex; Sheriff/County joint-use warehouse & facilities building)",
+      "city": "Polk County",
+      "county": "Polk",
+      "type": "public",
+      "size_or_value": null,
+      "status": "CM selection Sept-Oct 2025",
+      "contractor": null,
+      "source_url": "https://www.polkfl.gov/meetings/second-selection-committee-meeting-for-rfp-25-600-construction-manager-at-risk-new-sheriffs-office-polk-county-joint-use-warehouse-and-facilities-management-administration-building/",
+      "confidence": "medium",
+      "notes": null
+    },
+    {
+      "name": "UCF Research II building and WERX facility",
+      "city": "Orlando",
+      "county": "Orange",
+      "type": "higher education/research",
+      "size_or_value": "Research II $114.6M; WERX ~$76M, ~70,598 nasf",
+      "status": "Planning/design solicitations (2026)",
+      "contractor": null,
+      "source_url": "https://fp.ucf.edu/wp-content/uploads/planning/CIP%20FY%202027-28.pdf",
+      "confidence": "medium",
+      "notes": "Site within Central Florida Research Park not confirmed."
+    },
+    {
+      "name": "Orlando Sanford International Airport improvements",
+      "city": "Sanford",
+      "county": "Seminole",
+      "type": "aviation",
+      "size_or_value": "~1,000-space parking lot; Taxiway A west extension",
+      "status": "Parking completion Dec 2026; taxiway procurement 2026",
+      "contractor": null,
+      "source_url": "https://mynews13.com/fl/orlando/news/2024/12/11/orlando-sanford-airport-",
+      "confidence": "medium",
+      "notes": null
+    }
+  ],
+  "associations": [
+    {
+      "name": "ABC Florida Gulf Coast Chapter (Associated Builders & Contractors)",
+      "area": "Tampa Bay / Polk (Gainesville to Naples)",
+      "url": "https://www.abcflgulf.org",
+      "notes": "2008 N. Himes Ave., Tampa; 570+ members; networking, safety training, Excellence in Construction awards.",
+      "confidence": "medium"
+    },
+    {
+      "name": "ABC Central Florida Chapter",
+      "area": "Orlando / Central Florida",
+      "url": null,
+      "notes": "Active; runs Excellence in Construction / Eagle Awards (2025 winners incl. Balfour Beatty, Hensel Phelps). Website not confirmed in search.",
+      "confidence": "high"
+    },
+    {
+      "name": "AGC of Greater Florida (Associated General Contractors)",
+      "area": "Orlando, Tampa (plus Jacksonville, Tallahassee)",
+      "url": null,
+      "notes": "Per a 2005 report, formed by merger with the Central Florida AGC chapter and covering Orlando and Tampa; current structure and URL not confirmed.",
+      "confidence": "low"
+    },
+    {
+      "name": "NAWIC Greater Orlando Chapter 73",
+      "area": "Orlando",
+      "url": null,
+      "notes": "Women in construction; GC project managers serve as officers. Good for meeting GC PMs.",
+      "confidence": "high"
+    },
+    {
+      "name": "NAWIC Tampa Chapter 36",
+      "area": "Tampa Bay",
+      "url": null,
+      "notes": "Established 1960.",
+      "confidence": "high"
+    },
+    {
+      "name": "Greater Orlando Builders Association (GOBA)",
+      "area": "Orlando (Maitland)",
+      "url": null,
+      "notes": "Home builder association (HBA); developers council, young professionals. Mostly residential builders.",
+      "confidence": "high"
+    },
+    {
+      "name": "Tampa Bay Builders Association (TBBA)",
+      "area": "Hillsborough, Pasco, Pinellas",
+      "url": null,
+      "notes": "Home builder association; Parade of Homes. Residential builders.",
+      "confidence": "high"
+    },
+    {
+      "name": "Polk County Builders Association (PCBA)",
+      "area": "Polk",
+      "url": null,
+      "notes": "2232 Heritage Dr., Lakeland.",
+      "confidence": "medium"
+    },
+    {
+      "name": "Volusia Building Industry Association (VBIA)",
+      "area": "Volusia",
+      "url": "https://volusiabia.com",
+      "notes": null,
+      "confidence": "medium"
+    },
+    {
+      "name": "CFMA Central Florida Chapter (Construction Financial Management Association)",
+      "area": "Orlando",
+      "url": "https://centralflorida.cfma.org",
+      "notes": "120+ members; GC finance/AP contacts (useful for vendor setup and getting paid).",
+      "confidence": "high"
+    },
+    {
+      "name": "SMPS Central Florida",
+      "area": "Orlando",
+      "url": null,
+      "notes": "Marketing/business-development people from A/E/C firms; ~200 members.",
+      "confidence": "high"
+    },
+    {
+      "name": "Lakeland Chamber of Commerce - construction/GC directory",
+      "area": "Lakeland/Polk",
+      "url": "https://web.lakelandchamber.com/General-Contractors",
+      "notes": "Member directory of local GCs.",
+      "confidence": "high"
+    },
+    {
+      "name": "Central Florida Development Council (Polk EDC) investor directory",
+      "area": "Polk",
+      "url": "https://www.cfdc.org",
+      "notes": "Lists Polk GCs (Rodda, Marcobay).",
+      "confidence": "medium"
+    },
+    {
+      "name": "Lakeland EDC company directory",
+      "area": "Lakeland",
+      "url": "https://lakelandedc.com",
+      "notes": null,
+      "confidence": "medium"
+    },
+    {
+      "name": "BuildingConnected (Autodesk) bid network",
+      "area": "Statewide",
+      "url": "https://www.buildingconnected.com",
+      "notes": "Many national GCs here (Turner, Skanska, Brasfield & Gorrie, etc.) invite subs through it; register for final-clean/janitorial trade. Usage by specific firms not verified in this research.",
+      "confidence": "medium"
+    },
+    {
+      "name": "Dodge Construction Network",
+      "area": "National",
+      "url": "https://www.construction.com",
+      "notes": "Project leads and plan room (subscription).",
+      "confidence": "medium"
+    },
+    {
+      "name": "ConstructConnect",
+      "area": "National",
+      "url": "https://www.constructconnect.com",
+      "notes": "Lists Halifax Health, Volusia and Daytona projects.",
+      "confidence": "high"
+    },
+    {
+      "name": "Construction Bid Source (Florida)",
+      "area": "Florida by county",
+      "url": "https://constructionbidsource.com",
+      "notes": "County-level public and private bid listings (Volusia, Seminole seen).",
+      "confidence": "high"
+    },
+    {
+      "name": "The Blue Book Network - Florida North & Central",
+      "area": "Central Florida",
+      "url": "https://www.thebluebook.com",
+      "notes": "GC and sub directory with project listings.",
+      "confidence": "high"
+    },
+    {
+      "name": "UCF Facilities Planning - vendor selection results",
+      "area": "Orlando",
+      "url": "https://fp.ucf.edu",
+      "notes": "Publishes CM/GC shortlists, so you can see which GCs hold continuing contracts.",
+      "confidence": "high"
+    }
+  ],
+  "sources": [
+    "https://airfreight.news/articles/full/construction-begins-on-lakeland-commerce-center-county-line",
+    "https://app.govly.com/public/opportunities/16361170",
+    "https://app.govly.com/public/opportunities/16361301",
+    "https://baycare.org/newsroom/2024/december/baycare-building-new-emergency-department-in-lakeland",
+    "https://baycare.org/newsroom/2025/august/baycare-bringing-new-emergency-care-facility-to-valrico",
+    "https://baycare.org/newsroom/2026/january/baycare-unveils-vision-for-pagidipati-childrens-hospital-at-st-josephs",
+    "https://baynews9.com/fl/tampa/news/2026/06/23/lake-county-puts-data-centers-on-pause-while-orlando-moves-forward-with-massive-new-facility",
+    "https://business.winterpark.org/list/member/walker-company-5007738",
+    "https://business.winterpark.org/list/member/welbro-building-corporation-5103678",
+    "https://businesswire.com/news/home/20251117339650/en/Balfour-Beatty-Receives-Five-ABC-Eagle-Awards-Across-Florida",
+    "https://conventionsouth.com/?p=66100",
+    "https://cppi.com/?p=6464",
+    "https://enr.com/articles/58480-university-of-south-florida-fields-new-cm-team-for-340m-stadium-project",
+    "https://floridayimby.com/2024/05/construction-starts-on-gasworx-w2-at-1502-nick-nuccio-parkway-tampa-fl.html",
+    "https://fp.ucf.edu/vendors/selection-results/final-results-construction-management-general-contractor-7-5m-continuing-service/",
+    "https://fp.ucf.edu/wp-content/uploads/planning/CIP%20FY%202027-28.pdf",
+    "https://hoar.com/contact-tampa/",
+    "https://hoodline.com/2026/04/live-nation-moves-in-on-gasworx-as-ybor-s-next-big-stage/",
+    "https://hoodline.com/2026/07/orlando-airport-s-new-terminal-c-wing-snags-five-new-gates-to-ease-travel-crush/",
+    "https://hoodline.com/2026/08/270-unit-gateway-apartments-rise-near-orlando-airport-amid-housing-crunch/",
+    "https://insidethemagic.net/2026/01/universal-epic-universe-expansion-news-rumors-emd1/",
+    "https://irp.cdn-website.com/a3c1dcdd/files/uploaded/Polk+County+Industrial+Market+Report+-+Dec+2025.pdf",
+    "https://jk2construction.com/jk2-construction-recognized-on-orlando-business-journals-list-of-central-floridas-60-largest-general-contractors/",
+    "https://lakelandedc.com/company/bandes-construction/",
+    "https://lakelandedc.com/company/rodda-construction",
+    "https://levelset.com/contractors/creative-contractors-fl/about",
+    "https://levelset.com/contractors/emj-corporation/about/",
+    "https://levelset.com/contractors/jack-jennings-sons-inc",
+    "https://manhattanconstructiongroup.com/manhattan-construction-company/usf-football-stadium/",
+    "https://moss.com/press-release/moss-acquires-ellison-construction-to-strengthen-mid-florida-presence/",
+    "https://mynews13.com/fl/orlando/news/2024/12/11/orlando-sanford-airport-",
+    "https://publication.daytonabeach.gov/view/897330449",
+    "https://railwaynews.net/brightline-high-speed-rail-project-florida-miami-orlando-tampa.html",
+    "https://rebusinessonline.com/?p=447025",
+    "https://rebusinessonline.com/firm-close-to-breaking-ground-on-central-command-headquarters/",
+    "https://rushinc.com/project/publix-pharmacy-at-halifax-health-medical-center/",
+    "https://secure.businesswire.com/news/home/20250912247243/en/Suffolk-and-Polk-County-Public-Schools-Celebrate-Rebuild-of-Elbert-Elementary-With-Ribbon-Cutting-Ceremony",
+    "https://stobuildinggroup.com/tag/ajax-building-company/",
+    "https://tbbwmag.com/?p=8368",
+    "https://tbbwmag.com/?p=88712",
+    "https://thebirmgroup.com/major-construction-projects-in-florida-2026/",
+    "https://turnerconstruction.com/insights/turner-selected-for-500-million-westcourt-orlando-mixed-use-development",
+    "https://web.lakelandchamber.com/General-Contractors",
+    "https://web.lakelandchamber.com/General-Contractors/Strickland-Construction,-Inc-1140",
+    "https://www.24-7pressrelease.com/press-release/442770/roger-b-kennedy-construction-ranks-as-12th-largest-florida-based-general-building-contractor-81st-largest-among-southeasts-top-contractors",
+    "https://www.andrewgc.com/",
+    "https://www.aroundosceola.com/index.php/news/county-approves-neocity-deals-adventhealth-new-york-developer",
+    "https://www.asianhhm.com/projects/us-271-million-is-invested-to-construct-new-hospital-in-florida-usa",
+    "https://www.asumag.com/facility-planning/article/55291711/orange-county-florida-district-will-halt-new-school-construction-for-4-years",
+    "https://www.austin-ind.com/locations/orlando",
+    "https://www.aviationpros.com/airports/press-release/21281572/greater-orlando-aviation-authority-goaa-a-world-class-design-for-orlando-international-airports-new-terminal-c",
+    "https://www.axios.com/local/tampa-bay/2026/03/04/florida-data-center-boom-ai-citrus-polk",
+    "https://www.bartonmalow.com/orlando",
+    "https://www.bdcnetwork.com/building-team/contractors/article/55147854/batson-cook-appoints-rygiel-vp-business-development-for-tampa-office",
+    "https://www.beckershospitalreview.com/capital/lakeland-regional-health-plans-2-freestanding-eds/",
+    "https://www.buildzoom.com/contractor/biltmore-construction-co-inc-fl",
+    "https://www.businessobserverfl.com/news/2025/apr/26/tampa-gasworx-project-visual-updates/",
+    "https://www.businessobserverfl.com/news/2025/nov/25/chick-fil-a-open-distribution-center-polk",
+    "https://www.businessobserverfl.com/news/2026/aug/28/new-rays-stadium-advances/",
+    "https://www.businessobserverfl.com/news/2026/mar/30/top-contractors/",
+    "https://www.charitynavigator.org/ein/590713877",
+    "https://www.connectcre.com/awards/2025-women-in-real-estate-awards/atlanta-southeast/kathleen-bonesz/",
+    "https://www.connectcre.com/stories/adventhealth-adding-423m-lake-nona-hospital/",
+    "https://www.constructionbriefing.com/generale/news/brasfield-gorrie-awarded-us660m-medical-tower-build-in-us/8062305.article",
+    "https://www.constructionequipment.com/greater-orlando-nawic-chapter-names-new-officers-directors",
+    "https://www.constructionowners.com/ca/press-release/core-construction-opens-fort-lauderdale-hq-expands-florida-reach",
+    "https://www.constructionowners.com/press-release/capstone-building-corp-begins-construction-on-417-000-sq-ft-luxury-multifamily-development-in-orlando-florida",
+    "https://www.datacenterdynamics.com/en/news/plans-to-build-1300-acre-data-center-in-fort-meade-florida-gets-go-ahead-from-officials/",
+    "https://www.dnb.com/business-directory/company-profiles.doster_construction_company_inc.836964932f12812dac5601df1d0a5c16.html",
+    "https://www.dpr.com/company/locations/orlando-florida",
+    "https://www.einpresswire.com/article/859793530/kenpat-n-rg-cladding-earn-2025-excellence-in-construction-awards-from-abc-central-florida",
+    "https://www.enr.com/texas-southeast/toplists/2026-top-contractors-sector-1",
+    "https://www.fox13news.com/news/tampa-general-hospital-breaks-ground-on-new-surgical-tower-hard-to-put-into-words",
+    "https://www.fp.ucf.edu/?p=4074",
+    "https://www.gilbaneco.com/location/orlando-florida/",
+    "https://www.henselphelps.com/?p=6186",
+    "https://www.hotelmanagement.net/development/drury-hotels-begins-construction-daytona-beach-property",
+    "https://www.jaxdailyrecord.com/news/2005/mar/14/pitts-elected-agc-board",
+    "https://www.lee-associates.com/wp-content/uploads/2026/07/2026-Q2-Tampa-Bay-FL-Industrial.pdf",
+    "https://www.levelset.com/contractors/j-kokolakis-contracting-1/about/",
+    "https://www.levelset.com/contractors/marcobay-construction/about",
+    "https://www.levelset.com/contractors/ripa-associates-llc/about",
+    "https://www.multihousingnews.com/flournoy-development-group-jv-kicks-off-orlando-project/",
+    "https://www.multihousingnews.com/integra-begins-development-on-orlando-tower/",
+    "https://www.multihousingnews.com/orlando-multifamily-report-march-2026/",
+    "https://www.mysuncoast.com/2026/07/03/inside-fence-tampa-international-airport-opens-airside-d-construction-site-media/",
+    "https://www.orlandohealth.com/content-hub/orlando-health-and-acadia-healthcare-hold-groundbreaking-ceremony-for-new-behavioral-health-hospital",
+    "https://www.orlandohealth.com/content-hub/orlando-health-begins-construction-on-new-freestanding-emergency-room-in-orange-city",
+    "https://www.orlandoweekly.com/news/orlando-area-news/turner-construction-brought-on-board-for-westcourt-orlando-mixed-use-project-downtown/",
+    "https://www.pcl.com/ca/en/who-we-are/our-offices/orlando-buildings",
+    "https://www.polkfl.gov/meetings/second-selection-committee-meeting-for-rfp-25-600-construction-manager-at-risk-new-sheriffs-office-polk-county-joint-use-warehouse-and-facilities-management-administration-building/",
+    "https://www.robinsmorton.com/?p=15926",
+    "https://www.siteline.com/general-contractor/contractor/summit-contracting-group",
+    "https://www.siteline.com/general-contractor/contractor/williams-company",
+    "https://www.skanska.com/group/en/media/press-releases/2024/skanska-signs-additional-contract-with-orlando-health-in-florida-usa-worth-usd-166m-about-sek-1.7-billion",
+    "https://www.tampa.gov/sites/default/files/proclamation/2022/20220306_Women_in_Construction_Week.pdf",
+    "https://www.tampabay28.com/news/region-hillsborough/hillsborough-county-public-schools-has-several-construction-projects-underway",
+    "https://www.tampabaychamber.com/membership/corporate/wharton-smith-inc./",
+    "https://www.tampabaychamber.com/membership/fit-one/associated-builders-contractors-florida-gulf-coast-chapter/",
+    "https://www.usforacle.com/?p=83932",
+    "https://www.volusia.org/file/5943/CPS_Final_FY24-25_Q2_ADA.pdf",
+    "https://www.walbridge.com/about/news-events/news-item/construction-veteran-rygiel-joins-walbridge-lead-florida-group/",
+    "https://www.whiting-turner.com/contact-us/",
+    "https://www.wusf.org/health-news-florida/2025-03-24/watson-clinic-joins-forces-with-orlando-health-for-new-hospital-in-lakeland"
+  ]
+}
