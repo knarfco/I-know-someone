@@ -808,3 +808,17 @@ a.mcard:hover { border-left-color: var(--green); transform: translateY(-2px); }
 .i4-promo { margin-top: 1rem; }
 .fcard.fc-plain { grid-template-columns: 1fr; }
 .fgrid-sm { grid-template-columns: repeat(auto-fill, minmax(min(100%, 150px), 1fr)); }
+
+/* Specialty (advertising platform) */
+.pill.sp-reg { background: #fdecea; color: #8a1c12; justify-self: start; margin-top: .3rem; }
+.sp-regbox { display: flex; gap: .75rem; align-items: flex-start; background: #fdecea; border: 1px solid #e6a59c; color: #5c140c; border-radius: var(--radius); padding: .8rem 1rem; margin: 0 0 1rem; max-width: 60rem; }
+.sp-regbox p { margin: 0; }
+.sp-regbox .ic { flex: none; width: 1.4rem; height: 1.4rem; }
+.sp-disc { font-weight: 700; color: #b3261e; font-size: .95rem; border-top: 1px solid var(--line); padding-top: 1rem; }
+.sp-ad .eyebrow, .sp-empty .eyebrow { margin: 0 0 .3rem; }
+.sp-feat { border: 2px solid var(--green); }
+.sp-empty { border-style: dashed; }
+.form .sp-consent { display: flex; gap: .6rem; align-items: flex-start; font-weight: 400; }
+.form .sp-consent input { width: auto; margin-top: .3rem; }
+.sp-guide h2 { margin-top: 1.6rem; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .pill.sp-reg, :root:not([data-theme="light"]) .sp-regbox { background: #3a1512; color: #ffd9d4; border-color: #7a2b23; } :root:not([data-theme="light"]) .sp-disc { color: #ff8a80; } }

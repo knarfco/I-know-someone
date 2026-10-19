@@ -172,7 +172,9 @@ for _p in sorted((ROOT / "research").glob("pricing_x*.json")):  # expansion serv
 
 
 # ---------------------------------------------------------------- layout
-NAV = [("services.html", "Services"), ("projects.html", "Projects"), ("government.html", "Government"),
+SP_FOOT = '<a href="{up}specialty/index.html">Specialty contractors</a><a href="{up}specialty/advertise.html">Advertise with us</a>'
+HAS_SPECIALTY = any((ROOT / "content").glob("sp_[a-z].py"))
+NAV = [("services.html", "Services")] + ([("specialty/index.html", "Specialty")] if HAS_SPECIALTY else []) + [("projects.html", "Projects"), ("government.html", "Government"),
        ("general-contractors.html", "For GCs"), ("faq.html", "FAQ"), ("about.html", "About"), ("contact.html", "Contact")]
 
 
@@ -248,7 +250,7 @@ def page(path, title, desc, body, crumbs=None, schema=None, active=None, extra_j
     <div><h2 class="foot-h">Company</h2>
       <a href="{up}about.html">About Beyond Klean</a><a href="{up}projects.html">Projects</a><a href="{up}safety.html">Safety and compliance</a><a href="{up}capability-statement.html">Capability statement</a><a href="{up}contact.html">Contact</a></div>
     <div><h2 class="foot-h">Work with us</h2>
-      <a href="{up}quote.html">Request a bid</a><a href="{up}quote.html#specs">Send your specs</a><a href="{up}general-contractors.html">For general contractors</a><a href="{up}government.html">Government contracting</a></div>
+      <a href="{up}quote.html">Request a bid</a><a href="{up}quote.html#specs">Send your specs</a>{SP_FOOT.format(up=up) if HAS_SPECIALTY else ""}<a href="{up}general-contractors.html">For general contractors</a><a href="{up}government.html">Government contracting</a></div>
     <div><h2 class="foot-h">Browse</h2>
       <a href="{up}facilities/index.html">By facility type</a><a href="{up}phases/index.html">By project phase</a><a href="{up}where-we-work.html">Where we work</a><a href="{up}i-4/index.html">I-4 corridor</a></div>
   </div>
@@ -922,6 +924,224 @@ def build_i4():
     return len(order), len(zips)
 
 
+
+# ---------------------------------------------------------------- Specialty (advertising platform)
+SP_DISC = ("Beyond Klean provides marketing, procurement research, and consulting services. All bidding, contracts, "
+           "project performance, and related responsibilities belong solely to the contractor.")
+SP_ADNOTE = ("Listings on this page are advertisements. Beyond Klean does not perform, verify or guarantee specialty work. "
+             "Confirm each contractor's licenses, certifications and insurance before hiring.")
+
+
+def build_specialty():
+    D = "specialty"
+    shutil.rmtree(SITE / D, ignore_errors=True)
+    families = []
+    for f in sorted((ROOT / "content").glob("sp_[a-z].py")):
+        families += load(f.stem).FAMILIES
+    if not families:
+        return 0
+    more = load("sp_more") if (ROOT / "content" / "sp_more.py").exists() else None
+    INDS = {i["slug"]: i for i in (more.INDUSTRIES if more else [])}
+    GUIDES = more.GUIDES if more else []
+    ADS = load("sp_ads").ADS
+    svc_all = [(f, s) for f in families for s in f["services"]]
+    by_ind = defaultdict(list)
+    for f, s in svc_all:
+        for i in s.get("industries", []):
+            by_ind[i].append((f, s))
+    icn = lambda n: n if n in icons_mod.ICONS else "shield"
+    reg_pill = '<span class="pill sp-reg">Licensed work</span>'
+
+    def disc(up):
+        return f'<section class="wrap"><p class="sp-disc">{e(SP_DISC)}</p></section>'
+
+    def ads_block(slug, fslug, name, up):
+        ads = ADS.get(slug, []) + ADS.get(fslug, [])
+        ads.sort(key=lambda a: not a.get("featured"))
+        cards = "".join(
+            f'<div class="card sp-ad{" sp-feat" if a.get("featured") else ""}"><p class="eyebrow">{"Featured · " if a.get("featured") else ""}Advertisement</p>'
+            f'<h3 class="h3">{e(a["name"])}</h3><p class="small muted">{e(a.get("area", ""))}</p><p>'
+            + (f'<a class="btn btn-sm" href="tel:{e(a["phone"])}">{ic("phone", up)}Call</a> ' if a.get("phone") else "")
+            + (f'<a class="btn btn-sm btn-ghost" href="{e(a["url"])}" rel="sponsored noopener">Website</a>' if a.get("url") else "")
+            + "</p></div>" for a in ads)
+        if not cards:
+            cards = (f'<div class="card sp-empty"><p class="eyebrow">Advertise here</p><h3 class="h3">Be the first specialist on this page</h3>'
+                     f'<p>Buyers looking for {e(name.lower())} read this page. Put your company in front of them.</p>'
+                     f'<p><a class="btn btn-sm" href="{up}{D}/advertise.html">Advertise with us</a></p></div>')
+        return (f'<section class="wrap" id="specialists"><h2>Specialists who advertise here</h2><div class="duo">{cards}</div>'
+                f'<p class="small muted">{e(SP_ADNOTE)}</p></section>')
+
+    def quote_form(name, up, fid):
+        return f"""<section class="wrap narrow" id="quotes"><h2>Get quotes for {e(name.lower())}</h2>
+<p>Describe the job once. Your request goes to the specialists who advertise on this page, and they contact you directly.</p>
+<form class="form panel" data-demo>
+  <input type="hidden" name="service" value="{e(name)}">
+  <div class="row"><label for="{fid}-loc">Project location (city, state, ZIP)<input id="{fid}-loc" name="location" required></label>
+  <label for="{fid}-when">When is it needed?<select id="{fid}-when" name="timing"><option>Emergency (now)</option><option>Within 2 weeks</option><option>Within 1–3 months</option><option>Planning or budgeting</option></select></label></div>
+  <div class="row"><label for="{fid}-fac">Facility type<input id="{fid}-fac" name="facility" placeholder="Plant, hospital, high-rise, port…"></label>
+  <label for="{fid}-size">Size or quantity<input id="{fid}-size" name="size" placeholder="Square feet, units, tanks, floors…"></label></div>
+  <label for="{fid}-desc">Describe the work<textarea id="{fid}-desc" name="description" required></textarea></label>
+  <div class="row"><label for="{fid}-name">Your name<input id="{fid}-name" name="name" required></label>
+  <label for="{fid}-co">Company<input id="{fid}-co" name="company"></label></div>
+  <div class="row"><label for="{fid}-email">Email<input id="{fid}-email" type="email" name="email" required></label>
+  <label for="{fid}-ph">Phone<input id="{fid}-ph" type="tel" name="phone"></label></div>
+  <label class="sp-consent"><input type="checkbox" name="consent" required> I agree that my request will be shared with the specialists who advertise on this page.</label>
+  <button class="btn" type="submit">Get quotes</button>
+  <div class="notice" tabindex="-1" hidden><p><strong>Request received. Reference <span class="mono" data-ref></span>.</strong> Advertisers on this page will contact you directly.</p><p class="small">Preview build: requests aren't sent yet.</p></div>
+</form></section>"""
+
+    def ul(items, cls="check"):
+        return f'<ul class="{cls}">' + "".join(f"<li>{e(x)}</li>" for x in items) + "</ul>"
+
+    def svc_card(f, s, up):
+        return (f'<a class="fcard fc-plain" href="{up}{D}/services/{s["slug"]}.html"><strong>{e(s["name"][0].upper() + s["name"][1:])}</strong>'
+                f'<span class="small muted">{e(s["summary"])}</span>{reg_pill if s.get("regulated") else ""}</a>')
+
+    crumbs0 = [("index.html", "Home"), (f"{D}/index.html", "Specialty")]
+    # ---- service pages
+    up = "../../"
+    for f, s in svc_all:
+        nm = s["name"][0].upper() + s["name"][1:]
+        qas = [tuple(q) for q in s.get("faq", [])]
+        rel = [x for x in f["services"] if x is not s][:8]
+        inds = "".join(f'<a class="chip" href="{up}{D}/industries/{i}.html">{e(INDS[i]["name"])}</a>' for i in s.get("industries", []) if i in INDS)
+        reg = (f'<div class="sp-regbox">{ic("warn", up)}<p><strong>Licensed, regulated work.</strong> Only properly licensed and certified specialists may perform it. '
+               f'Requirements vary by state and agency, so confirm credentials before hiring.</p></div>') if s.get("regulated") else ""
+        body = f"""
+<div class="band band-white fam-top"><section class="wrap fam-hero">
+  <div class="fam-head">{ic(icn(f['icon']), up, "ic fam-ic")}<div><p class="eyebrow"><a href="{up}{D}/{f['slug']}.html">{e(f['short'])}</a> · Specialty</p><h1>{e(nm)}</h1></div></div>
+  <p class="lede">{e(s['summary'])}</p>
+  {('<p class="small muted">Also called: ' + e(", ".join(s.get("aka", []))) + '</p>') if s.get("aka") else ''}
+  {reg}
+  <p class="task-cta"><a class="btn btn-lg" href="#quotes">Get quotes</a> <a class="btn btn-ghost" href="#specialists">See specialists</a></p>
+</section></div>
+<section class="wrap mid"><h2>What it is</h2><p>{e(s['what'])}</p></section>
+<section class="wrap duo">
+  <div class="card"><h3>{ic("question", up)}When you need it</h3>{ul(s.get('when', []))}</div>
+  <div class="card"><h3>{ic("badge", up)}Credentials to ask for</h3>{ul(s.get('credentials', []))}</div>
+  <div class="card"><h3>{ic("list", up)}What the scope includes</h3>{ul(s.get('scope', []))}</div>
+  <div class="card"><h3>{ic("bid", up)}How it is priced</h3><p>{e(s.get('pricing', ''))}</p><h3 class="h3">Ask before you hire</h3>{ul(s.get('ask', []))}</div>
+</section>
+{ads_block(s['slug'], f['slug'], s['name'], up)}
+{quote_form(s['name'], up, 'q')}
+<section class="wrap mid"><h2>Questions about {e(s['name'].lower())}</h2>{qa_html(qas, 'sq')}</section>
+<section class="wrap">{('<h2 class="h3">Industries</h2><div class="chips">' + inds + '</div>') if inds else ''}
+<h2>More {e(f['short'].lower())} services</h2><div class="fgrid">{''.join(svc_card(f, x, up) for x in rel)}</div></section>
+{disc(up)}"""
+        page(f"{D}/services/{s['slug']}.html", f"{nm} | Beyond Klean Specialty", s["summary"][:158], body,
+             crumbs=crumbs0 + [(f"{D}/{f['slug']}.html", f["short"]), (None, nm)],
+             schema=[faq_schema(qas)] if qas else None, active=f"{D}/index.html")
+    # ---- family pages
+    up = "../"
+    for f in families:
+        qas = [tuple(q) for q in f.get("faq", [])]
+        body = f"""
+<div class="band band-white fam-top"><section class="wrap fam-hero">
+  <div class="fam-head">{ic(icn(f['icon']), up, "ic fam-ic")}<div><p class="eyebrow">Specialty</p><h1>{e(f['name'])}</h1></div></div>
+  <p class="lede">{e(f['intro'])}</p><p>{e(f['why'])}</p>
+  <p class="task-cta"><a class="btn btn-lg" href="#services">{len(f['services'])} services</a> <a class="btn btn-ghost" href="advertise.html">Advertise in this group</a></p>
+</section></div>
+<section class="wrap" id="services"><h2>Services</h2><div class="fgrid">{''.join(svc_card(f, s, up) for s in f['services'])}</div></section>
+<section class="wrap mid"><h2>Questions about {e(f['short'].lower())}</h2>{qa_html(qas, 'fq')}</section>
+{disc(up)}"""
+        page(f"{D}/{f['slug']}.html", f"{f['name']} | Beyond Klean Specialty", f["intro"][:158], body,
+             crumbs=crumbs0 + [(None, f["short"])], schema=[faq_schema(qas)] if qas else None, active=f"{D}/index.html")
+    # ---- industries
+    up = "../../"
+    for slug_, ind in INDS.items():
+        qas = [tuple(q) for q in ind.get("faq", [])]
+        svcs = by_ind.get(slug_, [])
+        body = f"""
+<div class="band band-white fam-top"><section class="wrap fam-hero">
+  <div class="fam-head">{ic(icn(ind['icon']), up, "ic fam-ic")}<div><p class="eyebrow">Specialty · Industry</p><h1>Specialty cleaning for {e(ind['name'].lower())}</h1></div></div>
+  <p class="lede">{e(ind['intro'])}</p>
+</section></div>
+<section class="wrap duo"><div class="card"><h3>{ic("list", up)}Common needs</h3>{ul(ind.get('needs', []))}</div>
+<div class="card"><h3>{ic("shield", up)}Rules and standards</h3>{ul(ind.get('rules', []))}</div></section>
+<section class="wrap"><h2>Services for {e(ind['name'].lower())}</h2><div class="fgrid">{''.join(svc_card(f, s, up) for f, s in svcs)}</div></section>
+<section class="wrap mid"><h2>Questions</h2>{qa_html(qas, 'nq')}</section>
+{disc(up)}"""
+        page(f"{D}/industries/{slug_}.html", f"Specialty Cleaning for {ind['name']} | Beyond Klean Specialty", ind["intro"][:158], body,
+             crumbs=crumbs0 + [(None, ind["name"])], schema=[faq_schema(qas)] if qas else None, active=f"{D}/index.html")
+    # ---- guides
+    for g in GUIDES:
+        secs = "".join(f"<h2>{e(h)}</h2><p>{e(t_)}</p>" for h, t_ in g["sections"])
+        body = f"""
+<section class="wrap narrow sp-guide"><p class="eyebrow">Specialty · Buyer's guide</p><h1>{e(g['title'])}</h1>
+<p class="lede">{e(g['summary'])}</p>{secs}
+<div class="panel"><h2 class="h3">Checklist</h2>{ul(g.get('checklist', []))}</div>
+<p><a class="btn" href="{up}{D}/index.html">Find a specialist</a></p></section>
+{disc(up)}"""
+        page(f"{D}/guides/{g['slug']}.html", f"{g['title']} | Beyond Klean Specialty", g["summary"][:158], body,
+             crumbs=crumbs0 + [(None, "Guide")],
+             schema=[{"@context": "https://schema.org", "@type": "Article", "headline": g["title"], "description": g["summary"],
+                      "publisher": {"@type": "Organization", "name": "Beyond Klean", "url": SITE_URL}}], active=f"{D}/index.html")
+    # ---- advertise
+    up = "../"
+    fopts = "".join(f"<option>{e(f['short'])}</option>" for f in families)
+    body = f"""
+<div class="band band-white fam-top"><section class="wrap fam-hero"><p class="eyebrow">Specialty · For contractors</p>
+<h1>Advertise with Beyond Klean Specialty</h1>
+<p class="lede">Put your company on the pages buyers read when they need specialty cleaning and remediation: industrial, environmental, restoration, high-rise, healthcare, food plants and more. Buyers contact you directly.</p>
+<p class="task-cta"><a class="btn btn-lg" href="#contact">Contact us for pricing</a></p></section></div>
+<section class="wrap"><h2>Ways to advertise</h2><div class="duo">
+<div class="card"><h3>{ic("list", up)}Listing</h3><p>Your company on the service pages you choose, in the areas you serve, with a call button and website link.</p></div>
+<div class="card"><h3>{ic("badge", up)}Featured spot</h3><p>The top position on a service page, with a larger card.</p></div>
+<div class="card"><h3>{ic("shield", up)}Exclusive sponsor</h3><p>The only advertiser for a service in a state or region.</p></div>
+<div class="card"><h3>{ic("send", up)}Quote requests</h3><p>Buyer requests from the "Get quotes" form on the pages where you advertise.</p></div>
+</div><p><strong>Pricing depends on the service, the area and the option. Contact us for pricing.</strong></p></section>
+<section class="wrap"><h2>How it works</h2><ul class="check"><li>Every paid placement is labeled as an advertisement.</li>
+<li>Buyers choose and contact contractors directly. Beyond Klean does not hire, dispatch or supervise anyone.</li>
+<li>For licensed, regulated work, advertise only for the services your company is licensed and certified to perform.</li>
+<li>Buyers are told to confirm licenses, certifications and insurance before hiring.</li></ul></section>
+<section class="wrap narrow" id="contact"><h2>Contact us for pricing</h2>
+<form class="form panel" data-demo>
+  <div class="row"><label for="ad-co">Company<input id="ad-co" name="company" required></label>
+  <label for="ad-name">Your name<input id="ad-name" name="name" required></label></div>
+  <div class="row"><label for="ad-email">Email<input id="ad-email" type="email" name="email" required></label>
+  <label for="ad-ph">Phone<input id="ad-ph" type="tel" name="phone"></label></div>
+  <div class="row"><label for="ad-grp">Main service group<select id="ad-grp" name="group">{fopts}</select></label>
+  <label for="ad-area">Areas you serve<input id="ad-area" name="areas" placeholder="States, metros or nationwide"></label></div>
+  <label for="ad-msg">Services you want to advertise<textarea id="ad-msg" name="services"></textarea></label>
+  <button class="btn" type="submit">Contact us for pricing</button>
+  <div class="notice" tabindex="-1" hidden><p><strong>Thanks. Reference <span class="mono" data-ref></span>.</strong> We'll contact you with pricing for the pages and areas you chose.</p><p class="small">Preview build: requests aren't sent yet.</p></div>
+</form></section>
+{disc(up)}"""
+    page(f"{D}/advertise.html", "Advertise with Beyond Klean Specialty", "Advertise your specialty cleaning or remediation company on the pages buyers read. Listings, featured spots, exclusive sponsorships and quote requests.",
+         body, crumbs=crumbs0 + [(None, "Advertise")], active=f"{D}/index.html")
+    # ---- hub
+    fcards = "".join(f'<a class="fcard" href="{f["slug"]}.html">{ic(icn(f["icon"]), up, "ic fc-ic")}<strong>{e(f["short"])}</strong>'
+                     f'<span class="small muted">{len(f["services"])} services</span></a>' for f in families)
+    icards = "".join(f'<a class="fcard" href="industries/{k}.html">{ic(icn(v["icon"]), up, "ic fc-ic")}<strong>{e(v["name"])}</strong>'
+                     f'<span class="small muted">{len(by_ind.get(k, []))} services</span></a>' for k, v in INDS.items())
+    gl = "".join(f'<li><a href="guides/{g["slug"]}.html">{e(g["title"])}</a></li>' for g in GUIDES)
+    nreg = sum(1 for _, s in svc_all if s.get("regulated"))
+    qas = [("What is Beyond Klean Specialty?", "A guide and advertising platform for specialty cleaning and remediation. Buyers learn what a job involves and which credentials to ask for, then contact the specialists who advertise on the page."),
+           ("Does Beyond Klean perform specialty work?", "No. " + SP_DISC),
+           ("How do I find a specialist?", "Open the service you need, read the guide, then call an advertiser listed on the page or send one request through the Get quotes form."),
+           ("How are regulated jobs handled?", "Asbestos, lead, biohazard, radiological, hazardous waste and similar work may be performed only by properly licensed and certified specialists. Each of those pages lists the credentials to ask for. Always confirm them before hiring.")]
+    body = f"""
+<div class="band band-white fam-top"><section class="wrap fam-hero"><p class="eyebrow">Beyond Klean Specialty</p>
+<h1>Find specialty cleaning and remediation contractors</h1>
+<p class="lede">Industrial, environmental, restoration, high-rise, healthcare, food plant, marine and data center work, explained in plain words. Read what the job takes, then contact the specialists who advertise here.</p>
+<p class="task-cta"><a class="btn btn-lg" href="#groups">Browse {len(svc_all)} services</a> <a class="btn btn-ghost" href="advertise.html">Advertise with us</a></p></section></div>
+<section class="wrap"><div class="stats i4-stats"><div><strong>{len(svc_all)}</strong><span>specialty services</span></div><div><strong>{len(families)}</strong><span>service groups</span></div>
+<div><strong>{len(INDS)}</strong><span>industries</span></div><div><strong>{nreg}</strong><span>licensed, regulated services</span></div></div>
+<h2>How it works</h2><div class="duo"><div class="card"><h3>1. Read the guide</h3><p>What the work is, when you need it, the credentials to ask for and how it is priced.</p></div>
+<div class="card"><h3>2. See the specialists</h3><p>Contractors who advertise for that service and area, with a call button and website.</p></div>
+<div class="card"><h3>3. Call or get quotes</h3><p>Contact them directly, or send one request to all advertisers on the page.</p></div></div></section>
+<section class="wrap" id="groups"><h2>Service groups</h2><div class="fgrid">{fcards}</div></section>
+{('<section class="wrap"><h2>By industry</h2><div class="fgrid">' + icards + '</div></section>') if icards else ''}
+{('<section class="wrap"><h2>Buyer guides</h2><ul class="codes">' + gl + '</ul></section>') if gl else ''}
+<section class="wrap mid"><h2>Questions</h2>{qa_html(qas, 'hq')}</section>
+<section class="wrap"><div class="panel"><h2 class="h3">Construction cleaning?</h2><p>Rough, final and touch-up cleans for new construction and renovation are on the main Beyond Klean site.</p><p><a class="btn" href="{up}services.html">Construction cleaning services</a></p></div></section>
+{disc(up)}"""
+    page(f"{D}/index.html", "Beyond Klean Specialty: Specialty Cleaning and Remediation Contractors",
+         f"Find specialty cleaning and remediation contractors: {len(svc_all)} services across industrial, environmental, restoration, high-rise, healthcare and more.",
+         body, crumbs=[("index.html", "Home"), (None, "Specialty")], schema=[faq_schema(qas)], active=f"{D}/index.html")
+    return len(svc_all)
+
+
 # ---------------------------------------------------------------- estimator (internal, unlinked)
 def build_estimator():
     up = "../"
@@ -1011,6 +1231,7 @@ if __name__ == "__main__":
     build_static(n_faq)
     build_hubs()
     print('I-4 corridor (places, zips):', build_i4())
+    print('Specialty services:', build_specialty())
     build_estimator()
     (SITE / "assets" / "icons.svg").write_text(icons_mod.sprite())
     (SITE / "join.html").unlink(missing_ok=True)  # contractor network page retired
