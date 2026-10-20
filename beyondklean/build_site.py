@@ -216,6 +216,12 @@ def page(path, title, desc, body, crumbs=None, schema=None, active=None, extra_j
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=IBM+Plex+Mono:wght@400;600&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap">
 <link rel="stylesheet" href="{up}assets/site.css">
+<link rel="icon" href="{up}favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="{up}assets/brand/bk-icon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="{up}assets/brand/bk-icon-192.png">
+<link rel="apple-touch-icon" href="{up}assets/brand/apple-touch-icon.png">
+<link rel="manifest" href="{up}site.webmanifest">
+<meta name="theme-color" content="#0b2341">
 {ld}
 </head>
 <body>

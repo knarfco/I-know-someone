@@ -1,0 +1,1 @@
+{"name": "Beyond Klean", "short_name": "Beyond Klean", "icons": [{"src": "assets/brand/bk-icon-192.png", "sizes": "192x192", "type": "image/png"}, {"src": "assets/brand/bk-icon-512.png", "sizes": "512x512", "type": "image/png"}], "start_url": "./", "display": "browser", "theme_color": "#0b2341", "background_color": "#ffffff"}
