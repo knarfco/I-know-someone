@@ -287,3 +287,16 @@ a.card:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(6,56,26,.16)
 .center{text-align:center}
 .mt{margin-top:28px}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------- credentials grid (front door, hero, gov, capability) ---------- */
+.creds{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0}
+.creds div{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:8px;padding:8px 12px;min-width:0}
+.creds dt{font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#9fd3a8;margin:0 0 2px}
+.creds dd{margin:0;font-weight:700;font-size:.92rem;color:#fff;overflow-wrap:anywhere}
+.section:not(.dark) .creds div,.cap .creds div{background:var(--white);border-color:var(--line)}
+.section:not(.dark) .creds dt{color:var(--ink-soft)}
+.section:not(.dark) .creds dd{color:var(--ink)}
+.hero-creds{margin-top:26px}
+.hero-creds .creds{grid-template-columns:repeat(3,1fr)}
+.hero-creds > a{display:inline-block;margin-top:10px;color:var(--yellow);font-weight:700;font-size:.92rem;text-decoration:none}
+@media (max-width:640px){.creds,.hero-creds .creds{grid-template-columns:1fr}}

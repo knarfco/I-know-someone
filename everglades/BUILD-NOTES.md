@@ -18,7 +18,15 @@ Locations appear **only** where a real job was done:
 - Each job in `PROJECTS` has a `place` (city / region / country; works outside the U.S. too).
 - `build_place_index()` turns those into **Where We've Worked**: `/where-weve-worked/{region}/{city}/`. A place exists only once a job video exists there.
 - **Projects Anywhere** (`/projects-anywhere/`) covers long-distance jobs: Matt plans it, and our crew or licensed local crews do it.
-- South Florida is named once, as headquarters (footer and About), plus the GBP address. That keeps local trust signals without boxing them in.
+- Sample jobs have `place: None`: their location shows as `[[City, State / Country]]` and no place pages are made. Until real places exist, Where We've Worked shows an any-state / any-country preview.
+- Headquarters is a placeholder (`BIZ['hq']`) in the footer, About and capability statement. Fill it in at launch; Google trusts a real home base.
+
+## Front door = digital business card (built for procurement offices)
+- `/` → logo · **Call · Email · See the Website** · all of `CREDS` above the fold · QR (auto-points at whatever domain it's on) · Capability Statement · Save Contact (`assets/everglades-contact.vcf`).
+- `CREDS` in content.py drives the front door, home hero (first 6), government page, credentials page and capability statement. Rename or delete rows to match what they actually hold.
+- `/capability-statement/` prints on one Letter page (browser → Save as PDF).
+- `phone_tel` is `+1XXXXXXXXXX` for now. Set the real number and every Call button and the vCard update.
+- Future: a 60–90s narrated reel from their footage for agencies (front door / government page).
 
 ## The web (how pages feed each other)
 Job video (YouTube, short link) → **job page** `/projects/{service}-{city}-{year}/`

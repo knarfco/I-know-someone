@@ -2,6 +2,7 @@
 DirectoryIndex index.html
 ErrorDocument 404 /404.html
 Options -Indexes
+AddType text/vcard .vcf
 
 <IfModule mod_expires.c>
 ExpiresActive On

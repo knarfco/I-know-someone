@@ -10,12 +10,13 @@ BIZ = {
     "founded": "1992",
     "years": "35",
     "phone": "[[(XXX) XXX-XXXX]]",
-    "phone_tel": "",  # e.g. "+19545551234" — leave empty until known
+    "phone_tel": "+1XXXXXXXXXX",  # real number e.g. "+19545551234"
     "email": "[[info@XXX.com]]",
     "address": "[[Street Address XXX]]",
-    "city_state": "[[City]], FL [[ZIP]]",
+    "city_state": "[[City, State ZIP]]",
+    "hq": "[[City, State]]",
     "hours": "Mon–Sat [[7:00 AM – 6:00 PM]] · Storm response 24/7",
-    "license": "[[FL Contractor License # XXX]]",
+    "license": "[[State Contractor License # XXX]]",
     "insurance": "[[General Liability $X,XXX,XXX / Auto / Workers' Comp]]",
     "bonding": "[[Bonding capacity $X,XXX,XXX single / $X,XXX,XXX aggregate]]",
     "fema": "[[FEMA Vendor / Contract # XXX]]",
@@ -26,6 +27,26 @@ BIZ = {
     "youtube": "[[YouTube channel link XXX]]",
     "gbp": "[[Google Business Profile link XXX]]",
 }
+
+# Every license / registration a procurement officer looks for. Shown above the fold on the
+# front door, on the government page, the credentials page and the capability statement.
+# Rename or delete rows to match what the company actually holds.
+CREDS = [
+    ("Certified Contractor License #", "[[XXX]]"),
+    ("Underground Utility & Excavation License #", "[[XXX]]"),
+    ("SAM.gov UEI", "[[XXX]]"),
+    ("CAGE Code", "[[XXX]]"),
+    ("NAICS Codes", "[[XXX]]"),
+    ("FEMA Vendor #", "[[XXX]]"),
+    ("Army Corps Project / Permit #", "[[XXX]]"),
+    ("FDOT Prequalification", "[[XXX]]"),
+    ("Bonding Capacity", "[[$X,XXX,XXX]]"),
+    ("Insurance", "[[GL / Auto / WC limits]]"),
+    ("Pesticide / Applicator License", "[[XXX]]"),
+    ("Local Business Tax Receipt", "[[XXX]]"),
+    ("State Vendor # (MyFloridaMarketPlace)", "[[XXX]]"),
+    ("Certifications", "[[SBE / MBE / DBE / other]]"),
+]
 
 # ---------------------------------------------------------------- services
 SERVICES = [
@@ -274,42 +295,44 @@ AUD = {a["slug"]: a for a in AUDIENCES}
 # ---------------------------------------------------------------- projects (one per real job video)
 # "place" is where the job was done. The "Where We've Worked" pages are built ONLY from these,
 # so a city, state or country shows up on the site only once a real job has been done there.
+# Real job example: {"city": "Austin", "region": "TX", "region_name": "Texas", "country": "USA"}
 # Outside the U.S.: {"city": "Nassau", "region": "", "region_name": "Bahamas", "country": "Bahamas"}
+# None = sample job; location shows as a placeholder and no place page is made.
 PROJECTS = [
     {
-        "slug": "canal-excavation-weston-2024",
-        "title": "Canal Excavation — Weston Property",
-        "date": "2024-03-14", "date_label": "March 14, 2024",
-        "place": {"city": "Weston", "region": "FL", "region_name": "Florida", "country": "USA"},
+        "slug": "sample-canal-excavation",
+        "title": "Canal Excavation",
+        "date": "2024-03-14", "date_label": "[[Month Day, Year]]",
+        "place": None,
         "service": "canal-pond-excavation",
-        "summary": "Canal excavation and bank shaping on a private Weston property along the Everglades edge.",
+        "summary": "Canal excavation and bank shaping for a private property owner.",
         "youtube": "",
     },
     {
-        "slug": "lot-clearing-southwest-ranches-2024",
-        "title": "Lot Clearing — Southwest Ranches Site",
-        "date": "2024-06-02", "date_label": "June 2, 2024",
-        "place": {"city": "Southwest Ranches", "region": "FL", "region_name": "Florida", "country": "USA"},
+        "slug": "sample-lot-clearing",
+        "title": "Lot Clearing",
+        "date": "2024-06-02", "date_label": "[[Month Day, Year]]",
+        "place": None,
         "service": "land-clearing",
-        "summary": "Full lot clearing and root raking to prepare a Southwest Ranches parcel for a new home.",
+        "summary": "Full lot clearing and root raking to prepare a parcel for a new home.",
         "youtube": "",
     },
     {
-        "slug": "retention-pond-davie-2024",
-        "title": "Retention Pond Build — Davie",
-        "date": "2024-11-20", "date_label": "November 20, 2024",
-        "place": {"city": "Davie", "region": "FL", "region_name": "Florida", "country": "USA"},
+        "slug": "sample-retention-pond",
+        "title": "Retention Pond Build",
+        "date": "2024-11-20", "date_label": "[[Month Day, Year]]",
+        "place": None,
         "service": "canal-pond-excavation",
         "summary": "New retention pond excavated and shaped to the engineer's plan, with fill used on site.",
         "youtube": "",
     },
     {
-        "slug": "forestry-mulching-pembroke-pines-2025",
-        "title": "Forestry Mulching — Pembroke Pines",
-        "date": "2025-02-08", "date_label": "February 8, 2025",
-        "place": {"city": "Pembroke Pines", "region": "FL", "region_name": "Florida", "country": "USA"},
+        "slug": "sample-forestry-mulching",
+        "title": "Forestry Mulching",
+        "date": "2025-02-08", "date_label": "[[Month Day, Year]]",
+        "place": None,
         "service": "forestry-mulching",
-        "summary": "Underbrush and invasive growth mulched in place across an overgrown Pembroke Pines property.",
+        "summary": "Underbrush and invasive growth mulched in place across an overgrown property.",
         "youtube": "",
     },
 ]
