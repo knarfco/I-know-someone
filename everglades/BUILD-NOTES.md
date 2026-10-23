@@ -28,6 +28,13 @@ Locations appear **only** where a real job was done:
 - `phone_tel` is `+1XXXXXXXXXX` for now. Set the real number and every Call button and the vCard update.
 - Future: a 60–90s narrated reel from their footage for agencies (front door / government page).
 
+## Capability map + Matt's checklist
+- `build/taxonomy.py`: 38 categories in 7 sections, 395 public services (Matt's 30-category list, duplicates removed, plus gaps added in review: trucking, materials, debris reduction, maintenance contracts, erosion control and revegetation, species and tree relocation, recreation sites, site documentation).
+- Pages: `/capabilities/` hub → 7 section pages → 38 category pages (service list with each future URL, "How Buyers Find This": Google / YouTube / AI / bid portals) → 7 sample service pages (one per section).
+- High-hazard categories (11, 12, 13, 14, 29) are worded publicly as earthwork / support with qualified partners. Contaminant lists, radiological/munitions items and the internal #30 items (referral routing, sub qualification) live in `private` and show **only** on the checklist.
+- `/plan/checklist/` (noindex): 418 items, each We do it / Sub-team / Not for us. Saved in that browser's localStorage; Email / Copy / Print send the answers back.
+- After Matt answers: delete the "Not for us" items from taxonomy.py, rebuild, and build out real service pages for the rest as jobs come in. Every service already has a reserved URL.
+
 ## The web (how pages feed each other)
 Job video (YouTube, short link) → **job page** `/projects/{service}-{city}-{year}/`
 → links to its **service page** and its **place pages** (city + region)

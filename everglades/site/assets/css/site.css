@@ -300,3 +300,43 @@ a.card:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(6,56,26,.16)
 .hero-creds .creds{grid-template-columns:repeat(3,1fr)}
 .hero-creds > a{display:inline-block;margin-top:10px;color:var(--yellow);font-weight:700;font-size:.92rem;text-decoration:none}
 @media (max-width:640px){.creds,.hero-creds .creds{grid-template-columns:1fr}}
+
+/* ---------- capability hub ---------- */
+.svc-grid{list-style:none;padding:0;margin:0 0 20px;display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.svc{background:var(--white);border:1px solid var(--line);border-radius:8px;padding:10px 12px;min-width:0}
+.svc span,.svc a{display:block;font-weight:700;font-size:.95rem;color:var(--ink);text-decoration:none}
+.svc small{display:block;font-size:.72rem;color:var(--ink-soft);overflow-wrap:anywhere;margin-top:2px}
+.svc.live{border-color:var(--green);border-left:5px solid var(--yellow)}
+.svc.live a{color:var(--green)}
+.svc.live a::after{content:" →"}
+.find-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.find{background:var(--white);border:1px solid var(--line);border-top:4px solid var(--green);border-radius:var(--radius);padding:16px 18px}
+.find b{display:block;font-family:var(--head);font-weight:400;font-size:1.1rem;text-transform:uppercase;color:var(--green-deep);margin-bottom:8px}
+.find ul{margin:0;padding-left:1.1em;font-size:.92rem;color:var(--ink-soft)}
+.find li{margin-bottom:4px}
+.jump li a{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2);color:#fff}
+@media (max-width:960px){.find-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.find-grid,.svc-grid{grid-template-columns:1fr}}
+
+/* ---------- service checklist ---------- */
+.ck-bar{position:sticky;top:76px;z-index:40;background:var(--white);border-bottom:1px solid var(--line);box-shadow:0 4px 12px rgba(0,0,0,.06)}
+.ck-bar .wrap{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;min-height:58px;padding-top:8px;padding-bottom:8px;font-size:.95rem}
+.ck-actions{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+.ck-sec h2{margin-top:30px}
+.ck-cat{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);margin-bottom:16px;overflow:hidden}
+.ck-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;background:var(--sand);padding:12px 16px}
+.ck-num{font-family:var(--head);color:var(--green);font-size:1.1rem}
+.ck-status{display:inline-block;font-size:.7rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:999px;margin:0 6px;vertical-align:middle}
+.s-existing{background:#e3efe5;color:var(--green)}.s-expand{background:#fff1cc;color:#7a5600}.s-new{background:#dfe9ff;color:#1f4aa8}.s-added{background:#ffe2c7;color:#9a4a00}
+.ck-all{font-size:.82rem;color:var(--ink-soft);display:flex;gap:4px;align-items:center}
+.ck-all button,.ck-opts button{font:inherit;font-size:.8rem;font-weight:700;border:1px solid var(--line);background:var(--white);border-radius:6px;padding:6px 10px;cursor:pointer;color:var(--ink)}
+.ck-row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 16px;border-top:1px solid #eee8d8}
+.ck-name{font-size:.95rem}
+.ck-opts{display:flex;gap:6px;flex-shrink:0}
+.ck-opts button[data-v="do"][aria-pressed="true"]{background:var(--green);border-color:var(--green);color:#fff}
+.ck-opts button[data-v="sub"][aria-pressed="true"]{background:var(--yellow);border-color:var(--yellow-dark);color:var(--ink)}
+.ck-opts button[data-v="no"][aria-pressed="true"]{background:#b23a2b;border-color:#b23a2b;color:#fff}
+.ck-row[data-v="no"] .ck-name{text-decoration:line-through;color:var(--ink-soft)}
+.priv{font-size:.68rem;font-weight:800;color:#9a4a00;background:#ffe2c7;border-radius:4px;padding:1px 6px;margin-left:6px;text-transform:uppercase;letter-spacing:.04em}
+@media (max-width:640px){.ck-row{flex-direction:column;align-items:stretch}.ck-opts button{flex:1}.ck-bar{top:66px}.ck-bar .wrap{gap:4px 12px;font-size:.88rem}.ck-actions{margin-left:0;width:100%;flex-wrap:nowrap;gap:6px}.ck-actions .btn{flex:1;padding:8px 4px;font-size:.76rem}}
+@media print{.header,.topbar,.footer,.callbar,.ck-actions,.ck-all{display:none}.ck-bar{position:static}.ck-cat{break-inside:avoid}}

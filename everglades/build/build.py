@@ -12,6 +12,10 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from content import BIZ, CREDS, SERVICES, SVC, AUDIENCES, PROJECTS, QUESTIONS  # noqa: E402
+from taxonomy import SECTIONS, CATEGORIES, EXAMPLES  # noqa: E402
+
+CAT = {c["slug"]: c for c in CATEGORIES}
+N_SERVICES = sum(len(c["services"]) for c in CATEGORIES)
 
 # ---------------------------------------------------------------- settings
 # PREVIEW keeps the temporary domain out of Google (noindex + robots.txt block).
@@ -160,7 +164,7 @@ def header(cur):
       <li><details><summary>Services</summary><div class="menu wide">
         <div><div class="menu-head">Land &amp; Site Work</div>{land}</div>
         <div><div class="menu-head">Environmental &amp; Storm</div>{env}</div>
-        <div><a href="{L('services/')}"><b>All services →</b></a></div>
+        <div><a href="{L('services/')}"><b>All services →</b></a><a href="{L('capabilities/')}"><b>Full capability map ({len(CATEGORIES)} categories) →</b></a></div>
       </div></details></li>
       <li><details><summary>Who We Serve</summary><div class="menu">{aud}<a href="{L('who-we-serve/')}"><b>Overview →</b></a></div></details></li>
       <li><details><summary>Where We Work</summary><div class="menu">
@@ -195,7 +199,7 @@ def footer(cur):
       <a href="{tel_href(cur)}">{ph(BIZ['phone'])}</a><br>{ph(BIZ['email'])}<br>{ph(BIZ['hours'])}</p>
       <p>{ph(BIZ['license'])}</p>
     </div>
-    <div><h4>Services</h4><ul>{svc}</ul></div>
+    <div><h4>Services</h4><ul>{svc}<li><a href="{L('capabilities/')}"><b>Full Capability Map →</b></a></li></ul></div>
     <div><h4>Where We Work</h4><ul>
       <li><a href="{L('projects-anywhere/')}">Projects Anywhere</a></li>
       <li><a href="{L('where-weve-worked/')}">Where We've Worked</a></li>{regions}
@@ -485,6 +489,13 @@ def build_home():
   <p>Big job far from home? We plan it, manage it and put the right crew and equipment on the ground — with {BIZ['years']} years of know-how behind every decision.</p>
   <a class="btn btn-yellow" href="{L('projects-anywhere/')}">How Projects Anywhere Works</a></div>
   <div><ul class="checks"><li>Remote review of plans, photos and solicitations</li><li>Site visit when the job calls for one</li><li>Our crew, or licensed local crews working to our plan</li><li>Video progress from start to finish</li></ul></div>
+</div></section>
+
+<section class="section"><div class="wrap">
+  <div class="section-head"><span class="eyebrow" style="color:var(--green)">Capability map</span><h2>{len(CATEGORIES)} Categories. {N_SERVICES} Services.</h2>
+  <p>Everything above — and far beyond it. From clearing a single lot to remediation earthwork, energy sites and disaster recovery.</p></div>
+  <div class="grid g4">{''.join(f'<a class="card" href="{L("capabilities/" + k + "/")}"><h3>{n}</h3><p>{len(sec_cats(k))} categories · {sum(len(c["services"]) for c in sec_cats(k))} services</p><span class="more">Explore</span></a>' for k, n, _ in SECTIONS)}
+  <a class="card lane-card" href="{L('capabilities/')}"><h3>See the full map</h3><p>Every category and service in one place.</p><span class="more">Capability map</span></a></div>
 </div></section>
 
 <section class="section alt"><div class="wrap split">
@@ -1037,7 +1048,7 @@ def build_plan():
   <div><span class="eyebrow">Prepared for Matt &amp; Sam</span>
   <h1>Your New Home Online</h1>
   <p class="lead">{BIZ['years']} years of great work — now built so the people who need it can find it. Here's what's built, how it works, and what comes next.</p>
-  <div class="ctas"><a class="btn btn-yellow" href="{L(HOME)}">Tour the Website</a><a class="btn btn-ghost" href="{L('qr/')}">Printable QR Sheet</a></div></div>
+  <div class="ctas"><a class="btn btn-yellow" href="{L('plan/checklist/')}">Open the Service Checklist</a><a class="btn btn-ghost" href="{L(HOME)}">Tour the Website</a><a class="btn btn-ghost" href="{L('capabilities/')}">Capability Map</a></div></div>
   <div><img class="hero-logo" src="{L('assets/img/everglades-logo.webp')}" alt="" width="1400" height="632"></div>
 </div></section>
 
@@ -1072,6 +1083,8 @@ def build_plan():
     <a class="card" href="{L('questions/')}"><h3>Questions</h3><p>Straight answers on cost, permits and wetlands.</p></a>
     <a class="card" href="{L('request-a-bid/')}"><h3>Request a Bid</h3><p>The form every inquiry comes through.</p></a>
     <a class="card" href="{L('about/')}"><h3>About · Since {BIZ['founded']}</h3><p>Your history, your people, your numbers.</p></a>
+    <a class="card lane-card" href="{L('capabilities/')}"><h3>Capability Map</h3><p>{len(CATEGORIES)} categories and {N_SERVICES} services, each with its own page and the searches it's built to win.</p></a>
+    <a class="card lane-card" href="{L('plan/checklist/')}"><h3>Service Checklist</h3><p>Tap through every service: we do it, we sub it, or not for us. Your answers decide what goes live.</p></a>
     <a class="card" href="{L(DOOR)}"><h3>Front Door</h3><p>Your digital business card: call, email, website, every license, QR code.</p></a>
     <a class="card" href="{L('capability-statement/')}"><h3>Capability Statement</h3><p>The one page every procurement office asks for, ready to print.</p></a>
     <a class="card" href="{L('credentials/')}"><h3>Credentials</h3><p>Every license and registration in one place.</p></a>
@@ -1184,6 +1197,289 @@ body{background:#e9e5da}
          body, chrome=False, extra_head=style, noindex=True)
 
 
+# ---------------------------------------------------------------- capability hub
+STATUS_LABEL = {"EXISTING": "Planned", "EXPAND": "Expanded", "NEW": "New", "ADDED": "Added in review"}
+
+
+def cap_path(c, svc=None):
+    return f"capabilities/{c['slug']}/" + (slugify(svc) + "/" if svc else "")
+
+
+def sec_cats(sec):
+    return [c for c in CATEGORIES if c["sec"] == sec]
+
+
+def svc_grid(cur, c):
+    L = lambda p: rel(cur, p)  # noqa: E731
+    items = []
+    for svc in c["services"]:
+        path = cap_path(c, svc)
+        if (c["slug"], svc) in EXAMPLES:
+            items.append(f'<li class="svc live"><a href="{L(path)}">{svc}</a><small>/{path} · sample page</small></li>')
+        else:
+            items.append(f'<li class="svc"><span>{svc}</span><small>/{path}</small></li>')
+    return '<ul class="svc-grid">' + "".join(items) + "</ul>"
+
+
+def find_panel(name, google, bids, yt, ai):
+    g = "".join(f"<li>“{q}”</li>" for q in google)
+    b = "".join(f"<li>“{q}”</li>" for q in bids) + "<li>NAICS [[XXX]]</li>"
+    y = "".join(f"<li>{q}</li>" for q in yt)
+    return f"""<div class="find-grid">
+  <div class="find"><b>Google &amp; Maps</b><ul>{g}</ul></div>
+  <div class="find"><b>YouTube</b><ul>{y}</ul></div>
+  <div class="find"><b>AI assistants</b><ul><li>{ai}</li></ul></div>
+  <div class="find"><b>Bid portals &amp; procurement</b><ul>{b}</ul></div>
+</div>
+<p class="small mt">Every {name.lower()} job video gets its own page that links back here, so this page grows stronger with every job.</p>"""
+
+
+def cat_find(c):
+    first = c["services"][0]
+    return find_panel(c["name"], c["find"] + [f"{first.lower()} near me"], c["bid"],
+                      [f"“{first} — Before &amp; After”", f"“How we handle {c['services'][1].lower()}”"],
+                      f"“Who can handle {first.lower()} for a [[project type]]?”")
+
+
+def sensitive_note():
+    return ('<div class="note"><b>Delivered with qualified partners.</b> On high-hazard projects we provide the earthwork, '
+            'hauling, containment and restoration — working under the remediation prime and with licensed specialists. '
+            'Crew training and certifications: [[HAZWOPER / OSHA / other XXX]].</div>')
+
+
+def build_capabilities():
+    cur = "capabilities/"
+    L = lambda p: rel(cur, p)  # noqa: E731
+    trail = [("Home", HOME), ("Capability Map", cur)]
+    blocks = ""
+    for i, (sk, sname, sdesc) in enumerate(SECTIONS):
+        cards = "".join(f'<a class="card" href="{L(cap_path(c))}"><h3>{c["name"]}</h3><p>{c["blurb"]}</p>'
+                        f'<span class="more">{len(c["services"])} services</span></a>' for c in sec_cats(sk))
+        blocks += f"""<section class="section{' alt' if i % 2 else ''}" id="{sk}"><div class="wrap">
+  <div class="section-head"><h2><a href="{L('capabilities/' + sk + '/')}" style="text-decoration:none;color:inherit">{sname}</a></h2><p>{sdesc}</p></div>
+  <div class="grid g3">{cards}</div></div></section>"""
+    jump = "".join(f'<li><a href="#{sk}">{sname}</a></li>' for sk, sname, _ in SECTIONS)
+    body = page_hero(cur, trail, "The Full Capability Map", f"{len(CATEGORIES)} categories and {N_SERVICES} services — from a single lot to Superfund-scale earthwork. One accountable team, our own crews and a nationwide partner network.", eyebrow="Any state · Any country") + f"""
+<section class="section dark"><div class="wrap">
+  <div class="stats">
+    <div class="stat"><b>{len(SECTIONS)}</b><span>service areas of expertise</span></div>
+    <div class="stat"><b>{len(CATEGORIES)}</b><span>service categories</span></div>
+    <div class="stat"><b>{N_SERVICES}</b><span>individual services</span></div>
+    <div class="stat"><b>{BIZ['years']}</b><span>years in business</span></div>
+  </div>
+  <ul class="pill-list mt jump">{jump}</ul>
+</div></section>
+{blocks}
+{cta_band(cur, "Don't see it? Ask.", "If it involves land, water or heavy equipment, we do it, team it or know who does.")}"""
+    page(cur, f"Capabilities | {len(CATEGORIES)} Categories of Land, Water & Site Work | {BIZ['short']}",
+         f"{len(CATEGORIES)} categories and {N_SERVICES} services: land clearing, earthwork, wetlands, stormwater, dredging, remediation earthwork, energy sites, disaster recovery and more.",
+         body, crumbs=trail)
+
+    for sk, sname, sdesc in SECTIONS:
+        cur = f"capabilities/{sk}/"
+        L = lambda p, cur=cur: rel(cur, p)  # noqa: E731
+        trail = [("Home", HOME), ("Capability Map", "capabilities/"), (sname, cur)]
+        cats = sec_cats(sk)
+        cards = "".join(f'<a class="card" href="{L(cap_path(c))}"><h3>{c["name"]}</h3><p>{c["blurb"]}</p>'
+                        f'<p class="small">{", ".join(c["services"][:5])}…</p><span class="more">All {len(c["services"])} services</span></a>' for c in cats)
+        others = "".join(f'<li><a href="{L("capabilities/" + k + "/")}">{n}</a></li>' for k, n, _ in SECTIONS if k != sk)
+        body = page_hero(cur, trail, sname, sdesc) + f"""
+<section class="section"><div class="wrap"><div class="grid g3">{cards}</div></div></section>
+<section class="section alt"><div class="wrap"><h2>Other Areas of Expertise</h2><ul class="pill-list">{others}</ul></div></section>
+{cta_band(cur)}"""
+        page(cur, f"{sname} | Capabilities | {BIZ['short']}", f"{sname}: {sdesc}", body, crumbs=trail)
+
+    for c in CATEGORIES:
+        cur = cap_path(c)
+        L = lambda p, cur=cur: rel(cur, p)  # noqa: E731
+        sname = dict((k, n) for k, n, _ in SECTIONS)[c["sec"]]
+        trail = [("Home", HOME), ("Capability Map", "capabilities/"), (sname, f"capabilities/{c['sec']}/"), (c["name"], cur)]
+        related = c.get("related")
+        rel_card = (f'<div class="card mt"><h3>In depth</h3><p>{SVC[related]["lead"]}</p>'
+                    f'<a class="more" href="{L("services/" + related + "/")}">{SVC[related]["name"]}</a></div>') if related else ""
+        siblings = "".join(f'<li><a href="{L(cap_path(o))}">{o["name"]}</a></li>' for o in sec_cats(c["sec"]) if o is not c)
+        body = page_hero(cur, trail, c["name"], c["blurb"], eyebrow=sname) + f"""
+<section class="section"><div class="wrap split">
+  <div>
+    <h2>{len(c['services'])} Services</h2>
+    <p>Each of these gets its own page as real jobs are added.</p>
+    {svc_grid(cur, c)}
+    {sensitive_note() if c.get('sensitive') else ''}
+  </div>
+  <div>
+    {video(c['name'] + ' video', 'Job video for this category goes here')}
+    {rel_card}
+    <div class="card mt"><h3>Have a job like this?</h3><p>Any size, any state, any country.</p>
+    <a class="btn btn-yellow" href="{L('request-a-bid/')}">Request a Bid</a></div>
+  </div>
+</div></section>
+<section class="section alt"><div class="wrap">
+  <div class="section-head"><h2>How Buyers Find This</h2><p>The searches, videos, AI questions and bid keywords this page is built to win.</p></div>
+  {cat_find(c)}
+</div></section>
+<section class="section"><div class="wrap split">
+  <div><h2>Before &amp; After</h2>{before_after()}</div>
+  <div><h3>More in {sname}</h3><ul class="pill-list">{siblings}</ul>
+  <p class="mt"><a href="{L('capabilities/')}">Full capability map →</a></p></div>
+</div></section>
+{cta_band(cur)}"""
+        schema = [{"@context": "https://schema.org", "@type": "Service", "name": c["name"], "serviceType": c["name"],
+                   "provider": {"@id": ORG_ID}, "description": c["blurb"],
+                   "hasOfferCatalog": {"@type": "OfferCatalog", "name": c["name"],
+                                       "itemListElement": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": x}} for x in c["services"]]}}]
+        page(cur, f"{c['name']} | {BIZ['short']}", f"{c['blurb']} {', '.join(c['services'][:6])} and more.",
+             body, schema=schema, crumbs=trail)
+
+    for (cslug, svc), desc in EXAMPLES.items():
+        c = CAT[cslug]
+        cur = cap_path(c, svc)
+        L = lambda p, cur=cur: rel(cur, p)  # noqa: E731
+        sname = dict((k, n) for k, n, _ in SECTIONS)[c["sec"]]
+        trail = [("Home", HOME), ("Capability Map", "capabilities/"), (c["name"], cap_path(c)), (svc, cur)]
+        siblings = "".join(f'<li><a href="{L(cap_path(c, o))}">{o}</a></li>' if (cslug, o) in EXAMPLES
+                           else f'<li><span>{o}</span></li>' for o in c["services"] if o != svc)
+        low = svc.lower()
+        body = page_hero(cur, trail, svc, desc, eyebrow=c["name"]) + f"""
+<section class="section"><div class="wrap split">
+  <div class="prose">
+    <h2>What's Included</h2>
+    <ul class="checks"><li>[[Scope item XXX]]</li><li>[[Scope item XXX]]</li><li>[[Scope item XXX]]</li><li>[[Scope item XXX]]</li></ul>
+    <h2>How We Do It</h2>
+    <ol class="timeline">
+      <li><b>1 · Review</b>[[Plans, permits and site conditions XXX]]</li>
+      <li><b>2 · Mobilize</b>[[Equipment and crew XXX]]</li>
+      <li><b>3 · Build</b>[[Method and quality checks XXX]]</li>
+      <li><b>4 · Document</b>Video and photos from start to finish.</li>
+    </ol>
+  </div>
+  <div>{video(svc + ' video', 'Job video for this service goes here')}
+  <table class="facts mt"><tr><th>Typical equipment</th><td>[[XXX]]</td></tr><tr><th>Typical timeline</th><td>[[XXX]]</td></tr>
+  <tr><th>Self-perform or team</th><td>[[Self-perform / with partners]]</td></tr></table>
+  <div class="card mt"><h3>Need {low}?</h3><p>Anywhere in the country — tell us about it.</p>
+  <a class="btn btn-yellow" href="{L('request-a-bid/')}">Request a Bid</a></div></div>
+</div></section>
+<section class="section alt"><div class="wrap">
+  <div class="section-head"><h2>How Buyers Find This Page</h2></div>
+  {find_panel(svc, [low + ' contractor', low + ' cost', low + ' near me'], [svc, c['bid'][0]], ['“' + svc + ' — Before &amp; After”', '“What ' + low + ' looks like, start to finish”'], '“Who does ' + low + ' for a [[project type]]?”')}
+</div></section>
+<section class="section"><div class="wrap split">
+  <div><h2>Before &amp; After</h2>{before_after()}</div>
+  <div><h3>Also in {c['name']}</h3><ul class="pill-list">{siblings}</ul></div>
+</div></section>
+{cta_band(cur)}"""
+        schema = [{"@context": "https://schema.org", "@type": "Service", "name": svc, "serviceType": svc,
+                   "provider": {"@id": ORG_ID}, "description": desc, "category": c["name"]}]
+        page(cur, f"{svc} | {c['name']} | {BIZ['short']}", desc, body, schema=schema, crumbs=trail)
+
+
+def build_checklist():
+    """Matt's yes / sub / no checklist. Choices are saved on his device; he can print or send them."""
+    cur = "plan/checklist/"
+    L = lambda p: rel(cur, p)  # noqa: E731
+    total = 0
+    blocks = ""
+    for sk, sname, _ in SECTIONS:
+        cats = ""
+        for c in sec_cats(sk):
+            rows = ""
+            for svc in c["services"] + c.get("private", []):
+                total += 1
+                priv = ' <small class="priv">checklist only</small>' if svc in c.get("private", []) else ""
+                rows += (f'<div class="ck-row" data-key="{c["slug"]}::{esc(svc)}"><span class="ck-name">{svc}{priv}</span>'
+                         f'<span class="ck-opts"><button type="button" data-v="do">We do it</button>'
+                         f'<button type="button" data-v="sub">Sub / team</button><button type="button" data-v="no">Not for us</button></span></div>')
+            cats += f"""<div class="ck-cat" data-cat="{c['slug']}">
+  <div class="ck-head"><div><span class="ck-num">{c['n']:02d}</span> <b>{c['name']}</b> <span class="ck-status s-{c['status'].lower()}">{STATUS_LABEL[c['status']]}</span>
+  <a class="small" href="{L(cap_path(c))}">view page →</a></div>
+  <span class="ck-all">All: <button type="button" data-all="do">Do</button><button type="button" data-all="sub">Sub</button><button type="button" data-all="no">No</button></span></div>
+  {rows}</div>"""
+        blocks += f'<section class="ck-sec"><h2>{sname}</h2>{cats}</section>'
+    body = f"""
+<section class="page-hero"><div class="wrap">
+  <span class="eyebrow">For Matt &amp; Sam</span><h1>Service Checklist</h1>
+  <p class="lead">{len(CATEGORIES)} categories, {total} items. Tap one choice for each: <b>We do it</b>, <b>Sub / team</b> (we take it and bring in a partner), or <b>Not for us</b>. Your choices save on this device. When you're done, print it or send it to us.</p>
+</div></section>
+<div class="ck-bar"><div class="wrap">
+  <span>✅ <b id="c-do">0</b> do</span><span>🤝 <b id="c-sub">0</b> sub</span><span>❌ <b id="c-no">0</b> no</span><span>⬜ <b id="c-open">{total}</b> open</span>
+  <span class="ck-actions"><button type="button" class="btn btn-yellow btn-sm" id="ck-send">Email my answers</button>
+  <button type="button" class="btn btn-outline btn-sm" id="ck-copy">Copy</button>
+  <button type="button" class="btn btn-outline btn-sm" onclick="window.print()">Print</button>
+  <button type="button" class="btn btn-outline btn-sm" id="ck-reset">Reset</button></span>
+</div></div>
+<section class="section"><div class="wrap">{blocks}
+<p class="small">Status tags: <span class="ck-status s-existing">Planned</span> already in the plan · <span class="ck-status s-expand">Expanded</span> broadened · <span class="ck-status s-new">New</span> proposed · <span class="ck-status s-added">Added in review</span> gaps we filled. Items marked <small class="priv">checklist only</small> stay off the public site.</p>
+</div></section>
+<script>
+(function () {{
+  var KEY = "eg-service-checklist", state = {{}};
+  try {{ state = JSON.parse(localStorage.getItem(KEY) || "{{}}"); }} catch (e) {{}}
+  var rows = document.querySelectorAll(".ck-row");
+  function save() {{ try {{ localStorage.setItem(KEY, JSON.stringify(state)); }} catch (e) {{}} }}
+  function paint() {{
+    var n = {{do: 0, sub: 0, no: 0}};
+    rows.forEach(function (r) {{
+      var v = state[r.getAttribute("data-key")];
+      r.setAttribute("data-v", v || "");
+      r.querySelectorAll("[data-v]").forEach(function (b) {{ b.setAttribute("aria-pressed", b.getAttribute("data-v") === v ? "true" : "false"); }});
+      if (v) n[v]++;
+    }});
+    document.getElementById("c-do").textContent = n.do;
+    document.getElementById("c-sub").textContent = n.sub;
+    document.getElementById("c-no").textContent = n.no;
+    document.getElementById("c-open").textContent = rows.length - n.do - n.sub - n.no;
+  }}
+  rows.forEach(function (r) {{
+    r.querySelectorAll("[data-v]").forEach(function (b) {{
+      b.addEventListener("click", function () {{
+        var k = r.getAttribute("data-key"), v = b.getAttribute("data-v");
+        if (state[k] === v) delete state[k]; else state[k] = v;
+        save(); paint();
+      }});
+    }});
+  }});
+  document.querySelectorAll(".ck-cat").forEach(function (c) {{
+    c.querySelectorAll("[data-all]").forEach(function (b) {{
+      b.addEventListener("click", function () {{
+        c.querySelectorAll(".ck-row").forEach(function (r) {{ state[r.getAttribute("data-key")] = b.getAttribute("data-all"); }});
+        save(); paint();
+      }});
+    }});
+  }});
+  function summary() {{
+    var label = {{do: "WE DO IT", sub: "SUB / TEAM", no: "NOT FOR US"}}, out = ["Everglades service checklist", ""];
+    document.querySelectorAll(".ck-cat").forEach(function (c) {{
+      out.push(c.querySelector(".ck-head b").textContent);
+      c.querySelectorAll(".ck-row").forEach(function (r) {{
+        var v = state[r.getAttribute("data-key")];
+        out.push("  - " + r.querySelector(".ck-name").childNodes[0].textContent.trim() + ": " + (v ? label[v] : "(open)"));
+      }});
+      out.push("");
+    }});
+    return out.join("\\n");
+  }}
+  document.getElementById("ck-copy").addEventListener("click", function () {{
+    var t = summary();
+    if (navigator.clipboard) navigator.clipboard.writeText(t).then(function () {{ alert("Copied. Paste it into a text or email."); }});
+  }});
+  document.getElementById("ck-send").addEventListener("click", function () {{
+    var t = summary();
+    if (t.length > 1800) {{
+      if (navigator.clipboard) navigator.clipboard.writeText(t);
+      location.href = "mailto:?subject=" + encodeURIComponent("Everglades service checklist") +
+        "&body=" + encodeURIComponent("My full checklist is copied — paste it here.\\n\\n");
+    }} else {{
+      location.href = "mailto:?subject=" + encodeURIComponent("Everglades service checklist") + "&body=" + encodeURIComponent(t);
+    }}
+  }});
+  document.getElementById("ck-reset").addEventListener("click", function () {{
+    if (confirm("Clear all choices?")) {{ state = {{}}; save(); paint(); }}
+  }});
+  paint();
+}})();
+</script>"""
+    page(cur, f"Service Checklist | {BIZ['short']}", "Service checklist.", body, noindex=True)
+
+
 def build_qr_sheet():
     cur = "qr/"
     L = lambda p: rel(cur, p)  # noqa: E731
@@ -1270,6 +1566,8 @@ def main():
     build_places()
     build_anywhere()
     build_capability()
+    build_capabilities()
+    build_checklist()
     build_projects()
     build_questions()
     build_about()
