@@ -33,6 +33,7 @@ Locations appear **only** where a real job was done:
 - Pages: `/capabilities/` hub → 7 section pages → 38 category pages (service list with each future URL, "How Buyers Find This": Google / YouTube / AI / bid portals) → 7 sample service pages (one per section).
 - High-hazard categories (11, 12, 13, 14, 29) are worded publicly as earthwork / support with qualified partners. Contaminant lists, radiological/munitions items and the internal #30 items (referral routing, sub qualification) live in `private` and show **only** on the checklist.
 - `/plan/checklist/` (noindex): 418 items, each We do it / Sub-team / Not for us. Saved in that browser's localStorage; Email / Copy / Print send the answers back.
+- **Send to us** posts the answers to `send-checklist.php` (PHP on Hostinger), which emails them to `CHECKLIST_TO` (knarfco@yahoo.com, set in build.py) and **always saves a copy** in `public_html/submissions/` (web access blocked by `.htaccess`). If email lands in spam or fails, the copy is still there in File Manager. A backup **Email** button opens his mail app pre-addressed.
 - After Matt answers: delete the "Not for us" items from taxonomy.py, rebuild, and build out real service pages for the rest as jobs come in. Every service already has a reserved URL.
 
 ## The web (how pages feed each other)

@@ -27,6 +27,8 @@ SITE_URL = "https://www.XXX-domain.com"
 # At launch, set False to make the full home page the root (best for Google) and move
 # the front door to /welcome/ for QR codes and print.
 FRONT_DOOR_AT_ROOT = True
+# Where "Send to us" on Matt's service checklist delivers (send-checklist.php, server-side).
+CHECKLIST_TO = "knarfco@yahoo.com"
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(os.path.dirname(HERE), "site")
@@ -1397,16 +1399,26 @@ def build_checklist():
     body = f"""
 <section class="page-hero"><div class="wrap">
   <span class="eyebrow">For Matt &amp; Sam</span><h1>Service Checklist</h1>
-  <p class="lead">{len(CATEGORIES)} categories, {total} items. Tap one choice for each: <b>We do it</b>, <b>Sub / team</b> (we take it and bring in a partner), or <b>Not for us</b>. Your choices save on this device. When you're done, print it or send it to us.</p>
+  <p class="lead">{len(CATEGORIES)} categories, {total} items. Tap one choice for each: <b>We do it</b>, <b>Sub / team</b> (we take it and bring in a partner), or <b>Not for us</b>. Your choices save on this device, so you can stop and come back. When you're done, tap <b>Send to us</b> — your answers come straight to us.</p>
 </div></section>
 <div class="ck-bar"><div class="wrap">
   <span>✅ <b id="c-do">0</b> do</span><span>🤝 <b id="c-sub">0</b> sub</span><span>❌ <b id="c-no">0</b> no</span><span>⬜ <b id="c-open">{total}</b> open</span>
-  <span class="ck-actions"><button type="button" class="btn btn-yellow btn-sm" id="ck-send">Email my answers</button>
-  <button type="button" class="btn btn-outline btn-sm" id="ck-copy">Copy</button>
+  <span class="ck-actions"><button type="button" class="btn btn-yellow btn-sm" data-send>Send to us</button>
+  <button type="button" class="btn btn-outline btn-sm" id="ck-send">Email</button>
   <button type="button" class="btn btn-outline btn-sm" onclick="window.print()">Print</button>
   <button type="button" class="btn btn-outline btn-sm" id="ck-reset">Reset</button></span>
 </div></div>
 <section class="section"><div class="wrap">{blocks}
+<div class="ck-done" id="ck-done">
+  <h2>All Done? Send It.</h2>
+  <p>Your answers go straight to us. You can send again later if you change anything.</p>
+  <label for="ck-name">Your name</label>
+  <input type="text" id="ck-name" autocomplete="name" placeholder="Matt">
+  <input type="text" name="website" id="ck-hp" tabindex="-1" autocomplete="off" class="sr" aria-hidden="true">
+  <div class="ck-done-btns"><button type="button" class="btn btn-yellow" data-send>Send to us</button>
+  <button type="button" class="btn btn-outline" id="ck-copy">Copy answers</button></div>
+  <p class="ck-msg" id="ck-msg" role="status"></p>
+</div>
 <p class="small">Status tags: <span class="ck-status s-existing">Planned</span> already in the plan · <span class="ck-status s-expand">Expanded</span> broadened · <span class="ck-status s-new">New</span> proposed · <span class="ck-status s-added">Added in review</span> gaps we filled. Items marked <small class="priv">checklist only</small> stay off the public site.</p>
 </div></section>
 <script>
@@ -1461,14 +1473,41 @@ def build_checklist():
     var t = summary();
     if (navigator.clipboard) navigator.clipboard.writeText(t).then(function () {{ alert("Copied. Paste it into a text or email."); }});
   }});
+  function counts() {{
+    var n = {{}};
+    ["do", "sub", "no", "open"].forEach(function (k) {{ n[k] = +document.getElementById("c-" + k).textContent; }});
+    return n;
+  }}
+  var msg = document.getElementById("ck-msg"), nameBox = document.getElementById("ck-name");
+  try {{ nameBox.value = localStorage.getItem(KEY + "-name") || ""; }} catch (e) {{}}
+  nameBox.addEventListener("input", function () {{ try {{ localStorage.setItem(KEY + "-name", nameBox.value); }} catch (e) {{}} }});
+  function say(text, ok) {{ msg.textContent = text; msg.className = "ck-msg " + (ok ? "good" : "bad"); }}
+  document.querySelectorAll("[data-send]").forEach(function (btn) {{
+    btn.addEventListener("click", function () {{
+      var c = counts();
+      if (c.open === rows.length && !confirm("Nothing is marked yet. Send anyway?")) return;
+      document.getElementById("ck-done").scrollIntoView({{behavior: "smooth", block: "center"}});
+      say("Sending…", true);
+      fetch("{L('send-checklist.php')}", {{
+        method: "POST",
+        headers: {{"Content-Type": "application/json"}},
+        body: JSON.stringify({{name: nameBox.value, summary: summary(), counts: c, website: document.getElementById("ck-hp").value}})
+      }}).then(function (r) {{ return r.json(); }}).then(function (d) {{
+        if (d && d.ok) say("Sent — thank you! We have your answers.", true);
+        else throw new Error("not ok");
+      }}).catch(function () {{
+        say("Couldn't send from here. Tap Email instead — it opens your email with the answers ready.", false);
+      }});
+    }});
+  }});
   document.getElementById("ck-send").addEventListener("click", function () {{
-    var t = summary();
+    var t = summary(), to = "{CHECKLIST_TO}", subj = encodeURIComponent("Everglades service checklist" + (nameBox.value ? " from " + nameBox.value : ""));
     if (t.length > 1800) {{
       if (navigator.clipboard) navigator.clipboard.writeText(t);
-      location.href = "mailto:?subject=" + encodeURIComponent("Everglades service checklist") +
-        "&body=" + encodeURIComponent("My full checklist is copied — paste it here.\\n\\n");
+      alert("Your full answers are copied. Paste them into the email that opens next.");
+      location.href = "mailto:" + to + "?subject=" + subj + "&body=" + encodeURIComponent("(Paste my answers here)\\n\\n");
     }} else {{
-      location.href = "mailto:?subject=" + encodeURIComponent("Everglades service checklist") + "&body=" + encodeURIComponent(t);
+      location.href = "mailto:" + to + "?subject=" + subj + "&body=" + encodeURIComponent(t);
     }}
   }});
   document.getElementById("ck-reset").addEventListener("click", function () {{
@@ -1549,6 +1588,13 @@ def write_all():
         f"URL:{SITE_URL}/", "NOTE:Land clearing · excavation · restoration · since " + BIZ["founded"], "END:VCARD", ""])
     with open(os.path.join(OUT, "assets", "everglades-contact.vcf"), "w") as f:
         f.write(vcard)
+    with open(os.path.join(HERE, "send-checklist.php")) as f:
+        php = f.read().replace("__CHECKLIST_TO__", CHECKLIST_TO)
+    with open(os.path.join(OUT, "send-checklist.php"), "w") as f:
+        f.write(php)
+    os.makedirs(os.path.join(OUT, "submissions"), exist_ok=True)
+    with open(os.path.join(OUT, "submissions", ".htaccess"), "w") as f:
+        f.write("# Saved checklist answers: never served to the web\nRequire all denied\n<IfModule !mod_authz_core.c>\nDeny from all\n</IfModule>\n")
     with open(os.path.join(OUT, ".htaccess"), "w") as f:
         f.write("# Hostinger / Apache\nDirectoryIndex index.html\nErrorDocument 404 /404.html\nOptions -Indexes\nAddType text/vcard .vcf\n\n"
                 "<IfModule mod_expires.c>\nExpiresActive On\nExpiresByType image/webp \"access plus 1 year\"\n"

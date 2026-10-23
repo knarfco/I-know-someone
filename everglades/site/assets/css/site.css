@@ -340,3 +340,11 @@ a.card:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(6,56,26,.16)
 .priv{font-size:.68rem;font-weight:800;color:#9a4a00;background:#ffe2c7;border-radius:4px;padding:1px 6px;margin-left:6px;text-transform:uppercase;letter-spacing:.04em}
 @media (max-width:640px){.ck-row{flex-direction:column;align-items:stretch}.ck-opts button{flex:1}.ck-bar{top:66px}.ck-bar .wrap{gap:4px 12px;font-size:.88rem}.ck-actions{margin-left:0;width:100%;flex-wrap:nowrap;gap:6px}.ck-actions .btn{flex:1;padding:8px 4px;font-size:.76rem}}
 @media print{.header,.topbar,.footer,.callbar,.ck-actions,.ck-all{display:none}.ck-bar{position:static}.ck-cat{break-inside:avoid}}
+.ck-done{background:var(--white);border:2px solid var(--green);border-radius:var(--radius);padding:24px;margin:28px 0;box-shadow:var(--shadow);max-width:640px}
+.ck-done label{display:block;font-weight:700;margin:6px 0 4px}
+.ck-done input[type=text]{width:100%;font:inherit;padding:12px;border:1px solid #c9c2ae;border-radius:8px;margin-bottom:14px}
+.ck-done-btns{display:flex;gap:10px;flex-wrap:wrap}
+.ck-msg{margin:14px 0 0;font-weight:700}
+.ck-msg.good{color:var(--green)}
+.ck-msg.bad{color:#b23a2b}
+@media print{.ck-done{display:none}}
