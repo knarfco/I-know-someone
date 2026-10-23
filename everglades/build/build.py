@@ -11,8 +11,7 @@ import shutil
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from content import (BIZ, SERVICES, SVC, AUDIENCES, AUD, COUNTIES, CTY, CITIES,  # noqa: E402
-                     CITY, PROJECTS, QUESTIONS)
+from content import BIZ, SERVICES, SVC, AUDIENCES, PROJECTS, QUESTIONS  # noqa: E402
 
 # ---------------------------------------------------------------- settings
 # PREVIEW keeps the temporary domain out of Google (noindex + robots.txt block).
@@ -31,6 +30,7 @@ HOME = "home/" if FRONT_DOOR_AT_ROOT else ""
 DOOR = "" if FRONT_DOOR_AT_ROOT else "welcome/"
 
 PAGES = {}       # path -> html
+PLACES = {}      # filled in main() from PROJECTS
 SITEMAP = []     # indexable paths
 
 
@@ -60,8 +60,30 @@ def tel_href(cur):
     return f"tel:{BIZ['phone_tel']}" if BIZ["phone_tel"] else rel(cur, "request-a-bid/")
 
 
-def city_path(c):
-    return f"service-areas/{c['county']}/{c['slug']}/"
+def place_label(pl):
+    return f"{pl['city']}, {pl['region'] or pl['region_name']}"
+
+
+def region_path(pl):
+    return f"where-weve-worked/{slugify(pl['region_name'])}/"
+
+
+def place_path(pl):
+    return region_path(pl) + slugify(pl["city"]) + "/"
+
+
+def build_place_index():
+    """Regions -> cities -> jobs, built only from real job pages."""
+    regions = {}
+    for p in sorted(PROJECTS, key=lambda p: p["date"], reverse=True):
+        pl = p["place"]
+        r = regions.setdefault(slugify(pl["region_name"]), {"name": pl["region_name"], "country": pl["country"],
+                                                            "path": region_path(pl), "cities": {}, "projects": []})
+        r["projects"].append(p)
+        c = r["cities"].setdefault(slugify(pl["city"]), {"name": pl["city"], "label": place_label(pl),
+                                                        "path": place_path(pl), "projects": []})
+        c["projects"].append(p)
+    return dict(sorted(regions.items(), key=lambda kv: -len(kv[1]["projects"])))
 
 
 def slugify(name):
@@ -86,7 +108,6 @@ def org_schema():
         "email": plain(BIZ["email"]),
         "address": {"@type": "PostalAddress", "streetAddress": plain(BIZ["address"]),
                     "addressRegion": "FL", "addressCountry": "US"},
-        "areaServed": [c["name"] for c in COUNTIES],
         "knowsAbout": [s["name"] for s in SERVICES],
         "sameAs": [plain(BIZ["youtube"]), plain(BIZ["gbp"])],
     }
@@ -117,11 +138,11 @@ def header(cur):
     land = "".join(f'<a href="{L("services/" + s["slug"] + "/")}">{s["name"]}</a>' for s in SERVICES if s["group"] == "land")
     env = "".join(f'<a href="{L("services/" + s["slug"] + "/")}">{s["name"]}</a>' for s in SERVICES if s["group"] == "env")
     aud = "".join(f'<a href="{L("who-we-serve/" + a["slug"] + "/")}">{a["menu"]}</a>' for a in AUDIENCES)
-    areas = "".join(f'<a href="{L("service-areas/" + c["slug"] + "/")}">{c["name"]}</a>' for c in COUNTIES)
+    regions = "".join(f'<a href="{L(r["path"])}">{r["name"]} ({len(r["projects"])} jobs)</a>' for r in PLACES.values())
     return f"""
 <a class="skip" href="#main">Skip to content</a>
 <div class="topbar"><div class="wrap">
-  <span class="since">South Florida Land Clearing &amp; Restoration · Since {BIZ['founded']}</span>
+  <span class="since">Land Clearing · Excavation · Restoration · Since {BIZ['founded']}</span>
   <span>Call <a href="{tel_href(cur)}">{ph(BIZ['phone'])}</a> · Storm response 24/7</span>
 </div></div>
 <header class="header"><div class="wrap">
@@ -138,8 +159,12 @@ def header(cur):
         <div><a href="{L('services/')}"><b>All services →</b></a></div>
       </div></details></li>
       <li><details><summary>Who We Serve</summary><div class="menu">{aud}<a href="{L('who-we-serve/')}"><b>Overview →</b></a></div></details></li>
-      <li><details><summary>Service Areas</summary><div class="menu">{areas}<a href="{L('service-areas/')}"><b>All areas →</b></a></div></details></li>
-      <li><a class="top" href="{L('projects/')}">Projects</a></li>
+      <li><details><summary>Where We Work</summary><div class="menu">
+        <a href="{L('projects-anywhere/')}"><b>Projects Anywhere</b></a>
+        <div class="menu-head">Where we've worked</div>{regions}
+        <a href="{L('where-weve-worked/')}"><b>All places →</b></a>
+      </div></details></li>
+      <li><a class="top" href="{L('projects/')}">Job Videos</a></li>
       <li><a class="top" href="{L('questions/')}">Questions</a></li>
       <li><details><summary>About</summary><div class="menu">
         <a href="{L('about/')}">Our History (Since {BIZ['founded']})</a>
@@ -155,23 +180,26 @@ def header(cur):
 def footer(cur):
     L = lambda p: rel(cur, p)  # noqa: E731
     svc = "".join(f'<li><a href="{L("services/" + s["slug"] + "/")}">{s["name"]}</a></li>' for s in SERVICES)
-    areas = "".join(f'<li><a href="{L("service-areas/" + c["slug"] + "/")}">{c["name"]}</a></li>' for c in COUNTIES)
+    regions = "".join(f'<li><a href="{L(r["path"])}">{r["name"]}</a></li>' for r in PLACES.values())
     return f"""
 <footer class="footer"><div class="wrap">
   <div class="footer-grid">
     <div>
       <img class="footer-logo" src="{L('assets/img/everglades-logo-640.webp')}" alt="{esc(BIZ['name'])}" width="640" height="289" loading="lazy">
-      <p>South Florida land clearing, excavation and environmental restoration since {BIZ['founded']}.</p>
+      <p>Land clearing, excavation and environmental restoration since {BIZ['founded']}. Headquartered in South Florida — working wherever the job is.</p>
       <p>{ph(BIZ['address'])}<br>{ph(BIZ['city_state'])}<br>
       <a href="{tel_href(cur)}">{ph(BIZ['phone'])}</a><br>{ph(BIZ['email'])}<br>{ph(BIZ['hours'])}</p>
       <p>{ph(BIZ['license'])}</p>
     </div>
     <div><h4>Services</h4><ul>{svc}</ul></div>
-    <div><h4>Service Areas</h4><ul>{areas}<li><a href="{L('service-areas/')}">All areas →</a></li></ul></div>
+    <div><h4>Where We Work</h4><ul>
+      <li><a href="{L('projects-anywhere/')}">Projects Anywhere</a></li>
+      <li><a href="{L('where-weve-worked/')}">Where We've Worked</a></li>{regions}
+      <li><a href="{L('projects/')}">Job Videos</a></li>
+    </ul></div>
     <div><h4>Company</h4><ul>
       <li><a href="{L('about/')}">About &amp; History</a></li>
       <li><a href="{L('credentials/')}">Licenses &amp; Credentials</a></li>
-      <li><a href="{L('projects/')}">Project Library</a></li>
       <li><a href="{L('questions/')}">Questions &amp; Answers</a></li>
       <li><a href="{L('who-we-serve/government-agencies/')}">Government &amp; Agencies</a></li>
       <li><a href="{L('reviews/')}">Leave a Review</a></li>
@@ -260,7 +288,7 @@ def before_after(caption="Before / after photos go here"):
 </div><p class="video-caption">{caption}</p>"""
 
 
-def cta_band(cur, h="Got land to clear or a site to prep?", p="Tell us about the job. Big or small, we'll get back to you fast."):
+def cta_band(cur, h="Got a job? We'll go where it is.", p="Big or small, near or far — tell us about it and we'll get back to you fast."):
     L = lambda p_: rel(cur, p_)  # noqa: E731
     return f"""<section class="cta-band"><div class="wrap">
   <div><h2>{h}</h2><p>{p}</p></div>
@@ -291,20 +319,18 @@ def service_cards(cur, slugs, cls="g3"):
 
 def project_card(cur, p):
     L = lambda x: rel(cur, x)  # noqa: E731
-    c = CITY.get(p["city"])
-    cname = c["name"] if c else p["city"]
     return (f'<a class="card proj" href="{L("projects/" + p["slug"] + "/")}" data-service="{p["service"]}" '
-            f'data-county="{p["county"]}" data-year="{p["date"][:4]}">'
+            f'data-region="{slugify(p["place"]["region_name"])}" data-year="{p["date"][:4]}">'
             f'<div class="thumb"><span class="date">{p["date_label"]}</span></div>'
-            f'<div class="body"><div class="meta">{SVC[p["service"]]["name"]} · {cname}, FL</div>'
+            f'<div class="body"><div class="meta">{SVC[p["service"]]["name"]} · {place_label(p["place"])}</div>'
             f'<h3>{p["title"]}</h3><p>{p["summary"]}</p><span class="more">See the job</span></div></a>')
 
 
-def project_grid(cur, projects, empty_text):
+def project_grid(cur, projects, empty_text, next_text="Next job video goes here"):
     if not projects:
         return f'<div class="empty-slot">{empty_text}</div>'
     return '<div class="grid g3">' + "".join(project_card(cur, p) for p in projects) + \
-        f'<div class="empty-slot">Next job video from this area goes here</div></div>'
+        f'<div class="empty-slot">{next_text}</div></div>'
 
 
 def faq_html(cur, faqs):
@@ -316,16 +342,17 @@ def faq_html(cur, faqs):
     return '<div class="faq">' + "".join(out) + "</div>"
 
 
-def city_pills(cur, county):
+def place_pills(cur, places):
     L = lambda p: rel(cur, p)  # noqa: E731
-    built = {c["name"]: c for c in CITIES if c["county"] == county["slug"]}
-    items = []
-    for name in county["cities"]:
-        if name in built:
-            items.append(f'<li><a href="{L(city_path(built[name]))}">{name}</a></li>')
-        else:
-            items.append(f'<li><span class="soon">{name}<small>soon</small></span></li>')
-    return '<ul class="pill-list">' + "".join(items) + "</ul>"
+    return '<ul class="pill-list">' + "".join(
+        f'<li><a href="{L(c["path"])}">{c["label"]} <small>· {len(c["projects"])}</small></a></li>' for c in places) + "</ul>"
+
+
+def anywhere_teaser(cur):
+    L = lambda p: rel(cur, p)  # noqa: E731
+    return f"""<div class="card lane-card"><span class="eyebrow" style="color:var(--green)">Projects Anywhere</span>
+<h3>Big job far from home?</h3><p>We plan it, manage it and put the right crew and equipment on the ground — wherever it is.</p>
+<a class="more" href="{L('projects-anywhere/')}">How it works</a></div>"""
 
 
 # ---------------------------------------------------------------- pages
@@ -358,8 +385,8 @@ body{background:radial-gradient(ellipse at 50% 35%,#13692e 0%,#06381A 45%,#031d0
 <div class="door"><div class="door-grid">
   <div>
     <div class="door-logo"><img src="{L('assets/img/everglades-logo.webp')}" alt="{esc(BIZ['name'])}" width="1400" height="632"></div>
-    <p class="door-tag">South Florida Land Clearing &amp; Restoration</p>
-    <p class="door-sub">Since {BIZ['founded']} · Land clearing · Excavation · Wetland restoration · Storm response</p>
+    <p class="door-tag">Land Clearing, Excavation &amp; Restoration</p>
+    <p class="door-sub">Since {BIZ['founded']} · Wherever the job is</p>
     <div class="door-ctas">
       <a class="btn btn-yellow" href="{L(HOME)}">Enter Site →</a>
       <a class="btn btn-ghost" href="{L('request-a-bid/')}">Request a Bid</a>
@@ -372,8 +399,8 @@ body{background:radial-gradient(ellipse at 50% 35%,#13692e 0%,#06381A 45%,#031d0
   </div>
 </div></div>
 <div class="door-foot">{ph(BIZ['phone'])} · {BIZ['name']}</div>"""
-    page(cur, f"{BIZ['name']} | South Florida Land Clearing Since {BIZ['founded']}",
-         f"{BIZ['name']}: land clearing, excavation, wetland restoration and storm response across South Florida since {BIZ['founded']}.",
+    page(cur, f"{BIZ['name']} | Land Clearing, Excavation & Restoration Since {BIZ['founded']}",
+         f"{BIZ['name']}: land clearing, excavation, wetland restoration and storm response since {BIZ['founded']}.",
          body, chrome=False, extra_head=style, noindex=FRONT_DOOR_AT_ROOT is False)
 
 
@@ -386,16 +413,14 @@ def build_home():
   <a class="card lane-card" href="{L('who-we-serve/contractors-developers/')}"><h3>Contractors &amp; Developers</h3><p>Clearing, site prep, ponds and grading — on schedule, with our own equipment and crews.</p><span class="more">Work with us</span></a>
   <a class="card lane-card" href="{L('who-we-serve/homeowners-ranches/')}"><h3>Homeowners, Ranches &amp; HOAs</h3><p>Lots, pasture, ponds, culverts and lake banks. Tell us what you need and we'll take care of it.</p><span class="more">Get started</span></a>
 </div>"""
-    county_tiles = "".join(
-        f'<a class="card" href="{L("service-areas/" + c["slug"] + "/")}"><h3>{c["name"]}</h3>'
-        f'<p>{len(c["cities"])} cities &amp; towns</p><span class="more">See area</span></a>' for c in COUNTIES)
+    places_html = "".join(f'<h3 class="mt">{r["name"]}</h3>' + place_pills(cur, r["cities"].values()) for r in PLACES.values())
     qlinks = "".join(f'<li><a href="{L("questions/" + q["slug"] + "/")}">{q["q"]}</a></li>' for q in QUESTIONS)
     body = f"""
 <section class="hero"><div class="wrap hero-grid">
   <div>
-    <span class="eyebrow">Since {BIZ['founded']} · {BIZ['years']} years of South Florida site work</span>
-    <h1>Land Clearing, Excavation &amp; Restoration Across South Florida</h1>
-    <p class="lead">From a single homesite to thousands of acres of wetland restoration — our own crews, our own equipment, and {BIZ['years']} years of knowing how South Florida land really works.</p>
+    <span class="eyebrow">Since {BIZ['founded']} · {BIZ['years']} years of site work</span>
+    <h1>Land Clearing, Excavation &amp; Restoration — Wherever the Job Is</h1>
+    <p class="lead">From a single homesite to thousands of acres of wetland restoration — our own crews, our own equipment, and {BIZ['years']} years of knowing how land and water really work.</p>
     <div class="ctas">
       <a class="btn btn-yellow" href="{L('request-a-bid/')}">Request a Bid</a>
       <a class="btn btn-ghost" href="{tel_href(cur)}">Call {BIZ['phone']}</a>
@@ -408,7 +433,7 @@ def build_home():
 
 <section class="section"><div class="wrap">
   <div class="section-head"><span class="eyebrow" style="color:var(--green)">What we do</span><h2>Services</h2>
-  <p>Land and site work for every kind of property, plus the environmental and storm work South Florida depends on.</p></div>
+  <p>Land and site work for every kind of property, plus the environmental and storm work communities depend on.</p></div>
   {service_cards(cur, [s['slug'] for s in SERVICES], 'g4')}
 </div></section>
 
@@ -416,9 +441,9 @@ def build_home():
   <div>
     <span class="eyebrow" style="color:var(--green)">See it for yourself</span>
     <h2>Real Jobs. Real Video.</h2>
-    <p>Every job we film becomes part of our project library — the date, the place, the equipment and the result. No stock photos.</p>
+    <p>Every job we film gets its own page — the date, the place, the equipment and the result. No stock photos.</p>
     {video('Featured job video', 'Latest YouTube job video plays here')}
-    <p class="mt"><a class="btn btn-green" href="{L('projects/')}">Browse the Project Library</a></p>
+    <p class="mt"><a class="btn btn-green" href="{L('projects/')}">Browse All Job Videos</a></p>
   </div>
   <div>
     <h3>Before &amp; After</h3>
@@ -436,13 +461,15 @@ def build_home():
     <div class="stat"><b>{BIZ['years']}</b><span>years in business</span></div>
     <div class="stat"><b>[[XXX]]</b><span>jobs completed</span></div>
     <div class="stat"><b>[[XX,XXX]]</b><span>acres cleared</span></div>
-    <div class="stat"><b>{len(COUNTIES)}</b><span>South Florida regions served</span></div>
+    <div class="stat"><b>[[XX]]</b><span>states &amp; places worked</span></div>
   </div>
 </div></section>
 
-<section class="section"><div class="wrap">
-  <div class="section-head"><h2>Where We Work</h2><p>Monroe to Martin, coast to coast and all the way around Lake Okeechobee — and wherever the job takes us next.</p></div>
-  <div class="grid g4">{county_tiles}</div>
+<section class="section"><div class="wrap split">
+  <div><div class="section-head"><h2>Where We've Worked</h2><p>Every place here has a real, dated job video behind it — and the list grows with every job.</p></div>
+  {places_html}
+  <p class="mt"><a href="{L('where-weve-worked/')}">All places →</a></p></div>
+  <div>{anywhere_teaser(cur)}</div>
 </div></section>
 
 <section class="section alt"><div class="wrap split">
@@ -464,8 +491,8 @@ def build_home():
   </div>
 </div></section>
 {cta_band(cur)}"""
-    page(cur, f"Land Clearing & Excavation South Florida | {BIZ['short']} Since {BIZ['founded']}",
-         f"Land clearing, forestry mulching, excavation, wetland restoration and storm debris removal across South Florida. Licensed and insured, since {BIZ['founded']}.",
+    page(cur, f"Land Clearing, Excavation & Restoration Contractor | {BIZ['short']} Since {BIZ['founded']}",
+         f"Land clearing, forestry mulching, excavation, wetland restoration and storm debris removal — wherever the job is. Licensed and insured, since {BIZ['founded']}.",
          body)
 
 
@@ -479,10 +506,10 @@ def build_services():
 <section class="section"><div class="wrap">
   <h2>Land &amp; Site Work</h2>{service_cards(cur, land, 'g4')}
   <h2 class="mt">Environmental &amp; Storm</h2>{service_cards(cur, env, 'g4')}
-  <div class="note mt"><b>Don't see your job?</b> If it involves land, water or heavy equipment in South Florida, ask us. <a href="{L('request-a-bid/')}">Tell us about it →</a></div>
+  <div class="note mt"><b>Don't see your job?</b> If it involves land, water or heavy equipment, ask us — wherever it is. <a href="{L('request-a-bid/')}">Tell us about it →</a></div>
 </div></section>{cta_band(cur)}"""
     page(cur, f"Services | Land Clearing, Excavation & Restoration | {BIZ['short']}",
-         "Land clearing, forestry mulching, excavation, site prep, wetland restoration, invasive plant removal, drainage and hurricane debris removal in South Florida.",
+         "Land clearing, forestry mulching, excavation, site prep, wetland restoration, invasive plant removal, drainage and hurricane debris removal.",
          body, crumbs=trail)
 
     for s in SERVICES:
@@ -490,7 +517,11 @@ def build_services():
         L = lambda p, cur=cur: rel(cur, p)  # noqa: E731
         trail = [("Home", HOME), ("Services", "services/"), (s["name"], cur)]
         projs = [p for p in PROJECTS if p["service"] == s["slug"]]
-        county_links = "".join(f'<li><a href="{L("service-areas/" + c["slug"] + "/")}">{s["name"]} in {c["name"]}</a></li>' for c in COUNTIES)
+        places = []
+        for p in projs:
+            if place_path(p["place"]) not in [x[0] for x in places]:
+                places.append((place_path(p["place"]), place_label(p["place"])))
+        place_links = "".join(f'<li><a href="{L(a)}">{b}</a></li>' for a, b in places) or "<li>Listed here as job videos are added</li>"
         includes = "".join(f"<li>{i}</li>" for i in s["includes"])
         equip = "".join(f"<li>{e}</li>" for e in s["equipment"])
         intro = "".join(f"<p>{p}</p>" for p in s["intro"])
@@ -517,17 +548,17 @@ def build_services():
 </div></section>
 <section class="section sand"><div class="wrap split">
   <div><h2>Questions</h2>{faq_html(cur, s['faqs'])}</div>
-  <div><h3>Where we offer {s['name'].lower()}</h3><ul class="checks">{county_links}</ul></div>
+  <div><h3>Where we've done this</h3><ul class="checks">{place_links}</ul><div class="mt">{anywhere_teaser(cur)}</div></div>
 </div></section>
 <section class="section"><div class="wrap"><h2>Related Services</h2>{service_cards(cur, s['related'])}</div></section>
 {cta_band(cur, f"Need {s['name'].lower()}?")}"""
         schema = [{
             "@context": "https://schema.org", "@type": "Service", "name": s["name"],
             "serviceType": s["name"], "provider": {"@id": ORG_ID},
-            "areaServed": [c["name"] for c in COUNTIES], "description": s["lead"],
+            "description": s["lead"],
         }, faq_schema([(q, a) for q, a, _ in s["faqs"]])]
-        page(cur, f"{s['name']} South Florida | {BIZ['short']} Since {BIZ['founded']}",
-             f"{s['lead']} Serving Broward, Miami-Dade, Palm Beach, Monroe, Martin, Lee, Collier and the Lake Okeechobee area.",
+        page(cur, f"{s['name']} Contractor | {BIZ['short']} Since {BIZ['founded']}",
+             f"{s['lead']} Licensed and insured, since {BIZ['founded']} — wherever the job is.",
              body, schema=schema, crumbs=trail)
 
 
@@ -538,7 +569,7 @@ def build_audiences():
     cards = "".join(f'<a class="card lane-card" href="{L("who-we-serve/" + a["slug"] + "/")}"><h3>{a["name"]}</h3><p>{a["lead"]}</p><span class="more">Learn more</span></a>' for a in AUDIENCES)
     body = page_hero(cur, trail, "Who We Serve", "Agencies, builders and landowners — every one gets a crew that shows up and does the job right.") + \
         f'<section class="section"><div class="wrap"><div class="grid g3">{cards}</div></div></section>{cta_band(cur)}'
-    page(cur, f"Who We Serve | {BIZ['short']}", "Land clearing and earthwork for government agencies, prime contractors, developers, homeowners, ranches and HOAs in South Florida.", body, crumbs=trail)
+    page(cur, f"Who We Serve | {BIZ['short']}", "Land clearing and earthwork for government agencies, prime contractors, developers, homeowners, ranches and HOAs.", body, crumbs=trail)
 
     for a in AUDIENCES:
         cur = f"who-we-serve/{a['slug']}/"
@@ -575,7 +606,7 @@ def build_audiences():
 </div></section>
 <section class="section"><div class="wrap prose">
   <h2>Teaming With Prime Contractors</h2>
-  <p>South Florida's large restoration and water projects need dependable clearing, exotic-removal and earthwork subcontractors who already know the ground. We've spent {BIZ['years']} years working it — and we're ready to team on the next one.</p>
+  <p>Large restoration and water projects need dependable clearing, exotic-removal and earthwork subcontractors who know wet, difficult ground. We've spent {BIZ['years']} years working it — and we're ready to team on the next one, wherever it's let.</p>
   <p><a class="btn btn-yellow" href="{L('request-a-bid/')}">Send us a scope or solicitation</a></p>
 </div></section>"""
         body = page_hero(cur, trail, a["h1"], a["lead"]) + f"""
@@ -589,107 +620,127 @@ def build_audiences():
         page(cur, f"{a['h1']} | {BIZ['short']}", a["lead"], body, crumbs=trail)
 
 
-def build_areas():
-    cur = "service-areas/"
+def build_places():
+    cur = "where-weve-worked/"
     L = lambda p: rel(cur, p)  # noqa: E731
-    trail = [("Home", HOME), ("Service Areas", cur)]
+    trail = [("Home", HOME), ("Where We've Worked", cur)]
     blocks = "".join(f"""
-<div class="card"><h3><a href="{L('service-areas/' + c['slug'] + '/')}">{c['name']}</a></h3>
-<p>{len(c['cities'])} cities &amp; towns · plus {', '.join(c['unincorporated'])}</p>{city_pills(cur, c)}</div>""" for c in COUNTIES)
-    total = sum(len(c["cities"]) for c in COUNTIES if c["slug"] != "lake-okeechobee")
-    body = page_hero(cur, trail, "Service Areas", f"Seven South Florida counties and the Lake Okeechobee area — {total}+ cities and towns, plus the rural communities in between.") + f"""
+<div class="card"><h3><a href="{L(r['path'])}">{r['name']}</a></h3>
+<p>{len(r['projects'])} job{'s' if len(r['projects']) != 1 else ''} on video</p>{place_pills(cur, r['cities'].values())}</div>""" for r in PLACES.values())
+    body = page_hero(cur, trail, "Where We've Worked", "Every place on this page is here because we did a real job there — and there's a dated video to prove it. The list grows with every job.") + f"""
 <section class="section"><div class="wrap">
-  <div class="grid g2">{blocks}</div>
-  <div class="note mt"><b>Outside these areas?</b> Big jobs take us all over Florida and beyond. <a href="{L('request-a-bid/')}">Tell us where →</a></div>
-</div></section>{cta_band(cur)}"""
-    page(cur, f"Service Areas | South Florida Land Clearing | {BIZ['short']}",
-         "Land clearing and excavation in Broward, Miami-Dade, Palm Beach, Monroe, Martin, Lee and Collier counties and around Lake Okeechobee.",
+  <div class="grid g2">{blocks}
+  <div class="empty-slot">The next place shows up here automatically when its first job video is added.</div></div>
+</div></section>
+<section class="section alt"><div class="wrap">{anywhere_teaser(cur)}</div></section>
+{cta_band(cur)}"""
+    page(cur, f"Where We've Worked | Job Locations | {BIZ['short']}",
+         "Every place we've done land clearing, excavation and restoration work — each backed by a real, dated job video.",
          body, crumbs=trail)
 
-    for c in COUNTIES:
-        cur = f"service-areas/{c['slug']}/"
+    for r in PLACES.values():
+        cur = r["path"]
         L = lambda p, cur=cur: rel(cur, p)  # noqa: E731
-        trail = [("Home", HOME), ("Service Areas", "service-areas/"), (c["name"], cur)]
-        projs = [p for p in PROJECTS if p["county"] == c["slug"]]
-        unin = "".join(f"<li><span>{u}</span></li>" for u in c["unincorporated"])
-        svc_links = "".join(f'<li><a href="{L("services/" + s["slug"] + "/")}">{s["name"]} in {c["name"]}</a></li>' for s in SERVICES)
-        body = page_hero(cur, trail, f"Land Clearing &amp; Excavation in {c['name']}", c["intro"]) + f"""
-<section class="section"><div class="wrap split">
-  <div>
-    <h2>Cities &amp; Towns We Serve</h2>{city_pills(cur, c)}
-    <h3 class="mt">Rural &amp; Unincorporated Communities</h3><ul class="pill-list">{unin}</ul>
-  </div>
-  <div>{video(c['name'] + ' job reel', 'Video from jobs in this county goes here')}
-  <div class="note"><b>Permits here usually involve:</b><br>{c['permit']}</div></div>
+        trail = [("Home", HOME), ("Where We've Worked", "where-weve-worked/"), (r["name"], cur)]
+        done = sorted({p["service"] for p in r["projects"]})
+        body = page_hero(cur, trail, f"Our Work in {r['name']}", f"Real, dated jobs we've done in {r['name']}. Each one has its own page with video, photos and the details.") + f"""
+<section class="section"><div class="wrap">
+  <h2>Places in {r['name']}</h2>{place_pills(cur, r['cities'].values())}
 </div></section>
 <section class="section alt"><div class="wrap">
-  <div class="section-head"><h2>Jobs in {c['name']}</h2></div>
-  {project_grid(cur, projs, 'Job videos from ' + c['name'] + ' will appear here as they are added.')}
+  <div class="section-head"><h2>Jobs in {r['name']}</h2></div>
+  {project_grid(cur, r['projects'], '')}
 </div></section>
-<section class="section sand"><div class="wrap"><h2>Services in {c['name']}</h2><ul class="checks" style="columns:2">{svc_links}</ul></div></section>
-{cta_band(cur, f"Working in {c['name']}?")}"""
-        schema = [{"@context": "https://schema.org", "@type": "Service", "name": f"Land clearing and excavation in {c['name']}",
-                   "provider": {"@id": ORG_ID}, "areaServed": {"@type": "AdministrativeArea", "name": c["name"] + ", Florida"}}]
-        page(cur, f"Land Clearing {c['name']} FL | Excavation & Site Work | {BIZ['short']}",
-             f"Land clearing, excavation, ponds, drainage and restoration across {c['name']}, Florida. Since {BIZ['founded']}.",
-             body, schema=schema, crumbs=trail)
+<section class="section sand"><div class="wrap"><h2>What We've Done Here</h2>{service_cards(cur, done)}</div></section>
+{cta_band(cur)}"""
+        page(cur, f"Our Work in {r['name']} | {BIZ['short']}",
+             f"Land clearing, excavation and restoration jobs we've completed in {r['name']} — with video.", body, crumbs=trail)
 
-    for ci in CITIES:
-        county = CTY[ci["county"]]
-        cur = city_path(ci)
-        L = lambda p, cur=cur: rel(cur, p)  # noqa: E731
-        trail = [("Home", HOME), ("Service Areas", "service-areas/"), (county["name"], f"service-areas/{county['slug']}/"), (ci["name"], cur)]
-        projs = [p for p in PROJECTS if p["city"] == ci["slug"]]
-        nearby = [CITY[n] for n in ci["nearby"]]
-        others = [n for n in county["cities"] if n != ci["name"]][:8]
-        near_html = "".join(f'<li><a href="{L(city_path(n))}">{n["name"]}</a></li>' for n in nearby) + \
-            "".join(f'<li><span class="soon">{n}<small>soon</small></span></li>' for n in others if n not in [x["name"] for x in nearby])
-        faqs = [
-            (f"Do you clear land in {ci['name']}?", f"Yes. We've worked in and around {ci['name']} for years — lots, acreage, ponds, drainage and more.", None),
-            (f"What permits do I need in {ci['name']}?", f"Most jobs here involve {county['permit'].split(' · ')[0]}, plus city rules. We'll tell you what applies to your property.", "questions/do-i-need-a-permit-to-clear-land/"),
-        ]
-        body = page_hero(cur, trail, f"Land Clearing &amp; Excavation in {ci['name']}, FL", ci["local"]) + f"""
+        for c in r["cities"].values():
+            cur = c["path"]
+            L = lambda p, cur=cur: rel(cur, p)  # noqa: E731
+            trail = [("Home", HOME), ("Where We've Worked", "where-weve-worked/"), (r["name"], r["path"]), (c["name"], cur)]
+            done = sorted({p["service"] for p in c["projects"]})
+            others = [x for x in r["cities"].values() if x["path"] != c["path"]]
+            body = page_hero(cur, trail, f"Our Work in {c['label']}", f"Real jobs we've done in {c['name']}, with video and before-and-after photos. Got one nearby — or anywhere else? We'll go where it is.") + f"""
 <section class="section"><div class="wrap split">
   <div>
-    <h2>Most-Requested in {ci['name']}</h2>
-    {service_cards(cur, ci['focus'], 'g2')}
-    <p class="mt"><a href="{L('services/')}">All services we offer in {ci['name']} →</a></p>
+    <h2>Jobs in {c['name']}</h2>
+    {project_grid(cur, c['projects'], '', 'Next ' + c['name'] + ' job video goes here')}
   </div>
-  <div>{video(ci['name'] + ' job video', 'A real job from ' + ci['name'] + ' goes here')}
-  <div class="mt">{before_after(ci['name'] + ' before / after photos go here')}</div></div>
-</div></section>
-<section class="section alt"><div class="wrap">
-  <div class="section-head"><h2>Jobs in {ci['name']}</h2><p>Dated, real jobs from {ci['name']} and nearby.</p></div>
-  {project_grid(cur, projs, 'Job videos from ' + ci['name'] + ' will appear here as they are added.')}
+  <div>{video(c['name'] + ' job reel', 'Video from our jobs here goes here')}
+  <div class="mt">{before_after(c['name'] + ' before / after photos go here')}</div></div>
 </div></section>
 <section class="section sand"><div class="wrap split">
-  <div><h2>{ci['name']} Questions</h2>{faq_html(cur, faqs)}</div>
-  <div><h3>Nearby</h3><ul class="pill-list">{near_html}</ul>
-  <p class="mt"><a href="{L('service-areas/' + county['slug'] + '/')}">All of {county['name']} →</a></p></div>
+  <div><h2>What We Did Here</h2>{service_cards(cur, done, 'g2')}</div>
+  <div><h3>Other places in {r['name']}</h3>{place_pills(cur, others) if others else '<p>More coming as jobs are added.</p>'}
+  <div class="mt">{anywhere_teaser(cur)}</div></div>
 </div></section>
-{cta_band(cur, f"Got a job in {ci['name']}?")}"""
-        schema = [{"@context": "https://schema.org", "@type": "Service", "name": f"Land clearing and excavation in {ci['name']}, FL",
-                   "provider": {"@id": ORG_ID}, "areaServed": {"@type": "City", "name": ci["name"] + ", Florida"}},
-                  faq_schema([(q, a) for q, a, _ in faqs])]
-        page(cur, f"Land Clearing {ci['name']} FL | Excavation & Site Prep | {BIZ['short']}",
-             f"Land clearing, ponds, drainage and site prep in {ci['name']}, Florida. Licensed, insured and working South Florida since {BIZ['founded']}.",
-             body, schema=schema, crumbs=trail)
+{cta_band(cur)}"""
+            page(cur, f"Our Work in {c['label']} | {BIZ['short']}",
+                 f"Land clearing and excavation jobs we've completed in {c['label']}, with video and photos.", body, crumbs=trail)
+
+
+def build_anywhere():
+    cur = "projects-anywhere/"
+    L = lambda p: rel(cur, p)  # noqa: E731
+    trail = [("Home", HOME), ("Projects Anywhere", cur)]
+    body = page_hero(cur, trail, "Projects Anywhere", f"Big job far from home? We plan it, manage it and get it done — wherever it is. {BIZ['years']} years of know-how, on your site.", eyebrow="Any state · any country") + f"""
+<section class="section"><div class="wrap split">
+  <div>
+    <h2>How It Works</h2>
+    <ol class="timeline">
+      <li><b>1 · Send the job</b>Plans, photos, video, a solicitation — whatever you have. We review it fast.</li>
+      <li><b>2 · We size it up</b>Remote review, then a site visit when the job calls for one.</li>
+      <li><b>3 · We plan it</b>Equipment, sequence, permits, schedule and budget — the way we'd run it ourselves.</li>
+      <li><b>4 · We put crews on the ground</b>Our own crew and equipment, or licensed local crews working to our plan and under our oversight.</li>
+      <li><b>5 · You see it all</b>Progress video and photos from start to finish, so you always know where the job stands.</li>
+    </ol>
+  </div>
+  <div>{video('Projects Anywhere', 'Walkthrough of a long-distance job goes here')}
+  <div class="card mt"><h3>Send us a scope</h3><p>Tell us where it is and what it needs.</p>
+  <a class="btn btn-yellow" href="{L('request-a-bid/')}">Request a Bid</a></div></div>
+</div></section>
+<section class="section alt"><div class="wrap">
+  <div class="section-head"><h2>What We Take On</h2><p>The work where experience matters most — and where the right plan saves the most money.</p></div>
+  <div class="grid g4">
+    <div class="card"><h3>Restoration Projects</h3><p>Wetland restoration, mitigation banks, canal backfilling and exotic removal.</p></div>
+    <div class="card"><h3>Large Clearing</h3><p>Hundreds of acres for development, agriculture, solar or utility corridors.</p></div>
+    <div class="card"><h3>Storm Response</h3><p>Debris removal and road clearing wherever the storm hits.</p></div>
+    <div class="card"><h3>Agency &amp; Prime Teaming</h3><p>Clearing and earthwork scopes on public projects, anywhere they're let.</p></div>
+  </div>
+</div></section>
+<section class="section"><div class="wrap split">
+  <div><h2>Why It Works</h2><ul class="checks">
+    <li>{BIZ['years']} years of planning and running heavy site work</li>
+    <li>Experience on Army Corps, agency and FEMA-reimbursed work</li>
+    <li>One point of contact from bid to finish</li>
+    <li>Every job documented on video</li>
+  </ul></div>
+  <div><h2>See Where We've Been</h2><p>Every place we've worked, backed by a real job video.</p>
+  <a class="btn btn-green" href="{L('where-weve-worked/')}">Where We've Worked</a></div>
+</div></section>
+{cta_band(cur, "Wherever it is, let's talk.")}"""
+    schema = [{"@context": "https://schema.org", "@type": "Service", "name": "Long-distance land clearing, earthwork and restoration project management",
+               "provider": {"@id": ORG_ID}, "areaServed": {"@type": "Place", "name": "Worldwide"}}]
+    page(cur, f"Projects Anywhere | Land Clearing & Restoration Project Management | {BIZ['short']}",
+         "Big land clearing, earthwork or restoration job far from home? We plan it, manage it and get it done — anywhere.", body, schema=schema, crumbs=trail)
 
 
 def build_projects():
     cur = "projects/"
     L = lambda p: rel(cur, p)  # noqa: E731
-    trail = [("Home", HOME), ("Projects", cur)]
+    trail = [("Home", HOME), ("Job Videos", cur)]
     svc_opts = "".join(f'<option value="{s["slug"]}">{s["name"]}</option>' for s in SERVICES)
-    cty_opts = "".join(f'<option value="{c["slug"]}">{c["name"]}</option>' for c in COUNTIES)
+    cty_opts = "".join(f'<option value="{k}">{r["name"]}</option>' for k, r in PLACES.items())
     years = sorted({p["date"][:4] for p in PROJECTS}, reverse=True)
     yr_opts = "".join(f'<option value="{y}">{y}</option>' for y in years)
     cards = "".join(project_card(cur, p) for p in sorted(PROJECTS, key=lambda p: p["date"], reverse=True))
-    body = page_hero(cur, trail, "Project Library", "Every job we film: the date, the place, the equipment and the result. Filter by service, county or year.") + f"""
+    body = page_hero(cur, trail, "Job Videos", "Every job we film: the date, the place, the equipment and the result. Filter by service, location or year.") + f"""
 <section class="section"><div class="wrap">
   <div class="filters">
     <label>Service<select data-filter="service"><option value="">All services</option>{svc_opts}</select></label>
-    <label>County<select data-filter="county"><option value="">All areas</option>{cty_opts}</select></label>
+    <label>Location<select data-filter="region"><option value="">All locations</option>{cty_opts}</select></label>
     <label>Year<select data-filter="year"><option value="">All years</option>{yr_opts}</select></label>
   </div>
   <div class="grid g3" id="project-grid">{cards}
@@ -699,19 +750,18 @@ def build_projects():
   <p id="no-results" style="display:none" class="note">No jobs match those filters yet — more are being added.</p>
   <p class="mt small">Watch every job on our YouTube channel: {BIZ['youtube']}</p>
 </div></section>{cta_band(cur)}"""
-    page(cur, f"Project Library | Land Clearing Job Videos | {BIZ['short']}",
-         "Real, dated land clearing, excavation and restoration jobs across South Florida — with video and before/after photos.",
+    page(cur, f"Job Videos | Land Clearing & Excavation Projects | {BIZ['short']}",
+         "Real, dated land clearing, excavation and restoration jobs — with video and before/after photos.",
          body, crumbs=trail)
 
     for p in PROJECTS:
         cur = f"projects/{p['slug']}/"
         L = lambda x, cur=cur: rel(cur, x)  # noqa: E731
-        ci = CITY[p["city"]]
-        county = CTY[p["county"]]
+        pl = p["place"]
         sv = SVC[p["service"]]
-        trail = [("Home", HOME), ("Projects", "projects/"), (p["title"], cur)]
+        trail = [("Home", HOME), ("Job Videos", "projects/"), (p["title"], cur)]
         others = [o for o in PROJECTS if o["slug"] != p["slug"]][:3]
-        body = page_hero(cur, trail, p["title"], p["summary"], ctas=False, eyebrow=f"{p['date_label']} · {ci['name']}, FL") + f"""
+        body = page_hero(cur, trail, p["title"], p["summary"], ctas=False, eyebrow=f"{p['date_label']} · {place_label(pl)}") + f"""
 <section class="section"><div class="wrap split">
   <div>
     {video('Job video', 'YouTube link for this job goes here', yt=p['youtube'], title=p['title'])}
@@ -726,7 +776,7 @@ def build_projects():
   <div>
     <table class="facts">
       <tr><th>Date</th><td>{p['date_label']}</td></tr>
-      <tr><th>Location</th><td><a href="{L(city_path(ci))}">{ci['name']}</a>, <a href="{L('service-areas/' + county['slug'] + '/')}">{county['name']}</a></td></tr>
+      <tr><th>Location</th><td><a href="{L(place_path(pl))}">{pl['city']}</a>, <a href="{L(region_path(pl))}">{pl['region_name']}</a></td></tr>
       <tr><th>Service</th><td><a href="{L('services/' + sv['slug'] + '/')}">{sv['name']}</a></td></tr>
       <tr><th>Size</th><td>[[X acres / X linear ft]]</td></tr>
       <tr><th>Equipment</th><td>[[XXX]]</td></tr>
@@ -743,7 +793,7 @@ def build_projects():
         schema = [{
             "@context": "https://schema.org", "@type": "CreativeWork", "name": p["title"],
             "dateCreated": p["date"], "about": sv["name"], "creator": {"@id": ORG_ID},
-            "locationCreated": {"@type": "Place", "name": f"{ci['name']}, Florida"},
+            "locationCreated": {"@type": "Place", "name": f"{pl['city']}, {pl['region_name']}"},
         }]
         if p["youtube"]:
             schema.append({"@context": "https://schema.org", "@type": "VideoObject", "name": p["title"],
@@ -751,7 +801,7 @@ def build_projects():
                            "thumbnailUrl": f"https://i.ytimg.com/vi/{p['youtube']}/hqdefault.jpg",
                            "embedUrl": f"https://www.youtube.com/embed/{p['youtube']}"})
         page(cur, f"{p['title']} ({p['date'][:4]}) | {BIZ['short']}",
-             f"{p['summary']} {ci['name']}, FL — {p['date_label']}.", body, schema=schema, crumbs=trail)
+             f"{p['summary']} {place_label(pl)} — {p['date_label']}.", body, schema=schema, crumbs=trail)
 
 
 def build_questions():
@@ -759,11 +809,11 @@ def build_questions():
     L = lambda p: rel(cur, p)  # noqa: E731
     trail = [("Home", HOME), ("Questions", cur)]
     cards = "".join(f'<a class="card" href="{L("questions/" + q["slug"] + "/")}"><h3>{q["q"]}</h3><p>{q["short"][:150]}…</p><span class="more">Read the answer</span></a>' for q in QUESTIONS)
-    body = page_hero(cur, trail, "Questions &amp; Answers", "Straight answers about land clearing, permits, wetlands, timing and cost in South Florida — from a crew that's been doing it since 1992.") + f"""
+    body = page_hero(cur, trail, "Questions &amp; Answers", "Straight answers about land clearing, permits, wetlands, timing and cost — from a crew that's been doing it since 1992.") + f"""
 <section class="section"><div class="wrap"><div class="grid g2">{cards}
 <div class="empty-slot">Next question + short video answer goes here</div></div></div></section>{cta_band(cur, "Have a question we didn't answer?")}"""
     page(cur, f"Land Clearing Questions & Answers | {BIZ['short']}",
-         "Answers about land clearing costs, permits, wetlands, timelines and forestry mulching in South Florida.", body, crumbs=trail)
+         "Answers about land clearing costs, permits, wetlands, timelines and forestry mulching.", body, crumbs=trail)
 
     for q in QUESTIONS:
         cur = f"questions/{q['slug']}/"
@@ -792,7 +842,7 @@ def build_about():
     cur = "about/"
     L = lambda p: rel(cur, p)  # noqa: E731
     trail = [("Home", HOME), ("About", cur)]
-    body = page_hero(cur, trail, f"Clearing South Florida Since {BIZ['founded']}", f"{BIZ['years']} years, [[XXX]] jobs and a lot of hard-won knowledge about South Florida land and water.", eyebrow="Our history") + f"""
+    body = page_hero(cur, trail, f"Clearing Land Since {BIZ['founded']}", f"{BIZ['years']} years, [[XXX]] jobs and a lot of hard-won knowledge about land and water. Headquartered in South Florida — working wherever the job is.", eyebrow="Our history") + f"""
 <section class="section"><div class="wrap split">
   <div class="prose">
     <h2>Our Story</h2>
@@ -821,8 +871,8 @@ def build_about():
   <div class="stat"><b>[[XX]]</b><span>crew members</span></div>
 </div></div></section>
 {cta_band(cur)}"""
-    page(cur, f"About Us | South Florida Land Clearing Since {BIZ['founded']} | {BIZ['short']}",
-         f"{BIZ['name']} has cleared, dug and restored South Florida land since {BIZ['founded']}.", body, crumbs=trail)
+    page(cur, f"About Us | Land Clearing & Restoration Since {BIZ['founded']} | {BIZ['short']}",
+         f"{BIZ['name']} has cleared, dug and restored land since {BIZ['founded']}.", body, crumbs=trail)
 
 
 def build_credentials():
@@ -843,7 +893,7 @@ def build_credentials():
   <p class="small mt">Copies of certificates available on request.</p></div>
   <div><div class="photo">License certificate image</div><div class="photo mt">Insurance certificate image</div></div>
 </div></section>{cta_band(cur)}"""
-    page(cur, f"Licenses & Credentials | {BIZ['short']}", "Licensed, insured and bonded South Florida land clearing and earthwork contractor with FEMA and Army Corps experience.", body, crumbs=trail)
+    page(cur, f"Licenses & Credentials | {BIZ['short']}", "Licensed, insured and bonded land clearing and earthwork contractor with FEMA and Army Corps experience.", body, crumbs=trail)
 
 
 def build_bid():
@@ -852,7 +902,6 @@ def build_bid():
     trail = [("Home", HOME), ("Request a Bid", cur)]
     svc_boxes = "".join(f'<label><input type="checkbox" name="services" value="{s["slug"]}"> {s["name"]}</label>' for s in SERVICES) + \
         '<label><input type="checkbox" name="services" value="other"> Something else</label>'
-    county_opts = "".join(f'<option value="{c["slug"]}">{c["name"]}</option>' for c in COUNTIES)
     body = page_hero(cur, trail, "Request a Bid", "Tell us about the job. The more we know, the faster we can get you a real number.", ctas=False) + f"""
 <section class="section"><div class="wrap split">
   <!-- FORM ENDPOINT: [[XXX]] — set action="..." (email handler / CRM) before going live -->
@@ -877,8 +926,7 @@ def build_bid():
     </fieldset>
     <fieldset><legend>The job</legend>
       <div class="full"><label>What do you need? <span class="hint">(check all that apply)</span></label><div class="checks-grid">{svc_boxes}</div></div>
-      <div class="row"><div><label for="f-county">County</label><select id="f-county" name="county"><option value="">Choose</option>{county_opts}<option value="other">Somewhere else</option></select></div>
-      <div><label for="f-city">City / address</label><input id="f-city" name="location" type="text"></div></div>
+      <div class="full"><label for="f-loc">Where is the job? <span class="hint">(city, state or country — anywhere)</span></label><input id="f-loc" name="location" type="text" required></div>
       <div class="row"><div><label for="f-size">About how big?</label><select id="f-size" name="size">
         <option value="">Not sure</option><option value="under-1">Under 1 acre</option><option value="1-5">1–5 acres</option>
         <option value="5-20">5–20 acres</option><option value="20-100">20–100 acres</option><option value="100+">100+ acres</option>
@@ -904,7 +952,7 @@ def build_bid():
     <div class="card mt"><h3>Send photos or video</h3><p>[[Text photos to (XXX) XXX-XXXX]] — it's the fastest way to get an accurate price.</p></div>
   </div>
 </div></section>"""
-    page(cur, f"Request a Bid | {BIZ['short']}", "Request a bid for land clearing, excavation, site prep, restoration or storm debris removal in South Florida.", body, crumbs=trail)
+    page(cur, f"Request a Bid | {BIZ['short']}", "Request a bid for land clearing, excavation, site prep, restoration or storm debris removal — anywhere.", body, crumbs=trail)
 
     cur = "thank-you/"
     L = lambda p: rel(cur, p)  # noqa: E731
@@ -986,8 +1034,9 @@ def build_plan():
   <div class="grid g4">
     <a class="card" href="{L(HOME)}"><h3>Home</h3><p>Your front page with video, before/after and credentials.</p></a>
     <a class="card" href="{L('services/')}"><h3>{len(SERVICES)} Services</h3><p>A full page for each type of work.</p></a>
-    <a class="card" href="{L('service-areas/')}"><h3>{len(COUNTIES)} Areas + {len(CITIES)} Cities</h3><p>Every county, with city pages starting in Broward, Miami-Dade, Collier and Martin.</p></a>
-    <a class="card" href="{L('projects/')}"><h3>Project Library</h3><p>Filterable job videos — {len(PROJECTS)} samples built from your example list.</p></a>
+    <a class="card" href="{L('where-weve-worked/')}"><h3>Where We've Worked</h3><p>Built only from your real jobs — every video puts a new place on the map.</p></a>
+    <a class="card" href="{L('projects-anywhere/')}"><h3>Projects Anywhere</h3><p>Big job far from home? Matt plans it, the right crew does it.</p></a>
+    <a class="card" href="{L('projects/')}"><h3>Job Videos</h3><p>Filterable job videos — {len(PROJECTS)} samples built from your example list.</p></a>
     <a class="card" href="{L('who-we-serve/government-agencies/')}"><h3>Government Page</h3><p>Capability snapshot for agencies and prime contractors.</p></a>
     <a class="card" href="{L('questions/')}"><h3>Questions</h3><p>Straight answers on cost, permits and wetlands.</p></a>
     <a class="card" href="{L('request-a-bid/')}"><h3>Request a Bid</h3><p>The form every inquiry comes through.</p></a>
@@ -996,12 +1045,12 @@ def build_plan():
 </div></section>
 
 <section class="section dark"><div class="wrap">
-  <div class="section-head"><h2>Where We Start &amp; How It Grows</h2></div>
+  <div class="section-head"><h2>How It Grows</h2><p>No boundaries. Wherever you've worked — and wherever you work next — shows up on its own.</p></div>
   <div class="grid g4">
-    <div class="stat"><b>Start</b><span>Broward, Miami-Dade, Palm Beach, Monroe, Martin, Lee, Collier + Lake Okeechobee</span></div>
-    <div class="stat"><b>Next</b><span>All of Florida</span></div>
-    <div class="stat"><b>Then</b><span>The whole country</span></div>
-    <div class="stat"><b>Always</b><span>New jobs, new videos, new pages every week</span></div>
+    <div class="stat"><b>Every job</b><span>gets its own page with video, date and place</span></div>
+    <div class="stat"><b>Every place</b><span>you've worked goes on the map automatically</span></div>
+    <div class="stat"><b>Every week</b><span>new videos, new pages, more ways to be found</span></div>
+    <div class="stat"><b>Anywhere</b><span>Projects Anywhere brings in the big jobs far from home</span></div>
   </div>
 </div></section>
 
@@ -1054,7 +1103,7 @@ body{background:#fff}
   <p>Point your phone's camera at the code.</p>
   <div class="qr" id="qr-sheet" data-qr="/" role="img" aria-label="QR code to the website"></div>
   <p class="url" data-qr-url="qr-sheet"></p>
-  <p class="tag">South Florida Land Clearing &amp; Restoration · Since {BIZ['founded']}</p>
+  <p class="tag">Land Clearing · Excavation · Restoration · Since {BIZ['founded']}</p>
   <p>{BIZ['phone']}</p>
   <div class="printbar"><button class="btn btn-yellow" onclick="window.print()">Print this page</button>
   <a class="btn btn-outline" href="{L(DOOR)}">Back</a></div>
@@ -1105,11 +1154,13 @@ def write_all():
 
 
 def main():
+    PLACES.update(build_place_index())
     build_front_door()
     build_home()
     build_services()
     build_audiences()
-    build_areas()
+    build_places()
+    build_anywhere()
     build_projects()
     build_questions()
     build_about()

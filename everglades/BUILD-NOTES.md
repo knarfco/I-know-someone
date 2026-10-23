@@ -12,21 +12,26 @@
 | `SITE_URL` | `https://www.XXX-domain.com` | real domain (sitemap and structured data use it) |
 | `FRONT_DOOR_AT_ROOT` | `True`: the logo front door is `/`, the full home is `/home/` | `False`: the full home becomes `/` (best for Google), and the front door moves to `/welcome/` for QR codes, truck decals and print |
 
+## Location-agnostic by design (client request)
+No service areas, no county or city target pages, no "jobs in X" pitches. The site sells **the work, anywhere**.
+Locations appear **only** where a real job was done:
+- Each job in `PROJECTS` has a `place` (city / region / country; works outside the U.S. too).
+- `build_place_index()` turns those into **Where We've Worked**: `/where-weve-worked/{region}/{city}/`. A place exists only once a job video exists there.
+- **Projects Anywhere** (`/projects-anywhere/`) covers long-distance jobs: Matt plans it, and our crew or licensed local crews do it.
+- South Florida is named once, as headquarters (footer and About), plus the GBP address. That keeps local trust signals without boxing them in.
+
 ## The web (how pages feed each other)
 Job video (YouTube, short link) → **job page** `/projects/{service}-{city}-{year}/`
-→ links up to its **service page**, **city page**, **county page**
-→ those list every job in them (auto-generated from `PROJECTS`)
-→ the home page and footer link to every service and county.
-Each new video = one new dated page plus fresh content on 3 existing pages. That's the growth engine.
+→ links to its **service page** and its **place pages** (city + region)
+→ those list every job in them automatically
+→ the home page, the "Where We Work" menu and the footer list every place.
+Each new video = one new dated page, plus fresh content on its service and place pages, and possibly a brand-new place page. That's the growth engine.
 
 ### Adding a job
-Add an entry to `PROJECTS` with `youtube: "VIDEO_ID"`. That turns on the real embed (lite, click-to-load) and the `VideoObject` structured data. Rebuild.
-
-### Adding a city
-Add it to `CITIES` (it's already listed under its county). It gets a page and automatically switches from "soon" to a link everywhere. **Only publish a city once it has a real job or real local substance.** Thin city/ZIP pages = doorway-page risk under Google's scaled-content rules.
+Add an entry to `PROJECTS` with `youtube: "VIDEO_ID"` and its `place`. That turns on the real embed (lite, click-to-load), the `VideoObject` structured data and the place pages. Rebuild.
 
 ## Scaling path toward 90k
-service × county → service × city (with proof) → job pages (one per video) → Q&A + Shorts → statewide → national. Keep every page backed by a real job, real local facts, or a real answer.
+job pages (one per video) → place pages (grow from jobs) → service × place combos where several jobs back them → Q&A + Shorts. Every page stays backed by a real job or a real answer. No empty location pages.
 
 ## Lead routing (hidden)
 `request-a-bid` sets hidden `lead_lane`:
@@ -40,7 +45,7 @@ The form also captures `landing_page`, `referrer` and "how did you find us".
 ## Before go-live checklist
 - [ ] Fill every `[[...]]` in content.py (search for `[[`)
 - [ ] Real phone → `BIZ["phone_tel"]` (turns on tap-to-call everywhere)
-- [ ] Videos + job list → `PROJECTS`; photos → before/after slots
+- [ ] Videos + job list (with `place`) → `PROJECTS`; photos → before/after slots
 - [ ] Form endpoint
 - [ ] Flip `PREVIEW`, set `SITE_URL`, flip `FRONT_DOOR_AT_ROOT`
 - [ ] GBP verified, linked in footer and `sameAs`
