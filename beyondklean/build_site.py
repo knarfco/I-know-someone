@@ -261,6 +261,7 @@ def page(path, title, desc, body, crumbs=None, schema=None, active=None, extra_j
       <a href="{up}facilities/index.html">By facility type</a><a href="{up}phases/index.html">By project phase</a><a href="{up}where-we-work.html">Where we work</a><a href="{up}i-4/index.html">I-4 corridor</a></div>
   </div>
   <div class="wrap small foot-note">© 2026 Beyond Klean.{op_note} Regulated work such as mold remediation, abatement and hood cleaning is performed only by licensed, certified technicians where required.</div>
+  <div class="wrap foot-credit"><a href="https://mediain360.com" target="_blank" rel="noopener" title="Produced and powered by Mediain360"><img src="{up}assets/brand/mediain360-badge-34.png" srcset="{up}assets/brand/mediain360-badge-68.png 2x, {up}assets/brand/mediain360-badge-102.png 3x" width="88" height="34" alt="Produced and powered by Mediain360" loading="lazy"></a></div>
 </footer>
 {'<script src="' + up + 'assets/search-index.js"></script>' if 'data-finder' in body else ''}{extra_js}
 <script src="{up}assets/site.js"></script>
