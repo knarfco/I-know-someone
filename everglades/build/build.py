@@ -157,6 +157,19 @@ def credit(cur, light_bg=False):
             f'<img src="{rel(cur, img)}" alt="Produced and Powered by MediaIn360" width="80" height="21" style="width:80px;max-width:80px;height:auto;display:block"></a>')
 
 
+def proof_card(cur, extra=()):
+    """'Backed by' links: every claim points to the page that proves it."""
+    L = lambda p: rel(cur, p)  # noqa: E731
+    base = [("credentials/", "Licenses &amp; credentials"), ("compliance/", "Compliance &amp; safety"),
+            ("projects/", "Job videos"), ("capability-statement/", "Capability statement")]
+    seen, items = set(), []
+    for u, t in list(extra) + base:
+        if u not in seen and rel(cur, u) != "./":
+            seen.add(u)
+            items.append(f'<li><a href="{L(u)}">{t}</a></li>')
+    return f'<div class="card mt proof"><h3>Backed by</h3><ul class="checks">{"".join(items)}</ul></div>'
+
+
 def header(cur):
     L = lambda p: rel(cur, p)  # noqa: E731
     areas = "".join(f'<a href="{L("capabilities/" + k + "/")}"><b>{n}</b><span>{d}</span></a>' for k, n, d in SECTIONS)
@@ -213,13 +226,13 @@ def footer(cur):
     <div class="logo-plate footer-logo"><img src="{L('assets/img/everglades-logo-640.webp')}" alt="{esc(BIZ['name'])}" width="640" height="289" loading="lazy"></div>
     <p class="foot-contact"><a href="{tel_href(cur)}">{ph(BIZ['phone'])}</a> · {ph(BIZ['email'])} · Headquartered in {ph(BIZ['hq'])} · {ph(BIZ['hours'])}</p>
   </div>
-  <section class="foot-creds" aria-label="Licenses and registrations">
-    <h2 class="foot-h">Licenses &amp; Registrations</h2>
+  <details class="foot-acc foot-creds" open data-desktop-open>
+    <summary><h2 class="foot-h">Licenses &amp; Registrations</h2></summary>
     {creds_grid()}
-  </section>
+  </details>
   <div class="foot-links">
-    <div><h2 class="foot-h">Capabilities</h2><ul>{caps}<li><a href="{L('capabilities/')}">All capabilities</a></li></ul></div>
-    <div><h2 class="foot-h">Company</h2><ul>
+    <details class="foot-acc" open data-desktop-open><summary><h2 class="foot-h">Capabilities</h2></summary><ul>{caps}<li><a href="{L('capabilities/')}">All capabilities</a></li></ul></details>
+    <details class="foot-acc" open data-desktop-open><summary><h2 class="foot-h">Company</h2></summary><ul>
       <li><a href="{L('who-we-serve/government-agencies/')}">Government &amp; Primes</a></li>
       <li><a href="{L('who-we-serve/contractors-developers/')}">Contractors &amp; Developers</a></li>
       <li><a href="{L('who-we-serve/homeowners-ranches/')}">Homeowners, Ranches &amp; HOAs</a></li>
@@ -229,7 +242,7 @@ def footer(cur):
       <li><a href="{L('capability-statement/')}">Capability Statement</a></li>
       <li><a href="{L('questions/')}">Questions &amp; Answers</a></li>
       <li><a href="{L('request-a-bid/')}">Request a Bid</a></li>
-    </ul></div>
+    </ul></details>
   </div>
   <div class="legal">
     <span>© <span data-current-year>2026</span> {BIZ['name']} · Since {BIZ['founded']}</span>
@@ -476,17 +489,30 @@ def build_home():
     card_rows = [c for c in CREDS if c[0] in ("SAM.gov UEI", "CAGE Code", "Bonding Capacity", "FEMA Vendor #", "E-Verify Company ID", "Certified Contractor License #")]
     pcard = "".join(f"<div><dt>{a}</dt><dd>{b}</dd></div>" for a, b in card_rows)
     glance = [
-        ("Capabilities", "Land, water, cleanup, infrastructure, disaster and rural work — seven areas of expertise, one accountable team.", "capabilities/", "Explore capabilities"),
-        ("Government &amp; Primes", "Registrations, bonding, compliance and past performance for agencies and the prime contractors who win their work.", "who-we-serve/government-agencies/", "View the capability snapshot"),
-        ("Job Videos", "Real, dated jobs on video — the place, the equipment and the before-and-after.", "projects/", "Watch the work"),
-        ("Core Services", "Land clearing, mulching, ponds and canals, site prep, wetlands, invasive removal, drainage and storm debris.", "services/", "See core services"),
-        ("Projects Anywhere", "A big job far from home? We plan it, manage it and put the right crew on the ground.", "projects-anywhere/", "How it works"),
-        ("Where We've Worked", "Every place listed is backed by a real job video. The list grows with every job.", "where-weve-worked/", "See the places"),
-        ("Developers &amp; Property Owners", "Builders, developers, ranches, HOAs and landowners — jobs of every size.", "who-we-serve/", "Find your fit"),
-        ("Compliance", "Drug-Free Workplace, E-Verify, safety, equal opportunity and ethics, in plain view.", "compliance/", "Read our policies"),
-        ("Questions &amp; Answers", "Straight answers on cost, permits, wetlands and timing.", "questions/", "Read the answers"),
+        ("Capabilities", "Land, water, cleanup, infrastructure, disaster and rural work — seven areas of expertise, one accountable team.",
+         [("capabilities/", "Explore all capabilities"), ("services/", "Core services")]),
+        ("Government &amp; Primes", "Registrations, bonding, compliance and past performance for agencies and the prime contractors who win their work.",
+         [("who-we-serve/government-agencies/", "View the capability snapshot"), ("credentials/", "Licenses &amp; credentials"), ("capability-statement/", "Capability statement")]),
+        ("Job Videos", "Real, dated jobs on video — the place, the equipment and the before-and-after.",
+         [("projects/", "Watch the work"), ("where-weve-worked/", "Where we've worked")]),
+        ("Core Services", "Land clearing, mulching, ponds and canals, site prep, wetlands, invasive removal, drainage and storm debris.",
+         [("services/", "See core services"), ("services/hurricane-debris-removal/", "Storm &amp; FEMA debris")]),
+        ("Projects Anywhere", "A big job far from home? We plan it, manage it and put the right crew on the ground.",
+         [("projects-anywhere/", "How it works"), ("request-a-bid/", "Send us a scope")]),
+        ("Where We've Worked", "Every place listed is backed by a real job video. The list grows with every job.",
+         [("where-weve-worked/", "See the places"), ("projects/", "Browse job videos")]),
+        ("Developers &amp; Property Owners", "Builders, developers, ranches, HOAs and landowners — jobs of every size.",
+         [("who-we-serve/contractors-developers/", "Developers &amp; contractors"), ("who-we-serve/homeowners-ranches/", "Homeowners, ranches &amp; HOAs")]),
+        ("Compliance", "Drug-Free Workplace, E-Verify, safety, equal opportunity and ethics, in plain view.",
+         [("compliance/", "Read our policies"), ("accessibility/", "Accessibility statement")]),
+        ("Questions &amp; Answers", "Straight answers on cost, permits, wetlands and timing.",
+         [("questions/", "Read the answers"), ("questions/do-i-need-a-permit-to-clear-land/", "Permits, explained")]),
     ]
-    glance_html = "".join(f'<div class="glance-item"><h3>{t}</h3><p>{d}</p><a href="{L(u)}">{c} <span aria-hidden="true">→</span></a></div>' for t, d, u, c in glance)
+    items = [f'<details class="glance-item"><summary><h3>{t}</h3></summary><div class="glance-body"><p>{d}</p><ul>'
+             + "".join(f'<li><a href="{L(u)}">{c} <span aria-hidden="true">→</span></a></li>' for u, c in links)
+             + "</ul></div></details>" for t, d, links in glance]
+    half = (len(items) + 1) // 2
+    glance_html = f'<div class="glance-col">{"".join(items[:half])}</div><div class="glance-col">{"".join(items[half:])}</div>'
     body = f"""
 <section class="hero hero-video">
   {hero_media(cur)}
@@ -553,6 +579,10 @@ def build_services():
                 places.append((place_path(p["place"]), place_label(p["place"])))
         place_links = "".join(f'<li><a href="{L(a)}">{b}</a></li>' for a, b in places) or "<li>Listed here as job videos are added</li>"
         includes = "".join(f"<li>{i}</li>" for i in s["includes"])
+        cat = next((c for c in CATEGORIES if c.get("related") == s["slug"]), None)
+        svc_extra = ([(cap_path(cat), cat["name"])] if cat else [])
+        if s["slug"] in ("hurricane-debris-removal", "wetland-restoration-mitigation", "exotic-invasive-removal", "drainage-stormwater"):
+            svc_extra.append(("who-we-serve/government-agencies/", "Government &amp; primes"))
         equip = "".join(f"<li>{e}</li>" for e in s["equipment"])
         intro = "".join(f"<p>{p}</p>" for p in s["intro"])
         body = page_hero(cur, trail, s["h1"], s["lead"]) + f"""
@@ -566,6 +596,7 @@ def build_services():
     {video(s['name'] + ' video', 'Job video for this service goes here')}
     <div class="card mt"><h3>Equipment</h3><ul class="checks">{equip}</ul>
     <a class="btn btn-yellow" href="{L('request-a-bid/?service=' + s['slug'])}">Request a Bid</a></div>
+    {proof_card(cur, svc_extra)}
   </div>
 </div></section>
 <section class="section alt"><div class="wrap">
@@ -615,6 +646,7 @@ def build_audiences():
     <p>{BIZ['name']} · In business since {BIZ['founded']} · Registered bid portals: [[DemandStar · state / county portals XXX]]</p>
     {creds_grid()}
     <p class="mt"><a class="btn btn-green" href="{L('capability-statement/')}">Capability Statement (print / PDF)</a></p>
+    <p class="small">Related: <a href="{L('compliance/')}">Compliance</a> · <a href="{L('credentials/')}">Credentials</a> · <a href="{L('services/hurricane-debris-removal/')}">Storm &amp; FEMA</a> · <a href="{L('projects-anywhere/')}">Projects Anywhere</a> · <a href="{L('capabilities/')}">All capabilities</a></p>
   </div>
   <div>
     <h3>Past Performance</h3>
@@ -804,6 +836,7 @@ def build_projects():
     </table>
     <div class="card mt"><h3>Need something like this?</h3><p>Tell us about your site and we'll get back to you fast.</p>
     <a class="btn btn-yellow" href="{L('request-a-bid/?service=' + sv['slug'])}">Request a Bid</a></div>
+    {proof_card(cur, [("services/" + sv['slug'] + "/", sv['name'])])}
   </div>
 </div></section>
 <section class="section alt"><div class="wrap"><h2>More Jobs</h2>
@@ -898,7 +931,8 @@ def build_credentials():
 <section class="section"><div class="wrap split">
   <div><table class="facts">{table}</table>
   <p class="small mt">Copies of certificates available on request.</p>
-  <p><a class="btn btn-green" href="{rel(cur, 'capability-statement/')}">Capability Statement (print / PDF)</a></p></div>
+  <p><a class="btn btn-green" href="{rel(cur, 'capability-statement/')}">Capability Statement (print / PDF)</a></p>
+  <p class="small">Related: <a href="{rel(cur, 'compliance/')}">Compliance &amp; certifications</a> · <a href="{rel(cur, 'who-we-serve/government-agencies/')}">Government &amp; primes</a></p></div>
   <div><div class="photo">License certificate image</div><div class="photo mt">Insurance certificate image</div></div>
 </div></section>{cta_band(cur)}"""
     page(cur, f"Licenses & Credentials | {BIZ['short']}", "Licensed, insured and bonded land clearing and earthwork contractor with FEMA and Army Corps experience.", body, crumbs=trail)
@@ -1290,6 +1324,7 @@ def build_capabilities():
   <div>
     {video(c['name'] + ' video', 'Job video for this category goes here')}
     {rel_card}
+    {proof_card(cur, [("who-we-serve/government-agencies/", "Government &amp; primes")])}
     <div class="card mt"><h3>Have a job like this?</h3><p>Any size, any state, any country.</p>
     <a class="btn btn-yellow" href="{L('request-a-bid/')}">Request a Bid</a></div>
   </div>

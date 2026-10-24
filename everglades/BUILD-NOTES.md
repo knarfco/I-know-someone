@@ -26,6 +26,8 @@
 - **Home hero:** "Built in the Everglades. Ready for Anywhere." + buyer line, [Request a Bid] [Capability Statement], "Since 1992 · Licensed · Bonded · Insured", Procurement Card (UEI, CAGE, license, FEMA, bonding, E-Verify), which becomes chips on phones.
 - **Hero video:** set `BIZ["hero_video"]` in content.py (`mp4`, optional `mp4_mobile`, `webm`, `poster`) and put files in `site/assets/video/`. Silent, looped, autoplay, dark overlay, pause button (WCAG 2.2.2), hidden for reduce-motion. Empty = placeholder. Target 10–20 s, 1080p ≈3–6 MB MP4 (H.264) + WebM, 720p mobile version, poster JPG.
 - **Home = short landing page:** hero → "At a Glance" (one-line 'who we are' + 9 teasers, each 1–2 sentences with a varied info link: capabilities, government & primes, job videos, core services, projects anywhere, where we've worked, property owners, compliance, Q&A) → closing band. Everything else lives on its own page; inner pages link back via breadcrumbs. Informational tone, not salesy.
+- **Accordions:** home "At a Glance" = 9 collapsed headers (two independent columns on desktop, one on phones), each opening to 1–2 sentences + links to the supporting pages. Footer Licenses / Capabilities / Company = `<details data-desktop-open>`: shipped open, collapsed on phones by site.js. Front door, Government & Primes, Credentials and the capability statement stay fully open.
+- **Proof linking:** `proof_card()` ("Backed by") on service, capability-category and job pages links each claim to credentials, compliance, job videos, the capability statement and the matching capability or government page; government and credentials pages carry "Related" link rows.
 - **Menu:** Capabilities (mega: 7 areas + 8 core services) · Government & Primes · Projects ▾ · Company ▾ · [Request a Bid]. Phones: full-screen panel with Request a Bid + Call on top; 📞 button in the header. Pinned bottom call bar removed.
 - **Footer (every page):** logo + one-line contact → full Licenses & Registrations grid (`CREDS`) → Capabilities / Company links → legal + MediaIn360 credit.
 
@@ -81,6 +83,13 @@ job pages (one per video) → place pages (grow from jobs) → service × place 
 
 The form also captures `landing_page`, `referrer` and "how did you find us".
 **The form isn't connected yet.** `action="#"` just jumps to the thank-you page. Before launch: point it at a PHP mail handler on Hostinger, Formspree, or a CRM, and route emails by `lead_lane`.
+
+## Go-live phase (not yet built)
+- **Switches:** real domain → `SITE_URL`; `PREVIEW=False`; `FRONT_DOOR_AT_ROOT=False`; submit sitemap to Google Search Console + Bing Webmaster.
+- **SEO:** titles/descriptions pass, deeper internal linking, page speed, Google Business Profile, consistent name/address/phone across directories (citations).
+- **AEO:** build Question Bank answers as short-answer-first pages (40–60 word answer, then detail, then proof), structured data on each.
+- **GEO:** captioned YouTube job videos, strong About / company-facts page, directory and industry listings so AI tools can cite them.
+- **Content & wiring:** real photos/videos/licenses, Matt's answers, hero video files, bid-form endpoint, analytics + call tracking, attorney review.
 
 ## Before go-live checklist
 - [ ] Fill every `[[...]]` in content.py (search for `[[`)

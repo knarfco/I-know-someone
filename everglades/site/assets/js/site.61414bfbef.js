@@ -148,6 +148,11 @@
     });
   }
 
+  // Footer accordions: open on computers, collapsed on phones (HTML ships open so nothing hides without JS)
+  if (window.matchMedia && window.matchMedia("(max-width: 900px)").matches) {
+    document.querySelectorAll("details[data-desktop-open]").forEach(function (d) { d.removeAttribute("open"); });
+  }
+
   // Footer year
   document.querySelectorAll("[data-current-year]").forEach(function (el) { el.textContent = new Date().getFullYear(); });
 })();
