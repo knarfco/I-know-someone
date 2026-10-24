@@ -5,6 +5,12 @@
 - `build/build.py`: generates `site/`. Run `python3 everglades/build/build.py`.
 - `site/`: the upload. Contents go straight into Hostinger `public_html` (index.html at the top).
 
+## Standing rule: MediaIn360 credit on every page
+- "Produced and Powered by MediaIn360" sits small in the **bottom-right of every page**, linking to https://mediain360.com (new tab).
+- `credit(cur, light_bg=False)` in build.py. `footer()` adds it automatically, so **every new page that uses the standard layout gets it for free**. Pages with their own layout (front door, capability statement, QR sheet, 404) call it directly; any new custom-layout page must too.
+- Files: `assets/img/mediain360-credit-light.png` (white + orange, for dark backgrounds) and `mediain360-credit.png` (original colors, for light backgrounds / print).
+- The client owns the site; the credit stays as the design attribution.
+
 ## Settings in build.py
 | Flag | Now | At launch |
 |---|---|---|

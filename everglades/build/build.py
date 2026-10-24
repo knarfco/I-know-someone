@@ -143,6 +143,16 @@ def faq_schema(pairs):
 
 
 # ---------------------------------------------------------------- layout pieces
+CREDIT_URL = "https://mediain360.com"
+
+
+def credit(cur, light_bg=False):
+    """MediaIn360 design credit. Goes bottom-right on EVERY page (footer() adds it automatically)."""
+    img = "assets/img/mediain360-credit.png" if light_bg else "assets/img/mediain360-credit-light.png"
+    return (f'<a class="credit" href="{CREDIT_URL}" target="_blank" rel="noopener" title="Produced and Powered by MediaIn360">'
+            f'<img src="{rel(cur, img)}" alt="Produced and Powered by MediaIn360" width="360" height="94" loading="lazy"></a>')
+
+
 def header(cur):
     L = lambda p: rel(cur, p)  # noqa: E731
     land = "".join(f'<a href="{L("services/" + s["slug"] + "/")}">{s["name"]}</a>' for s in SERVICES if s["group"] == "land")
@@ -220,7 +230,7 @@ def footer(cur):
   </div>
   <div class="legal">
     <span>© <span data-current-year>2026</span> {BIZ['name']} All rights reserved.</span>
-    <span><a href="{L('privacy/')}">Privacy</a></span>
+    <span class="legal-right"><a href="{L('privacy/')}">Privacy</a>{credit(cur)}</span>
   </div>
 </div></footer>
 <div class="callbar"><a class="c1" href="{tel_href(cur)}">📞 Call Now</a><a class="c2" href="{L('request-a-bid/')}">Request a Bid</a></div>"""
@@ -433,7 +443,8 @@ body{background:radial-gradient(ellipse at 50% 20%,#13692e 0%,#06381A 45%,#031d0
     </div>
   </div>
 </div>
-<div class="door-foot">W-9 and certificate of insurance on request · Storm response 24/7<br>{BIZ['name']} · {BIZ['phone']} · {BIZ['email']}</div>"""
+<div class="door-foot">W-9 and certificate of insurance on request · Storm response 24/7<br>{BIZ['name']} · {BIZ['phone']} · {BIZ['email']}</div>
+<div class="credit-row">{credit(cur)}</div>"""
     page(cur, f"{BIZ['name']} | Land Clearing, Excavation & Restoration",
          f"{BIZ['name']}: land clearing, excavation, wetland restoration and storm response since {BIZ['founded']}. Licensed, bonded and registered for public work.",
          ph(body), chrome=False, extra_head=style, noindex=FRONT_DOOR_AT_ROOT is False)
@@ -1134,7 +1145,7 @@ body{background:#e9e5da}
 .cap .creds div{background:#f6f3ea;border-color:#e2dccb}
 .cap .creds dt{color:var(--ink-soft)}
 .cap .creds dd{color:var(--ink)}
-.cap-foot{background:var(--sand);padding:12px 28px;font-size:.85rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.cap-foot{background:var(--sand);padding:12px 28px;font-size:.85rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
 .printbar{text-align:center;margin:18px 0 30px}
 @media screen and (max-width:760px){.cap-head,.cap-body{grid-template-columns:1fr}.cap-head p{text-align:left}}
 @media print{body{background:#fff}.printbar{display:none}.cap{box-shadow:none;margin:0;max-width:none}@page{size:letter;margin:.35in}
@@ -1169,7 +1180,7 @@ body{background:#e9e5da}
       <h2>Company Data</h2>{creds_grid()}
     </div>
   </div>
-  <footer class="cap-foot"><span>Headquartered in [[City, State]] · Working anywhere</span><span>W-9 and COI on request</span></footer>
+  <footer class="cap-foot"><span>Headquartered in [[City, State]] · Working anywhere</span><span>W-9 and COI on request</span><span class="cap-credit">{credit(cur, light_bg=True)}</span></footer>
 </article>
 <div class="printbar"><button class="btn btn-yellow" onclick="window.print()">Print / Save as PDF</button>
 <a class="btn btn-outline" href="{L(DOOR)}">Back</a></div>"""
@@ -1505,7 +1516,8 @@ body{background:#fff}
   <p>{BIZ['phone']}</p>
   <div class="printbar"><button class="btn btn-yellow" onclick="window.print()">Print this page</button>
   <a class="btn btn-outline" href="{L(DOOR)}">Back</a></div>
-</div>"""
+</div>
+<div class="credit-row">{credit(cur, light_bg=True)}</div>"""
     page(cur, f"QR Code | {BIZ['short']}", "Printable QR code.", body, chrome=False, extra_head=style, noindex=True)
 
 
@@ -1519,7 +1531,8 @@ def build_404():
 <img src="/assets/img/everglades-logo-640.webp" alt="{esc(BIZ['name'])}" style="margin:0 auto 24px;max-width:420px">
 <h1>This Page Got Cleared</h1><p class="lead" style="margin:0 auto 24px">We couldn't find that page. Try one of these:</p>
 <div class="ctas" style="justify-content:center"><a class="btn btn-yellow" href="/{HOME}">Home</a><a class="btn btn-ghost" href="/services/">Services</a><a class="btn btn-ghost" href="/request-a-bid/">Request a Bid</a></div>
-</div></section></body></html>"""
+</div></section>
+<div class="credit-row" style="position:fixed;right:0;bottom:0"><a class="credit" href="{CREDIT_URL}" target="_blank" rel="noopener"><img src="/assets/img/mediain360-credit-light.png" alt="Produced and Powered by MediaIn360" width="360" height="94"></a></div></body></html>"""
     PAGES["404.html"] = body
 
 

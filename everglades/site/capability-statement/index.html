@@ -37,7 +37,7 @@ body{background:#e9e5da}
 .cap .creds div{background:#f6f3ea;border-color:#e2dccb}
 .cap .creds dt{color:var(--ink-soft)}
 .cap .creds dd{color:var(--ink)}
-.cap-foot{background:var(--sand);padding:12px 28px;font-size:.85rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.cap-foot{background:var(--sand);padding:12px 28px;font-size:.85rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
 .printbar{text-align:center;margin:18px 0 30px}
 @media screen and (max-width:760px){.cap-head,.cap-body{grid-template-columns:1fr}.cap-head p{text-align:left}}
 @media print{body{background:#fff}.printbar{display:none}.cap{box-shadow:none;margin:0;max-width:none}@page{size:letter;margin:.35in}
@@ -74,7 +74,7 @@ body{background:#e9e5da}
       <h2>Company Data</h2><dl class="creds"><div><dt>Certified Contractor License #</dt><dd><span class="ph">XXX</span></dd></div><div><dt>Underground Utility & Excavation License #</dt><dd><span class="ph">XXX</span></dd></div><div><dt>SAM.gov UEI</dt><dd><span class="ph">XXX</span></dd></div><div><dt>CAGE Code</dt><dd><span class="ph">XXX</span></dd></div><div><dt>NAICS Codes</dt><dd><span class="ph">XXX</span></dd></div><div><dt>FEMA Vendor #</dt><dd><span class="ph">XXX</span></dd></div><div><dt>Army Corps Project / Permit #</dt><dd><span class="ph">XXX</span></dd></div><div><dt>FDOT Prequalification</dt><dd><span class="ph">XXX</span></dd></div><div><dt>Bonding Capacity</dt><dd><span class="ph">$X,XXX,XXX</span></dd></div><div><dt>Insurance</dt><dd><span class="ph">GL / Auto / WC limits</span></dd></div><div><dt>Pesticide / Applicator License</dt><dd><span class="ph">XXX</span></dd></div><div><dt>Local Business Tax Receipt</dt><dd><span class="ph">XXX</span></dd></div><div><dt>State Vendor # (MyFloridaMarketPlace)</dt><dd><span class="ph">XXX</span></dd></div><div><dt>Certifications</dt><dd><span class="ph">SBE / MBE / DBE / other</span></dd></div></dl>
     </div>
   </div>
-  <footer class="cap-foot"><span>Headquartered in <span class="ph">City, State</span> · Working anywhere</span><span>W-9 and COI on request</span></footer>
+  <footer class="cap-foot"><span>Headquartered in <span class="ph">City, State</span> · Working anywhere</span><span>W-9 and COI on request</span><span class="cap-credit"><a class="credit" href="https://mediain360.com" target="_blank" rel="noopener" title="Produced and Powered by MediaIn360"><img src="../assets/img/mediain360-credit.png" alt="Produced and Powered by MediaIn360" width="360" height="94" loading="lazy"></a></span></footer>
 </article>
 <div class="printbar"><button class="btn btn-yellow" onclick="window.print()">Print / Save as PDF</button>
 <a class="btn btn-outline" href="../">Back</a></div>
