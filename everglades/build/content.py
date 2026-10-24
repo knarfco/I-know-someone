@@ -26,6 +26,10 @@ BIZ = {
     "naics": "[[238910 Site Preparation · 237990 · 562119 — confirm]]",
     "youtube": "[[YouTube channel link XXX]]",
     "gbp": "[[Google Business Profile link XXX]]",
+    # Home hero background video (self-hosted, silent loop). Leave mp4 empty for the placeholder.
+    # e.g. {"mp4": "assets/video/hero.mp4", "mp4_mobile": "assets/video/hero-720.mp4",
+    #       "webm": "assets/video/hero.webm", "poster": "assets/video/hero.jpg"}
+    "hero_video": {"mp4": "", "mp4_mobile": "", "webm": "", "poster": ""},
 }
 
 # Every license / registration a procurement officer looks for. Shown above the fold on the
@@ -45,6 +49,8 @@ CREDS = [
     ("Pesticide / Applicator License", "[[XXX]]"),
     ("Local Business Tax Receipt", "[[XXX]]"),
     ("State Vendor # (MyFloridaMarketPlace)", "[[XXX]]"),
+    ("E-Verify Company ID", "[[XXX]]"),
+    ("Drug-Free Workplace", "Program in place"),
     ("Certifications", "[[SBE / MBE / DBE / other]]"),
 ]
 

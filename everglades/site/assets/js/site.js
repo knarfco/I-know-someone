@@ -9,6 +9,8 @@
     toggle.addEventListener("click", function () {
       var open = nav.classList.toggle("open");
       toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      toggle.textContent = open ? "✕ Close" : "☰ Menu";
+      document.documentElement.classList.toggle("nav-open", open);
     });
   }
 
@@ -128,6 +130,21 @@
       el.innerHTML = qr.createSvgTag({ cellSize: 6, margin: 2, scalable: true });
       var cap = document.querySelector('[data-qr-url="' + el.id + '"]');
       if (cap) cap.textContent = url.replace(/^https?:\/\//, "").replace(/\/$/, "");
+    });
+  }
+
+  // Hero background video: pause control + reduced-motion respect (WCAG 2.2.2)
+  var vid = document.querySelector(".hero-vid"), pause = document.querySelector(".hero-pause");
+  if (vid && pause) {
+    var still = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var setState = function (paused) {
+      pause.setAttribute("aria-pressed", paused ? "true" : "false");
+      pause.setAttribute("aria-label", paused ? "Play background video" : "Pause background video");
+      pause.textContent = paused ? "▶" : "⏸";
+    };
+    if (still) { vid.pause(); pause.hidden = true; }
+    pause.addEventListener("click", function () {
+      if (vid.paused) { vid.play(); setState(false); } else { vid.pause(); setState(true); }
     });
   }
 

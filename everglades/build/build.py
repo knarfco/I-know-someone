@@ -159,10 +159,8 @@ def credit(cur, light_bg=False):
 
 def header(cur):
     L = lambda p: rel(cur, p)  # noqa: E731
-    land = "".join(f'<a href="{L("services/" + s["slug"] + "/")}">{s["name"]}</a>' for s in SERVICES if s["group"] == "land")
-    env = "".join(f'<a href="{L("services/" + s["slug"] + "/")}">{s["name"]}</a>' for s in SERVICES if s["group"] == "env")
-    aud = "".join(f'<a href="{L("who-we-serve/" + a["slug"] + "/")}">{a["menu"]}</a>' for a in AUDIENCES)
-    regions = "".join(f'<a href="{L(r["path"])}">{r["name"]}</a>' for r in PLACES.values())
+    areas = "".join(f'<a href="{L("capabilities/" + k + "/")}"><b>{n}</b><span>{d}</span></a>' for k, n, d in SECTIONS)
+    core = "".join(f'<a href="{L("services/" + x["slug"] + "/")}">{x["name"]}</a>' for x in SERVICES)
     return f"""
 <a class="skip" href="#main">Skip to content</a>
 <div class="topbar" role="region" aria-label="Contact"><div class="wrap">
@@ -174,70 +172,70 @@ def header(cur):
     <img src="{L('assets/img/everglades-mark.png')}" alt="" width="54" height="54">
     <span class="brand-name">EVERGLADES<small>RESTORATIONS &amp; LAND CLEARING INC.</small></span>
   </a>
+  <a class="hdr-call" href="{tel_href(cur)}" aria-label="Call {esc(plain(BIZ['phone']))}">📞</a>
   <button class="menu-toggle" aria-expanded="false" aria-controls="nav">☰ Menu</button>
   <nav class="nav" id="nav" aria-label="Main">
+    <div class="nav-quick">
+      <a class="btn btn-yellow" href="{L('request-a-bid/')}">Request a Bid</a>
+      <a class="btn btn-ghost" href="{tel_href(cur)}">📞 Call</a>
+    </div>
     <ul>
-      <li><details><summary>Services</summary><div class="menu wide">
-        <div><div class="menu-head">Land &amp; Site Work</div>{land}</div>
-        <div><div class="menu-head">Environmental &amp; Storm</div>{env}</div>
-        <div><a href="{L('services/')}"><b>All services →</b></a><a href="{L('capabilities/')}"><b>All capabilities →</b></a></div>
+      <li><details><summary>Capabilities</summary><div class="menu mega">
+        <div class="mega-areas"><div class="menu-head">Areas of expertise</div>{areas}</div>
+        <div class="mega-core"><div class="menu-head">Core services</div>{core}
+        <a class="mega-all" href="{L('capabilities/')}">All capabilities →</a></div>
       </div></details></li>
-      <li><details><summary>Who We Serve</summary><div class="menu">{aud}<a href="{L('who-we-serve/')}"><b>Overview →</b></a></div></details></li>
-      <li><details><summary>Where We Work</summary><div class="menu">
-        <a href="{L('projects-anywhere/')}"><b>Projects Anywhere</b></a>
-        {('<div class="menu-head">Where we\'ve worked</div>' + regions) if regions else ''}
-        <a href="{L('where-weve-worked/')}"><b>All places →</b></a>
+      <li><a class="top" href="{L('who-we-serve/government-agencies/')}">Government &amp; Primes</a></li>
+      <li><details><summary>Projects</summary><div class="menu">
+        <a href="{L('projects/')}">Job Videos</a>
+        <a href="{L('where-weve-worked/')}">Where We've Worked</a>
+        <a href="{L('projects-anywhere/')}">Projects Anywhere</a>
       </div></details></li>
-      <li><a class="top" href="{L('projects/')}">Job Videos</a></li>
-      <li><a class="top" href="{L('questions/')}">Questions</a></li>
-      <li><details><summary>About</summary><div class="menu">
-        <a href="{L('about/')}">Our History</a>
+      <li><details><summary>Company</summary><div class="menu">
+        <a href="{L('about/')}">About Us</a>
         <a href="{L('credentials/')}">Licenses &amp; Credentials</a>
+        <a href="{L('compliance/')}">Compliance</a>
+        <a href="{L('questions/')}">Questions &amp; Answers</a>
         <a href="{L('reviews/')}">Reviews</a>
       </div></details></li>
     </ul>
-    <a class="btn btn-yellow btn-sm" href="{L('request-a-bid/')}">Request a Bid</a>
+    <a class="btn btn-yellow btn-sm nav-bid" href="{L('request-a-bid/')}">Request a Bid</a>
   </nav>
 </div></header>"""
 
 
 def footer(cur):
     L = lambda p: rel(cur, p)  # noqa: E731
-    svc = "".join(f'<li><a href="{L("services/" + s["slug"] + "/")}">{s["name"]}</a></li>' for s in SERVICES)
-    regions = "".join(f'<li><a href="{L(r["path"])}">{r["name"]}</a></li>' for r in PLACES.values())
+    caps = "".join(f'<li><a href="{L("capabilities/" + k + "/")}">{n}</a></li>' for k, n, _ in SECTIONS)
     return f"""
 <footer class="footer"><div class="wrap">
-  <div class="footer-grid">
-    <div>
-      <div class="logo-plate footer-logo"><img src="{L('assets/img/everglades-logo-640.webp')}" alt="{esc(BIZ['name'])}" width="640" height="289" loading="lazy"></div>
-      <p>Land clearing, excavation and environmental restoration since {BIZ['founded']}. Headquartered in {ph(BIZ['hq'])} — working anywhere.</p>
-      <p>{ph(BIZ['address'])}<br>{ph(BIZ['city_state'])}<br>
-      <a href="{tel_href(cur)}">{ph(BIZ['phone'])}</a><br>{ph(BIZ['email'])}<br>{ph(BIZ['hours'])}</p>
-      <p>{ph(BIZ['license'])}</p>
-    </div>
-    <div><h2 class="foot-h">Services</h2><ul>{svc}<li><a href="{L('capabilities/')}"><b>Full Capability Map →</b></a></li></ul></div>
-    <div><h2 class="foot-h">Where We Work</h2><ul>
-      <li><a href="{L('projects-anywhere/')}">Projects Anywhere</a></li>
-      <li><a href="{L('where-weve-worked/')}">Where We've Worked</a></li>{regions}
-      <li><a href="{L('projects/')}">Job Videos</a></li>
-    </ul></div>
+  <div class="foot-top">
+    <div class="logo-plate footer-logo"><img src="{L('assets/img/everglades-logo-640.webp')}" alt="{esc(BIZ['name'])}" width="640" height="289" loading="lazy"></div>
+    <p class="foot-contact"><a href="{tel_href(cur)}">{ph(BIZ['phone'])}</a> · {ph(BIZ['email'])} · Headquartered in {ph(BIZ['hq'])} · {ph(BIZ['hours'])}</p>
+  </div>
+  <section class="foot-creds" aria-label="Licenses and registrations">
+    <h2 class="foot-h">Licenses &amp; Registrations</h2>
+    {creds_grid()}
+  </section>
+  <div class="foot-links">
+    <div><h2 class="foot-h">Capabilities</h2><ul>{caps}<li><a href="{L('capabilities/')}">All capabilities</a></li></ul></div>
     <div><h2 class="foot-h">Company</h2><ul>
-      <li><a href="{L('about/')}">About &amp; History</a></li>
-      <li><a href="{L('credentials/')}">Licenses &amp; Credentials</a></li>
+      <li><a href="{L('who-we-serve/government-agencies/')}">Government &amp; Primes</a></li>
+      <li><a href="{L('who-we-serve/contractors-developers/')}">Contractors &amp; Developers</a></li>
+      <li><a href="{L('who-we-serve/homeowners-ranches/')}">Homeowners, Ranches &amp; HOAs</a></li>
+      <li><a href="{L('projects/')}">Job Videos</a></li>
+      <li><a href="{L('projects-anywhere/')}">Projects Anywhere</a></li>
+      <li><a href="{L('about/')}">About Us</a></li>
+      <li><a href="{L('capability-statement/')}">Capability Statement</a></li>
       <li><a href="{L('questions/')}">Questions &amp; Answers</a></li>
-      <li><a href="{L('who-we-serve/government-agencies/')}">Government &amp; Agencies</a></li>
-      <li><a href="{L('reviews/')}">Leave a Review</a></li>
       <li><a href="{L('request-a-bid/')}">Request a Bid</a></li>
-      <li>YouTube: {ph(BIZ['youtube'])}</li>
-      <li>Google: {ph(BIZ['gbp'])}</li>
     </ul></div>
   </div>
   <div class="legal">
-    <span>© <span data-current-year>2026</span> {BIZ['name']} All rights reserved.</span>
+    <span>© <span data-current-year>2026</span> {BIZ['name']} · Since {BIZ['founded']}</span>
     <span class="legal-right"><nav class="legal-links" aria-label="Legal"><a href="{L('privacy/')}">Privacy</a><a href="{L('terms/')}">Terms</a><a href="{L('accessibility/')}">Accessibility</a><a href="{L('compliance/')}">Compliance</a><a href="{L('text-terms/')}">Text Terms</a></nav>{credit(cur)}</span>
   </div>
-</div></footer>
-<nav class="callbar" aria-label="Quick contact"><a class="c1" href="{tel_href(cur)}">📞 Call Now</a><a class="c2" href="{L('request-a-bid/')}">Request a Bid</a></nav>"""
+</div></footer>"""
 
 
 def page(cur, title, desc, body, schema=None, crumbs=None, noindex=False, chrome=True, extra_head=""):
@@ -457,36 +455,65 @@ body{background:radial-gradient(ellipse at 50% 20%,#13692e 0%,#06381A 45%,#031d0
          ph(body), chrome=False, extra_head=style, noindex=FRONT_DOOR_AT_ROOT is False)
 
 
+def hero_media(cur):
+    """Silent looping background video (self-hosted). Empty HERO_VIDEO = placeholder, no motion."""
+    v = BIZ["hero_video"]
+    if not v["mp4"]:
+        return ('<div class="hero-media" aria-hidden="true"></div>'
+                '<span class="hero-video-tag">[[Background video: 10–20 sec loop of their best job footage]]</span>')
+    L = lambda p: rel(cur, p)  # noqa: E731
+    small = f'<source src="{L(v["mp4_mobile"])}" type="video/mp4" media="(max-width: 760px)">' if v.get("mp4_mobile") else ""
+    poster = f' poster="{L(v["poster"])}"' if v.get("poster") else ""
+    webm = f'<source src="{L(v["webm"])}" type="video/webm">' if v.get("webm") else ""
+    return (f'<div class="hero-media" aria-hidden="true"><video class="hero-vid" muted loop playsinline autoplay preload="metadata"{poster}>'
+            f'{small}{webm}<source src="{L(v["mp4"])}" type="video/mp4"></video></div>'
+            '<button type="button" class="hero-pause" aria-label="Pause background video" aria-pressed="false">⏸</button>')
+
+
 def build_home():
     cur = HOME
     L = lambda p: rel(cur, p)  # noqa: E731
+    card_rows = [c for c in CREDS if c[0] in ("SAM.gov UEI", "CAGE Code", "Bonding Capacity", "FEMA Vendor #", "E-Verify Company ID", "Certified Contractor License #")]
+    pcard = "".join(f"<div><dt>{a}</dt><dd>{b}</dd></div>" for a, b in card_rows)
     lanes = f"""
 <div class="grid g3">
-  <a class="card lane-card" href="{L('who-we-serve/government-agencies/')}"><h3>Government &amp; Agencies</h3><p>Restoration earthwork, exotic removal, drainage and FEMA storm response for agencies and prime contractors.</p><span class="more">Capabilities</span></a>
-  <a class="card lane-card" href="{L('who-we-serve/contractors-developers/')}"><h3>Contractors &amp; Developers</h3><p>Clearing, site prep, ponds and grading — on schedule, with our own equipment and crews.</p><span class="more">Work with us</span></a>
-  <a class="card lane-card" href="{L('who-we-serve/homeowners-ranches/')}"><h3>Homeowners, Ranches &amp; HOAs</h3><p>Lots, pasture, ponds, culverts and lake banks. Tell us what you need and we'll take care of it.</p><span class="more">Get started</span></a>
+  <a class="card lane-card" href="{L('who-we-serve/government-agencies/')}"><h3>Government &amp; Prime Contractors</h3><p>Restoration earthwork, clearing, drainage and FEMA storm response for agencies and the primes who win their contracts.</p><span class="more">Capability snapshot</span></a>
+  <a class="card lane-card" href="{L('who-we-serve/contractors-developers/')}"><h3>Developers &amp; Contractors</h3><p>Clearing, site prep, ponds and grading — on schedule, with our own equipment and crews.</p><span class="more">Work with us</span></a>
+  <a class="card lane-card" href="{L('who-we-serve/homeowners-ranches/')}"><h3>Property Owners</h3><p>Ranches, HOAs, lots and acreage. Tell us what you need and we'll take care of it.</p><span class="more">Get started</span></a>
 </div>"""
     qlinks = "".join(f'<li><a href="{L("questions/" + q["slug"] + "/")}">{q["q"]}</a></li>' for q in QUESTIONS)
     body = f"""
-<section class="hero"><div class="wrap hero-grid">
-  <div>
-    <span class="eyebrow">Any state · Any country</span>
-    <h1>Land Clearing, Excavation &amp; Restoration — Wherever the Job Is</h1>
-    <p class="lead">From a single homesite to thousands of acres of wetland restoration — our own crews, our own equipment, and real know-how about land and water.</p>
-    <div class="ctas">
-      <a class="btn btn-yellow" href="{L('request-a-bid/')}">Request a Bid</a>
-      <a class="btn btn-ghost" href="{tel_href(cur)}">Call {BIZ['phone']}</a>
-      <a class="btn btn-ghost" href="{L('projects/')}">Watch Our Work</a>
+<section class="hero hero-video">
+  {hero_media(cur)}
+  <div class="wrap hero-grid">
+    <div>
+      <h1>Built in the Everglades. Ready for Anywhere.</h1>
+      <p class="lead">Land clearing, earthwork and environmental restoration for public agencies, prime contractors and major developers. If we can work the Everglades, we can work your site.</p>
+      <div class="ctas">
+        <a class="btn btn-yellow" href="{L('request-a-bid/')}">Request a Bid</a>
+        <a class="btn btn-ghost" href="{L('capability-statement/')}">📄 Capability Statement</a>
+      </div>
+      <p class="hero-proof">Since {BIZ['founded']} · Licensed · Bonded · Insured</p>
     </div>
-    <div class="hero-creds">{creds_grid(compact=True)}<a href="{L('credentials/')}">All licenses &amp; credentials →</a></div>
+    <aside class="pcard" aria-label="Procurement card">
+      <div class="pcard-head">Procurement Card</div>
+      <dl>{pcard}</dl>
+      <a href="{L('credentials/')}">All licenses &amp; registrations →</a>
+    </aside>
   </div>
-  <div class="logo-plate"><img src="{L('assets/img/everglades-logo.webp')}" alt="{esc(BIZ['name'])} logo" width="1400" height="632"></div>
-</div></section>
+</section>
 
 <section class="section"><div class="wrap">
-  <div class="section-head"><span class="eyebrow" style="color:var(--green)">What we do</span><h2>Services</h2>
-  <p>Land and site work for every kind of property, plus the environmental and storm work communities depend on.</p></div>
-  {service_cards(cur, [s['slug'] for s in SERVICES], 'g4')}
+  <div class="section-head"><span class="eyebrow">Who we work for</span><h2>Built for Big Contracts. Ready for Every Job.</h2>
+  <p>Agencies, primes, developers and property owners all get the same thing: a crew that shows up and does it right.</p></div>
+  {lanes}
+</div></section>
+
+<section class="section alt"><div class="wrap">
+  <div class="section-head"><span class="eyebrow">Capabilities</span><h2>Everything We Do</h2>
+  <p>From clearing a single lot to remediation earthwork, energy sites and disaster recovery.</p></div>
+  <div class="grid g4">{''.join(f'<a class="card" href="{L("capabilities/" + k + "/")}"><h3>{n}</h3><p>{d}</p><span class="more">Explore</span></a>' for k, n, d in SECTIONS)}
+  <a class="card lane-card" href="{L('capabilities/')}"><h3>All Capabilities</h3><p>Every category and service in one place.</p><span class="more">View all</span></a></div>
 </div></section>
 
 <section class="section dark"><div class="wrap split">
@@ -498,15 +525,13 @@ def build_home():
 </div></section>
 
 <section class="section"><div class="wrap">
-  <div class="section-head"><span class="eyebrow">Capabilities</span><h2>Everything We Do</h2>
-  <p>From clearing a single lot to remediation earthwork, energy sites and disaster recovery.</p></div>
-  <div class="grid g4">{''.join(f'<a class="card" href="{L("capabilities/" + k + "/")}"><h3>{n}</h3><p>{d}</p><span class="more">Explore</span></a>' for k, n, d in SECTIONS)}
-  <a class="card lane-card" href="{L('capabilities/')}"><h3>See the full map</h3><p>Every category and service in one place.</p><span class="more">Capability map</span></a></div>
+  <div class="section-head"><span class="eyebrow">Core services</span><h2>What We Do Most</h2></div>
+  {service_cards(cur, [x['slug'] for x in SERVICES], 'g4')}
 </div></section>
 
 <section class="section alt"><div class="wrap split">
   <div>
-    <span class="eyebrow" style="color:var(--green)">See it for yourself</span>
+    <span class="eyebrow">See it for yourself</span>
     <h2>Real Jobs. Real Video.</h2>
     <p>Every job we film gets its own page — the date, the place, the equipment and the result. No stock photos.</p>
     {video('Featured job video', 'Latest YouTube job video plays here')}
@@ -518,27 +543,10 @@ def build_home():
   </div>
 </div></section>
 
-<section class="section"><div class="wrap">
-  <div class="section-head"><h2>Who We Work For</h2><p>Agencies, builders and landowners all get the same thing: a crew that shows up and does it right.</p></div>
-  {lanes}
-</div></section>
-
-
 <section class="section"><div class="wrap split">
   <div><div class="section-head"><h2>Where We've Worked</h2><p>Every place here has a real, dated job video behind it — and the list grows with every job.</p></div>
   {places_block(cur)}
   <p class="mt"><a href="{L('where-weve-worked/')}">All places →</a></p></div>
-  <div class="card lane-card"><span class="eyebrow" style="color:var(--green)">For agencies &amp; procurement</span>
-  <h3>Capability Statement</h3><p>Licenses, registrations, codes, bonding and past performance on one page.</p>
-  <a class="more" href="{L('capability-statement/')}">View &amp; print</a></div>
-</div></section>
-
-<section class="section alt"><div class="wrap split">
-  <div>
-    <h2>Licensed, Insured &amp; Proven</h2>
-    <ul class="checks">{''.join(f"<li>{a} {b}</li>" for a, b in CREDS[:7])}</ul>
-    <a class="btn btn-outline" href="{L('credentials/')}">See all credentials</a>
-  </div>
   <div>
     <h3>Common Questions</h3>
     <ul class="checks">{qlinks}</ul>
@@ -546,8 +554,8 @@ def build_home():
   </div>
 </div></section>
 {cta_band(cur)}"""
-    page(cur, f"Land Clearing, Excavation & Restoration Contractor | {BIZ['short']}",
-         f"Land clearing, forestry mulching, excavation, wetland restoration and storm debris removal — wherever the job is. Licensed and insured, since {BIZ['founded']}.",
+    page(cur, f"Land Clearing, Earthwork & Environmental Restoration Contractor | {BIZ['short']}",
+         f"Built in the Everglades. Ready for anywhere. Land clearing, earthwork and environmental restoration for public agencies, prime contractors and major developers. Since {BIZ['founded']}.",
          body)
 
 
