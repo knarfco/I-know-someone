@@ -25,6 +25,7 @@
 ## Final sweep layout (Oct 24, 2026)
 - **Home hero:** "Built in the Everglades. Ready for Anywhere." + buyer line, [Request a Bid] [Capability Statement], "Since 1992 · Licensed · Bonded · Insured", Procurement Card (UEI, CAGE, license, FEMA, bonding, E-Verify), which becomes chips on phones.
 - **Hero video:** set `BIZ["hero_video"]` in content.py (`mp4`, optional `mp4_mobile`, `webm`, `poster`) and put files in `site/assets/video/`. Silent, looped, autoplay, dark overlay, pause button (WCAG 2.2.2), hidden for reduce-motion. Empty = placeholder. Target 10–20 s, 1080p ≈3–6 MB MP4 (H.264) + WebM, 720p mobile version, poster JPG.
+- **Home = short landing page:** hero → "At a Glance" (one-line 'who we are' + 9 teasers, each 1–2 sentences with a varied info link: capabilities, government & primes, job videos, core services, projects anywhere, where we've worked, property owners, compliance, Q&A) → closing band. Everything else lives on its own page; inner pages link back via breadcrumbs. Informational tone, not salesy.
 - **Menu:** Capabilities (mega: 7 areas + 8 core services) · Government & Primes · Projects ▾ · Company ▾ · [Request a Bid]. Phones: full-screen panel with Request a Bid + Call on top; 📞 button in the header. Pinned bottom call bar removed.
 - **Footer (every page):** logo + one-line contact → full Licenses & Registrations grid (`CREDS`) → Capabilities / Company links → legal + MediaIn360 credit.
 

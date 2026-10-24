@@ -475,13 +475,18 @@ def build_home():
     L = lambda p: rel(cur, p)  # noqa: E731
     card_rows = [c for c in CREDS if c[0] in ("SAM.gov UEI", "CAGE Code", "Bonding Capacity", "FEMA Vendor #", "E-Verify Company ID", "Certified Contractor License #")]
     pcard = "".join(f"<div><dt>{a}</dt><dd>{b}</dd></div>" for a, b in card_rows)
-    lanes = f"""
-<div class="grid g3">
-  <a class="card lane-card" href="{L('who-we-serve/government-agencies/')}"><h3>Government &amp; Prime Contractors</h3><p>Restoration earthwork, clearing, drainage and FEMA storm response for agencies and the primes who win their contracts.</p><span class="more">Capability snapshot</span></a>
-  <a class="card lane-card" href="{L('who-we-serve/contractors-developers/')}"><h3>Developers &amp; Contractors</h3><p>Clearing, site prep, ponds and grading — on schedule, with our own equipment and crews.</p><span class="more">Work with us</span></a>
-  <a class="card lane-card" href="{L('who-we-serve/homeowners-ranches/')}"><h3>Property Owners</h3><p>Ranches, HOAs, lots and acreage. Tell us what you need and we'll take care of it.</p><span class="more">Get started</span></a>
-</div>"""
-    qlinks = "".join(f'<li><a href="{L("questions/" + q["slug"] + "/")}">{q["q"]}</a></li>' for q in QUESTIONS)
+    glance = [
+        ("Capabilities", "Land, water, cleanup, infrastructure, disaster and rural work — seven areas of expertise, one accountable team.", "capabilities/", "Explore capabilities"),
+        ("Government &amp; Primes", "Registrations, bonding, compliance and past performance for agencies and the prime contractors who win their work.", "who-we-serve/government-agencies/", "View the capability snapshot"),
+        ("Job Videos", "Real, dated jobs on video — the place, the equipment and the before-and-after.", "projects/", "Watch the work"),
+        ("Core Services", "Land clearing, mulching, ponds and canals, site prep, wetlands, invasive removal, drainage and storm debris.", "services/", "See core services"),
+        ("Projects Anywhere", "A big job far from home? We plan it, manage it and put the right crew on the ground.", "projects-anywhere/", "How it works"),
+        ("Where We've Worked", "Every place listed is backed by a real job video. The list grows with every job.", "where-weve-worked/", "See the places"),
+        ("Developers &amp; Property Owners", "Builders, developers, ranches, HOAs and landowners — jobs of every size.", "who-we-serve/", "Find your fit"),
+        ("Compliance", "Drug-Free Workplace, E-Verify, safety, equal opportunity and ethics, in plain view.", "compliance/", "Read our policies"),
+        ("Questions &amp; Answers", "Straight answers on cost, permits, wetlands and timing.", "questions/", "Read the answers"),
+    ]
+    glance_html = "".join(f'<div class="glance-item"><h3>{t}</h3><p>{d}</p><a href="{L(u)}">{c} <span aria-hidden="true">→</span></a></div>' for t, d, u, c in glance)
     body = f"""
 <section class="hero hero-video">
   {hero_media(cur)}
@@ -503,57 +508,17 @@ def build_home():
   </div>
 </section>
 
-<section class="section"><div class="wrap">
-  <div class="section-head"><span class="eyebrow">Who we work for</span><h2>Built for Big Contracts. Ready for Every Job.</h2>
-  <p>Agencies, primes, developers and property owners all get the same thing: a crew that shows up and does it right.</p></div>
-  {lanes}
+<section class="section glance"><div class="wrap">
+  <div class="section-head"><span class="eyebrow">At a glance</span><h2>Who We Are</h2>
+  <p>{BIZ['name']} clears, digs and restores land and water for public agencies, prime contractors, developers and property owners — since {BIZ['founded']}, in any state or country.</p></div>
+  <div class="glance-grid">{glance_html}</div>
 </div></section>
 
-<section class="section alt"><div class="wrap">
-  <div class="section-head"><span class="eyebrow">Capabilities</span><h2>Everything We Do</h2>
-  <p>From clearing a single lot to remediation earthwork, energy sites and disaster recovery.</p></div>
-  <div class="grid g4">{''.join(f'<a class="card" href="{L("capabilities/" + k + "/")}"><h3>{n}</h3><p>{d}</p><span class="more">Explore</span></a>' for k, n, d in SECTIONS)}
-  <a class="card lane-card" href="{L('capabilities/')}"><h3>All Capabilities</h3><p>Every category and service in one place.</p><span class="more">View all</span></a></div>
-</div></section>
-
-<section class="section dark"><div class="wrap split">
-  <div><span class="eyebrow">Projects Anywhere</span>
-  <h2>Any State. Any Country. We'll Go Where It Is.</h2>
-  <p>Big job far from home? We plan it, manage it and put the right crew and equipment on the ground — with real know-how behind every decision.</p>
-  <a class="btn btn-yellow" href="{L('projects-anywhere/')}">How Projects Anywhere Works</a></div>
-  <div><ul class="checks"><li>Remote review of plans, photos and solicitations</li><li>Site visit when the job calls for one</li><li>Our crew, or licensed local crews working to our plan</li><li>Video progress from start to finish</li></ul></div>
-</div></section>
-
-<section class="section"><div class="wrap">
-  <div class="section-head"><span class="eyebrow">Core services</span><h2>What We Do Most</h2></div>
-  {service_cards(cur, [x['slug'] for x in SERVICES], 'g4')}
-</div></section>
-
-<section class="section alt"><div class="wrap split">
-  <div>
-    <span class="eyebrow">See it for yourself</span>
-    <h2>Real Jobs. Real Video.</h2>
-    <p>Every job we film gets its own page — the date, the place, the equipment and the result. No stock photos.</p>
-    {video('Featured job video', 'Latest YouTube job video plays here')}
-    <p class="mt"><a class="btn btn-green" href="{L('projects/')}">Browse All Job Videos</a></p>
-  </div>
-  <div>
-    <h3>Before &amp; After</h3>
-    {before_after('Drag the slider — before and after photos from a real job go here')}
-  </div>
-</div></section>
-
-<section class="section"><div class="wrap split">
-  <div><div class="section-head"><h2>Where We've Worked</h2><p>Every place here has a real, dated job video behind it — and the list grows with every job.</p></div>
-  {places_block(cur)}
-  <p class="mt"><a href="{L('where-weve-worked/')}">All places →</a></p></div>
-  <div>
-    <h3>Common Questions</h3>
-    <ul class="checks">{qlinks}</ul>
-    <a href="{L('questions/')}">All questions →</a>
-  </div>
-</div></section>
-{cta_band(cur)}"""
+<section class="cta-band"><div class="wrap">
+  <div><h2>Have a project or solicitation?</h2><p>Send it over, or take our capability statement with you.</p></div>
+  <div class="ctas"><a class="btn btn-yellow" href="{L('request-a-bid/')}">Request a Bid</a>
+  <a class="btn btn-ghost" href="{L('capability-statement/')}">📄 Capability Statement</a></div>
+</div></section>"""
     page(cur, f"Land Clearing, Earthwork & Environmental Restoration Contractor | {BIZ['short']}",
          f"Built in the Everglades. Ready for anywhere. Land clearing, earthwork and environmental restoration for public agencies, prime contractors and major developers. Since {BIZ['founded']}.",
          body)

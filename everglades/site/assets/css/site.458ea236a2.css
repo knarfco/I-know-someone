@@ -446,3 +446,13 @@ a.card:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(6,56,26,.12);
 .footer .legal{margin-top:22px}
 @media (max-width:900px){.foot-creds .creds{grid-template-columns:repeat(2,1fr)}.foot-links{grid-template-columns:1fr}}
 @media (max-width:560px){.foot-links ul{columns:1}}
+
+/* ---------- home: at a glance ---------- */
+.glance-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0 32px}
+.glance-item{border-top:1px solid var(--line);padding:20px 0 22px}
+.glance-item h3{margin-bottom:6px}
+.glance-item p{color:var(--ink-soft);font-size:.97rem;margin:0 0 10px}
+.glance-item a{font-weight:700;text-decoration:none;color:var(--green)}
+.glance-item a:hover{text-decoration:underline}
+@media (max-width:900px){.glance-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.glance-grid{grid-template-columns:1fr}.glance-item{padding:16px 0}}
