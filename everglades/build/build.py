@@ -148,11 +148,11 @@ def header(cur):
     land = "".join(f'<a href="{L("services/" + s["slug"] + "/")}">{s["name"]}</a>' for s in SERVICES if s["group"] == "land")
     env = "".join(f'<a href="{L("services/" + s["slug"] + "/")}">{s["name"]}</a>' for s in SERVICES if s["group"] == "env")
     aud = "".join(f'<a href="{L("who-we-serve/" + a["slug"] + "/")}">{a["menu"]}</a>' for a in AUDIENCES)
-    regions = "".join(f'<a href="{L(r["path"])}">{r["name"]} ({len(r["projects"])} jobs)</a>' for r in PLACES.values())
+    regions = "".join(f'<a href="{L(r["path"])}">{r["name"]}</a>' for r in PLACES.values())
     return f"""
 <a class="skip" href="#main">Skip to content</a>
 <div class="topbar"><div class="wrap">
-  <span class="since">Land Clearing · Excavation · Restoration · Since {BIZ['founded']}</span>
+  <span class="since">Land Clearing · Excavation · Restoration</span>
   <span>Call <a href="{tel_href(cur)}">{ph(BIZ['phone'])}</a> · Storm response 24/7</span>
 </div></div>
 <header class="header"><div class="wrap">
@@ -166,7 +166,7 @@ def header(cur):
       <li><details><summary>Services</summary><div class="menu wide">
         <div><div class="menu-head">Land &amp; Site Work</div>{land}</div>
         <div><div class="menu-head">Environmental &amp; Storm</div>{env}</div>
-        <div><a href="{L('services/')}"><b>All services →</b></a><a href="{L('capabilities/')}"><b>Full capability map ({len(CATEGORIES)} categories) →</b></a></div>
+        <div><a href="{L('services/')}"><b>All services →</b></a><a href="{L('capabilities/')}"><b>All capabilities →</b></a></div>
       </div></details></li>
       <li><details><summary>Who We Serve</summary><div class="menu">{aud}<a href="{L('who-we-serve/')}"><b>Overview →</b></a></div></details></li>
       <li><details><summary>Where We Work</summary><div class="menu">
@@ -177,7 +177,7 @@ def header(cur):
       <li><a class="top" href="{L('projects/')}">Job Videos</a></li>
       <li><a class="top" href="{L('questions/')}">Questions</a></li>
       <li><details><summary>About</summary><div class="menu">
-        <a href="{L('about/')}">Our History (Since {BIZ['founded']})</a>
+        <a href="{L('about/')}">Our History</a>
         <a href="{L('credentials/')}">Licenses &amp; Credentials</a>
         <a href="{L('reviews/')}">Reviews</a>
       </div></details></li>
@@ -195,7 +195,7 @@ def footer(cur):
 <footer class="footer"><div class="wrap">
   <div class="footer-grid">
     <div>
-      <img class="footer-logo" src="{L('assets/img/everglades-logo-640.webp')}" alt="{esc(BIZ['name'])}" width="640" height="289" loading="lazy">
+      <div class="logo-plate footer-logo"><img src="{L('assets/img/everglades-logo-640.webp')}" alt="{esc(BIZ['name'])}" width="640" height="289" loading="lazy"></div>
       <p>Land clearing, excavation and environmental restoration since {BIZ['founded']}. Headquartered in {ph(BIZ['hq'])} — working anywhere.</p>
       <p>{ph(BIZ['address'])}<br>{ph(BIZ['city_state'])}<br>
       <a href="{tel_href(cur)}">{ph(BIZ['phone'])}</a><br>{ph(BIZ['email'])}<br>{ph(BIZ['hours'])}</p>
@@ -307,16 +307,6 @@ def cta_band(cur, h="Got a job? We'll go where it is.", p="Big or small, near or
 </div></section>"""
 
 
-def trust_strip():
-    return f"""<div class="trust"><div class="wrap"><ul>
-<li>{BIZ['years']} years in business · Since {BIZ['founded']}</li>
-<li>Licensed &amp; insured · {BIZ['license']}</li>
-<li>Army Corps project experience</li>
-<li>FEMA-ready storm response</li>
-<li>Our own equipment &amp; crews</li>
-</ul></div></div>"""
-
-
 def service_cards(cur, slugs, cls="g3"):
     L = lambda p: rel(cur, p)  # noqa: E731
     out = []
@@ -395,22 +385,19 @@ body{background:radial-gradient(ellipse at 50% 20%,#13692e 0%,#06381A 45%,#031d0
 .door{max-width:1180px;margin:0 auto;padding:32px 20px 24px}
 .door-top{text-align:center}
 .door-logo{position:relative;max-width:540px;margin:0 auto}
-.door-logo::before{content:"";position:absolute;left:4%;top:-6%;width:46%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(255,200,40,.55),rgba(255,160,0,.18) 45%,transparent 70%);filter:blur(10px);animation:glow 5s ease-in-out infinite alternate;pointer-events:none}
-@keyframes glow{from{opacity:.55;transform:scale(.92)}to{opacity:1;transform:scale(1.08)}}
-@media (prefers-reduced-motion:reduce){.door-logo::before{animation:none}}
-.door-logo img{position:relative;width:100%;filter:drop-shadow(0 0 1px rgba(255,255,255,.95)) drop-shadow(0 0 5px rgba(255,255,255,.35)) drop-shadow(0 14px 34px rgba(0,0,0,.55))}
-.door-tag{color:#fff;font-family:var(--head);font-size:clamp(1.25rem,2.4vw,1.8rem);letter-spacing:.06em;text-transform:uppercase;margin:16px 0 4px}
+.door-logo img{width:100%}
+.door-tag{color:#fff;font-family:var(--head);font-weight:800;font-size:clamp(1.2rem,2.2vw,1.6rem);letter-spacing:-.01em;margin:16px 0 4px}
 .door-sub{color:#bfe0c6;margin:0 0 20px;letter-spacing:.04em}
 .door-btns{display:grid;grid-template-columns:repeat(3,minmax(0,220px));gap:12px;justify-content:center}
 .door-btns .btn{font-size:1.05rem;padding:15px 18px}
 .door-main{display:grid;grid-template-columns:1fr 270px;gap:24px;margin-top:28px;align-items:start}
 .door-creds{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:18px 20px}
-.door-creds h2{font-size:1.15rem;color:var(--yellow);margin:0 0 12px;letter-spacing:.06em}
+.door-creds h2{font-size:1.05rem;color:#b9d9bf;margin:0 0 12px;letter-spacing:.06em}
 .door-side{display:flex;flex-direction:column;gap:12px}
 .qr-panel{background:#fff;color:var(--ink);border-radius:14px;padding:18px;text-align:center;box-shadow:0 20px 50px rgba(0,0,0,.4)}
 .qr-panel .qr{width:180px;height:180px;margin:0 auto}
 .qr-panel .qr svg{width:100%;height:100%}
-.qr-panel b{display:block;font-family:var(--head);font-weight:400;font-size:1.15rem;text-transform:uppercase;color:var(--green-deep);margin-top:8px}
+.qr-panel b{display:block;font-family:var(--head);font-weight:800;font-size:1rem;color:var(--green-deep);margin-top:8px}
 .qr-panel small{display:block;color:var(--ink-soft);word-break:break-all;margin-top:2px}
 .door-side .btn{width:100%}
 .door-foot{text-align:center;padding:14px 20px 24px;color:#8fbf99;font-size:.88rem}
@@ -421,9 +408,9 @@ body{background:radial-gradient(ellipse at 50% 20%,#13692e 0%,#06381A 45%,#031d0
     body = f"""
 <div class="door">
   <div class="door-top">
-    <div class="door-logo"><img src="{L('assets/img/everglades-logo.webp')}" alt="{esc(BIZ['name'])}" width="1400" height="632"></div>
+    <div class="door-logo logo-plate"><img src="{L('assets/img/everglades-logo.webp')}" alt="{esc(BIZ['name'])}" width="1400" height="632"></div>
     <h1 class="door-tag">Land Clearing · Excavation · Restoration</h1>
-    <p class="door-sub">Since {BIZ['founded']} · Any state · Any country</p>
+    <p class="door-sub">Any state · Any country</p>
     <div class="door-btns">
       <a class="btn btn-ghost" href="tel:{BIZ['phone_tel']}">📞 Call Now</a>
       <a class="btn btn-ghost" href="mailto:{email}">✉️ Email Us</a>
@@ -447,7 +434,7 @@ body{background:radial-gradient(ellipse at 50% 20%,#13692e 0%,#06381A 45%,#031d0
   </div>
 </div>
 <div class="door-foot">W-9 and certificate of insurance on request · Storm response 24/7<br>{BIZ['name']} · {BIZ['phone']} · {BIZ['email']}</div>"""
-    page(cur, f"{BIZ['name']} | Land Clearing, Excavation & Restoration Since {BIZ['founded']}",
+    page(cur, f"{BIZ['name']} | Land Clearing, Excavation & Restoration",
          f"{BIZ['name']}: land clearing, excavation, wetland restoration and storm response since {BIZ['founded']}. Licensed, bonded and registered for public work.",
          ph(body), chrome=False, extra_head=style, noindex=FRONT_DOOR_AT_ROOT is False)
 
@@ -465,9 +452,9 @@ def build_home():
     body = f"""
 <section class="hero"><div class="wrap hero-grid">
   <div>
-    <span class="eyebrow">Since {BIZ['founded']} · Any state · Any country</span>
+    <span class="eyebrow">Any state · Any country</span>
     <h1>Land Clearing, Excavation &amp; Restoration — Wherever the Job Is</h1>
-    <p class="lead">From a single homesite to thousands of acres of wetland restoration — our own crews, our own equipment, and {BIZ['years']} years of knowing how land and water really work.</p>
+    <p class="lead">From a single homesite to thousands of acres of wetland restoration — our own crews, our own equipment, and real know-how about land and water.</p>
     <div class="ctas">
       <a class="btn btn-yellow" href="{L('request-a-bid/')}">Request a Bid</a>
       <a class="btn btn-ghost" href="{tel_href(cur)}">Call {BIZ['phone']}</a>
@@ -475,9 +462,8 @@ def build_home():
     </div>
     <div class="hero-creds">{creds_grid(compact=True)}<a href="{L('credentials/')}">All licenses &amp; credentials →</a></div>
   </div>
-  <div><img class="hero-logo" src="{L('assets/img/everglades-logo.webp')}" alt="{esc(BIZ['name'])} logo" width="1400" height="632"></div>
+  <div class="logo-plate"><img src="{L('assets/img/everglades-logo.webp')}" alt="{esc(BIZ['name'])} logo" width="1400" height="632"></div>
 </div></section>
-{trust_strip()}
 
 <section class="section"><div class="wrap">
   <div class="section-head"><span class="eyebrow" style="color:var(--green)">What we do</span><h2>Services</h2>
@@ -488,15 +474,15 @@ def build_home():
 <section class="section dark"><div class="wrap split">
   <div><span class="eyebrow">Projects Anywhere</span>
   <h2>Any State. Any Country. We'll Go Where It Is.</h2>
-  <p>Big job far from home? We plan it, manage it and put the right crew and equipment on the ground — with {BIZ['years']} years of know-how behind every decision.</p>
+  <p>Big job far from home? We plan it, manage it and put the right crew and equipment on the ground — with real know-how behind every decision.</p>
   <a class="btn btn-yellow" href="{L('projects-anywhere/')}">How Projects Anywhere Works</a></div>
   <div><ul class="checks"><li>Remote review of plans, photos and solicitations</li><li>Site visit when the job calls for one</li><li>Our crew, or licensed local crews working to our plan</li><li>Video progress from start to finish</li></ul></div>
 </div></section>
 
 <section class="section"><div class="wrap">
-  <div class="section-head"><span class="eyebrow" style="color:var(--green)">Capability map</span><h2>{len(CATEGORIES)} Categories. {N_SERVICES} Services.</h2>
-  <p>Everything above — and far beyond it. From clearing a single lot to remediation earthwork, energy sites and disaster recovery.</p></div>
-  <div class="grid g4">{''.join(f'<a class="card" href="{L("capabilities/" + k + "/")}"><h3>{n}</h3><p>{len(sec_cats(k))} categories · {sum(len(c["services"]) for c in sec_cats(k))} services</p><span class="more">Explore</span></a>' for k, n, _ in SECTIONS)}
+  <div class="section-head"><span class="eyebrow">Capabilities</span><h2>Everything We Do</h2>
+  <p>From clearing a single lot to remediation earthwork, energy sites and disaster recovery.</p></div>
+  <div class="grid g4">{''.join(f'<a class="card" href="{L("capabilities/" + k + "/")}"><h3>{n}</h3><p>{d}</p><span class="more">Explore</span></a>' for k, n, d in SECTIONS)}
   <a class="card lane-card" href="{L('capabilities/')}"><h3>See the full map</h3><p>Every category and service in one place.</p><span class="more">Capability map</span></a></div>
 </div></section>
 
@@ -519,14 +505,6 @@ def build_home():
   {lanes}
 </div></section>
 
-<section class="section dark"><div class="wrap">
-  <div class="stats">
-    <div class="stat"><b>{BIZ['years']}</b><span>years in business</span></div>
-    <div class="stat"><b>[[XXX]]</b><span>jobs completed</span></div>
-    <div class="stat"><b>[[XX,XXX]]</b><span>acres cleared</span></div>
-    <div class="stat"><b>[[XX]]</b><span>states &amp; places worked</span></div>
-  </div>
-</div></section>
 
 <section class="section"><div class="wrap split">
   <div><div class="section-head"><h2>Where We've Worked</h2><p>Every place here has a real, dated job video behind it — and the list grows with every job.</p></div>
@@ -550,7 +528,7 @@ def build_home():
   </div>
 </div></section>
 {cta_band(cur)}"""
-    page(cur, f"Land Clearing, Excavation & Restoration Contractor | {BIZ['short']} Since {BIZ['founded']}",
+    page(cur, f"Land Clearing, Excavation & Restoration Contractor | {BIZ['short']}",
          f"Land clearing, forestry mulching, excavation, wetland restoration and storm debris removal — wherever the job is. Licensed and insured, since {BIZ['founded']}.",
          body)
 
@@ -586,7 +564,7 @@ def build_services():
         includes = "".join(f"<li>{i}</li>" for i in s["includes"])
         equip = "".join(f"<li>{e}</li>" for e in s["equipment"])
         intro = "".join(f"<p>{p}</p>" for p in s["intro"])
-        body = page_hero(cur, trail, s["h1"], s["lead"], eyebrow=f"Since {BIZ['founded']}") + f"""
+        body = page_hero(cur, trail, s["h1"], s["lead"]) + f"""
 <section class="section"><div class="wrap split">
   <div>
     {intro}
@@ -618,8 +596,8 @@ def build_services():
             "serviceType": s["name"], "provider": {"@id": ORG_ID},
             "description": s["lead"],
         }, faq_schema([(q, a) for q, a, _ in s["faqs"]])]
-        page(cur, f"{s['name']} Contractor | {BIZ['short']} Since {BIZ['founded']}",
-             f"{s['lead']} Licensed and insured, since {BIZ['founded']} — wherever the job is.",
+        page(cur, f"{s['name']} Contractor | {BIZ['short']}",
+             f"{s['lead']} Licensed and insured — wherever the job is.",
              body, schema=schema, crumbs=trail)
 
 
@@ -656,7 +634,7 @@ def build_audiences():
 </div></section><!--split-->
 <section class="section"><div class="wrap prose">
   <h2>Teaming With Prime Contractors</h2>
-  <p>Large restoration and water projects need dependable clearing, exotic-removal and earthwork subcontractors who know wet, difficult ground. We've spent {BIZ['years']} years working it — and we're ready to team on the next one, wherever it's let.</p>
+  <p>Large restoration and water projects need dependable clearing, exotic-removal and earthwork subcontractors who know wet, difficult ground. We know that ground — and we're ready to team on the next one, wherever it's let.</p>
   <p><a class="btn btn-yellow" href="{L('request-a-bid/')}">Send us a scope or solicitation</a></p>
 </div></section>"""
         top, rest = (extra.split("<!--split-->") + [""])[:2] if extra else ("", "")
@@ -735,7 +713,7 @@ def build_anywhere():
     cur = "projects-anywhere/"
     L = lambda p: rel(cur, p)  # noqa: E731
     trail = [("Home", HOME), ("Projects Anywhere", cur)]
-    body = page_hero(cur, trail, "Projects Anywhere", f"Big job far from home? We plan it, manage it and get it done — wherever it is. {BIZ['years']} years of know-how, on your site.", eyebrow="Any state · any country") + f"""
+    body = page_hero(cur, trail, "Projects Anywhere", f"Big job far from home? We plan it, manage it and get it done — wherever it is.", eyebrow="Any state · any country") + f"""
 <section class="section"><div class="wrap split">
   <div>
     <h2>How It Works</h2>
@@ -762,7 +740,7 @@ def build_anywhere():
 </div></section>
 <section class="section"><div class="wrap split">
   <div><h2>Why It Works</h2><ul class="checks">
-    <li>{BIZ['years']} years of planning and running heavy site work</li>
+    <li>Deep experience planning and running heavy site work</li>
     <li>Experience on Army Corps, agency and FEMA-reimbursed work</li>
     <li>One point of contact from bid to finish</li>
     <li>Every job documented on video</li>
@@ -859,7 +837,7 @@ def build_questions():
     L = lambda p: rel(cur, p)  # noqa: E731
     trail = [("Home", HOME), ("Questions", cur)]
     cards = "".join(f'<a class="card" href="{L("questions/" + q["slug"] + "/")}"><h3>{q["q"]}</h3><p>{q["short"][:150]}…</p><span class="more">Read the answer</span></a>' for q in QUESTIONS)
-    body = page_hero(cur, trail, "Questions &amp; Answers", "Straight answers about land clearing, permits, wetlands, timing and cost — from a crew that's been doing it since 1992.") + f"""
+    body = page_hero(cur, trail, "Questions &amp; Answers", "Straight answers about land clearing, permits, wetlands, timing and cost — from a crew that does this every day.") + f"""
 <section class="section"><div class="wrap"><div class="grid g2">{cards}
 <div class="empty-slot">Next question + short video answer goes here</div></div></div></section>{cta_band(cur, "Have a question we didn't answer?")}"""
     page(cur, f"Land Clearing Questions & Answers | {BIZ['short']}",
@@ -892,7 +870,7 @@ def build_about():
     cur = "about/"
     L = lambda p: rel(cur, p)  # noqa: E731
     trail = [("Home", HOME), ("About", cur)]
-    body = page_hero(cur, trail, f"Clearing Land Since {BIZ['founded']}", f"{BIZ['years']} years, [[XXX]] jobs and a lot of hard-won knowledge about land and water. Headquartered in [[City, State]] — working anywhere.", eyebrow="Our history") + f"""
+    body = page_hero(cur, trail, f"Clearing Land Since {BIZ['founded']}", f"Hard-won knowledge about land and water. Headquartered in [[City, State]] — working anywhere.", eyebrow="Our history") + f"""
 <section class="section"><div class="wrap split">
   <div class="prose">
     <h2>Our Story</h2>
@@ -914,12 +892,6 @@ def build_about():
     <div class="photo mt">Old job photo from the '90s</div>
   </div>
 </div></section>
-<section class="section dark"><div class="wrap"><div class="stats">
-  <div class="stat"><b>{BIZ['years']}</b><span>years in business</span></div>
-  <div class="stat"><b>[[XXX]]</b><span>jobs completed</span></div>
-  <div class="stat"><b>[[XX]]</b><span>machines in our fleet</span></div>
-  <div class="stat"><b>[[XX]]</b><span>crew members</span></div>
-</div></div></section>
 {cta_band(cur)}"""
     page(cur, f"About Us | Land Clearing & Restoration Since {BIZ['founded']} | {BIZ['short']}",
          f"{BIZ['name']} has cleared, dug and restored land since {BIZ['founded']}.", body, crumbs=trail)
@@ -1009,7 +981,7 @@ def build_bid():
 def build_reviews():
     cur = "reviews/"
     trail = [("Home", HOME), ("Reviews", cur)]
-    body = page_hero(cur, trail, "Worked With Us? Tell Others.", f"After {BIZ['years']} years, word of mouth built this company. A quick Google review helps the next customer find us.", ctas=False) + f"""
+    body = page_hero(cur, trail, "Worked With Us? Tell Others.", f"Word of mouth built this company. A quick Google review helps the next customer find us.", ctas=False) + f"""
 <section class="section"><div class="wrap split">
   <div>
     <a class="btn btn-yellow" href="#">[[Leave a Google Review — link XXX]]</a>
@@ -1049,9 +1021,9 @@ def build_plan():
 <section class="hero"><div class="wrap hero-grid">
   <div><span class="eyebrow">Prepared for Matt &amp; Sam</span>
   <h1>Your New Home Online</h1>
-  <p class="lead">{BIZ['years']} years of great work — now built so the people who need it can find it. Here's what's built, how it works, and what comes next.</p>
+  <p class="lead">Great work — now built so the people who need it can find it. Here's what's built, how it works, and what comes next.</p>
   <div class="ctas"><a class="btn btn-yellow" href="{L('plan/checklist/')}">Open the Service Checklist</a><a class="btn btn-ghost" href="{L(HOME)}">Tour the Website</a><a class="btn btn-ghost" href="{L('capabilities/')}">Capability Map</a></div></div>
-  <div><img class="hero-logo" src="{L('assets/img/everglades-logo.webp')}" alt="" width="1400" height="632"></div>
+  <div class="logo-plate"><img src="{L('assets/img/everglades-logo.webp')}" alt="" width="1400" height="632"></div>
 </div></section>
 
 <section class="section"><div class="wrap">
@@ -1074,23 +1046,29 @@ def build_plan():
 </div></section>
 
 <section class="section"><div class="wrap">
-  <div class="section-head"><h2>What's Built So Far</h2><p>This preview is the full skeleton — {n_pages_hint} pages. The yellow highlighted spots are where your real details go.</p></div>
+  <div class="section-head"><h2>What's Built So Far</h2><p>This preview is the full skeleton. The tagged spots are where your real details go.</p></div>
   <div class="grid g4">
     <a class="card" href="{L(HOME)}"><h3>Home</h3><p>Your front page with video, before/after and credentials.</p></a>
-    <a class="card" href="{L('services/')}"><h3>{len(SERVICES)} Services</h3><p>A full page for each type of work.</p></a>
+    <a class="card" href="{L('services/')}"><h3>Services</h3><p>A full page for each type of work.</p></a>
     <a class="card" href="{L('where-weve-worked/')}"><h3>Where We've Worked</h3><p>Built only from your real jobs — every video puts a new place on the map.</p></a>
     <a class="card" href="{L('projects-anywhere/')}"><h3>Projects Anywhere</h3><p>Big job far from home? Matt plans it, the right crew does it.</p></a>
     <a class="card" href="{L('projects/')}"><h3>Job Videos</h3><p>Filterable job videos — {len(PROJECTS)} samples built from your example list.</p></a>
     <a class="card" href="{L('who-we-serve/government-agencies/')}"><h3>Government Page</h3><p>Capability snapshot for agencies and prime contractors.</p></a>
     <a class="card" href="{L('questions/')}"><h3>Questions</h3><p>Straight answers on cost, permits and wetlands.</p></a>
     <a class="card" href="{L('request-a-bid/')}"><h3>Request a Bid</h3><p>The form every inquiry comes through.</p></a>
-    <a class="card" href="{L('about/')}"><h3>About · Since {BIZ['founded']}</h3><p>Your history, your people, your numbers.</p></a>
-    <a class="card lane-card" href="{L('capabilities/')}"><h3>Capability Map</h3><p>{len(CATEGORIES)} categories and {N_SERVICES} services, each with its own page and the searches it's built to win.</p></a>
+    <a class="card" href="{L('about/')}"><h3>About</h3><p>Your history, your people, your numbers.</p></a>
+    <a class="card lane-card" href="{L('capabilities/')}"><h3>Capability Map</h3><p>Every capability, each with its own page and the searches it's built to win.</p></a>
     <a class="card lane-card" href="{L('plan/checklist/')}"><h3>Service Checklist</h3><p>Tap through every service: we do it, we sub it, or not for us. Your answers decide what goes live.</p></a>
     <a class="card" href="{L(DOOR)}"><h3>Front Door</h3><p>Your digital business card: call, email, website, every license, QR code.</p></a>
     <a class="card" href="{L('capability-statement/')}"><h3>Capability Statement</h3><p>The one page every procurement office asks for, ready to print.</p></a>
     <a class="card" href="{L('credentials/')}"><h3>Credentials</h3><p>Every license and registration in one place.</p></a>
   </div>
+</div></section>
+
+<section class="section"><div class="wrap">
+  <div class="section-head"><h2>How Buyers Find Each Service</h2><p>Behind every capability page is a plan for the searches, videos, AI questions and bid keywords it's built to win. Here's one example — every category has its own.</p></div>
+  <h3>{CAT['land-clearing-vegetation-management']['name']}</h3>
+  {cat_find(CAT['land-clearing-vegetation-management'])}
 </div></section>
 
 <section class="section dark"><div class="wrap">
@@ -1140,11 +1118,11 @@ def build_capability():
 body{background:#e9e5da}
 .cap{max-width:8.5in;margin:24px auto;background:#fff;box-shadow:0 10px 30px rgba(0,0,0,.15)}
 .cap-head{background:var(--green-deep);color:#fff;display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center;padding:22px 28px}
-.cap-head img{max-width:300px;filter:drop-shadow(0 0 1px rgba(255,255,255,.95))}
-.cap-head h1{color:#fff;font-size:1.9rem;margin:0}
+.cap-head img{max-width:300px}.cap-head .logo-plate{padding:10px 14px;max-width:320px}
+.cap-head h1{color:#fff;font-size:1.6rem;margin:0}
 .cap-head p{margin:2px 0;color:#d7eadb;font-size:.9rem;text-align:right}
 .cap-body{display:grid;grid-template-columns:1fr 1fr;gap:22px;padding:22px 28px}
-.cap h2{font-size:1.05rem;color:var(--green);border-bottom:3px solid var(--yellow);padding-bottom:4px;margin:14px 0 8px;letter-spacing:.05em}
+.cap h2{font-size:1rem;color:var(--green);border-bottom:2px solid var(--green);padding-bottom:4px;margin:14px 0 8px;letter-spacing:.05em}
 .cap h2:first-child{margin-top:0}
 .cap ul{margin:0;padding-left:1.1em;font-size:.9rem}
 .cap li{margin-bottom:3px}
@@ -1169,7 +1147,7 @@ body{background:#e9e5da}
     body = f"""
 <article class="cap">
   <header class="cap-head">
-    <div><img src="{L('assets/img/everglades-logo.webp')}" alt="{esc(BIZ['name'])}" width="1400" height="632"></div>
+    <div class="logo-plate"><img src="{L('assets/img/everglades-logo.webp')}" alt="{esc(BIZ['name'])}" width="1400" height="632"></div>
     <div><h1>Capability Statement</h1><p>{BIZ['phone']}</p><p>{BIZ['email']}</p><p>Website: [[www.XXX.com]]</p></div>
   </header>
   <div class="cap-body">
@@ -1178,7 +1156,7 @@ body{background:#e9e5da}
       <p>{BIZ['name']} has delivered land clearing, excavation and environmental restoration since {BIZ['founded']}. We self-perform with our own crews and equipment, support agencies and prime contractors, and take on projects in any state or country. [[One-sentence differentiator XXX]]</p>
       <h2>Core Competencies</h2><ul>{comp}</ul>
       <h2>Differentiators</h2><ul>
-        <li>{BIZ['years']} years of heavy site work on wet, difficult ground</li>
+        <li>Heavy site work on wet, difficult ground since {BIZ['founded']}</li>
         <li>Army Corps, agency and FEMA-reimbursed project experience</li>
         <li>Own equipment fleet: [[XX machines — key types XXX]]</li>
         <li>Every job documented on video</li></ul>
@@ -1217,9 +1195,9 @@ def svc_grid(cur, c):
     for svc in c["services"]:
         path = cap_path(c, svc)
         if (c["slug"], svc) in EXAMPLES:
-            items.append(f'<li class="svc live"><a href="{L(path)}">{svc}</a><small>/{path} · sample page</small></li>')
+            items.append(f'<li class="svc live"><a href="{L(path)}">{svc}</a></li>')
         else:
-            items.append(f'<li class="svc"><span>{svc}</span><small>/{path}</small></li>')
+            items.append(f'<li class="svc"><span>{svc}</span></li>')
     return '<ul class="svc-grid">' + "".join(items) + "</ul>"
 
 
@@ -1256,25 +1234,17 @@ def build_capabilities():
     blocks = ""
     for i, (sk, sname, sdesc) in enumerate(SECTIONS):
         cards = "".join(f'<a class="card" href="{L(cap_path(c))}"><h3>{c["name"]}</h3><p>{c["blurb"]}</p>'
-                        f'<span class="more">{len(c["services"])} services</span></a>' for c in sec_cats(sk))
+                        f'<span class="more">View services</span></a>' for c in sec_cats(sk))
         blocks += f"""<section class="section{' alt' if i % 2 else ''}" id="{sk}"><div class="wrap">
   <div class="section-head"><h2><a href="{L('capabilities/' + sk + '/')}" style="text-decoration:none;color:inherit">{sname}</a></h2><p>{sdesc}</p></div>
   <div class="grid g3">{cards}</div></div></section>"""
     jump = "".join(f'<li><a href="#{sk}">{sname}</a></li>' for sk, sname, _ in SECTIONS)
-    body = page_hero(cur, trail, "The Full Capability Map", f"{len(CATEGORIES)} categories and {N_SERVICES} services — from a single lot to Superfund-scale earthwork. One accountable team, our own crews and a nationwide partner network.", eyebrow="Any state · Any country") + f"""
-<section class="section dark"><div class="wrap">
-  <div class="stats">
-    <div class="stat"><b>{len(SECTIONS)}</b><span>service areas of expertise</span></div>
-    <div class="stat"><b>{len(CATEGORIES)}</b><span>service categories</span></div>
-    <div class="stat"><b>{N_SERVICES}</b><span>individual services</span></div>
-    <div class="stat"><b>{BIZ['years']}</b><span>years in business</span></div>
-  </div>
-  <ul class="pill-list mt jump">{jump}</ul>
-</div></section>
+    body = page_hero(cur, trail, "The Full Capability Map", "From a single lot to Superfund-scale earthwork. One accountable team, our own crews and a nationwide partner network.", eyebrow="Any state · Any country") + f"""
+<section class="section jumpbar"><div class="wrap"><ul class="pill-list">{jump}</ul></div></section>
 {blocks}
 {cta_band(cur, "Don't see it? Ask.", "If it involves land, water or heavy equipment, we do it, team it or know who does.")}"""
-    page(cur, f"Capabilities | {len(CATEGORIES)} Categories of Land, Water & Site Work | {BIZ['short']}",
-         f"{len(CATEGORIES)} categories and {N_SERVICES} services: land clearing, earthwork, wetlands, stormwater, dredging, remediation earthwork, energy sites, disaster recovery and more.",
+    page(cur, f"Capabilities | Land, Water & Site Work | {BIZ['short']}",
+         f"Land clearing, earthwork, wetlands, stormwater, dredging, remediation earthwork, energy sites, disaster recovery and more.",
          body, crumbs=trail)
 
     for sk, sname, sdesc in SECTIONS:
@@ -1283,7 +1253,7 @@ def build_capabilities():
         trail = [("Home", HOME), ("Capability Map", "capabilities/"), (sname, cur)]
         cats = sec_cats(sk)
         cards = "".join(f'<a class="card" href="{L(cap_path(c))}"><h3>{c["name"]}</h3><p>{c["blurb"]}</p>'
-                        f'<p class="small">{", ".join(c["services"][:5])}…</p><span class="more">All {len(c["services"])} services</span></a>' for c in cats)
+                        f'<p class="small">{", ".join(c["services"][:5])}…</p><span class="more">View services</span></a>' for c in cats)
         others = "".join(f'<li><a href="{L("capabilities/" + k + "/")}">{n}</a></li>' for k, n, _ in SECTIONS if k != sk)
         body = page_hero(cur, trail, sname, sdesc) + f"""
 <section class="section"><div class="wrap"><div class="grid g3">{cards}</div></div></section>
@@ -1303,8 +1273,7 @@ def build_capabilities():
         body = page_hero(cur, trail, c["name"], c["blurb"], eyebrow=sname) + f"""
 <section class="section"><div class="wrap split">
   <div>
-    <h2>{len(c['services'])} Services</h2>
-    <p>Each of these gets its own page as real jobs are added.</p>
+    <h2>Services</h2>
     {svc_grid(cur, c)}
     {sensitive_note() if c.get('sensitive') else ''}
   </div>
@@ -1314,10 +1283,6 @@ def build_capabilities():
     <div class="card mt"><h3>Have a job like this?</h3><p>Any size, any state, any country.</p>
     <a class="btn btn-yellow" href="{L('request-a-bid/')}">Request a Bid</a></div>
   </div>
-</div></section>
-<section class="section alt"><div class="wrap">
-  <div class="section-head"><h2>How Buyers Find This</h2><p>The searches, videos, AI questions and bid keywords this page is built to win.</p></div>
-  {cat_find(c)}
 </div></section>
 <section class="section"><div class="wrap split">
   <div><h2>Before &amp; After</h2>{before_after()}</div>
@@ -1360,10 +1325,6 @@ def build_capabilities():
   <div class="card mt"><h3>Need {low}?</h3><p>Anywhere in the country — tell us about it.</p>
   <a class="btn btn-yellow" href="{L('request-a-bid/')}">Request a Bid</a></div></div>
 </div></section>
-<section class="section alt"><div class="wrap">
-  <div class="section-head"><h2>How Buyers Find This Page</h2></div>
-  {find_panel(svc, [low + ' contractor', low + ' cost', low + ' near me'], [svc, c['bid'][0]], ['“' + svc + ' — Before &amp; After”', '“What ' + low + ' looks like, start to finish”'], '“Who does ' + low + ' for a [[project type]]?”')}
-</div></section>
 <section class="section"><div class="wrap split">
   <div><h2>Before &amp; After</h2>{before_after()}</div>
   <div><h3>Also in {c['name']}</h3><ul class="pill-list">{siblings}</ul></div>
@@ -1399,7 +1360,7 @@ def build_checklist():
     body = f"""
 <section class="page-hero"><div class="wrap">
   <span class="eyebrow">For Matt &amp; Sam</span><h1>Service Checklist</h1>
-  <p class="lead">{len(CATEGORIES)} categories, {total} items. Tap one choice for each: <b>We do it</b>, <b>Sub / team</b> (we take it and bring in a partner), or <b>Not for us</b>. Your choices save on this device, so you can stop and come back. When you're done, tap <b>Send to us</b> — your answers come straight to us.</p>
+  <p class="lead">Tap one choice for each service: <b>We do it</b>, <b>Sub / team</b> (we take it and bring in a partner), or <b>Not for us</b>. Your choices save on this device, so you can stop and come back. When you're done, tap <b>Send to us</b> — your answers come straight to us.</p>
 </div></section>
 <div class="ck-bar"><div class="wrap">
   <span>✅ <b id="c-do">0</b> do</span><span>🤝 <b id="c-sub">0</b> sub</span><span>❌ <b id="c-no">0</b> no</span><span>⬜ <b id="c-open">{total}</b> open</span>
@@ -1540,7 +1501,7 @@ body{background:#fff}
   <p>Point your phone's camera at the code.</p>
   <div class="qr" id="qr-sheet" data-qr="/" role="img" aria-label="QR code to the website"></div>
   <p class="url" data-qr-url="qr-sheet"></p>
-  <p class="tag">Land Clearing · Excavation · Restoration · Since {BIZ['founded']}</p>
+  <p class="tag">Land Clearing · Excavation · Restoration</p>
   <p>{BIZ['phone']}</p>
   <div class="printbar"><button class="btn btn-yellow" onclick="window.print()">Print this page</button>
   <a class="btn btn-outline" href="{L(DOOR)}">Back</a></div>

@@ -55,7 +55,7 @@ SERVICES = [
         "name": "Land Clearing",
         "group": "land",
         "h1": "Land Clearing",
-        "lead": "Residential lots, acreage, ranch land and commercial sites, cleared right the first time by a crew that has been doing it since 1992.",
+        "lead": "Residential lots, acreage, ranch land and commercial sites, cleared right the first time.",
         "aka": "lot clearing, brush clearing, underbrush removal, palmetto removal, acreage clearing, tree and stump removal, pasture clearing, right-of-way clearing",
         "intro": [
             "Whether it's a single homesite or two hundred acres of overgrown pasture, no two sites clear the same way. Rock just under the surface, high water tables, protected trees and wetland edges all change how the work has to be done.",
@@ -267,7 +267,7 @@ AUDIENCES = [
         "name": "Government & Agencies",
         "menu": "Government & Agencies",
         "h1": "For Government, Agencies & Prime Contractors",
-        "lead": "Thirty-five years of site work, ready for public projects — as a prime on the right scope, or as the clearing and earthwork sub your team can count on.",
+        "lead": "Proven site work, ready for public projects — as a prime on the right scope, or as the clearing and earthwork sub your team can count on.",
         "who": ["Water management districts", "Counties and cities", "FDOT and road projects", "Army Corps of Engineers prime contractors", "Drainage and water-control districts", "School districts and utilities"],
         "services": ["wetland-restoration-mitigation", "exotic-invasive-removal", "hurricane-debris-removal", "drainage-stormwater", "land-clearing", "canal-pond-excavation"],
     },
@@ -355,7 +355,7 @@ QUESTIONS = [
         "short": "Usually, yes. Most counties and cities require a permit to remove trees, and any work in or near wetlands can also need state and federal (U.S. Army Corps of Engineers) approval. Rules vary a lot from one county to the next, so check before any machine moves.",
         "body": [
             ("Examples of how much it varies", "<ul class=\"checks\"><li><b>Miami-Dade:</b> tree removal / relocation permit for non-exempt trees; Class IV permit for any work in freshwater wetlands; Class I for mangroves; special rules for Natural Forest Communities.</li><li><b>Broward:</b> tree removal license through the Tree Preservation Program (nuisance trees excepted); wetland and surface-water work through the Aquatic & Wetland Resources program.</li><li><b>Everywhere else:</b> each county and state has its own tree, vegetation and wetland rules, and many cities add their own. Federal wetland rules (Clean Water Act Section 404) apply nationwide.</li></ul>"),
-            ("How we help", "<p>We've been working inside these rules since 1992. Before we start, we'll tell you what your property likely needs and who issues it, and coordinate with your engineer or permit expeditor when needed.</p><p class=\"small\">Rules change — always confirm with the permitting agency before work begins.</p>"),
+            ("How we help", "<p>We work inside these rules every day. Before we start, we'll tell you what your property likely needs and who issues it, and coordinate with your engineer or permit expeditor when needed.</p><p class=\"small\">Rules change — always confirm with the permitting agency before work begins.</p>"),
         ],
         "related_service": "land-clearing",
     },
