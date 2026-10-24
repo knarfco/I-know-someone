@@ -4,6 +4,7 @@
 Run:  python3 everglades/build/build.py
 Output is plain HTML/CSS/JS that can be uploaded to any host (Hostinger, etc.).
 """
+import hashlib
 import json
 import os
 import re
@@ -150,7 +151,7 @@ def credit(cur, light_bg=False):
     """MediaIn360 design credit. Goes bottom-right on EVERY page (footer() adds it automatically)."""
     img = "assets/img/mediain360-credit.png" if light_bg else "assets/img/mediain360-credit-light.png"
     return (f'<a class="credit" href="{CREDIT_URL}" target="_blank" rel="noopener" title="Produced and Powered by MediaIn360">'
-            f'<img src="{rel(cur, img)}" alt="Produced and Powered by MediaIn360" width="360" height="94" loading="lazy"></a>')
+            f'<img src="{rel(cur, img)}" alt="Produced and Powered by MediaIn360" width="80" height="21" style="width:80px;max-width:80px;height:auto;display:block"></a>')
 
 
 def header(cur):
@@ -1532,20 +1533,43 @@ def build_404():
 <h1>This Page Got Cleared</h1><p class="lead" style="margin:0 auto 24px">We couldn't find that page. Try one of these:</p>
 <div class="ctas" style="justify-content:center"><a class="btn btn-yellow" href="/{HOME}">Home</a><a class="btn btn-ghost" href="/services/">Services</a><a class="btn btn-ghost" href="/request-a-bid/">Request a Bid</a></div>
 </div></section>
-<div class="credit-row" style="position:fixed;right:0;bottom:0"><a class="credit" href="{CREDIT_URL}" target="_blank" rel="noopener"><img src="/assets/img/mediain360-credit-light.png" alt="Produced and Powered by MediaIn360" width="360" height="94"></a></div></body></html>"""
+<div class="credit-row" style="position:fixed;right:0;bottom:0"><a class="credit" href="{CREDIT_URL}" target="_blank" rel="noopener"><img src="/assets/img/mediain360-credit-light.png" alt="Produced and Powered by MediaIn360" width="80" height="21" style="width:80px;max-width:80px;height:auto;display:block"></a></div></body></html>"""
     PAGES["404.html"] = body
 
 
 # ---------------------------------------------------------------- write
+def fingerprint_assets():
+    """Copy CSS/JS to content-hashed names (site.<hash>.css) so no host or CDN cache can serve a stale copy."""
+    mapping = {}
+    for rel_path in ("assets/css/site.css", "assets/js/site.js", "assets/js/qrcode.js"):
+        src = os.path.join(OUT, rel_path)
+        base, ext = os.path.splitext(src)
+        with open(src, "rb") as f:
+            data = f.read()
+        digest = hashlib.md5(data).hexdigest()[:10]
+        folder = os.path.dirname(src)
+        stem = os.path.basename(base)
+        for old in os.listdir(folder):
+            if re.fullmatch(re.escape(stem) + r"\.[0-9a-f]{10}" + re.escape(ext), old):
+                os.remove(os.path.join(folder, old))
+        with open(f"{base}.{digest}{ext}", "wb") as f:
+            f.write(data)
+        mapping[rel_path] = rel_path[: -len(ext)] + f".{digest}{ext}"
+    return mapping
+
+
 def write_all():
     for d in os.listdir(OUT):
         if d in ("assets",):
             continue
         p = os.path.join(OUT, d)
         shutil.rmtree(p) if os.path.isdir(p) else os.remove(p)
+    hashed = fingerprint_assets()
     count = sum(1 for k in PAGES if k != "404.html")
     for path, html in PAGES.items():
         html = html.replace("{PAGE_COUNT}", str(count))
+        for old, new in hashed.items():
+            html = html.replace(old, new)
         target = os.path.join(OUT, path) if path.endswith(".html") else os.path.join(OUT, path, "index.html")
         os.makedirs(os.path.dirname(target), exist_ok=True)
         with open(target, "w", encoding="utf-8") as f:
@@ -1573,7 +1597,9 @@ def write_all():
         f.write("# Hostinger / Apache\nDirectoryIndex index.html\nErrorDocument 404 /404.html\nOptions -Indexes\nAddType text/vcard .vcf\n\n"
                 "<IfModule mod_expires.c>\nExpiresActive On\nExpiresByType image/webp \"access plus 1 year\"\n"
                 "ExpiresByType image/png \"access plus 1 year\"\nExpiresByType text/css \"access plus 1 month\"\n"
-                "ExpiresByType application/javascript \"access plus 1 month\"\n</IfModule>\n")
+                "ExpiresByType application/javascript \"access plus 1 month\"\n</IfModule>\n\n"
+                "# Pages are never cached, so every upload shows immediately (CSS/JS have hashed names).\n"
+                "<IfModule mod_headers.c>\n<FilesMatch \"\\.(html|php)$\">\nHeader set Cache-Control \"no-cache, no-store, must-revalidate\"\n</FilesMatch>\n</IfModule>\n")
     return count
 
 

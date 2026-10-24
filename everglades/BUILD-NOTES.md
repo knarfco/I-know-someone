@@ -10,6 +10,12 @@
 - `credit(cur, light_bg=False)` in build.py. `footer()` adds it automatically, so **every new page that uses the standard layout gets it for free**. Pages with their own layout (front door, capability statement, QR sheet, 404) call it directly; any new custom-layout page must too.
 - Files: `assets/img/mediain360-credit-light.png` (white + orange, for dark backgrounds) and `mediain360-credit.png` (original colors, for light backgrounds / print).
 - The client owns the site; the credit stays as the design attribution.
+- Size is locked **on the image tag itself** (80 px, inline style), so it stays tiny even if a stale or missing stylesheet loads.
+
+## Cache-proof uploads
+- Every build copies CSS/JS to content-hashed names (`site.<hash>.css`, `site.<hash>.js`, `qrcode.<hash>.js`) and rewrites every page to point at them (`fingerprint_assets()`). Edit `site.css` / `site.js` as usual; the hashed copies regenerate.
+- `.htaccess` marks HTML/PHP as no-cache, so each upload shows immediately; hashed CSS/JS can be cached safely.
+- Background: the first live upload showed new pages with an OLD stylesheet (Hostinger server/CDN copy). Hashed names make that impossible. If anything still looks stale, hPanel → Performance → Cache Manager / CDN → Purge all.
 
 ## Settings in build.py
 | Flag | Now | At launch |

@@ -366,9 +366,9 @@ a.card:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(6,56,26,.12);
 /* ---------- MediaIn360 credit (bottom-right, every page) ---------- */
 .credit{display:inline-block;line-height:0;opacity:.85;transition:opacity .15s}
 .credit:hover{opacity:1}
-.credit img{width:118px;height:auto}
+.credit img{width:80px;max-width:80px;height:auto}
 .legal-right{display:flex;align-items:center;gap:18px;margin-left:auto}
 .credit-row{display:flex;justify-content:flex-end;padding:6px 20px 16px}
-.cap-credit .credit img{width:96px}
-@media (max-width:640px){.credit img{width:100px}}
+.cap-credit .credit img{width:72px;max-width:72px}
+@media (max-width:640px){.credit img{width:72px;max-width:72px}}
 @media print{.credit{opacity:1}}
