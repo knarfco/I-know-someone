@@ -14,6 +14,7 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from content import BIZ, CREDS, SERVICES, SVC, AUDIENCES, PROJECTS, QUESTIONS  # noqa: E402
 from taxonomy import SECTIONS, CATEGORIES, EXAMPLES  # noqa: E402
+from legal import LEGAL, EFFECTIVE  # noqa: E402
 
 CAT = {c["slug"]: c for c in CATEGORIES}
 N_SERVICES = sum(len(c["services"]) for c in CATEGORIES)
@@ -30,6 +31,8 @@ SITE_URL = "https://www.XXX-domain.com"
 FRONT_DOOR_AT_ROOT = True
 # Where "Send to us" on Matt's service checklist delivers (send-checklist.php, server-side).
 CHECKLIST_TO = "knarfco@yahoo.com"
+# Date of the most recent accessibility (axe-core) audit, shown on the Accessibility Statement.
+AUDIT_DATE = "October 24, 2026"
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(os.path.dirname(HERE), "site")
@@ -162,7 +165,7 @@ def header(cur):
     regions = "".join(f'<a href="{L(r["path"])}">{r["name"]}</a>' for r in PLACES.values())
     return f"""
 <a class="skip" href="#main">Skip to content</a>
-<div class="topbar"><div class="wrap">
+<div class="topbar" role="region" aria-label="Contact"><div class="wrap">
   <span class="since">Land Clearing · Excavation · Restoration</span>
   <span>Call <a href="{tel_href(cur)}">{ph(BIZ['phone'])}</a> · Storm response 24/7</span>
 </div></div>
@@ -212,13 +215,13 @@ def footer(cur):
       <a href="{tel_href(cur)}">{ph(BIZ['phone'])}</a><br>{ph(BIZ['email'])}<br>{ph(BIZ['hours'])}</p>
       <p>{ph(BIZ['license'])}</p>
     </div>
-    <div><h4>Services</h4><ul>{svc}<li><a href="{L('capabilities/')}"><b>Full Capability Map →</b></a></li></ul></div>
-    <div><h4>Where We Work</h4><ul>
+    <div><h2 class="foot-h">Services</h2><ul>{svc}<li><a href="{L('capabilities/')}"><b>Full Capability Map →</b></a></li></ul></div>
+    <div><h2 class="foot-h">Where We Work</h2><ul>
       <li><a href="{L('projects-anywhere/')}">Projects Anywhere</a></li>
       <li><a href="{L('where-weve-worked/')}">Where We've Worked</a></li>{regions}
       <li><a href="{L('projects/')}">Job Videos</a></li>
     </ul></div>
-    <div><h4>Company</h4><ul>
+    <div><h2 class="foot-h">Company</h2><ul>
       <li><a href="{L('about/')}">About &amp; History</a></li>
       <li><a href="{L('credentials/')}">Licenses &amp; Credentials</a></li>
       <li><a href="{L('questions/')}">Questions &amp; Answers</a></li>
@@ -231,10 +234,10 @@ def footer(cur):
   </div>
   <div class="legal">
     <span>© <span data-current-year>2026</span> {BIZ['name']} All rights reserved.</span>
-    <span class="legal-right"><a href="{L('privacy/')}">Privacy</a>{credit(cur)}</span>
+    <span class="legal-right"><nav class="legal-links" aria-label="Legal"><a href="{L('privacy/')}">Privacy</a><a href="{L('terms/')}">Terms</a><a href="{L('accessibility/')}">Accessibility</a><a href="{L('compliance/')}">Compliance</a><a href="{L('text-terms/')}">Text Terms</a></nav>{credit(cur)}</span>
   </div>
 </div></footer>
-<div class="callbar"><a class="c1" href="{tel_href(cur)}">📞 Call Now</a><a class="c2" href="{L('request-a-bid/')}">Request a Bid</a></div>"""
+<nav class="callbar" aria-label="Quick contact"><a class="c1" href="{tel_href(cur)}">📞 Call Now</a><a class="c2" href="{L('request-a-bid/')}">Request a Bid</a></nav>"""
 
 
 def page(cur, title, desc, body, schema=None, crumbs=None, noindex=False, chrome=True, extra_head=""):
@@ -411,13 +414,15 @@ body{background:radial-gradient(ellipse at 50% 20%,#13692e 0%,#06381A 45%,#031d0
 .qr-panel b{display:block;font-family:var(--head);font-weight:800;font-size:1rem;color:var(--green-deep);margin-top:8px}
 .qr-panel small{display:block;color:var(--ink-soft);word-break:break-all;margin-top:2px}
 .door-side .btn{width:100%}
-.door-foot{text-align:center;padding:14px 20px 24px;color:#8fbf99;font-size:.88rem}
+.door-foot{text-align:center;padding:14px 20px 8px;color:#8fbf99;font-size:.88rem}
+.door-legal{margin-top:8px;font-size:.82rem}
+.door-legal a{color:#cfe8d4}
 @media (max-width:900px){.door-main{grid-template-columns:1fr}.door-side{max-width:420px;margin:0 auto;width:100%}}
 @media (max-width:620px){.door-btns{grid-template-columns:1fr}.door{padding-top:22px}.door-creds{padding:14px}.door-creds .creds{grid-template-columns:1fr 1fr;gap:6px}.door-creds .creds div{padding:7px 9px}.door-creds .creds dt{font-size:.62rem;letter-spacing:.03em}.door-creds .creds dd{font-size:.85rem}}
 </style>"""
     email = plain(BIZ["email"])
     body = f"""
-<div class="door">
+<main class="door" id="main">
   <div class="door-top">
     <div class="door-logo logo-plate"><img src="{L('assets/img/everglades-logo.webp')}" alt="{esc(BIZ['name'])}" width="1400" height="632"></div>
     <h1 class="door-tag">Land Clearing · Excavation · Restoration</h1>
@@ -443,9 +448,10 @@ body{background:radial-gradient(ellipse at 50% 20%,#13692e 0%,#06381A 45%,#031d0
       <a class="btn btn-ghost" href="{L('assets/everglades-contact.vcf')}" download>👤 Save Contact</a>
     </div>
   </div>
-</div>
-<div class="door-foot">W-9 and certificate of insurance on request · Storm response 24/7<br>{BIZ['name']} · {BIZ['phone']} · {BIZ['email']}</div>
-<div class="credit-row">{credit(cur)}</div>"""
+</main>
+<footer class="door-footer"><div class="door-foot">W-9 and certificate of insurance on request · Storm response 24/7<br>{BIZ['name']} · {BIZ['phone']} · {BIZ['email']}
+<nav class="door-legal" aria-label="Legal"><a href="{L('privacy/')}">Privacy</a> · <a href="{L('terms/')}">Terms</a> · <a href="{L('accessibility/')}">Accessibility</a> · <a href="{L('compliance/')}">Compliance</a> · <a href="{L('text-terms/')}">Text Terms</a></nav></div>
+<div class="credit-row">{credit(cur)}</div></footer>"""
     page(cur, f"{BIZ['name']} | Land Clearing, Excavation & Restoration",
          f"{BIZ['name']}: land clearing, excavation, wetland restoration and storm response since {BIZ['founded']}. Licensed, bonded and registered for public work.",
          ph(body), chrome=False, extra_head=style, noindex=FRONT_DOOR_AT_ROOT is False)
@@ -619,7 +625,7 @@ def build_audiences():
     trail = [("Home", HOME), ("Who We Serve", cur)]
     cards = "".join(f'<a class="card lane-card" href="{L("who-we-serve/" + a["slug"] + "/")}"><h3>{a["name"]}</h3><p>{a["lead"]}</p><span class="more">Learn more</span></a>' for a in AUDIENCES)
     body = page_hero(cur, trail, "Who We Serve", "Agencies, builders and landowners — every one gets a crew that shows up and does the job right.") + \
-        f'<section class="section"><div class="wrap"><div class="grid g3">{cards}</div></div></section>{cta_band(cur)}'
+        f'<section class="section"><div class="wrap"><h2 class="sr">Who we serve</h2><div class="grid g3">{cards}</div></div></section>{cta_band(cur)}'
     page(cur, f"Who We Serve | {BIZ['short']}", "Land clearing and earthwork for government agencies, prime contractors, developers, homeowners, ranches and HOAs.", body, crumbs=trail)
 
     for a in AUDIENCES:
@@ -669,7 +675,7 @@ def build_places():
 <div class="card"><h3><a href="{L(r['path'])}">{r['name']}</a></h3>
 <p>{len(r['projects'])} job{'s' if len(r['projects']) != 1 else ''} on video</p>{place_pills(cur, r['cities'].values())}</div>""" for r in PLACES.values())
     body = page_hero(cur, trail, "Where We've Worked", "Every place on this page is here because we did a real job there — and there's a dated video to prove it. Any state, any country: the list grows with every job.") + f"""
-<section class="section"><div class="wrap">
+<section class="section"><div class="wrap"><h2 class="sr">Places</h2>
   {('<div class="grid g2">' + blocks + '<div class="empty-slot">The next place shows up here automatically when its first job video is added.</div></div>') if PLACES else '<div class="prose">' + places_preview() + '</div>'}
 </div></section>
 <section class="section alt"><div class="wrap">{anywhere_teaser(cur)}</div></section>
@@ -777,6 +783,7 @@ def build_projects():
     cards = "".join(project_card(cur, p) for p in sorted(PROJECTS, key=lambda p: p["date"], reverse=True))
     body = page_hero(cur, trail, "Job Videos", "Every job we film: the date, the place, the equipment and the result. Filter by service, location or year.") + f"""
 <section class="section"><div class="wrap">
+  <h2 class="sr">All job videos</h2>
   <div class="filters">
     <label>Service<select data-filter="service"><option value="">All services</option>{svc_opts}</select></label>
     {f'<label>Location<select data-filter="region"><option value="">All locations</option>{cty_opts}</select></label>' if PLACES else ''}
@@ -850,7 +857,7 @@ def build_questions():
     trail = [("Home", HOME), ("Questions", cur)]
     cards = "".join(f'<a class="card" href="{L("questions/" + q["slug"] + "/")}"><h3>{q["q"]}</h3><p>{q["short"][:150]}…</p><span class="more">Read the answer</span></a>' for q in QUESTIONS)
     body = page_hero(cur, trail, "Questions &amp; Answers", "Straight answers about land clearing, permits, wetlands, timing and cost — from a crew that does this every day.") + f"""
-<section class="section"><div class="wrap"><div class="grid g2">{cards}
+<section class="section"><div class="wrap"><h2 class="sr">All questions</h2><div class="grid g2">{cards}
 <div class="empty-slot">Next question + short video answer goes here</div></div></div></section>{cta_band(cur, "Have a question we didn't answer?")}"""
     page(cur, f"Land Clearing Questions & Answers | {BIZ['short']}",
          "Answers about land clearing costs, permits, wetlands, timelines and forestry mulching.", body, crumbs=trail)
@@ -970,11 +977,13 @@ def build_bid():
         <option value="">Choose</option><option>Google search</option><option>Google Maps</option><option>YouTube</option>
         <option>AI assistant (ChatGPT, Gemini, etc.)</option><option>Referral</option><option>Truck / sign / QR code</option><option>Other</option></select></div>
     </fieldset>
+    <div class="full sms-consent"><label><input type="checkbox" name="sms_consent" value="yes"> Yes, you may text me about my request. Message frequency varies. Message &amp; data rates may apply. Reply STOP to opt out, HELP for help. Consent is not required to get a bid. <a href="{L('text-terms/')}">Text Terms</a> · <a href="{L('privacy/')}">Privacy</a></label></div>
     <input type="hidden" name="lead_lane"><input type="hidden" name="landing_page"><input type="hidden" name="referrer">
     <button class="btn btn-yellow" type="submit" style="width:100%">Send My Request</button>
-    <p class="small mt">We never share your information. <a href="{L('privacy/')}">Privacy</a></p>
+    <p class="small mt">We never sell your information. <a href="{L('privacy/')}">Privacy Policy</a> · <a href="{L('terms/')}">Terms</a></p>
   </form>
   <div>
+    <h2 class="sr">Other ways to reach us</h2>
     <div class="card"><h3>Rather talk?</h3><p>Call <a href="{tel_href(cur)}">{BIZ['phone']}</a><br>{BIZ['hours']}</p></div>
     <div class="card mt"><h3>Agencies &amp; primes</h3><p>Send solicitations and scopes to {BIZ['email']}. See our <a href="{L('who-we-serve/government-agencies/')}">capability snapshot</a>.</p></div>
     <div class="card mt"><h3>Send photos or video</h3><p>[[Text photos to (XXX) XXX-XXXX]] — it's the fastest way to get an accurate price.</p></div>
@@ -1011,17 +1020,32 @@ def build_reviews():
     page(cur, f"Reviews | {BIZ['short']}", f"Reviews of {BIZ['name']}.", body, crumbs=trail)
 
 
-def build_privacy():
-    cur = "privacy/"
-    trail = [("Home", HOME), ("Privacy", cur)]
-    body = page_hero(cur, trail, "Privacy", "How we handle the information you send us.", ctas=False) + f"""
-<section class="section"><div class="wrap prose">
-<p>When you request a bid or contact us, we use your information only to respond to you and to provide the work you ask about. We do not sell your information.</p>
-<p>This site may use basic analytics to understand how visitors find us. [[Analytics provider XXX]]</p>
-<p>Questions: {BIZ['email']}</p>
-<p class="small">[[Have counsel review before launch.]]</p>
+def build_legal():
+    fill = {"name": BIZ["name"], "address": BIZ["address"], "city_state": BIZ["city_state"],
+            "phone": BIZ["phone"], "email": BIZ["email"], "audit_date": AUDIT_DATE}
+    others_all = [(d["slug"], d["title"]) for d in LEGAL]
+    for d in LEGAL:
+        cur = d["slug"] + "/"
+        L = lambda p, cur=cur: rel(cur, p)  # noqa: E731
+        links = dict(fill, privacy=L("privacy/"), text_terms=L("text-terms/"), credentials=L("credentials/"),
+                     capability=L("capability-statement/"))
+        trail = [("Home", HOME), (d["title"], cur)]
+        toc = "".join(f'<li><a href="#s{i}">{h}</a></li>' for i, (h, _) in enumerate(d["sections"], 1))
+        secs = "".join(f'<h2 id="s{i}">{h}</h2>{t.format(**links)}' for i, (h, t) in enumerate(d["sections"], 1))
+        others = "".join(f'<li><a href="{L(sl + "/")}">{t}</a></li>' for sl, t in others_all if sl != d["slug"])
+        body = page_hero(cur, trail, d["title"], d["lead"], ctas=False) + f"""
+<section class="section"><div class="wrap split legal">
+  <article class="prose">
+    <p class="small">Effective: {EFFECTIVE}</p>
+    {secs}
+    <p class="small mt">Effective: {EFFECTIVE} · {BIZ['name']}</p>
+  </article>
+  <div class="legal-side">
+    <div class="card"><h3>On this page</h3><ul class="checks">{toc}</ul></div>
+    <div class="card mt"><h3>Policies</h3><ul class="checks">{others}</ul></div>
+  </div>
 </div></section>"""
-    page(cur, f"Privacy | {BIZ['short']}", "Privacy policy.", body, crumbs=trail, noindex=True)
+        page(cur, f"{d['title']} | {BIZ['short']}", f"{d['title']} for {BIZ['name']}. {d['lead']}", body, crumbs=trail)
 
 
 def build_plan():
@@ -1157,7 +1181,7 @@ body{background:#e9e5da}
 </style>"""
     comp = "".join(f"<li>{x['name']}</li>" for x in SERVICES) + "<li>Projects Anywhere: long-distance planning and management</li>"
     body = f"""
-<article class="cap">
+<main id="main"><article class="cap">
   <header class="cap-head">
     <div class="logo-plate"><img src="{L('assets/img/everglades-logo.webp')}" alt="{esc(BIZ['name'])}" width="1400" height="632"></div>
     <div><h1>Capability Statement</h1><p>{BIZ['phone']}</p><p>{BIZ['email']}</p><p>Website: [[www.XXX.com]]</p></div>
@@ -1184,7 +1208,8 @@ body{background:#e9e5da}
   <footer class="cap-foot"><span>Headquartered in [[City, State]] · Working anywhere</span><span>W-9 and COI on request</span><span class="cap-credit">{credit(cur, light_bg=True)}</span></footer>
 </article>
 <div class="printbar"><button class="btn btn-yellow" onclick="window.print()">Print / Save as PDF</button>
-<a class="btn btn-outline" href="{L(DOOR)}">Back</a></div>"""
+<a class="btn btn-outline" href="{L(DOOR)}">Back</a></div>
+</main>"""
     page(cur, f"Capability Statement | {BIZ['short']}", f"Capability statement for {BIZ['name']}.",
          body, chrome=False, extra_head=style, noindex=True)
 
@@ -1268,7 +1293,7 @@ def build_capabilities():
                         f'<p class="small">{", ".join(c["services"][:5])}…</p><span class="more">View services</span></a>' for c in cats)
         others = "".join(f'<li><a href="{L("capabilities/" + k + "/")}">{n}</a></li>' for k, n, _ in SECTIONS if k != sk)
         body = page_hero(cur, trail, sname, sdesc) + f"""
-<section class="section"><div class="wrap"><div class="grid g3">{cards}</div></div></section>
+<section class="section"><div class="wrap"><h2 class="sr">Categories in {sname}</h2><div class="grid g3">{cards}</div></div></section>
 <section class="section alt"><div class="wrap"><h2>Other Areas of Expertise</h2><ul class="pill-list">{others}</ul></div></section>
 {cta_band(cur)}"""
         page(cur, f"{sname} | Capabilities | {BIZ['short']}", f"{sname}: {sdesc}", body, crumbs=trail)
@@ -1507,7 +1532,7 @@ body{background:#fff}
 .printbar{margin-top:28px}
 @media print{.printbar{display:none}.sheet{padding:0}@page{size:letter;margin:.6in}}
 </style>"""
-    body = f"""<div class="sheet">
+    body = f"""<main class="sheet" id="main">
   <img src="{L('assets/img/everglades-logo.png')}" alt="{esc(BIZ['name'])}" width="1400" height="632">
   <h1>See Our New Website</h1>
   <p>Point your phone's camera at the code.</p>
@@ -1517,8 +1542,8 @@ body{background:#fff}
   <p>{BIZ['phone']}</p>
   <div class="printbar"><button class="btn btn-yellow" onclick="window.print()">Print this page</button>
   <a class="btn btn-outline" href="{L(DOOR)}">Back</a></div>
-</div>
-<div class="credit-row">{credit(cur, light_bg=True)}</div>"""
+</main>
+<footer class="credit-row">{credit(cur, light_bg=True)}</footer>"""
     page(cur, f"QR Code | {BIZ['short']}", "Printable QR code.", body, chrome=False, extra_head=style, noindex=True)
 
 
@@ -1528,12 +1553,12 @@ def build_404():
 <title>Page Not Found | {BIZ['short']}</title><meta name="robots" content="noindex">
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/site.css"><link rel="icon" href="/assets/img/icon-32.png"></head>
-<body><section class="hero" style="min-height:100vh;display:flex;align-items:center"><div class="wrap center">
+<body><main id="main"><section class="hero" style="min-height:100vh;display:flex;align-items:center"><div class="wrap center">
 <img src="/assets/img/everglades-logo-640.webp" alt="{esc(BIZ['name'])}" style="margin:0 auto 24px;max-width:420px">
 <h1>This Page Got Cleared</h1><p class="lead" style="margin:0 auto 24px">We couldn't find that page. Try one of these:</p>
 <div class="ctas" style="justify-content:center"><a class="btn btn-yellow" href="/{HOME}">Home</a><a class="btn btn-ghost" href="/services/">Services</a><a class="btn btn-ghost" href="/request-a-bid/">Request a Bid</a></div>
-</div></section>
-<div class="credit-row" style="position:fixed;right:0;bottom:0"><a class="credit" href="{CREDIT_URL}" target="_blank" rel="noopener"><img src="/assets/img/mediain360-credit-light.png" alt="Produced and Powered by MediaIn360" width="80" height="21" style="width:80px;max-width:80px;height:auto;display:block"></a></div></body></html>"""
+</div></section></main>
+<footer class="credit-row" style="position:fixed;right:0;bottom:0"><a class="credit" href="{CREDIT_URL}" target="_blank" rel="noopener"><img src="/assets/img/mediain360-credit-light.png" alt="Produced and Powered by MediaIn360" width="80" height="21" style="width:80px;max-width:80px;height:auto;display:block"></a></footer></body></html>"""
     PAGES["404.html"] = body
 
 
@@ -1620,7 +1645,7 @@ def main():
     build_credentials()
     build_bid()
     build_reviews()
-    build_privacy()
+    build_legal()
     build_plan()
     build_qr_sheet()
     build_404()

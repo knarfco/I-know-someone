@@ -384,7 +384,7 @@ QUESTIONS = [
         "q": "Forestry mulching or traditional land clearing — which do I need?",
         "short": "Choose forestry mulching for brush, palmetto and small trees when you want a fast, clean job that protects the soil. Choose traditional clearing when you need big trees and stumps out, or a bare site ready for a pad, pond or road.",
         "body": [
-            ("Side by side", "<table class=\"facts\"><tr><th></th><td><b>Forestry mulching</b></td><td><b>Traditional clearing</b></td></tr><tr><th>Best for</th><td>Brush, palmetto, small trees, fire breaks</td><td>Building pads, big trees, stumps</td></tr><tr><th>Debris</th><td>Stays as mulch</td><td>Hauled or piled</td></tr><tr><th>Soil</th><td>Protected</td><td>Exposed, ready to grade</td></tr><tr><th>Speed</th><td>Very fast</td><td>Depends on haul-off</td></tr></table>"),
+            ("Side by side", "<table class=\"facts\"><tr><th>Compare</th><td><b>Forestry mulching</b></td><td><b>Traditional clearing</b></td></tr><tr><th>Best for</th><td>Brush, palmetto, small trees, fire breaks</td><td>Building pads, big trees, stumps</td></tr><tr><th>Debris</th><td>Stays as mulch</td><td>Hauled or piled</td></tr><tr><th>Soil</th><td>Protected</td><td>Exposed, ready to grade</td></tr><tr><th>Speed</th><td>Very fast</td><td>Depends on haul-off</td></tr></table>"),
         ],
         "related_service": "forestry-mulching",
     },

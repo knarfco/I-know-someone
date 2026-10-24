@@ -17,6 +17,11 @@
 - `.htaccess` marks HTML/PHP as no-cache, so each upload shows immediately; hashed CSS/JS can be cached safely.
 - Background: the first live upload showed new pages with an OLD stylesheet (Hostinger server/CDN copy). Hashed names make that impossible. If anything still looks stale, hPanel → Performance → Cache Manager / CDN → Purge all.
 
+## Legal, compliance & accessibility
+- `build/legal.py`: Privacy, Terms, Accessibility Statement, Compliance & Certifications (Drug-Free Workplace, E-Verify, EEO, safety, ethics, public records), Text Messaging Terms. Linked in every footer and on the front door. `[[...]]` = facts to confirm (effective date, testing policy, OSHA/EMR, E-Verify ID, venue county, analytics). Attorney review before launch.
+- Bid form has an unchecked SMS opt-in (carrier/TCPA language) linking Text Terms and Privacy.
+- Accessibility: every page audited with axe-core (WCAG 2.1 A/AA + best-practice), desktop and mobile: 0 issues as of `AUDIT_DATE` in build.py. Re-run after adding pages and update `AUDIT_DATE` (shown on the Accessibility Statement). Add captions to every YouTube job video.
+
 ## Settings in build.py
 | Flag | Now | At launch |
 |---|---|---|

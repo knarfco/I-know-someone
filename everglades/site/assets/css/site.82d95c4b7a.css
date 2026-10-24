@@ -372,3 +372,12 @@ a.card:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(6,56,26,.12);
 .cap-credit .credit img{width:72px;max-width:72px}
 @media (max-width:640px){.credit img{width:72px;max-width:72px}}
 @media print{.credit{opacity:1}}
+
+/* ---------- legal pages + footer legal links ---------- */
+.legal-links{display:flex;flex-wrap:wrap;gap:6px 16px}
+.legal .prose h2{font-size:1.25rem;margin-top:1.6em}
+.legal .legal-side{position:sticky;top:96px}
+.sms-consent label{font-weight:500;font-size:.85rem;color:var(--ink-soft);display:flex;gap:8px;align-items:flex-start}
+.sms-consent input{margin-top:3px}
+@media (max-width:900px){.legal .legal-side{position:static}}
+.footer .foot-h{color:#fff;font-size:1.05rem;margin-bottom:12px}

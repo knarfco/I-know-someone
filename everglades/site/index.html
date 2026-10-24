@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/site.74701e03d9.css">
+<link rel="stylesheet" href="assets/css/site.82d95c4b7a.css">
 <style>
 body{background:radial-gradient(ellipse at 50% 20%,#13692e 0%,#06381A 45%,#031d0d 100%);color:#fff;min-height:100vh}
 .door{max-width:1180px;margin:0 auto;padding:32px 20px 24px}
@@ -37,7 +37,9 @@ body{background:radial-gradient(ellipse at 50% 20%,#13692e 0%,#06381A 45%,#031d0
 .qr-panel b{display:block;font-family:var(--head);font-weight:800;font-size:1rem;color:var(--green-deep);margin-top:8px}
 .qr-panel small{display:block;color:var(--ink-soft);word-break:break-all;margin-top:2px}
 .door-side .btn{width:100%}
-.door-foot{text-align:center;padding:14px 20px 24px;color:#8fbf99;font-size:.88rem}
+.door-foot{text-align:center;padding:14px 20px 8px;color:#8fbf99;font-size:.88rem}
+.door-legal{margin-top:8px;font-size:.82rem}
+.door-legal a{color:#cfe8d4}
 @media (max-width:900px){.door-main{grid-template-columns:1fr}.door-side{max-width:420px;margin:0 auto;width:100%}}
 @media (max-width:620px){.door-btns{grid-template-columns:1fr}.door{padding-top:22px}.door-creds{padding:14px}.door-creds .creds{grid-template-columns:1fr 1fr;gap:6px}.door-creds .creds div{padding:7px 9px}.door-creds .creds dt{font-size:.62rem;letter-spacing:.03em}.door-creds .creds dd{font-size:.85rem}}
 </style>
@@ -45,7 +47,7 @@ body{background:radial-gradient(ellipse at 50% 20%,#13692e 0%,#06381A 45%,#031d0
 </head>
 <body>
 
-<div class="door">
+<main class="door" id="main">
   <div class="door-top">
     <div class="door-logo logo-plate"><img src="assets/img/everglades-logo.webp" alt="Everglades Restorations &amp; Land Clearing Inc." width="1400" height="632"></div>
     <h1 class="door-tag">Land Clearing · Excavation · Restoration</h1>
@@ -71,9 +73,10 @@ body{background:radial-gradient(ellipse at 50% 20%,#13692e 0%,#06381A 45%,#031d0
       <a class="btn btn-ghost" href="assets/everglades-contact.vcf" download>👤 Save Contact</a>
     </div>
   </div>
-</div>
-<div class="door-foot">W-9 and certificate of insurance on request · Storm response 24/7<br>Everglades Restorations & Land Clearing Inc. · <span class="ph">(XXX) XXX-XXXX</span> · <span class="ph">info@XXX.com</span></div>
-<div class="credit-row"><a class="credit" href="https://mediain360.com" target="_blank" rel="noopener" title="Produced and Powered by MediaIn360"><img src="assets/img/mediain360-credit-light.png" alt="Produced and Powered by MediaIn360" width="80" height="21" style="width:80px;max-width:80px;height:auto;display:block"></a></div>
+</main>
+<footer class="door-footer"><div class="door-foot">W-9 and certificate of insurance on request · Storm response 24/7<br>Everglades Restorations & Land Clearing Inc. · <span class="ph">(XXX) XXX-XXXX</span> · <span class="ph">info@XXX.com</span>
+<nav class="door-legal" aria-label="Legal"><a href="privacy/">Privacy</a> · <a href="terms/">Terms</a> · <a href="accessibility/">Accessibility</a> · <a href="compliance/">Compliance</a> · <a href="text-terms/">Text Terms</a></nav></div>
+<div class="credit-row"><a class="credit" href="https://mediain360.com" target="_blank" rel="noopener" title="Produced and Powered by MediaIn360"><img src="assets/img/mediain360-credit-light.png" alt="Produced and Powered by MediaIn360" width="80" height="21" style="width:80px;max-width:80px;height:auto;display:block"></a></div></footer>
 <script src="assets/js/qrcode.6e6189e2b1.js" defer></script>
 <script src="assets/js/site.d45739ee8f.js" defer></script>
 </body>
