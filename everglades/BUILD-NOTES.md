@@ -107,3 +107,9 @@ The form also captures `landing_page`, `referrer` and "how did you find us".
 - [ ] Analytics + call tracking
 - [ ] Lawyer review of the privacy page
 - [ ] Optional: clean vector redraw of the logo
+
+## Bid Finder app (internal, proposed)
+- Pitched in `docs/presentation/TerraAll_Strategy_Presentation_v3.pdf` (one slide + the "TerraAll Digital Findability Network" slide) and `TerraAll_Bid_Finder_App.pdf` (8 slides).
+- Plan: nightly search of public procurement sources (SAM.gov, state/county portals, water districts, CPRA, prime sub lists) filtered by Matt's dials (size, area, work type, role) → morning list on his phone → Take it / Team it / Route it / 86 it.
+- Back end: Supabase (cheap to run); phone-friendly web app on top. Never named in client docs.
+- Bid support (additional service): plain-English bid summary, then drafting and production. Matt sets prices, checks facts and signs. No dollar amounts in any client doc; terms in person.

@@ -260,6 +260,35 @@
   .svc .t p{font-size:10pt;color:var(--muted);margin:0;line-height:1.4}
   .svc .t.hl{background:var(--green);border-color:var(--green)}
   .svc .t.hl h3{color:var(--yellow)}.svc .t.hl p{color:#d7eadb}.svc .t.hl .ico{background:var(--yellow)}
+
+  /* bid finder phone */
+  .bf-phone{width:2.75in;border-radius:34px;background:#1a1c19;padding:11px;box-shadow:0 26px 54px rgba(0,0,0,.3);margin:0 auto}
+  .bf-scr{background:#F5F5F1;border-radius:25px;overflow:hidden;height:4.5in;display:flex;flex-direction:column}
+  .bf-top{background:var(--green);color:#fff;padding:14px 14px 10px}
+  .bf-top small{display:block;font-size:7pt;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--mint)}
+  .bf-top b{font-size:13pt;display:block;margin-top:2px}
+  .bf-dials{display:flex;gap:5px;margin-top:8px;flex-wrap:wrap}
+  .bf-dials span{background:rgba(255,255,255,.14);border-radius:20px;padding:3px 8px;font-size:7pt;font-weight:700;color:#fff}
+  .bf-dials span.on{background:var(--yellow);color:#000}
+  .bf-list{padding:8px 9px;display:flex;flex-direction:column;gap:7px}
+  .bf-card{background:#fff;border-radius:12px;padding:9px 10px;box-shadow:0 2px 6px rgba(0,0,0,.06)}
+  .bf-card b{display:block;font-size:8.5pt;color:var(--green);line-height:1.25}
+  .bf-card .m{display:flex;justify-content:space-between;align-items:center;margin-top:4px;font-size:7pt;color:var(--muted)}
+  .bf-card .m .due{font-weight:800;color:var(--brown)}
+  .bf-card .d{color:var(--green-2);letter-spacing:1px;font-size:8pt}.bf-card .d i{color:#cfd6cb;font-style:normal}
+  .bf-btns{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-top:6px}
+  .bf-btns span{text-align:center;border-radius:7px;padding:4px 0;font-size:6.5pt;font-weight:800;color:#fff}
+  .bf-btns .a{background:var(--green)}.bf-btns .b{background:var(--green-2)}.bf-btns .c{background:var(--brown)}.bf-btns .x{background:#8b9088}
+  .bf-btns span.dim{opacity:.35}
+  .bf-ex{position:absolute;top:-10px;right:-14px;background:var(--yellow);color:#000;font-size:8pt;font-weight:800;letter-spacing:.1em;border-radius:20px;padding:4px 10px}
+  .three{list-style:none;margin:0;padding:0;counter-reset:t}
+  .three li{counter-increment:t;position:relative;padding:14px 0 14px 60px;border-top:1px solid var(--line);font-size:13pt;line-height:1.45}
+  .three li::before{content:counter(t);position:absolute;left:0;top:12px;width:42px;height:42px;border-radius:50%;background:var(--green);color:#fff;font-weight:800;font-size:15pt;display:flex;align-items:center;justify-content:center}
+  .three li:nth-child(2)::before{background:var(--brown)}.three li:nth-child(3)::before{background:var(--green-2)}
+  .three b{color:var(--green);display:block;font-size:14pt}
+  .made5{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+  .made5 span{border:2px solid var(--green);color:var(--green);border-radius:30px;padding:4px 10px;font-size:9.5pt;font-weight:800}
+  .made5 span:nth-child(even){border-color:var(--brown);color:var(--brown)}
 </style>
 </head>
 <body>
@@ -291,7 +320,7 @@
     <li><span>03</span>Why Everglades wins</li>
     <li><span>04</span>Discovery and the growth engine</li>
     <li><span>05</span>Every job, Matt's choice</li>
-    <li><span>06</span>Reach, bid intelligence and roadmap</li>
+    <li><span>06</span>Reach, the Bid Finder app and roadmap</li>
     <li><span>07</span>How we're building it</li>
     <li><span>08</span>What's already built</li>
     <li><span>09</span>How we work together, ongoing</li>
@@ -479,73 +508,24 @@
   <div class="foot"><span>Strategy presentation · Confidential</span><span class="num">13</span></div>
 </section>
 
-<!-- BI-1 FIND THE WORK -->
+<!-- BF THE BID FINDER APP -->
 <section class="slide">
-  <p class="eyebrow">06 · Bid Intelligence Network</p>
-  <h2>Find the Work Before Everyone Else Does</h2>
-  <div class="bar" style="margin-bottom:12px"></div>
-  <p class="lead" style="font-size:14pt">A custom system MediaIn360 builds and runs for Everglades: it watches public procurement sources nationwide every day and brings the right opportunities straight to Matt.</p>
-  <div class="flow6">
-    <div class="st f1"><small>Watch</small><b>Sources</b><span>Public bids, programs and prime contractors, nationwide</span></div>
-    <div class="st f2"><small>Filter</small><b>Screening</b><span>Scope, place, size, stage, deadlines, credentials</span></div>
-    <div class="st f3"><small>Deliver</small><b>Daily Brief</b><span>Links, key dates, requirements, next steps</span></div>
-    <div class="st f4"><small>Check</small><b>Qualify</b><span>Gaps in licensing, bonding, insurance or capacity</span></div>
-    <div class="st f5"><small>Support</small><b>Bid Prep</b><span>Documents, checklists, partners, draft materials</span></div>
-    <div class="st f6"><small>Decide</small><b>Matt Approves</b><span>Every price, statement and submission</span></div>
-  </div>
-  <div class="watch"><span>Federal agencies</span><span>States</span><span>Counties &amp; cities</span><span>Water &amp; flood districts</span><span>Utilities</span><span>Infrastructure programs</span><span>Prime contractors' sub lists</span></div>
-  <div class="pkg">
-    <div class="big">The biggest programs are built from smaller work packages. <span>We find the ones that fit.</span></div>
-    <div class="ways">
-      <div><b>Prime</b>Bids sized to Everglades' licenses and bonding</div>
-      <div><b>Subcontract</b>Clearing, earthwork and hauling under a large prime</div>
-      <div><b>Award pools</b>Multi-year contracts that hand out jobs over time</div>
-      <div><b>Standby</b>Pre-arranged storm and debris contracts</div>
+  <p class="eyebrow">06 · The Bid Finder App</p>
+  <h2>The Bid Finder App</h2>
+  <div class="bar"></div>
+  <div class="two" style="display:grid;grid-template-columns:1.25fr .75fr;gap:.5in;align-items:center">
+    <div>
+      <p class="lead" style="font-size:14pt;margin-bottom:8px">A private app, built just for Everglades, that searches public bids and programs across the country every night and shows Matt only what's worth his time.</p>
+      <ol class="three">
+        <li><b>While you sleep, it searches.</b>Any size, any area: you set the dials. Big programs nationwide, right-sized jobs close to home.</li>
+        <li><b>Every morning, you pick.</b>Tap Take it, Team it, Route it or 86 it.</li>
+        <li><b>We help with the legwork.</b>Plain-English bid summaries, bid writing and production support. You check, finalize and sign.</li>
+      </ol>
+      <div class="made5"><span>Designed</span><span>Developed</span><span>Perfected</span><span>Managed</span><span>Maintained</span><b style="align-self:center;font-size:10.5pt;color:var(--brown)">by MediaIn360</b></div>
     </div>
+    <div style="position:relative"><span class="bf-ex">EXAMPLE</span><div class="bf-phone"><div class="bf-scr"><div class="bf-top"><small>Bid Finder · MediaIn360</small><b>Tonight's Finds</b><div class="bf-dials"><span class="on">Nationwide · Biggest programs</span><span class="on">My area · $500K+</span></div></div><div class="bf-list"><div class="bf-card"><b>Reservoir embankment: clearing &amp; muck removal</b><div class="m"><span>Florida</span><span class="d">●●●●●<i></i></span><span class="due">Due in 18 days</span></div><div class="bf-btns"><span class="a dim">Take it</span><span class="b">Team it</span><span class="c dim">Route it</span><span class="x dim">86 it</span></div></div><div class="bf-card"><b>County disaster debris, standby contract</b><div class="m"><span>Gulf Coast</span><span class="d">●●●●<i>●</i></span><span class="due">Due in 9 days</span></div><div class="bf-btns"><span class="a">Take it</span><span class="b dim">Team it</span><span class="c dim">Route it</span><span class="x dim">86 it</span></div></div><div class="bf-card"><b>Marsh terracing &amp; shoreline</b><div class="m"><span>Louisiana</span><span class="d">●●●<i>●●</i></span><span class="due">Due in 30 days</span></div><div class="bf-btns"><span class="a">Take it</span><span class="b">Team it</span><span class="c">Route it</span><span class="x">86 it</span></div></div><div class="bf-card"><b>Specialty hazardous remediation</b><div class="m"><span>Midwest</span><span class="d">●<i>●●●●</i></span><span class="due">Due in 12 days</span></div><div class="bf-btns"><span class="a dim">Take it</span><span class="b dim">Team it</span><span class="c dim">Route it</span><span class="x">86 it</span></div></div></div></div></div></div>
   </div>
   <div class="foot"><span class="mark"><img src="img/terraall-logo.png" alt="">Strategy presentation · Confidential</span><span class="num">14</span></div>
-</section>
-
-<!-- BI-2 BIG PROGRAMS -->
-<section class="slide dark">
-  <p class="eyebrow">06 · Bid Intelligence Network</p>
-  <h2>Where the Big Programs Are</h2>
-  <div class="bar" style="margin-bottom:14px"></div>
-  <div class="progs">
-    <div class="prog"><small>Florida</small><h3>Everglades Restoration</h3><p>Reservoirs, flow ways, pump stations and treatment areas, funded by federal and state partners.</p><div class="in"><b>Way in:</b> clearing, grubbing, muck removal and earthwork under the primes</div></div>
-    <div class="prog"><small>Nationwide</small><h3>Army Corps Award Pools</h3><p>Multi-year construction and environmental contracts by district, many set aside for small businesses.</p><div class="in"><b>Way in:</b> earn a seat in the pool, compete for each job</div></div>
-    <div class="prog"><small>Any state</small><h3>Disaster Debris</h3><p>Pre-arranged federal, state DOT and county contracts that switch on after storms.</p><div class="in"><b>Way in:</b> county contracts directly; subcontract to debris primes</div></div>
-    <div class="prog"><small>Nationwide</small><h3>Superfund &amp; Cleanup</h3><p>EPA and defense site cleanups, with steady federal funding every year.</p><div class="in"><b>Way in:</b> excavation and hauling, teamed with licensed cleanup firms</div></div>
-    <div class="prog"><small>Gulf Coast</small><h3>Coastal Restoration</h3><p>Marsh creation, terracing and shoreline protection across a large pipeline of state projects.</p><div class="in"><b>Way in:</b> earthwork packages and in-state partners</div></div>
-    <div class="prog"><small>Every region</small><h3>Flood Control &amp; Resilience</h3><p>Canals, drainage, levees and stormwater for water districts and resilience programs.</p><div class="in"><b>Way in:</b> prime the right-sized jobs; team on the large ones</div></div>
-  </div>
-  <p class="srcnote">Examples from public sources, October 2026. Each opportunity is verified against the actual solicitation before any decision.</p>
-  <div class="foot"><span>Strategy presentation · Confidential</span><span class="num">15</span></div>
-</section>
-
-<!-- BI-3 DAILY BRIEF -->
-<section class="slide stone">
-  <p class="eyebrow">06 · Bid Intelligence Network</p>
-  <h2>Every Morning: Your Opportunity Brief</h2>
-  <div class="bar" style="margin-bottom:14px"></div>
-  <div class="brief">
-    <div class="bh"><div><b>Everglades Opportunity Brief</b><span class="ex">EXAMPLE</span></div><span>Bid Intelligence Network · MediaIn360</span></div>
-    <table>
-      <thead><tr><th>Opportunity</th><th>Where</th><th>Fit</th><th>Entry</th><th>Due</th><th>Gap to close</th><th>Next step</th></tr></thead>
-      <tbody>
-        <tr><td><b>Reservoir embankment: clearing &amp; muck removal</b><small>Federal restoration program · large prime</small></td><td>Florida</td><td class="dots">●●●●●</td><td><span class="lane l-team">Team it</span></td><td>XX/XX</td><td>Prime's subcontractor registration</td><td>Call the prime's sub manager</td></tr>
-        <tr><td><b>County disaster debris removal, standby contract</b><small>County procurement</small></td><td>Gulf Coast</td><td class="dots">●●●●<i>●</i></td><td><span class="lane l-take">Take it</span></td><td>XX/XX</td><td>Debris-site plan</td><td>Download the bid package</td></tr>
-        <tr><td><b>Marsh terracing &amp; shoreline protection</b><small>State coastal program</small></td><td>Louisiana</td><td class="dots">●●●<i>●●</i></td><td><span class="lane l-team">Team it</span></td><td>XX/XX</td><td>In-state partner</td><td>Partner shortlist</td></tr>
-        <tr><td><b>Canal maintenance task order</b><small>Army Corps award pool</small></td><td>Southeast</td><td class="dots">●●●●<i>●</i></td><td><span class="lane l-take">Take it</span></td><td>XX/XX</td><td>Pool membership</td><td>Watch for the next round</td></tr>
-        <tr><td><b>Remediation with specialty hazardous work</b><small>Federal cleanup site</small></td><td>Midwest</td><td class="dots">●<i>●●●●</i></td><td><span class="lane l-86">86 it</span></td><td>XX/XX</td><td>Outside core scope</td><td>Pass</td></tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="oversight">
-    <div><b>Human oversight.</b> Every lead is checked against the real solicitation, licensing, bonding, insurance and capacity.</div>
-    <div><b>Matt decides.</b> He approves all pricing, statements and submissions. No award is ever promised.</div>
-  </div>
-  <div class="foot"><span class="mark"><img src="img/terraall-logo.png" alt="">Strategy presentation · Confidential</span><span class="num">16</span></div>
 </section>
 
 <!-- 12 ROADMAP -->
@@ -560,7 +540,7 @@
     <div class="ph"><div class="big">3</div><div class="k">Phase 3</div><h3>Scale with real data</h3><p>Permit guides by county, cost guides from real jobs, answered questions, partner job pages.</p></div>
     <div class="ph"><div class="big">4</div><div class="k">Phase 4</div><h3>Go wide</h3><p>Statewide, national, then international — each place opening as jobs and partners exist there.</p></div>
   </div>
-  <div class="foot"><span class="mark"><img src="img/terraall-logo.png" alt="">Strategy presentation · Confidential</span><span class="num">17</span></div>
+  <div class="foot"><span class="mark"><img src="img/terraall-logo.png" alt="">Strategy presentation · Confidential</span><span class="num">15</span></div>
 </section>
 
 <!-- 13 PRINCIPLES -->
@@ -578,7 +558,7 @@
     <div class="tile"><h3>One engine</h3><p>One question bank, one video pipeline, one sorting system for both brands.</p></div>
     <div class="tile"><h3>Owned outright</h3><p>The site, content, video and domain belong to the company. Everything compounds.</p></div>
   </div>
-  <div class="foot"><span>Strategy presentation · Confidential</span><span class="num">18</span></div>
+  <div class="foot"><span>Strategy presentation · Confidential</span><span class="num">16</span></div>
 </section>
 
 <!-- 14 ALREADY BUILT -->
@@ -603,7 +583,7 @@
       <div class="phone" style="right:.15in;top:1.35in;width:1.7in"><img src="img/shot-m-door.jpg" alt="Digital business card on a phone"></div>
     </div>
   </div>
-  <div class="foot"><span class="mark"><img src="img/terraall-logo.png" alt="">Strategy presentation · Confidential</span><span class="num">19</span></div>
+  <div class="foot"><span class="mark"><img src="img/terraall-logo.png" alt="">Strategy presentation · Confidential</span><span class="num">17</span></div>
 </section>
 
 <!-- 15 PROCUREMENT VIEW -->
@@ -621,7 +601,7 @@
       <p style="color:var(--muted);font-size:12pt">And for Matt: a simple checklist to choose which services Everglades takes on, teams up on or passes along — so the build follows the business.</p>
     </div>
   </div>
-  <div class="foot"><span>Strategy presentation · Confidential</span><span class="num">20</span></div>
+  <div class="foot"><span>Strategy presentation · Confidential</span><span class="num">18</span></div>
 </section>
 
 <!-- 16 HOW WE WORK TOGETHER -->
@@ -637,7 +617,7 @@
         <li>The digital system that helps buyers find you, understand your capabilities and contact you</li>
         <li>Websites, content, videos, search visibility and technology</li>
         <li>Hosted, maintained and supported on MediaIn360's servers — updates pushed live directly</li>
-        <li>The Bid Intelligence Network: a daily opportunity brief and bid support</li>
+        <li>The Bid Finder app: a nightly bid search, plus optional bid support</li>
         <li>Outside specialists managed for you, plus regular reviews</li>
       </ul>
     </div>
@@ -659,26 +639,27 @@
     <div><b>Grow</b>Results reviewed, next concept chosen</div>
   </div>
   <div class="bottomline">One Partnership. Two Areas of Expertise. <span>A Much Bigger Reach.</span></div>
-  <div class="foot"><span class="mark"><img src="img/terraall-logo.png" alt="">Partnership terms to be discussed in person · Confidential</span><span class="num">21</span></div>
+  <div class="foot"><span class="mark"><img src="img/terraall-logo.png" alt="">Partnership terms to be discussed in person · Confidential</span><span class="num">19</span></div>
 </section>
 
-<!-- ALWAYS ON -->
+<!-- ECOSYSTEM -->
 <section class="slide stone">
   <p class="eyebrow">09 · How we work together, ongoing</p>
-  <h2>We Build It. We Run It. We Keep It Running.</h2>
-  <div class="bar" style="margin-bottom:14px"></div>
+  <h2>The TerraAll Digital Findability Network</h2>
+  <p style="font-size:13.5pt;color:var(--muted);margin:-8px 0 10px">A living, breathing, growing ecosystem: designed, developed, perfected, managed and maintained by MediaIn360.</p>
+  <div class="bar" style="margin-bottom:12px"></div>
   <div class="svc">
     <div class="t"><div class="ico">🛡️</div><h3>Hosting &amp; Security</h3><p>On MediaIn360's servers: backups, security certificates, monitoring and fast pages.</p></div>
     <div class="t"><div class="ico">🔧</div><h3>Maintenance &amp; Support</h3><p>Fixes, updates and changes handled quickly. One call or text, and it's done.</p></div>
     <div class="t"><div class="ico">🚀</div><h3>Upgrades &amp; New Features</h3><p>The system keeps growing: new pages, tools and ideas as the business grows.</p></div>
-    <div class="t hl"><div class="ico">📡</div><h3>Bid Intelligence Network</h3><p>The daily brief, deadline tracking, document organizing and bid support.</p></div>
+    <div class="t hl"><div class="ico">📡</div><h3>Bid Finder App</h3><p>A nightly search of public bids nationwide, filtered to the size and area Matt chooses.</p></div>
     <div class="t"><div class="ico">🎬</div><h3>Video &amp; Content</h3><p>The job-video archive, a page for every job, the opening video and the agency reel.</p></div>
+    <div class="t hl"><div class="ico">📝</div><h3>Bid Support</h3><p>Plain-English bid summaries, bid writing and production. Matt finalizes and signs. Additional service.</p></div>
     <div class="t"><div class="ico">🤝</div><h3>Specialists Managed</h3><p>Outside vendors and experts brought in and directed, so Matt never has to chase anyone.</p></div>
-    <div class="t"><div class="ico">📊</div><h3>Regular Reviews</h3><p>What's working, what's next, and which opportunities are coming up.</p></div>
-    <div class="t"><div class="ico">📞</div><h3>One Point of Contact</h3><p>One partner accountable for everything digital. No finger-pointing between vendors.</p></div>
+    <div class="t"><div class="ico">📞</div><h3>One Point of Contact</h3><p>One accountable partner for everything digital, with regular reviews of what's next.</p></div>
   </div>
-  <div class="bottomline">Not a one-time website. <span>An always-on growth system.</span></div>
-  <div class="foot"><span class="mark"><img src="img/terraall-logo.png" alt="">Strategy presentation · Confidential</span><span class="num">22</span></div>
+  <div class="bottomline">Not a one-time website. <span>A system that keeps growing, and keeps finding work.</span></div>
+  <div class="foot"><span class="mark"><img src="img/terraall-logo.png" alt="">Strategy presentation · Confidential</span><span class="num">20</span></div>
 </section>
 
 <!-- 17 NEXT STEPS -->
@@ -708,7 +689,7 @@
       </ul>
     </div>
   </div>
-  <div class="foot"><span>Strategy presentation · Confidential</span><span class="num">23</span></div>
+  <div class="foot"><span>Strategy presentation · Confidential</span><span class="num">21</span></div>
 </section>
 
 <!-- 18 CLOSING -->
