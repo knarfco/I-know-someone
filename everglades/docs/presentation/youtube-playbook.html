@@ -210,6 +210,13 @@
   .closing .made img{height:22px}
 
   /* playbook */
+  table.xl{width:100%;border-collapse:collapse;font-size:10.5pt;background:#fff;box-shadow:0 10px 26px rgba(0,0,0,.08)}
+  .xl th{background:var(--green);color:#fff;font-weight:700;text-align:left;padding:9px 10px;border:1px solid #2b5a3c;font-size:10pt}
+  .xl td{border:1px solid #cfd6cb;padding:9px 10px;height:.42in;color:var(--ink)}
+  .xl .rn{width:.32in;background:#eef1ec;color:var(--muted);text-align:center;font-size:9pt}
+  .xl th.rn{background:#e3e8df}
+  .xl tbody tr:first-child td:not(.rn){background:#fff8e1}
+  .xl .dd{display:inline-block;border:1px solid #bbb;border-radius:4px;padding:1px 8px;color:var(--muted);font-size:9.5pt}
   .steps{list-style:none;margin:6px 0 0;padding:0;counter-reset:s}
   .steps li{counter-increment:s;position:relative;padding:13px 0 13px 58px;border-top:1px solid var(--line);font-size:14pt;line-height:1.4}
   .steps li::before{content:counter(s);position:absolute;left:0;top:10px;width:38px;height:38px;border-radius:50%;background:var(--green);color:#fff;font-weight:800;font-size:13pt;display:flex;align-items:center;justify-content:center}
@@ -292,7 +299,7 @@
     <div class="st f1"><small>You</small><b>Film</b><span>Before, during and after on the job site.</span></div>
     <div class="st f2"><small>You</small><b>Upload</b><span>Post it to the company YouTube channel.</span></div>
     <div class="st f3"><small>You</small><b>Copy the Link</b><span>Share → Copy link. That's the short link.</span></div>
-    <div class="st f4"><small>You</small><b>Log It</b><span>Paste it on the Video Log page and tap Send.</span></div>
+    <div class="st f4"><small>You</small><b>Write It Down</b><span>Add one row to the Video Log spreadsheet.</span></div>
     <div class="st f5"><small>MediaIn360</small><b>Job Page</b><span>We turn it into its own page on the website.</span></div>
   </div>
   <p class="loopline">Every video adds one more real, dated job to the website.</p>
@@ -345,13 +352,13 @@
 </section>
 <section class="slide">
   <p class="eyebrow">Step 3</p>
-  <h2>Upload Your Videos</h2>
+  <h2>Upload Everything, Once</h2>
   <div class="bar"></div>
   <div class="grid2">
-    <div class="tile"><h3>The Backlog</h3><p style="margin-bottom:12px">The footage already on your phones and drives.</p>
-      <ul class="built-list"><li>Upload in batches from a computer</li><li>Start with your biggest and best jobs</li><li>Then a few at a time, whenever you have a minute</li></ul></div>
-    <div class="tile"><h3>New Jobs</h3><p style="margin-bottom:12px">Going forward, right from the job site.</p>
-      <ul class="built-list"><li>Upload from the YouTube app on your phone</li><li>Same day is great; same week is fine</li><li>Wi-Fi saves your data plan</li></ul></div>
+    <div class="tile"><h3>First: The Big Upload</h3><p style="margin-bottom:12px">Every past job video on your phones and drives.</p>
+      <ul class="built-list"><li>Upload them all, however long it takes</li><li>A computer is easiest for a big batch</li><li>Fill in the Video Log as you go, then email it to us</li></ul></div>
+    <div class="tile"><h3>Then: A Couple a Week</h3><p style="margin-bottom:12px">New jobs, as they happen.</p>
+      <ul class="built-list"><li>Upload from the YouTube app on your phone</li><li>Add a row at the bottom of the same Video Log</li><li>Email us the updated file</li></ul></div>
   </div>
   <p style="margin-top:20px;font-size:12pt;font-weight:700;color:var(--green)">Visibility</p>
   <div class="seg">
@@ -399,20 +406,21 @@
 </section>
 <section class="slide stone">
   <p class="eyebrow">Step 6</p>
-  <h2>Log It on the Video Log Page</h2>
+  <h2>Fill In the Video Log</h2>
   <div class="bar"></div>
-  <div class="two" style="grid-template-columns:1.2fr .8fr">
-    <div>
-      <p class="lead" style="font-size:14pt">Your own page on the website. Save it to your phone's home screen.</p>
-      <div class="linkpill" style="font-size:13.5pt">cyan-owl-411515.hostingersite.com<span>/plan/videos/</span></div>
-      <ol class="steps" style="margin-top:18px">
-        <li><b>Paste the short link.</b></li>
-        <li><b>Add what you know:</b> job, when, where, type of work.<small>Only the link is required. A few words help a lot.</small></li>
-        <li><b>Tap Send.</b> It comes straight to us.</li>
-      </ol>
-      <p style="font-size:11.5pt;color:var(--muted);margin-top:10px">Got a pile from the backlog? Paste a bunch of links at once, one per line. The address moves to the real domain at launch.</p>
-    </div>
-    <div class="phonebox"><img src="img/shot-m-videolog.jpg" alt="The Video Log page on a phone"></div>
+  <p class="lead" style="font-size:14pt;margin-bottom:16px">One spreadsheet. One row per video. We send you the file; you fill it in and email it back.</p>
+  <table class="xl">
+    <thead><tr><th class="rn"></th><th>Short link</th><th>Job title</th><th>Date filmed</th><th>Where</th><th>What we did</th><th>Who it was for</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td class="rn">1</td><td>youtu.be/A1b2C3d4E5f</td><td>Pond dig for a ranch</td><td>March 2026</td><td>City, State</td><td>Canal, Lake &amp; Pond Excavation</td><td>Private ranch owner</td><td>2-acre pond, 2 excavators</td></tr>
+      <tr><td class="rn">2</td><td>youtu.be/…</td><td></td><td></td><td></td><td><span class="dd">Choose ▾</span></td><td></td><td></td></tr>
+      <tr><td class="rn">3</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    </tbody>
+  </table>
+  <div class="grid3" style="margin-top:18px">
+    <div class="tile"><h3>Only the Link Is a Must</h3><p>Fill in what you know. A few words help a lot.</p></div>
+    <div class="tile"><h3>"Who It Was For" Stays Private</h3><p>It's for us only. We never name a client on the website without their OK.</p></div>
+    <div class="tile"><h3>Keep Adding to It</h3><p>New rows go at the bottom. Email the whole file each time.</p></div>
   </div>
   <div class="foot"><span class="mark"><img src="img/everglades-logo.png" alt="">YouTube Playbook · Confidential</span><span class="num">09</span></div>
 </section>
@@ -430,7 +438,7 @@
       </ul>
     </div>
     <div>
-      <div class="tile" style="margin-bottom:14px"><h3>How to Send</h3><p>Drop them in the shared Google Drive folder we set up for you, or send with WeTransfer. Both handle big files.</p></div>
+      <div class="tile" style="margin-bottom:14px"><h3>How to Send</h3><p>Use WeTransfer (wetransfer.com): free, no account needed, handles big files. Add our email and hit Transfer.</p></div>
       <div class="tile" style="margin-bottom:14px"><h3>Not by Text or YouTube</h3><p>Texting and YouTube shrink the quality. We need the originals.</p></div>
       <div class="tile"><h3>Stored Safely</h3><p>MediaIn360 keeps them on our server and edits the website's opening video from them.</p></div>
     </div>
@@ -480,9 +488,10 @@
       <ul class="checks">
         <li>Create the channel<small>Company Google account, 2-step verification on</small></li>
         <li>Set the name and handle</li>
-        <li>Upload your first batch of best jobs</li>
-        <li>Log each short link on the Video Log page</li>
-        <li>Send your best clips to the shared folder</li>
+        <li>Upload every past job video</li>
+        <li>Fill in the Video Log spreadsheet<small>One row per video, with its short link</small></li>
+        <li>Email us the Video Log</li>
+        <li>Send your best clips with WeTransfer</li>
       </ul>
     </div>
     <div>
