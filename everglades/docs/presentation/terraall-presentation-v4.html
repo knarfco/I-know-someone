@@ -1,0 +1,802 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>TerraAll — Strategy Presentation v4</title>
+<style>
+  @page { size: 13.333in 7.5in; margin: 0; }
+  :root{
+    --green:#03381C; --green-2:#0B6B1F; --green-3:#1E9A2E; --brown:#5A2E0C; --brown-2:#8A5A33;
+    --stone:#F5F5F1; --sage:#E4EAE0; --ink:#1A1C19; --muted:#5B6058; --line:#D5DBD1; --yellow:#F5B800; --mint:#B9D9BF;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:"Inter",Arial,sans-serif;color:var(--ink);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .slide{width:13.333in;height:7.5in;position:relative;overflow:hidden;page-break-after:always;background:#fff;padding:.7in .85in .8in}
+  .slide:last-child{page-break-after:auto}
+  .dark{background:var(--green);color:#fff}
+  .stone{background:var(--stone)}
+  .foot{position:absolute;left:.85in;right:.85in;bottom:.32in;display:flex;justify-content:space-between;align-items:center;font-size:8.5pt;color:var(--muted)}
+  .dark .foot{color:var(--mint)}
+  .foot .mark{display:flex;align-items:center;gap:10px}
+  .foot .mark img{height:14px}
+  .foot .num{font-weight:700;color:var(--brown)}
+  .dark .foot .num{color:#fff}
+  .eyebrow{font-size:10pt;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--brown);margin:0 0 14px}
+  .dark .eyebrow{color:var(--mint)}
+  h1{font-size:46pt;line-height:1.02;letter-spacing:-.03em;margin:0;font-weight:800;color:var(--green)}
+  h2{font-size:32pt;line-height:1.06;letter-spacing:-.025em;margin:0 0 18px;font-weight:800;color:var(--green)}
+  .dark h1,.dark h2{color:#fff}
+  h3{font-size:14pt;margin:0 0 6px;font-weight:800;color:var(--green);letter-spacing:-.01em}
+  .dark h3{color:#fff}
+  p{margin:0 0 10px;font-size:12.5pt;line-height:1.5}
+  .lead{font-size:16pt;line-height:1.45;color:#3a3d38;max-width:9.6in}
+  .dark .lead{color:#d7eadb}
+  .accent{color:var(--brown)}
+  .dark .accent{color:var(--yellow)}
+  .bar{width:70px;height:5px;background:var(--brown);border-radius:3px;margin:0 0 22px}
+  .dark .bar{background:var(--yellow)}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .tile{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 22px}
+  .stone .tile{background:#fff}
+  .tile p{font-size:12pt;color:var(--muted);margin:0;line-height:1.45}
+  .tile .n{font-size:30pt;font-weight:800;color:var(--brown);line-height:1;margin-bottom:10px;letter-spacing:-.02em}
+  .dark .tile{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.16)}
+  .dark .tile p{color:#cfe3d3}
+
+  /* title */
+  .title{display:grid;grid-template-columns:1.1fr .9fr;padding:0}
+  .title .l{background:#fff;padding:.9in .85in;display:flex;flex-direction:column;justify-content:center}
+  .title .r{background:var(--green);position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:28px;padding:.8in}
+  .title .l img.ta{width:5.4in;margin-bottom:34px}
+  .title h1{font-size:40pt}
+  .title .sub{font-size:15pt;color:var(--muted);margin-top:16px}
+  .plate{background:#F5F5F1;border-radius:18px;padding:22px 30px;box-shadow:0 18px 40px rgba(0,0,0,.3)}
+  .plate img{display:block;width:3.9in}
+  .title .r .with{color:var(--mint);font-size:10pt;letter-spacing:.16em;text-transform:uppercase;font-weight:700}
+  .title .meta{position:absolute;left:.85in;bottom:.45in;font-size:9.5pt;color:var(--muted)}
+  .title .m360{position:absolute;right:.6in;bottom:.4in}
+  .title .m360 img{height:22px;display:block}
+
+  /* statement */
+  .statement{display:flex;flex-direction:column;justify-content:center}
+  .statement h1{font-size:60pt;max-width:11in}
+  .range{display:flex;align-items:center;gap:22px;margin-top:40px;font-size:20pt;font-weight:800}
+  .range .line{flex:1;height:4px;background:linear-gradient(90deg,var(--mint),var(--yellow));border-radius:2px;position:relative}
+  .range .line::before,.range .line::after{content:"";position:absolute;top:-7px;width:18px;height:18px;border-radius:50%;background:var(--yellow)}
+  .range .line::before{left:-4px;background:var(--mint)}.range .line::after{right:-4px}
+  .range small{display:block;font-size:10pt;font-weight:600;color:var(--mint);letter-spacing:.06em;text-transform:uppercase}
+
+  /* agenda */
+  .agenda{list-style:none;margin:0;padding:0;columns:2;column-gap:.8in}
+  .agenda li{break-inside:avoid;display:flex;gap:18px;align-items:baseline;border-top:1px solid var(--line);padding:16px 0;font-size:15pt;font-weight:700;color:var(--green)}
+  .agenda li span{font-size:11pt;color:var(--brown);font-weight:800;width:28px}
+
+  /* audience columns */
+  .aud{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:10px}
+  .aud .col{border-top:5px solid var(--green);background:var(--stone);border-radius:0 0 14px 14px;padding:24px 24px;min-height:2.5in}
+  .aud .col.b{border-top-color:var(--brown)}
+  .aud .col.c{border-top-color:var(--green-3)}
+  .aud .col h3{font-size:17pt;margin-bottom:10px}
+  .aud .col p{font-size:13pt;color:var(--muted);line-height:1.5}
+  .gap{margin-top:24px;padding:18px 24px;border-radius:14px;background:var(--green);color:#fff;font-size:15pt;font-weight:700}
+  .gap span{color:var(--yellow)}
+
+  /* brand intro */
+  .brand{display:grid;grid-template-columns:1fr 1fr;gap:.6in;align-items:center;height:100%}
+  .brand img{width:5.2in}
+  .word{display:flex;gap:28px;margin-top:22px}
+  .word div{flex:1;border-left:4px solid var(--brown);padding-left:16px}
+  .word div:last-child{border-left-color:var(--green-2)}
+  .word b{display:block;font-size:24pt;color:var(--green);letter-spacing:-.02em}
+  .word span{font-size:11.5pt;color:var(--muted)}
+
+  /* architecture */
+  .arch{display:grid;grid-template-columns:1fr 60px 1.1fr 60px 1fr;align-items:center;margin-top:20px}
+  .arch .node{border-radius:16px;padding:22px;text-align:center;min-height:2.6in;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:12px}
+  .arch .n1{background:#fff;border:2px solid var(--brown)}
+  .arch .n2{background:var(--green);color:#fff}
+  .arch .n3{background:var(--sage)}
+  .arch .node img{max-width:2.6in;max-height:.8in}
+  .arch .n2 .plate{padding:10px 14px;box-shadow:none}
+  .arch .n2 .plate img{width:2.3in}
+  .arch .node p{font-size:11pt;margin:0}
+  .arch .n2 p{color:#d7eadb}
+  .arch .node b{font-size:12.5pt}
+  .arch .arrow{text-align:center;font-size:26pt;color:var(--brown);font-weight:300}
+
+  /* flow */
+  .flow{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-top:26px;position:relative}
+  .flow .st{position:relative;padding:22px 18px 22px 30px;min-height:2.4in;color:#fff;clip-path:polygon(0 0,88% 0,100% 50%,88% 100%,0 100%,12% 50%)}
+  .flow .st:first-child{clip-path:polygon(0 0,88% 0,100% 50%,88% 100%,0 100%)}
+  .flow .st b{display:block;font-size:15pt;margin-bottom:8px;letter-spacing:-.01em}
+  .flow .st span{display:block;font-size:10.5pt;line-height:1.4;max-width:1.65in;opacity:.92}
+  .flow .st small{display:block;font-size:9pt;font-weight:800;letter-spacing:.14em;text-transform:uppercase;opacity:.75;margin-bottom:10px}
+  .f1{background:#5b6b4f}.f2{background:var(--brown)}.f3{background:#2f5a3a}.f4{background:var(--green)}.f5{background:var(--green-2)}
+  .f4 b{color:var(--yellow)}
+  .loopline{margin-top:18px;display:flex;align-items:center;gap:14px;font-size:12.5pt;font-weight:700;color:var(--brown)}
+  .loopline::before{content:"↺";font-size:22pt;color:var(--green-2)}
+
+  /* choices */
+  .choices{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:20px}
+  .ch{border-radius:16px;padding:24px 22px;min-height:3.2in;display:flex;flex-direction:column;color:#fff}
+  .ch small{font-size:9pt;font-weight:800;letter-spacing:.14em;text-transform:uppercase;opacity:.8;margin-bottom:auto}
+  .ch b{font-size:28pt;letter-spacing:-.025em;margin:18px 0 10px;display:block}
+  .ch p{font-size:11.5pt;margin:0;opacity:.92}
+  .ch1{background:var(--green)}.ch2{background:var(--green-2)}.ch3{background:var(--brown)}.ch4{background:#6d726a}
+
+  /* reach */
+  .reach{display:grid;grid-template-columns:repeat(4,1fr);margin:30px 0 26px;position:relative}
+  .reach::before{content:"";position:absolute;left:6%;right:6%;top:26px;height:4px;background:linear-gradient(90deg,var(--mint),var(--yellow));border-radius:2px}
+  .reach div{text-align:center;position:relative;padding-top:68px}
+  .reach div::before{content:"";position:absolute;top:12px;left:50%;transform:translateX(-50%);width:32px;height:32px;border-radius:50%;background:var(--green);border:5px solid var(--mint)}
+  .reach div:last-child::before{border-color:var(--yellow)}
+  .reach b{display:block;font-size:17pt;color:#fff}
+  .reach span{font-size:11pt;color:var(--mint)}
+
+  /* roadmap */
+  .road{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:10px}
+  .ph{background:var(--stone);border-radius:14px;padding:22px 20px;min-height:3.7in;border-top:6px solid var(--green);display:flex;flex-direction:column}
+  .ph .big{font-size:54pt;font-weight:800;line-height:.9;color:var(--brown);letter-spacing:-.04em;margin-bottom:14px}
+  .ph .k{font-size:9pt;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .ph h3{font-size:16pt;margin:6px 0 10px}
+  .ph p{font-size:12pt;color:var(--muted);margin:0;line-height:1.45}
+  .ph:nth-child(2){border-color:#155c2c}.ph:nth-child(3){border-color:var(--green-2)}.ph:nth-child(4){border-color:var(--green-3)}.ph:nth-child(5){border-color:var(--yellow)}
+  /* devices */
+  .devices{position:relative;height:4.9in}
+  .laptop{position:absolute;border-radius:12px;background:#1a1c19;padding:10px 10px 14px;box-shadow:0 24px 50px rgba(0,0,0,.25)}
+  .laptop img{display:block;width:100%;border-radius:4px}
+  .laptop::after{content:"";position:absolute;left:-6%;right:-6%;bottom:-14px;height:14px;background:#c9ccc7;border-radius:0 0 12px 12px}
+  .phone{position:absolute;border-radius:26px;background:#1a1c19;padding:9px;box-shadow:0 24px 50px rgba(0,0,0,.3)}
+  .phone img{display:block;width:100%;border-radius:18px}
+  .built-list{list-style:none;padding:0;margin:0}
+  .built-list li{padding:11px 0 11px 30px;border-top:1px solid var(--line);position:relative;font-size:12pt}
+  .built-list li::before{content:"";position:absolute;left:4px;top:17px;width:12px;height:12px;border-radius:3px;background:var(--green-2)}
+  .built-list b{color:var(--green)}
+
+  /* partnership */
+  .part{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:8px}
+  .part .side{border-radius:16px;padding:18px 24px}
+  .part .us{background:var(--green);color:#fff}
+  .part .us h3{color:#fff}
+  .part .them{background:var(--stone);border:1px solid var(--line)}
+  .part ul{list-style:none;padding:0;margin:12px 0 0}
+  .part li{padding:6px 0 6px 26px;position:relative;font-size:11.5pt;border-top:1px solid rgba(0,0,0,.08)}
+  .part .us li{border-top-color:rgba(255,255,255,.14);color:#e3efe5}
+  .part li::before{content:"";position:absolute;left:2px;top:15px;width:10px;height:10px;border-radius:50%;background:var(--brown)}
+  .part .us li::before{background:var(--yellow)}
+  .part .logohead{display:flex;align-items:center;gap:14px;margin-bottom:4px}
+  .part .logohead img{height:28px}
+  .loop4{display:flex;gap:10px;margin-top:12px}
+  .loop4 div{flex:1;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:10.5pt;color:var(--muted)}
+  .loop4 b{display:block;color:var(--green);font-size:12pt;margin-bottom:2px}
+
+
+  /* hub (discovery channels) */
+  .hubwrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:.4in;align-items:center;margin-top:4px}
+  .hub{position:relative;width:5.6in;height:4.3in;margin:0 auto}
+  .hub .core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:1.84in;height:1.84in;border-radius:50%;background:#fff;border:3px solid var(--brown);display:flex;align-items:center;justify-content:center;box-shadow:0 16px 36px rgba(3,56,28,.18);z-index:2}
+  .hub .core img{width:1.5in}
+  .hub svg.rays{position:absolute;inset:0;width:100%;height:100%;z-index:1}
+  .hub .ch{position:absolute;width:1.6in;text-align:center;z-index:2}
+  .hub .ic{width:.72in;height:.72in;border-radius:50%;background:var(--green);margin:0 auto 6px;display:flex;align-items:center;justify-content:center}
+  .hub .ic svg{width:.42in;height:.42in;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  .hub .ch b{display:block;font-size:10.5pt;color:var(--green);line-height:1.2}
+  .hub .ch:nth-of-type(odd) .ic{background:var(--brown)}
+
+  /* growth loop */
+  .loopwrap{display:grid;grid-template-columns:1.05fr .95fr;gap:.5in;align-items:center;margin-top:4px}
+  .cycle{position:relative;width:4.6in;height:4.6in;margin:0 auto}
+  .cycle svg{position:absolute;inset:0;width:100%;height:100%}
+  .cycle .nd{position:absolute;width:1.5in;height:1.5in;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#fff;font-weight:800;font-size:13pt;box-shadow:0 10px 24px rgba(0,0,0,.18)}
+  .cycle .nd small{font-size:8.5pt;font-weight:600;opacity:.85;margin-top:3px;max-width:1.2in;line-height:1.25}
+  .cycle .c1{left:50%;top:0;transform:translateX(-50%);background:var(--green)}
+  .cycle .c2{right:0;top:50%;transform:translateY(-50%);background:var(--green-2)}
+  .cycle .c3{left:50%;bottom:0;transform:translateX(-50%);background:var(--brown)}
+  .cycle .c4{left:0;top:50%;transform:translateY(-50%);background:#2f5a3a}
+  .cycle .mid{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);text-align:center;font-size:11pt;font-weight:800;color:var(--brown);letter-spacing:.06em;text-transform:uppercase;width:1.3in}
+  .bottomline{margin-top:12px;background:var(--green);color:#fff;border-radius:12px;padding:10px 20px;font-size:15pt;font-weight:800;letter-spacing:-.01em}
+  .bottomline span{color:var(--yellow)}
+
+  /* closing */
+  .closing{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+  .closing h1{font-size:50pt;max-width:10in}
+  .closing .logos{display:flex;gap:30px;align-items:center;margin-top:44px}
+  .closing .plate img{width:3.1in}
+  .closing .plate.ev img{width:2.7in}
+  .closing .made{margin-top:34px;display:flex;align-items:center;gap:12px;color:var(--mint);font-size:10pt;letter-spacing:.12em;text-transform:uppercase;font-weight:700}
+  .closing .made img{height:22px}
+
+  /* bid intelligence */
+  .flow6{display:grid;grid-template-columns:repeat(6,1fr);gap:0;margin-top:18px}
+  .flow6 .st{position:relative;padding:18px 14px 18px 26px;min-height:1.75in;color:#fff;clip-path:polygon(0 0,88% 0,100% 50%,88% 100%,0 100%,12% 50%)}
+  .flow6 .st:first-child{clip-path:polygon(0 0,88% 0,100% 50%,88% 100%,0 100%)}
+  .flow6 .st b{display:block;font-size:13pt;margin-bottom:6px;letter-spacing:-.01em}
+  .flow6 .st span{display:block;font-size:9.5pt;line-height:1.35;max-width:1.35in;opacity:.92}
+  .flow6 .st small{display:block;font-size:8pt;font-weight:800;letter-spacing:.14em;text-transform:uppercase;opacity:.75;margin-bottom:8px}
+  .f6{background:#7a5a2c}.flow6 .f6 b{color:#fff}
+  .watch{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+  .watch span{background:var(--sage);color:var(--green);border-radius:30px;padding:7px 15px;font-size:10.5pt;font-weight:700}
+  .pkg{margin-top:16px;display:grid;grid-template-columns:1.1fr 1.9fr;gap:22px;align-items:stretch}
+  .pkg .big{background:var(--green);color:#fff;border-radius:14px;padding:18px 22px;font-size:15pt;font-weight:800;line-height:1.3;display:block}
+  .pkg .big span{color:var(--yellow)}
+  .pkg .ways{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  .pkg .ways div{background:#fff;border:1px solid var(--line);border-top:4px solid var(--brown);border-radius:0 0 12px 12px;padding:12px 14px;font-size:10pt;color:var(--muted);line-height:1.35}
+  .pkg .ways b{display:block;color:var(--green);font-size:11.5pt;margin-bottom:3px}
+  .progs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:6px}
+  .prog{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:16px 18px;display:flex;flex-direction:column}
+  .prog small{font-size:8.5pt;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--mint)}
+  .prog h3{font-size:14pt;margin:5px 0 6px}
+  .prog p{font-size:10.5pt;color:#cfe3d3;margin:0 0 10px;line-height:1.4}
+  .prog .in{margin-top:auto;border-top:1px solid rgba(255,255,255,.16);padding-top:8px;font-size:10pt;color:#fff}
+  .prog .in b{color:var(--yellow)}
+  .srcnote{margin-top:12px;font-size:9.5pt;color:var(--mint)}
+  .brief{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 18px 40px rgba(3,56,28,.12);overflow:hidden}
+  .brief .bh{background:var(--green);color:#fff;padding:12px 20px;display:flex;justify-content:space-between;align-items:center}
+  .brief .bh b{font-size:13pt}
+  .brief .bh span{font-size:9pt;color:var(--mint);letter-spacing:.08em;text-transform:uppercase;font-weight:700}
+  .brief .bh .ex{background:var(--yellow);color:#000;letter-spacing:.1em;border-radius:20px;padding:3px 10px;font-size:8.5pt;font-weight:800;letter-spacing:.1em;margin-left:10px}
+  .brief table{width:100%;border-collapse:collapse;font-size:10pt}
+  .brief th{text-align:left;font-size:8.5pt;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:9px 12px;border-bottom:1px solid var(--line);background:var(--stone)}
+  .brief td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.35}
+  .brief tr:last-child td{border-bottom:0}
+  .brief td b{color:var(--green);display:block}
+  .brief td small{color:var(--muted);font-size:9pt}
+  .lane{display:inline-block;border-radius:20px;padding:3px 10px;font-size:9pt;font-weight:800;color:#fff;white-space:nowrap}
+  .l-take{background:var(--green)}.l-team{background:var(--green-2)}.l-route{background:var(--brown)}.l-86{background:#6d726a}
+  .dots{letter-spacing:2px;color:var(--green-2);font-size:12pt;white-space:nowrap}
+  .dots i{color:#cfd6cb;font-style:normal}
+  .oversight{margin-top:12px;display:flex;gap:12px}
+  .oversight div{flex:1;background:var(--sage);border-radius:12px;padding:11px 16px;font-size:10.5pt;color:var(--ink);line-height:1.4}
+  .oversight b{color:var(--green)}
+  /* always on */
+  .svc{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:4px}
+  .svc .t{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px;min-height:1.7in}
+  .svc .t .ico{width:.5in;height:.5in;border-radius:12px;background:var(--green);display:flex;align-items:center;justify-content:center;font-size:17pt;margin-bottom:10px}
+  .svc .t:nth-child(even) .ico{background:var(--brown)}
+  .svc .t h3{font-size:12.5pt;margin-bottom:5px}
+  .svc .t p{font-size:10pt;color:var(--muted);margin:0;line-height:1.4}
+  .svc .t.hl{background:var(--green);border-color:var(--green)}
+  .svc .t.hl h3{color:var(--yellow)}.svc .t.hl p{color:#d7eadb}.svc .t.hl .ico{background:var(--yellow)}
+
+  /* bid finder phone */
+  .bf-phone{width:2.75in;border-radius:34px;background:#1a1c19;padding:11px;box-shadow:0 26px 54px rgba(0,0,0,.3);margin:0 auto}
+  .bf-scr{background:#F5F5F1;border-radius:25px;overflow:hidden;height:4.5in;display:flex;flex-direction:column}
+  .bf-top{background:var(--green);color:#fff;padding:14px 14px 10px}
+  .bf-top small{display:block;font-size:7pt;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--mint)}
+  .bf-top b{font-size:13pt;display:block;margin-top:2px}
+  .bf-dials{display:flex;gap:5px;margin-top:8px;flex-wrap:wrap}
+  .bf-dials span{background:rgba(255,255,255,.14);border-radius:20px;padding:3px 8px;font-size:7pt;font-weight:700;color:#fff}
+  .bf-dials span.on{background:var(--yellow);color:#000}
+  .bf-list{padding:8px 9px;display:flex;flex-direction:column;gap:7px}
+  .bf-card{background:#fff;border-radius:12px;padding:9px 10px;box-shadow:0 2px 6px rgba(0,0,0,.06)}
+  .bf-card b{display:block;font-size:8.5pt;color:var(--green);line-height:1.25}
+  .bf-card .m{display:flex;justify-content:space-between;align-items:center;margin-top:4px;font-size:7pt;color:var(--muted)}
+  .bf-card .m .due{font-weight:800;color:var(--brown)}
+  .bf-card .d{color:var(--green-2);letter-spacing:1px;font-size:8pt}.bf-card .d i{color:#cfd6cb;font-style:normal}
+  .bf-btns{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-top:6px}
+  .bf-btns span{text-align:center;border-radius:7px;padding:4px 0;font-size:6.5pt;font-weight:800;color:#fff}
+  .bf-btns .a{background:var(--green)}.bf-btns .b{background:var(--green-2)}.bf-btns .c{background:var(--brown)}.bf-btns .x{background:#8b9088}
+  .bf-btns span.dim{opacity:.35}
+  .bf-ex{position:absolute;top:-10px;right:-14px;background:var(--yellow);color:#000;font-size:8pt;font-weight:800;letter-spacing:.1em;border-radius:20px;padding:4px 10px}
+  .three{list-style:none;margin:0;padding:0;counter-reset:t}
+  .three li{counter-increment:t;position:relative;padding:14px 0 14px 60px;border-top:1px solid var(--line);font-size:13pt;line-height:1.45}
+  .three li::before{content:counter(t);position:absolute;left:0;top:12px;width:42px;height:42px;border-radius:50%;background:var(--green);color:#fff;font-weight:800;font-size:15pt;display:flex;align-items:center;justify-content:center}
+  .three li:nth-child(2)::before{background:var(--brown)}.three li:nth-child(3)::before{background:var(--green-2)}
+  .three b{color:var(--green);display:block;font-size:14pt}
+  .made5{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+  .made5 span{border:2px solid var(--green);color:var(--green);border-radius:30px;padding:4px 10px;font-size:9.5pt;font-weight:800}
+  .made5 span:nth-child(even){border-color:var(--brown);color:var(--brown)}
+  .dial{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px 24px}
+  .dial .q{font-size:9pt;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--brown)}
+  .dial h3{font-size:19pt;margin:6px 0 12px;letter-spacing:-.02em}
+  .dial .set{display:flex;gap:10px;flex-wrap:wrap}
+  .dial .set span{background:var(--sage);border-radius:10px;padding:8px 12px;font-size:11pt;color:var(--ink)}
+  .dial .set span b{color:var(--green)}
+  .dial.big{background:var(--green);border-color:var(--green)}
+  .dial.big h3{color:#fff}.dial.big .q{color:var(--yellow)}
+  .dial.big .set span{background:rgba(255,255,255,.12);color:#e3efe5}.dial.big .set span b{color:#fff}
+  .any{margin-top:18px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  .any div{border-left:4px solid var(--brown);padding:4px 0 4px 14px;font-size:11pt;color:var(--muted)}
+  .any b{display:block;color:var(--green);font-size:12.5pt}
+  .pe{display:grid;grid-template-columns:1fr 70px 1.35fr;align-items:center;gap:0;margin-top:6px}
+  .stack{position:relative;height:4.2in}
+  .stack .pg{position:absolute;width:2.9in;height:3.7in;background:#fff;border:1px solid #cfd6cb;border-radius:6px;box-shadow:0 4px 12px rgba(0,0,0,.06);padding:18px 20px}
+  .stack .pg:nth-child(1){left:.5in;top:0;transform:rotate(-4deg)}
+  .stack .pg:nth-child(2){left:.35in;top:.15in;transform:rotate(2deg)}
+  .stack .pg:nth-child(3){left:.2in;top:.3in}
+  .stack .pg b{display:block;font-size:10pt;color:var(--ink);margin-bottom:10px}
+  .stack .ln{height:6px;background:#e5e8e2;border-radius:3px;margin:7px 0}
+  .stack .ln.s{width:70%}.stack .ln.t{width:85%}
+  .stack .cap{position:absolute;left:.2in;bottom:0;font-size:10.5pt;font-weight:700;color:var(--muted)}
+  .pe .arr{font-size:34pt;color:var(--brown);text-align:center}
+  .one{background:#fff;border:2px solid var(--green);border-radius:16px;box-shadow:0 18px 40px rgba(3,56,28,.12);overflow:hidden}
+  .one .oh{background:var(--green);color:#fff;padding:12px 20px;display:flex;justify-content:space-between;align-items:center}
+  .one .oh b{font-size:13pt}.one .oh span{background:var(--yellow);color:#000;border-radius:20px;padding:3px 10px;font-size:8pt;font-weight:800;letter-spacing:.1em}
+  .one .row{display:grid;grid-template-columns:1.25in 1fr;border-top:1px solid var(--line);padding:9px 20px;font-size:10.5pt;line-height:1.4}
+  .one .row:first-of-type{border-top:0}
+  .one .row b{color:var(--green);font-size:10pt;letter-spacing:.04em;text-transform:uppercase}
+  .one .ok::before{content:"✓ ";color:var(--green-2);font-weight:800}
+  .one .warn::before{content:"! ";color:#b23a2b;font-weight:800}
+  .tag{display:inline-block;background:var(--yellow);color:#000;border-radius:30px;padding:6px 16px;font-size:10pt;font-weight:800;letter-spacing:.06em;margin-bottom:14px}
+  .ring{position:relative;width:4.7in;height:4.7in;margin:0 auto}
+  .ring svg{position:absolute;inset:0;width:100%;height:100%}
+  .ring .nd{position:absolute;width:1.25in;height:1.25in;border-radius:50%;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;font-weight:800;font-size:12pt;box-shadow:0 10px 24px rgba(0,0,0,.18);transform:translate(-50%,-50%)}
+  .ring .mid{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);text-align:center;width:1.7in}
+  .ring .mid img{width:1.5in;display:block;margin:0 auto 6px}
+  .ring .mid small{font-size:9pt;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--brown)}
+
+  .infra{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .ip{border-radius:16px;padding:24px 24px;color:#fff;min-height:3in}
+  .ip .k{font-size:30pt;font-weight:800;opacity:.45;line-height:1;margin-bottom:12px}
+  .ip h3{color:#fff;font-size:18pt;margin-bottom:8px}
+  .ip p{font-size:12.5pt;line-height:1.45;margin:0;opacity:.93}
+  .i1{background:var(--green)}.i2{background:var(--brown)}.i3{background:var(--green-2)}.i4{background:#2f5a3a}
+  .i2 h3{color:var(--yellow)}
+  .srcs{display:flex;flex-wrap:wrap;gap:10px}
+  .srcs span{background:#fff;border:1px solid var(--line);border-radius:30px;padding:12px 20px;font-size:13.5pt;font-weight:700;color:var(--green)}
+  .flow7{display:grid;grid-template-columns:repeat(7,1fr);gap:0;margin-top:14px}
+  .flow7 .st{position:relative;padding:18px 10px 18px 22px;min-height:2.7in;color:#fff;clip-path:polygon(0 0,86% 0,100% 50%,86% 100%,0 100%,14% 50%)}
+  .flow7 .st:first-child{clip-path:polygon(0 0,86% 0,100% 50%,86% 100%,0 100%)}
+  .flow7 .st b{display:block;font-size:13.5pt;margin-bottom:6px}
+  .flow7 .st span{display:block;font-size:10.5pt;line-height:1.35;max-width:1.15in;opacity:.93}
+  .flow7 .st small{display:block;font-size:7.5pt;font-weight:800;letter-spacing:.12em;text-transform:uppercase;opacity:.75;margin-bottom:8px}
+  .flow7 .f4 b,.flow7 .f6 b{color:var(--yellow)}
+  .f7{background:#1f4d2e}
+</style>
+</head>
+<body>
+
+<section class="slide title">
+  <div class="l">
+    <img class="ta" src="img/terraall-logo.png" alt="TerraAll">
+    <p class="eyebrow">Strategy presentation</p>
+    <h1>The Digital Infrastructure Behind Everglades</h1>
+    <p class="sub">Every earthwork job. Any size. Anywhere.</p>
+    <div class="meta">Prepared for Matt &amp; Sam · Everglades Restorations &amp; Land Clearing Inc. · October 2026 · Confidential</div>
+  </div>
+  <div class="r">
+    <div class="with">A service of</div>
+    <div class="plate"><img src="img/everglades-logo.png" alt="Everglades Restorations &amp; Land Clearing Inc."></div>
+    <div class="m360"><img src="img/mediain360-logo-light.png" alt="MediaIn360"></div>
+  </div>
+</section>
+
+<section class="slide">
+  <p class="eyebrow">Agenda</p>
+  <h2>Today's Conversation</h2>
+  <div class="bar"></div>
+  <ul class="agenda">
+    <li><span>01</span>The opportunity and TerraAll</li>
+    <li><span>02</span>Be found</li>
+    <li><span>03</span>Find the work: TerraAll Project Finder</li>
+    <li><span>04</span>Win the work</li>
+    <li><span>05</span>Keep it running</li>
+    <li><span>06</span>Next steps</li>
+  </ul>
+  <div class="foot"><span class="mark"><img src="img/terraall-logo.png" alt="">Strategy presentation · Confidential</span><span class="num">02</span></div>
+</section>
+
+<section class="slide dark statement">
+  <p class="eyebrow">The big idea</p>
+  <h1>Every earthwork job <span class="accent">gets the call.</span></h1>
+  <div class="range">
+    <div>$100<small>The driveway culvert</small></div>
+    <div class="line"></div>
+    <div style="text-align:right">$100B<small>The restoration program</small></div>
+  </div>
+  <p class="lead" style="margin-top:36px">Nobody goes after the small jobs. Almost nobody can handle the giant ones. Everglades can do both — and TerraAll makes sure every one of them comes through the door.</p>
+  <div class="foot"><span>Strategy presentation · Confidential</span><span class="num">03</span></div>
+</section>
+
+<section class="slide">
+  <p class="eyebrow">The whole system</p>
+  <h2>Not a Website. A Living Digital Infrastructure.</h2>
+  <div class="bar"></div>
+  <p class="lead" style="font-size:14.5pt;margin-bottom:18px">The website is one piece of hundreds. Four parts work as one system: always on, always growing, getting smarter every month, with as little of Matt's time as possible.</p>
+  <div class="infra">
+    <div class="ip i1"><div class="k">01</div><h3>Be Found</h3><p>Website, job videos, search and AI answers. Buyers find Everglades the moment they look.</p></div>
+    <div class="ip i2"><div class="k">02</div><h3>Find the Work</h3><p>TerraAll Project Finder searches public bids everywhere, every night.</p></div>
+    <div class="ip i3"><div class="k">03</div><h3>Win the Work</h3><p>Every bid dug into, explained in plain English and packaged to send.</p></div>
+    <div class="ip i4"><div class="k">04</div><h3>Keep It Running</h3><p>Hosting, upgrades, support and new ideas. It never sits still.</p></div>
+  </div>
+  <div class="bottomline">Not a website. Not a bid feed. <span>The whole system, for one company.</span></div>
+  <div class="foot"><span class="mark"><img src="img/terraall-logo.png" alt="">Strategy presentation · Confidential</span><span class="num">04</span></div>
+</section>
+
+<section class="slide">
+  <p class="eyebrow">01 · The opportunity</p>
+  <h2>Earthwork Demand Is Everywhere — and Scattered</h2>
+  <div class="bar"></div>
+  <div class="aud">
+    <div class="col"><h3>Agencies &amp; Prime Contractors</h3><p>Post solicitations across dozens of bid portals, then scramble for qualified, credentialed subcontractors who can mobilize.</p></div>
+    <div class="col b"><h3>Developers &amp; Builders</h3><p>Call whoever they used last time — and wait when that crew is booked. They want proven capacity and a clean schedule.</p></div>
+    <div class="col c"><h3>Property Owners</h3><p>Search "lot clearing near me," "pond digging," "driveway culvert." Most small jobs never reach an established company.</p></div>
+  </div>
+  <div class="gap">No single company is built to catch all of it. <span>TerraAll is.</span></div>
+  <div class="foot"><span class="mark"><img src="img/terraall-logo.png" alt="">Strategy presentation · Confidential</span><span class="num">05</span></div>
+</section>
+
+<section class="slide stone">
+  <div class="brand">
+    <div>
+      <p class="eyebrow">01 · Introducing TerraAll</p>
+      <img src="img/terraall-logo.png" alt="TerraAll">
+    </div>
+    <div>
+      <h2>A Name Built for Every Job</h2>
+      <p class="lead">Short to say, easy to remember, impossible to box into one region. TerraAll tells buyers exactly what to expect before they read another word.</p>
+      <div class="word">
+        <div><b>Terra</b><span>Earth — the work itself: clearing, digging, grading, restoring.</span></div>
+        <div><b>All</b><span>Every job, every size, every place — and every buyer.</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>Strategy presentation · Confidential</span><span class="num">06</span></div>
+</section>
+
+<section class="slide">
+  <p class="eyebrow">01 · Brand architecture</p>
+  <h2>Same Company. A Wider Front Door.</h2>
+  <div class="bar"></div>
+  <div class="arch">
+    <div class="node n1"><img src="img/terraall-logo.png" alt="TerraAll"><b>The digital front door</b><p>Catches every request — any size, any buyer, anywhere.</p></div>
+    <div class="arrow">→</div>
+    <div class="node n2"><div class="plate"><img src="img/everglades-logo.png" alt="Everglades"></div><b>The licensed company</b><p>Licensed, bonded and insured since 1992. Government, prime and major work — the name procurement officers verify.</p></div>
+    <div class="arrow">→</div>
+    <div class="node n3"><b style="font-size:16pt;color:var(--green)">Vetted Partner Network</b><p>Licensed, insured specialists for the jobs Matt chooses to route.</p></div>
+  </div>
+  <p style="margin-top:22px;font-size:11.5pt;color:var(--muted)">TerraAll is a registered trade name of Everglades Restorations &amp; Land Clearing Inc. Every TerraAll page says so and carries the license number — borrowing 35 years of credibility from day one.</p>
+  <div class="foot"><span class="mark"><img src="img/terraall-logo.png" alt="">Strategy presentation · Confidential</span><span class="num">07</span></div>
+</section>
+
+<section class="slide stone">
+  <p class="eyebrow">01 · The advantage</p>
+  <h2>Why Everglades Wins</h2>
+  <div class="bar"></div>
+  <div class="grid3">
+    <div class="tile"><div class="n">1992</div><h3>Decades in the field</h3><p>The history agencies, primes and owners trust immediately.</p></div>
+    <div class="tile"><div class="n">Ground</div><h3>The hardest there is</h3><p>Wetlands, canals and muck. If the crew can work here, it can work anywhere.</p></div>
+    <div class="tile"><div class="n">Fleet</div><h3>Self-performing</h3><p>Own equipment and crews mean real answers on scope, schedule and capacity.</p></div>
+    <div class="tile"><div class="n">Public</div><h3>Government-ready</h3><p>Army Corps experience, FEMA storm response, Drug-Free Workplace and E-Verify.</p></div>
+    <div class="tile"><div class="n">Judgment</div><h3>Subject-matter experts</h3><p>Matt can size up any job from plans, photos or video — anywhere in the world.</p></div>
+    <div class="tile"><div class="n">Proof</div><h3>Real footage</h3><p>Years of job video: evidence competitors don't have, and the raw material for thousands of pages.</p></div>
+  </div>
+  <div class="foot"><span>Strategy presentation · Confidential</span><span class="num">08</span></div>
+</section>
+
+<section class="slide">
+  <p class="eyebrow">02 · Be found</p>
+  <h2>Every Direction. Every Opportunity.</h2>
+  <div class="bar"></div>
+  <div class="hubwrap">
+    <div>
+      <p class="lead" style="font-size:15pt">People search differently. Some use Google, YouTube or AI. Others use government bid portals, referrals or industry contacts.</p>
+      <p style="font-size:13pt;color:var(--muted)">MediaIn360 connects every one of these discovery channels to a single digital front door: <b style="color:var(--green)">TerraAll</b>.</p>
+      <p style="font-size:13pt;color:var(--muted)">From a $100 repair to a multiyear restoration program, every opportunity should reach Matt.</p>
+    </div>
+    <div class="hub">
+      <svg class="rays" viewBox="0 0 560 430"><defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4" markerHeight="4" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#8A5A33"/></marker></defs><line x1="280" y1="87" x2="280" y2="115" stroke="#B9C7B6" stroke-width="2.4" stroke-dasharray="7 5" marker-end="url(#ah)"/><line x1="454" y1="131" x2="370" y2="172" stroke="#B9C7B6" stroke-width="2.4" stroke-dasharray="7 5" marker-end="url(#ah)"/><line x1="453" y1="279" x2="374" y2="250" stroke="#B9C7B6" stroke-width="2.4" stroke-dasharray="7 5" marker-end="url(#ah)"/><line x1="280" y1="305" x2="280" y2="315" stroke="#B9C7B6" stroke-width="2.4" stroke-dasharray="7 5" marker-end="url(#ah)"/><line x1="107" y1="279" x2="186" y2="250" stroke="#B9C7B6" stroke-width="2.4" stroke-dasharray="7 5" marker-end="url(#ah)"/><line x1="106" y1="131" x2="190" y2="172" stroke="#B9C7B6" stroke-width="2.4" stroke-dasharray="7 5" marker-end="url(#ah)"/></svg>
+      <div class="core"><img src="img/terraall-logo.png" alt="TerraAll"></div>
+      <div class="ch" style="left:2.00in;top:-0.28in"><b style="margin-bottom:6px">Search &amp; Maps</b><div class="ic"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><line x1="15.5" y1="15.5" x2="21" y2="21"/></svg></div></div><div class="ch" style="left:4.15in;top:0.76in"><div class="ic"><svg viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="3"/><polygon points="10,9 15.5,12 10,15" fill="#fff" stroke="none"/></svg></div><b>YouTube &amp; Video</b></div><div class="ch" style="left:4.15in;top:2.59in"><div class="ic"><svg viewBox="0 0 24 24"><rect x="9" y="2.5" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0"/><line x1="12" y1="17.5" x2="12" y2="21.5"/></svg></div><b>AI &amp; Voice Assistants</b></div><div class="ch" style="left:2.00in;top:3.14in"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 21h16M5 21V10l7-5 7 5v11"/><line x1="9" y1="13" x2="9" y2="18"/><line x1="12" y1="13" x2="12" y2="18"/><line x1="15" y1="13" x2="15" y2="18"/></svg></div><b>Government Bid Portals</b></div><div class="ch" style="left:-0.15in;top:2.59in"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="3"/><circle cx="16.5" cy="9.5" r="2.5"/><path d="M2.5 20c0-3.3 2.5-5.5 5.5-5.5s5.5 2.2 5.5 5.5"/><path d="M14 15.2c.8-.5 1.6-.7 2.5-.7 2.6 0 4.5 2 4.5 4.8"/></svg></div><b>Referrals</b></div><div class="ch" style="left:-0.15in;top:0.76in"><div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="7.5" width="18" height="12.5" rx="2"/><path d="M8.5 7.5V5.5a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v2"/><line x1="3" y1="13" x2="21" y2="13"/></svg></div><b>Industry &amp; Prime Contacts</b></div>
+    </div>
+  </div>
+  <div class="foot"><span class="mark"><img src="img/terraall-logo.png" alt="">Strategy presentation · Confidential</span><span class="num">09</span></div>
+</section>
+
+<section class="slide">
+  <p class="eyebrow">02 · Be found</p>
+  <h2>One Engine. Many Doors.</h2>
+  <div class="bar"></div>
+  <div class="flow">
+    <div class="st f1"><small>Step 1</small><b>Found</b><span>Google, Maps, YouTube, AI assistants and government bid portals.</span></div>
+    <div class="st f2"><small>Step 2</small><b>TerraAll</b><span>One front door for every request — any size, any buyer.</span></div>
+    <div class="st f3"><small>Step 3</small><b>Sorted</b><span>By size, type, buyer and location — automatically.</span></div>
+    <div class="st f4"><small>Step 4</small><b>Matt's Call</b><span>Take it, team it, route it — or 86 it.</span></div>
+    <div class="st f5"><small>Step 5</small><b>Proof</b><span>Each finished job is filmed and becomes a new page.</span></div>
+  </div>
+  <div class="loopline">Every new page brings in the next request — the engine feeds itself.</div>
+  <div class="foot"><span class="mark"><img src="img/terraall-logo.png" alt="">Strategy presentation · Confidential</span><span class="num">10</span></div>
+</section>
+
+<section class="slide stone">
+  <p class="eyebrow">02 · Be found</p>
+  <h2>Every Project Makes the Next One Easier to Find.</h2>
+  <div class="bar"></div>
+  <div class="loopwrap">
+    <div>
+      <p class="lead" style="font-size:15pt">Every real project, video, customer question and qualified inquiry gives us something new to learn from.</p>
+      <p style="font-size:13pt;color:var(--muted)">We turn that knowledge into better content, stronger visibility and smarter decisions.</p>
+      <p style="font-size:15pt;font-weight:800;color:var(--green);margin-top:18px">TerraAll doesn't just go live. <span style="color:var(--brown)">It keeps growing, learning and improving.</span></p>
+    </div>
+    <div class="cycle">
+      <svg viewBox="0 0 100 100"><defs><marker id="ca" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="4" markerHeight="4" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#8A5A33"/></marker></defs>
+<path d="M62 12 A40 40 0 0 1 88 38" fill="none" stroke="#C9B8A6" stroke-width="1.4" marker-end="url(#ca)"/>
+<path d="M88 62 A40 40 0 0 1 62 88" fill="none" stroke="#C9B8A6" stroke-width="1.4" marker-end="url(#ca)"/>
+<path d="M38 88 A40 40 0 0 1 12 62" fill="none" stroke="#C9B8A6" stroke-width="1.4" marker-end="url(#ca)"/>
+<path d="M12 38 A40 40 0 0 1 38 12" fill="none" stroke="#C9B8A6" stroke-width="1.4" marker-end="url(#ca)"/></svg>
+      <div class="nd c1">Discover<small>Buyers find TerraAll</small></div>
+      <div class="nd c2">Qualify<small>Matt makes the call</small></div>
+      <div class="nd c3">Document<small>Jobs filmed and published</small></div>
+      <div class="nd c4">Improve<small>Content and reach get stronger</small></div>
+      <div class="mid">Always growing</div>
+    </div>
+  </div>
+  <div class="foot"><span>Strategy presentation · Confidential</span><span class="num">11</span></div>
+</section>
+
+<section class="slide">
+  <p class="eyebrow">03 · Find the work</p>
+  <h2>Meet the TerraAll Project Finder</h2>
+  <div class="bar"></div>
+  <div style="display:grid;grid-template-columns:1.25fr .75fr;gap:.5in;align-items:center">
+    <div>
+      <p class="lead" style="font-size:14.5pt;margin-bottom:10px">A custom app that searches public bids everywhere, every night, and brings back the ones worth chasing.</p>
+      <ol class="three">
+        <li><b>While you sleep, it searches.</b>New bids pop up every day: federal, state, local, everywhere. It catches them as they land.</li>
+        <li><b>Every morning, you choose.</b>Take it, Team it, Route it or 86 it. One tap.</li>
+        <li><b>We do the legwork.</b>We dig into the ones you want and get them ready to send. You price, check and sign.</li>
+      </ol>
+    </div>
+    <div style="position:relative"><span class="bf-ex">EXAMPLE</span><div class="bf-phone"><div class="bf-scr"><div class="bf-top"><small>TerraAll Project Finder</small><b>Tonight's Finds</b><div class="bf-dials"><span class="on">Nationwide · Biggest programs</span><span class="on">My area · $500K+</span></div></div><div class="bf-list"><div class="bf-card"><b>Reservoir embankment: clearing &amp; muck removal</b><div class="m"><span>Florida</span><span class="d">●●●●●<i></i></span><span class="due">Due in 18 days</span></div><div class="bf-btns"><span class="a dim">Take it</span><span class="b">Team it</span><span class="c dim">Route it</span><span class="x dim">86 it</span></div></div><div class="bf-card"><b>County disaster debris, standby contract</b><div class="m"><span>Gulf Coast</span><span class="d">●●●●<i>●</i></span><span class="due">Due in 9 days</span></div><div class="bf-btns"><span class="a">Take it</span><span class="b dim">Team it</span><span class="c dim">Route it</span><span class="x dim">86 it</span></div></div><div class="bf-card"><b>Marsh terracing &amp; shoreline</b><div class="m"><span>Louisiana</span><span class="d">●●●<i>●●</i></span><span class="due">Due in 30 days</span></div><div class="bf-btns"><span class="a">Take it</span><span class="b">Team it</span><span class="c">Route it</span><span class="x">86 it</span></div></div><div class="bf-card"><b>Specialty hazardous remediation</b><div class="m"><span>Midwest</span><span class="d">●<i>●●●●</i></span><span class="due">Due in 12 days</span></div><div class="bf-btns"><span class="a dim">Take it</span><span class="b dim">Team it</span><span class="c dim">Route it</span><span class="x">86 it</span></div></div></div></div></div></div>
+  </div>
+  <div class="foot"><span class="mark"><img src="img/terraall-logo.png" alt="">Strategy presentation · Confidential</span><span class="num">12</span></div>
+</section>
+
+<section class="slide stone">
+  <p class="eyebrow">03 · Find the work</p>
+  <h2>Everywhere It Looks</h2>
+  <div class="bar"></div>
+  <div class="srcs">
+    <span>🏛️ Federal agencies</span><span>🗺️ States</span><span>🏙️ Counties &amp; cities</span><span>🏫 School boards</span><span>💧 Water &amp; flood districts</span>
+    <span>🛣️ Transportation departments</span><span>⚡ Utilities &amp; energy</span><span>⚓ Ports &amp; airports</span><span>🏗️ Prime contractors</span><span>🌎 International programs</span>
+  </div>
+  <p style="font-size:12.5pt;font-weight:800;color:var(--green);margin:22px 0 4px">Matt sets the dials. Change them anytime.</p>
+  <div class="any" style="margin-top:6px">
+    <div><b>Size</b>From local jobs to billion-dollar programs</div>
+    <div><b>Area</b>A county, a state, the whole country or beyond</div>
+    <div><b>Work</b>Only the services Everglades wants</div>
+    <div><b>Role</b>Prime, sub, teaming or standby</div>
+  </div>
+  <div class="bottomline" style="margin-top:22px">Public bids are free to find. <span>The only cost is the time to bid, and we carry most of that.</span></div>
+  <div class="foot"><span class="mark"><img src="img/terraall-logo.png" alt="">Strategy presentation · Confidential</span><span class="num">13</span></div>
+</section>
+
+<section class="slide dark">
+  <p class="eyebrow">03 · Find the work</p>
+  <h2>Where the Big Programs Are</h2>
+  <div class="bar" style="margin-bottom:14px"></div>
+  <div class="progs">
+    <div class="prog"><small>Florida</small><h3>Everglades Restoration</h3><p>Reservoirs, flow ways, pump stations and treatment areas, funded by federal and state partners.</p><div class="in"><b>Way in:</b> clearing, grubbing, muck removal and earthwork under the primes</div></div>
+    <div class="prog"><small>Nationwide</small><h3>Army Corps Award Pools</h3><p>Multi-year construction and environmental contracts by district, many set aside for small businesses.</p><div class="in"><b>Way in:</b> earn a seat in the pool, compete for each job</div></div>
+    <div class="prog"><small>Any state</small><h3>Disaster Debris</h3><p>Pre-arranged federal, state DOT and county contracts that switch on after storms.</p><div class="in"><b>Way in:</b> county contracts directly; subcontract to debris primes</div></div>
+    <div class="prog"><small>Nationwide</small><h3>Superfund &amp; Cleanup</h3><p>EPA and defense site cleanups, with steady federal funding every year.</p><div class="in"><b>Way in:</b> excavation and hauling, teamed with licensed cleanup firms</div></div>
+    <div class="prog"><small>Gulf Coast</small><h3>Coastal Restoration</h3><p>Marsh creation, terracing and shoreline protection across a large pipeline of state projects.</p><div class="in"><b>Way in:</b> earthwork packages and in-state partners</div></div>
+    <div class="prog"><small>Every region</small><h3>Flood Control &amp; Resilience</h3><p>Canals, drainage, levees and stormwater for water districts and resilience programs.</p><div class="in"><b>Way in:</b> prime the right-sized jobs; team on the large ones</div></div>
+  </div>
+  <p class="srcnote">Examples from public sources, October 2026. Each opportunity is verified against the actual solicitation before any decision.</p>
+  <div class="foot"><span>Strategy presentation · Confidential</span><span class="num">14</span></div>
+</section>
+
+<section class="slide">
+  <p class="eyebrow">03 · Find the work</p>
+  <h2>Take It. Team It. Route It. Or 86 It.</h2>
+  <div class="bar"></div>
+  <div class="choices">
+    <div class="ch ch1"><small>Everglades does it</small><b>Take It</b><p>Large clearing, restoration, government and prime work, storm response. The crew performs and the job becomes proof.</p></div>
+    <div class="ch ch2"><small>Everglades leads</small><b>Team It</b><p>Everglades runs the job and brings in a licensed partner for a specialty or extra capacity.</p></div>
+    <div class="ch ch3"><small>A partner does it</small><b>Route It</b><p>Too small, too far or too specialized? A vetted partner performs — and Everglades earns points on the work.</p></div>
+    <div class="ch ch4"><small>No obligation</small><b>86 It</b><p>Not a fit? Pass. No cost, no commitment. The request still teaches the system what buyers want.</p></div>
+  </div>
+  <p style="margin-top:20px;font-size:11pt;color:var(--muted)">TerraAll never obligates Everglades to anything. The partner and referral structure is set up once with the company's attorney before launch.</p>
+  <div class="foot"><span class="mark"><img src="img/terraall-logo.png" alt="">Strategy presentation · Confidential</span><span class="num">15</span></div>
+</section>
+
+<section class="slide">
+  <p class="eyebrow">04 · Win the work</p>
+  <h2>From Find to Finish</h2>
+  <div class="bar"></div>
+  <div class="flow7">
+    <div class="st f1"><small>Finder</small><b>Find</b><span>Every public source, every night</span></div>
+    <div class="st f2"><small>MediaIn360</small><b>Sort</b><span>Worth it, or not</span></div>
+    <div class="st f3"><small>MediaIn360</small><b>Dig In</b><span>Who, what, where, when, why, how, and how to bid it</span></div>
+    <div class="st f4"><small>Matt</small><b>Decide</b><span>Take, team, route or 86</span></div>
+    <div class="st f5"><small>MediaIn360</small><b>Prepare</b><span>Plain-English preliminaries and documents</span></div>
+    <div class="st f6"><small>Matt</small><b>Price</b><span>Pricing and financing touches</span></div>
+    <div class="st f7"><small>Together</small><b>Send</b><span>Final package assembled and out the door</span></div>
+  </div>
+  <p class="loopline" style="margin-top:20px">Tomorrow night it starts again. Get ahead of the curve, and stay there.</p>
+  <div class="oversight" style="margin-top:14px">
+    <div><b>Matt stays in charge.</b> He sets every price, checks every statement and signs every bid. Agencies require the owner to certify it.</div>
+    <div><b>No guarantees.</b> We make every bid stronger and on time. Awards are always the agency's decision.</div>
+  </div>
+  <div class="foot"><span class="mark"><img src="img/terraall-logo.png" alt="">Strategy presentation · Confidential</span><span class="num">16</span></div>
+</section>
+
+<section class="slide stone">
+  <p class="eyebrow">04 · Win the work</p>
+  <h2>Dig In: The Bid in Plain English</h2>
+  <div class="bar"></div>
+  <div class="pe">
+    <div class="stack">
+      <div class="pg"><b>Solicitation</b><div class="ln"></div><div class="ln t"></div><div class="ln s"></div><div class="ln"></div></div>
+      <div class="pg"><b>Specifications</b><div class="ln"></div><div class="ln t"></div><div class="ln"></div><div class="ln s"></div></div>
+      <div class="pg"><b>Request for Proposal</b><div class="ln"></div><div class="ln t"></div><div class="ln s"></div><div class="ln"></div><div class="ln t"></div><div class="ln"></div><div class="ln s"></div><div class="ln"></div><div class="ln t"></div><div class="ln"></div><div class="ln s"></div><div class="ln"></div><div class="ln t"></div><div class="ln"></div></div>
+      <div class="cap">Hundreds of pages of government language</div>
+    </div>
+    <div class="arr">→</div>
+    <div class="one">
+      <div class="oh"><b>Bid Summary: Canal Maintenance Task Order</b><span>EXAMPLE</span></div>
+      <div class="row"><b>What they want</b><span>Clean out and reshape canals; haul and dispose of the material.</span></div>
+      <div class="row"><b>Who can bid</b><span class="ok">Small businesses in the award pool. Everglades qualifies.</span></div>
+      <div class="row"><b>Must have</b><span class="ok">License, bonding, insurance, safety plan</span></div>
+      <div class="row"><b>Missing</b><span class="warn">Updated safety record letter</span></div>
+      <div class="row"><b>Key dates</b><span>Site visit XX/XX · Questions due XX/XX · Bid due XX/XX</span></div>
+      <div class="row"><b>Our take</b><span>Strong fit. Recommend Take it.</span></div>
+    </div>
+  </div>
+  <div class="foot"><span class="mark"><img src="img/terraall-logo.png" alt="">Strategy presentation · Confidential</span><span class="num">17</span></div>
+</section>
+
+<section class="slide dark">
+  <p class="eyebrow">04 · Win the work</p>
+  <h2>Going Big as the Prime</h2>
+  <div class="bar"></div>
+  <p class="lead" style="margin-bottom:20px">A billion-dollar job is a team sport. Here's how a company Everglades' size wins one, and makes it work.</p>
+  <div class="grid3">
+    <div class="tile"><h3>Joint Venture</h3><p>Partner with a large firm for one project. Share the work, the bonding and the win.</p></div>
+    <div class="tile"><h3>Mentor-Protégé</h3><p>A federal small-business program that pairs Everglades with an experienced large company, so they can bid big contracts together.</p></div>
+    <div class="tile"><h3>Teaming With a Prime</h3><p>Be the named earthwork partner on a prime's team from day one, not a phone call after the award.</p></div>
+  </div>
+  <div class="bottomline" style="margin-top:22px;background:rgba(255,255,255,.08)">Project Finder spots the big ones early, <span>so the team is in place before the bid drops.</span></div>
+  <p class="srcnote">Structure, bonding and licensing reviewed with the company's surety and attorney before any bid.</p>
+  <div class="foot"><span>Strategy presentation · Confidential</span><span class="num">18</span></div>
+</section>
+
+<section class="slide dark statement">
+  <p class="eyebrow">The promise</p>
+  <h1>Built in the Everglades.<br><span class="accent">Ready for Anywhere.</span></h1>
+  <p class="lead" style="margin-top:30px">The toughest ground in the country is the training ground. That story — told through real job video — is what sets the brand apart from every other earthwork company online.</p>
+  <div class="foot"><span>Strategy presentation · Confidential</span><span class="num">19</span></div>
+</section>
+
+<section class="slide">
+  <p class="eyebrow">05 · Keep it running</p>
+  <h2>Five Phases to Full Reach</h2>
+  <div class="bar"></div>
+  <div class="road">
+    <div class="ph"><div class="big">0</div><div class="k">Phase 0</div><h3>Launch Everglades</h3><p>Real licenses, photos and video. Live on the real domain. Business profile, reviews and listings.</p></div>
+    <div class="ph"><div class="big">1</div><div class="k">Phase 1</div><h3>Engines on</h3><p>Every job video becomes a dated page. Project Finder starts its nightly sweep. Request sorting live.</p></div>
+    <div class="ph"><div class="big">2</div><div class="k">Phase 2</div><h3>Stand up TerraAll</h3><p>Name and domain secured, trade name registered, partner standards set, front door launched.</p></div>
+    <div class="ph"><div class="big">3</div><div class="k">Phase 3</div><h3>Scale with real data</h3><p>Permit guides by county, cost guides from real jobs, answered questions, partner job pages.</p></div>
+    <div class="ph"><div class="big">4</div><div class="k">Phase 4</div><h3>Go wide</h3><p>Statewide, national, then international — each place opening as jobs and partners exist there.</p></div>
+  </div>
+  <p style="margin-top:18px;font-size:12.5pt;font-weight:700;color:var(--brown)">Home base → statewide → national → international, each place opening as real jobs and partners exist there.</p>
+  <div class="foot"><span class="mark"><img src="img/terraall-logo.png" alt="">Strategy presentation · Confidential</span><span class="num">20</span></div>
+</section>
+
+<section class="slide">
+  <div class="grid2" style="grid-template-columns:.85fr 1.15fr;gap:.5in;height:100%">
+    <div>
+      <p class="eyebrow">05 · Keep it running</p>
+      <h2>The Foundation Is in Place</h2>
+      <div class="bar"></div>
+      <ul class="built-list">
+        <li><b>Digital business card</b> — QR code, every license, save-contact</li>
+        <li><b>Full preview website</b> for procurement and every buyer</li>
+        <li><b>Capability map</b> across land, water, cleanup, infrastructure, disaster and rural work</li>
+        <li><b>One-page capability statement</b>, print-ready</li>
+        <li><b>Service checklist</b> for Matt: do it, team it or not for us</li>
+        <li><b>Buyer question bank</b> for voice and AI search</li>
+        <li><b>Legal &amp; compliance</b> pages and a passed accessibility audit</li>
+      </ul>
+    </div>
+    <div class="devices">
+      <div class="laptop" style="left:0;top:.1in;width:5.9in"><img src="img/shot-home.jpg" alt="Website home page"></div>
+      <div class="phone" style="right:.15in;top:1.35in;width:1.7in"><img src="img/shot-m-door.jpg" alt="Digital business card on a phone"></div>
+    </div>
+  </div>
+  <div class="foot"><span class="mark"><img src="img/terraall-logo.png" alt="">Strategy presentation · Confidential</span><span class="num">21</span></div>
+</section>
+
+<section class="slide stone">
+  <p class="eyebrow">05 · Keep it running</p>
+  <h2>The TerraAll Digital Findability Network</h2>
+  <p style="font-size:13.5pt;color:var(--muted);margin:-8px 0 10px">Living, breathing, growing and smarter every month. Designed, developed, perfected, managed and maintained by MediaIn360.</p>
+  <div class="bar" style="margin-bottom:12px"></div>
+  <div class="svc">
+    <div class="t"><div class="ico">🛡️</div><h3>Hosting &amp; Security</h3><p>On MediaIn360's servers: backups, security certificates, monitoring and fast pages.</p></div>
+    <div class="t"><div class="ico">🔧</div><h3>Maintenance &amp; Support</h3><p>Fixes, updates and changes handled quickly. One call or text, and it's done.</p></div>
+    <div class="t"><div class="ico">🚀</div><h3>Upgrades &amp; New Features</h3><p>The system keeps growing: new pages, tools and ideas as the business grows.</p></div>
+    <div class="t hl"><div class="ico">📡</div><h3>TerraAll Project Finder</h3><p>Every public source, every night, filtered to the size, area and work Matt chooses.</p></div>
+    <div class="t"><div class="ico">🎬</div><h3>Video &amp; Content</h3><p>The job-video archive, a page for every job, the opening video and the agency reel.</p></div>
+    <div class="t hl"><div class="ico">📝</div><h3>Bid Preparation</h3><p>Dig-ins, plain-English summaries, preliminaries and final packages. Matt prices and signs.</p></div>
+    <div class="t"><div class="ico">🤝</div><h3>Specialists Managed</h3><p>Outside vendors and experts brought in and directed, so Matt never has to chase anyone.</p></div>
+    <div class="t"><div class="ico">📞</div><h3>One Point of Contact</h3><p>One accountable partner for everything digital, with regular reviews of what's next.</p></div>
+  </div>
+  <div class="bottomline">Not a one-time website. <span>A system that keeps growing, and keeps finding work.</span></div>
+  <div class="foot"><span class="mark"><img src="img/terraall-logo.png" alt="">Partnership terms to be discussed in person · Confidential</span><span class="num">22</span></div>
+</section>
+
+<section class="slide">
+  <p class="eyebrow">05 · Keep it running</p>
+  <h2>You Run the Projects. We Grow the Opportunities.</h2>
+  <div class="bar" style="margin-bottom:16px"></div>
+  <div class="part">
+    <div class="side us">
+      <div class="logohead"><img src="img/mediain360-logo-light.png" alt="MediaIn360"></div>
+      <h3>We build, manage and continually improve the system</h3>
+      <ul>
+        <li>The digital system that helps buyers find you, understand your capabilities and contact you</li>
+        <li>Websites, content, videos, search visibility and technology</li>
+        <li>Hosted, maintained and supported on MediaIn360's servers — updates pushed live directly</li>
+        <li>TerraAll Project Finder: every public bid, every night, plus bid preparation</li>
+        <li>Outside specialists managed for you, plus regular reviews</li>
+      </ul>
+    </div>
+    <div class="side them">
+      <div class="logohead"><img src="img/everglades-logo.png" alt="Everglades" style="height:44px"></div>
+      <h3>You bring the experience and the judgment</h3>
+      <ul>
+        <li>Experience, equipment, relationships and judgment</li>
+        <li>You decide which opportunities to pursue and which to perform</li>
+        <li>Which to coordinate through qualified partners — and which to decline</li>
+        <li>Approvals, footage and answers that only you can give</li>
+      </ul>
+    </div>
+  </div>
+  <div class="loop4">
+    <div><b>Propose</b>A short brief for each new concept</div>
+    <div><b>Approve</b>Matt &amp; Sam sign off</div>
+    <div><b>Build &amp; launch</b>MediaIn360 builds and pushes it live</div>
+    <div><b>Grow</b>Results reviewed, next concept chosen</div>
+  </div>
+  <div class="bottomline">One Partnership. Two Areas of Expertise. <span>A Much Bigger Reach.</span></div>
+  <div class="foot"><span class="mark"><img src="img/terraall-logo.png" alt="">Partnership terms to be discussed in person · Confidential</span><span class="num">23</span></div>
+</section>
+
+<section class="slide stone">
+  <p class="eyebrow">06 · Next steps</p>
+  <h2>What It Takes to Go Live</h2>
+  <div class="bar"></div>
+  <div class="grid2">
+    <div class="tile">
+      <h3>From Matt &amp; Sam</h3>
+      <ul class="built-list" style="margin-top:8px">
+        <li>Every license and registration number</li>
+        <li>Contact details, headquarters and hours</li>
+        <li>Job photos and the best video clips</li>
+        <li>Service checklist and top buyer answers</li>
+        <li>Domain name decision</li>
+        <li>Project Finder dials: size, area and type of work</li>
+      </ul>
+    </div>
+    <div class="tile">
+      <h3>To stand up TerraAll</h3>
+      <ul class="built-list" style="margin-top:8px">
+        <li>Trademark search and domain secured</li>
+        <li>Trade name registered to the corporation</li>
+        <li>Attorney review of the partner structure</li>
+        <li>Partner standards: licensing, insurance, quality</li>
+        <li>Launch the TerraAll front door</li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot"><span>Strategy presentation · Confidential</span><span class="num">24</span></div>
+</section>
+
+<section class="slide dark closing">
+  <p class="eyebrow">TerraAll</p>
+  <h1>Every Earthwork Job.<br><span class="accent">Any Size. Anywhere.</span></h1>
+  <p class="lead" style="margin-top:18px">From the smallest job to the largest undertaking.</p>
+  <div class="logos">
+    <div class="plate"><img src="img/terraall-logo.png" alt="TerraAll"></div>
+    <div class="plate ev"><img src="img/everglades-logo.png" alt="Everglades Restorations &amp; Land Clearing Inc."></div>
+  </div>
+  <div class="made">Produced and powered by <img src="img/mediain360-logo-light.png" alt="MediaIn360"></div>
+</section>
+
+</body>
+</html>
