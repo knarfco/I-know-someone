@@ -1065,7 +1065,7 @@ def build_plan():
   <div><span class="eyebrow">Prepared for Matt &amp; Sam</span>
   <h1>Your New Home Online</h1>
   <p class="lead">Great work — now built so the people who need it can find it. Here's what's built, how it works, and what comes next.</p>
-  <div class="ctas"><a class="btn btn-yellow" href="{L('plan/checklist/')}">Open the Service Checklist</a><a class="btn btn-ghost" href="{L(HOME)}">Tour the Website</a><a class="btn btn-ghost" href="{L('capabilities/')}">Capability Map</a></div></div>
+  <div class="ctas"><a class="btn btn-yellow" href="{L('plan/checklist/')}">Open the Service Checklist</a><a class="btn btn-ghost" href="{L('plan/videos/')}">Log a Video</a><a class="btn btn-ghost" href="{L(HOME)}">Tour the Website</a><a class="btn btn-ghost" href="{L('capabilities/')}">Capability Map</a></div></div>
   <div class="logo-plate"><img src="{L('assets/img/everglades-logo.webp')}" alt="" width="1400" height="632"></div>
 </div></section>
 
@@ -1525,6 +1525,108 @@ def build_checklist():
     page(cur, f"Service Checklist | {BIZ['short']}", "Service checklist.", body, noindex=True)
 
 
+def build_video_log():
+    """Where Matt & Sam log each YouTube short link so we can build its job page (hidden from search)."""
+    cur = "plan/videos/"
+    L = lambda p: rel(cur, p)  # noqa: E731
+    types = "".join(f'<option>{s["name"]}</option>' for s in SERVICES) + "<option>Something else</option>"
+    body = f"""
+<section class="page-hero"><div class="wrap">
+  <span class="eyebrow">For Matt &amp; Sam</span><h1>Video Log</h1>
+  <p class="lead">Posted a job video on YouTube? Paste its short link here and tap <b>Send</b>. We turn every video into its own job page on the website.</p>
+</div></section>
+<section class="section"><div class="wrap split">
+  <form class="form" id="vl-one" novalidate>
+    <fieldset><legend>Log One Video</legend>
+      <div class="full"><label for="vl-link">YouTube short link <span class="hint">(YouTube app → Share → Copy link)</span></label>
+      <input id="vl-link" name="link" type="url" inputmode="url" placeholder="https://youtu.be/…" required></div>
+      <div class="row"><div><label for="vl-job">Job name</label><input id="vl-job" name="job" type="text" placeholder="Canal cleanout for the county"></div>
+      <div><label for="vl-date">When filmed <span class="hint">(month and year)</span></label><input id="vl-date" name="date" type="text" placeholder="March 2026"></div></div>
+      <div class="row"><div><label for="vl-place">Where <span class="hint">(city, state or country)</span></label><input id="vl-place" name="place" type="text"></div>
+      <div><label for="vl-type">Type of work</label><select id="vl-type" name="type"><option value="">Choose</option>{types}</select></div></div>
+      <div class="full"><label for="vl-notes">Anything else? <span class="hint">(acres, equipment, who it was for)</span></label><textarea id="vl-notes" name="notes"></textarea></div>
+    </fieldset>
+    <button class="btn btn-yellow" type="submit" style="width:100%">Send This Video</button>
+    <p class="ck-msg" id="vl-msg-one" role="status"></p>
+  </form>
+  <div>
+    <form class="form" id="vl-many" novalidate>
+      <fieldset><legend>Got a Pile? Paste Several</legend>
+        <div class="full"><label for="vl-list">Short links <span class="hint">(one per line; add a note after the link if you like)</span></label>
+        <textarea id="vl-list" name="list" placeholder="https://youtu.be/abc123  Pond dig, Naples, 2024&#10;https://youtu.be/def456  Lot clearing"></textarea></div>
+      </fieldset>
+      <button class="btn btn-green" type="submit" style="width:100%">Send All</button>
+      <p class="ck-msg" id="vl-msg-many" role="status"></p>
+    </form>
+    <div class="card mt">
+      <label for="vl-name"><b>Your name</b></label>
+      <input id="vl-name" type="text" autocomplete="name" placeholder="Matt" style="width:100%;font:inherit;padding:12px;border:1px solid #c5ccc0;border-radius:8px;margin-top:6px">
+      <input type="text" id="vl-hp" tabindex="-1" autocomplete="off" class="sr" aria-hidden="true">
+    </div>
+    <div class="card mt"><h2 style="font-size:1.1rem;margin:0 0 8px">Sent From This Device</h2><ul id="vl-sent" class="small" style="margin:0;padding-left:18px"><li>Nothing yet.</li></ul></div>
+    <div class="card mt"><h2 style="font-size:1.1rem;margin:0 0 8px">Best Clips for the Website?</h2><p class="small" style="margin:0">Send the original files (not YouTube links) to the shared folder we gave you. Full quality, straight from the camera or phone.</p></div>
+  </div>
+</div></section>
+<script>
+(function () {{
+  var KEY = "eg-video-log", sent = [];
+  try {{ sent = JSON.parse(localStorage.getItem(KEY) || "[]"); }} catch (e) {{}}
+  var nameBox = document.getElementById("vl-name"), list = document.getElementById("vl-sent");
+  try {{ nameBox.value = localStorage.getItem(KEY + "-name") || ""; }} catch (e) {{}}
+  nameBox.addEventListener("input", function () {{ try {{ localStorage.setItem(KEY + "-name", nameBox.value); }} catch (e) {{}} }});
+  var YT = /^(https?:\\/\\/)?(www\\.|m\\.)?(youtu\\.be\\/|youtube\\.com\\/)\\S+/i;
+  function paint() {{
+    if (!sent.length) return;
+    list.innerHTML = "";
+    sent.slice(-25).reverse().forEach(function (v) {{
+      var li = document.createElement("li");
+      li.textContent = v.link + (v.job ? " — " + v.job : "") + " (" + v.when + ")";
+      list.appendChild(li);
+    }});
+  }}
+  function say(el, text, ok) {{ el.textContent = text; el.className = "ck-msg " + (ok ? "good" : "bad"); }}
+  function send(videos, msg, done) {{
+    say(msg, "Sending…", true);
+    fetch("{L('send-video.php')}", {{
+      method: "POST", headers: {{"Content-Type": "application/json"}},
+      body: JSON.stringify({{name: nameBox.value, videos: videos, website: document.getElementById("vl-hp").value}})
+    }}).then(function (r) {{ return r.json(); }}).then(function (d) {{
+      if (!d || !d.ok) throw new Error("not ok");
+      var when = new Date().toLocaleDateString();
+      videos.forEach(function (v) {{ sent.push({{link: v.link, job: v.job || v.notes || "", when: when}}); }});
+      try {{ localStorage.setItem(KEY, JSON.stringify(sent.slice(-200))); }} catch (e) {{}}
+      paint(); done();
+      say(msg, "Sent — thank you! " + (videos.length > 1 ? videos.length + " videos are" : "Your video is") + " on our list.", true);
+    }}).catch(function () {{
+      say(msg, "Couldn't send from here. Text or email the link to us and we'll log it.", false);
+    }});
+  }}
+  var one = document.getElementById("vl-one");
+  one.addEventListener("submit", function (e) {{
+    e.preventDefault();
+    var f = one.elements, msg = document.getElementById("vl-msg-one"), link = f.link.value.trim();
+    if (!YT.test(link)) {{ say(msg, "That doesn't look like a YouTube link. In the YouTube app tap Share, then Copy link.", false); f.link.focus(); return; }}
+    send([{{link: link, job: f.job.value, date: f.date.value, place: f.place.value, type: f.type.value, notes: f.notes.value}}], msg, function () {{ one.reset(); }});
+  }});
+  var many = document.getElementById("vl-many");
+  many.addEventListener("submit", function (e) {{
+    e.preventDefault();
+    var msg = document.getElementById("vl-msg-many"), videos = [], bad = 0;
+    many.elements.list.value.split(/\\n+/).forEach(function (line) {{
+      line = line.trim(); if (!line) return;
+      var m = line.match(/^(\\S+)\\s*(.*)$/);
+      if (YT.test(m[1])) videos.push({{link: m[1], notes: m[2]}}); else bad++;
+    }});
+    if (!videos.length) {{ say(msg, "No YouTube links found. Put one link per line.", false); return; }}
+    send(videos, msg, function () {{ many.reset(); }});
+    if (bad) setTimeout(function () {{ msg.textContent += " (" + bad + " line" + (bad > 1 ? "s" : "") + " skipped: not a YouTube link.)"; }}, 1500);
+  }});
+  paint();
+}})();
+</script>"""
+    page(cur, f"Video Log | {BIZ['short']}", "Video log.", body, noindex=True)
+
+
 def build_qr_sheet():
     cur = "qr/"
     L = lambda p: rel(cur, p)  # noqa: E731
@@ -1623,6 +1725,10 @@ def write_all():
         php = f.read().replace("__CHECKLIST_TO__", CHECKLIST_TO)
     with open(os.path.join(OUT, "send-checklist.php"), "w") as f:
         f.write(php)
+    with open(os.path.join(HERE, "send-video.php")) as f:
+        php = f.read().replace("__CHECKLIST_TO__", CHECKLIST_TO)
+    with open(os.path.join(OUT, "send-video.php"), "w") as f:
+        f.write(php)
     os.makedirs(os.path.join(OUT, "submissions"), exist_ok=True)
     with open(os.path.join(OUT, "submissions", ".htaccess"), "w") as f:
         f.write("# Saved checklist answers: never served to the web\nRequire all denied\n<IfModule !mod_authz_core.c>\nDeny from all\n</IfModule>\n")
@@ -1647,6 +1753,7 @@ def main():
     build_capability()
     build_capabilities()
     build_checklist()
+    build_video_log()
     build_projects()
     build_questions()
     build_about()

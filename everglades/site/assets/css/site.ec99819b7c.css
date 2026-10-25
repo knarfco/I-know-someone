@@ -244,7 +244,7 @@ a.card:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(6,56,26,.12);
 @media (max-width:640px){.form .row{grid-template-columns:1fr}}
 .form label{display:block;font-weight:700;font-size:.9rem;margin-bottom:5px}
 .form .hint{font-weight:400;color:var(--ink-soft);font-size:.82rem}
-.form input[type=text],.form input[type=email],.form input[type=tel],.form select,.form textarea{width:100%;font:inherit;font-size:1rem;padding:12px 13px;border:1px solid #c5ccc0;border-radius:8px;background:#fff}
+.form input[type=text],.form input[type=email],.form input[type=tel],.form input[type=url],.form select,.form textarea{width:100%;font:inherit;font-size:1rem;padding:12px 13px;border:1px solid #c5ccc0;border-radius:8px;background:#fff}
 .form textarea{min-height:120px;resize:vertical}
 .form .checks-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 @media (max-width:640px){.form .checks-grid{grid-template-columns:1fr}}

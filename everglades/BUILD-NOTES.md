@@ -62,6 +62,11 @@ Locations appear **only** where a real job was done:
 - **Send to us** posts the answers to `send-checklist.php` (PHP on Hostinger), which emails them to `CHECKLIST_TO` (knarfco@yahoo.com, set in build.py) and **always saves a copy** in `public_html/submissions/` (web access blocked by `.htaccess`). If email lands in spam or fails, the copy is still there in File Manager. A backup **Email** button opens his mail app pre-addressed.
 - After Matt answers: delete the "Not for us" items from taxonomy.py, rebuild, and build out real service pages for the rest as jobs come in. Every service already has a reserved URL.
 
+## Video Log + YouTube Playbook
+- `/plan/videos/` (noindex): Matt & Sam paste each YouTube short link (plus job, date, place, type, notes) or a pile of links at once. Posts to `send-video.php`, which emails `CHECKLIST_TO` and saves a copy in `submissions/videos-*.txt`. A "sent from this device" list is kept in localStorage.
+- `docs/presentation/youtube-playbook.html` → `Everglades_YouTube_Playbook.pdf` (14 slides): channel setup, name/handle, upload, title format, short link, Video Log, best clips for the hero (originals via shared Google Drive folder or WeTransfer, stored on the MediaIn360 server), filming tips, privacy, checklist. No channel access needed; optional later: YouTube **Editor** role for captions and description links.
+- Each logged link → add to `PROJECTS` with `youtube: "VIDEO_ID"` and its `place`, rebuild.
+
 ## The web (how pages feed each other)
 Job video (YouTube, short link) → **job page** `/projects/{service}-{city}-{year}/`
 → links to its **service page** and its **place pages** (city + region)
