@@ -1,0 +1,516 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Everglades — YouTube Playbook</title>
+<style>
+  @page { size: 13.333in 7.5in; margin: 0; }
+  :root{
+    --green:#03381C; --green-2:#0B6B1F; --green-3:#1E9A2E; --brown:#5A2E0C; --brown-2:#8A5A33;
+    --stone:#F5F5F1; --sage:#E4EAE0; --ink:#1A1C19; --muted:#5B6058; --line:#D5DBD1; --yellow:#F5B800; --mint:#B9D9BF;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:"Inter",Arial,sans-serif;color:var(--ink);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .slide{width:13.333in;height:7.5in;position:relative;overflow:hidden;page-break-after:always;background:#fff;padding:.7in .85in .8in}
+  .slide:last-child{page-break-after:auto}
+  .dark{background:var(--green);color:#fff}
+  .stone{background:var(--stone)}
+  .foot{position:absolute;left:.85in;right:.85in;bottom:.32in;display:flex;justify-content:space-between;align-items:center;font-size:8.5pt;color:var(--muted)}
+  .dark .foot{color:var(--mint)}
+  .foot .mark{display:flex;align-items:center;gap:10px}
+  .foot .mark img{height:14px}
+  .foot .num{font-weight:700;color:var(--brown)}
+  .dark .foot .num{color:#fff}
+  .eyebrow{font-size:10pt;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--brown);margin:0 0 14px}
+  .dark .eyebrow{color:var(--mint)}
+  h1{font-size:46pt;line-height:1.02;letter-spacing:-.03em;margin:0;font-weight:800;color:var(--green)}
+  h2{font-size:32pt;line-height:1.06;letter-spacing:-.025em;margin:0 0 18px;font-weight:800;color:var(--green)}
+  .dark h1,.dark h2{color:#fff}
+  h3{font-size:14pt;margin:0 0 6px;font-weight:800;color:var(--green);letter-spacing:-.01em}
+  .dark h3{color:#fff}
+  p{margin:0 0 10px;font-size:12.5pt;line-height:1.5}
+  .lead{font-size:16pt;line-height:1.45;color:#3a3d38;max-width:9.6in}
+  .dark .lead{color:#d7eadb}
+  .accent{color:var(--brown)}
+  .dark .accent{color:var(--yellow)}
+  .bar{width:70px;height:5px;background:var(--brown);border-radius:3px;margin:0 0 22px}
+  .dark .bar{background:var(--yellow)}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .tile{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 22px}
+  .stone .tile{background:#fff}
+  .tile p{font-size:12pt;color:var(--muted);margin:0;line-height:1.45}
+  .tile .n{font-size:30pt;font-weight:800;color:var(--brown);line-height:1;margin-bottom:10px;letter-spacing:-.02em}
+  .dark .tile{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.16)}
+  .dark .tile p{color:#cfe3d3}
+
+  /* title */
+  .title{display:grid;grid-template-columns:1.1fr .9fr;padding:0}
+  .title .l{background:#fff;padding:.9in .85in;display:flex;flex-direction:column;justify-content:center}
+  .title .r{background:var(--green);position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:28px;padding:.8in}
+  .title .l img.ta{width:5.4in;margin-bottom:34px}
+  .title h1{font-size:40pt}
+  .title .sub{font-size:15pt;color:var(--muted);margin-top:16px}
+  .plate{background:#F5F5F1;border-radius:18px;padding:22px 30px;box-shadow:0 18px 40px rgba(0,0,0,.3)}
+  .plate img{display:block;width:3.9in}
+  .title .r .with{color:var(--mint);font-size:10pt;letter-spacing:.16em;text-transform:uppercase;font-weight:700}
+  .title .meta{position:absolute;left:.85in;bottom:.45in;font-size:9.5pt;color:var(--muted)}
+  .title .m360{position:absolute;right:.6in;bottom:.4in}
+  .title .m360 img{height:22px;display:block}
+
+  /* statement */
+  .statement{display:flex;flex-direction:column;justify-content:center}
+  .statement h1{font-size:60pt;max-width:11in}
+  .range{display:flex;align-items:center;gap:22px;margin-top:40px;font-size:20pt;font-weight:800}
+  .range .line{flex:1;height:4px;background:linear-gradient(90deg,var(--mint),var(--yellow));border-radius:2px;position:relative}
+  .range .line::before,.range .line::after{content:"";position:absolute;top:-7px;width:18px;height:18px;border-radius:50%;background:var(--yellow)}
+  .range .line::before{left:-4px;background:var(--mint)}.range .line::after{right:-4px}
+  .range small{display:block;font-size:10pt;font-weight:600;color:var(--mint);letter-spacing:.06em;text-transform:uppercase}
+
+  /* agenda */
+  .agenda{list-style:none;margin:0;padding:0;columns:2;column-gap:.8in}
+  .agenda li{break-inside:avoid;display:flex;gap:18px;align-items:baseline;border-top:1px solid var(--line);padding:16px 0;font-size:15pt;font-weight:700;color:var(--green)}
+  .agenda li span{font-size:11pt;color:var(--brown);font-weight:800;width:28px}
+
+  /* audience columns */
+  .aud{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:10px}
+  .aud .col{border-top:5px solid var(--green);background:var(--stone);border-radius:0 0 14px 14px;padding:24px 24px;min-height:2.5in}
+  .aud .col.b{border-top-color:var(--brown)}
+  .aud .col.c{border-top-color:var(--green-3)}
+  .aud .col h3{font-size:17pt;margin-bottom:10px}
+  .aud .col p{font-size:13pt;color:var(--muted);line-height:1.5}
+  .gap{margin-top:24px;padding:18px 24px;border-radius:14px;background:var(--green);color:#fff;font-size:15pt;font-weight:700}
+  .gap span{color:var(--yellow)}
+
+  /* brand intro */
+  .brand{display:grid;grid-template-columns:1fr 1fr;gap:.6in;align-items:center;height:100%}
+  .brand img{width:5.2in}
+  .word{display:flex;gap:28px;margin-top:22px}
+  .word div{flex:1;border-left:4px solid var(--brown);padding-left:16px}
+  .word div:last-child{border-left-color:var(--green-2)}
+  .word b{display:block;font-size:24pt;color:var(--green);letter-spacing:-.02em}
+  .word span{font-size:11.5pt;color:var(--muted)}
+
+  /* architecture */
+  .arch{display:grid;grid-template-columns:1fr 60px 1.1fr 60px 1fr;align-items:center;margin-top:20px}
+  .arch .node{border-radius:16px;padding:22px;text-align:center;min-height:2.6in;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:12px}
+  .arch .n1{background:#fff;border:2px solid var(--brown)}
+  .arch .n2{background:var(--green);color:#fff}
+  .arch .n3{background:var(--sage)}
+  .arch .node img{max-width:2.6in;max-height:.8in}
+  .arch .n2 .plate{padding:10px 14px;box-shadow:none}
+  .arch .n2 .plate img{width:2.3in}
+  .arch .node p{font-size:11pt;margin:0}
+  .arch .n2 p{color:#d7eadb}
+  .arch .node b{font-size:12.5pt}
+  .arch .arrow{text-align:center;font-size:26pt;color:var(--brown);font-weight:300}
+
+  /* flow */
+  .flow{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-top:26px;position:relative}
+  .flow .st{position:relative;padding:22px 18px 22px 30px;min-height:2.4in;color:#fff;clip-path:polygon(0 0,88% 0,100% 50%,88% 100%,0 100%,12% 50%)}
+  .flow .st:first-child{clip-path:polygon(0 0,88% 0,100% 50%,88% 100%,0 100%)}
+  .flow .st b{display:block;font-size:15pt;margin-bottom:8px;letter-spacing:-.01em}
+  .flow .st span{display:block;font-size:10.5pt;line-height:1.4;max-width:1.65in;opacity:.92}
+  .flow .st small{display:block;font-size:9pt;font-weight:800;letter-spacing:.14em;text-transform:uppercase;opacity:.75;margin-bottom:10px}
+  .f1{background:#5b6b4f}.f2{background:var(--brown)}.f3{background:#2f5a3a}.f4{background:var(--green)}.f5{background:var(--green-2)}
+  .f4 b{color:var(--yellow)}
+  .loopline{margin-top:18px;display:flex;align-items:center;gap:14px;font-size:12.5pt;font-weight:700;color:var(--brown)}
+  .loopline::before{content:"↺";font-size:22pt;color:var(--green-2)}
+
+  /* choices */
+  .choices{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:20px}
+  .ch{border-radius:16px;padding:24px 22px;min-height:3.2in;display:flex;flex-direction:column;color:#fff}
+  .ch small{font-size:9pt;font-weight:800;letter-spacing:.14em;text-transform:uppercase;opacity:.8;margin-bottom:auto}
+  .ch b{font-size:28pt;letter-spacing:-.025em;margin:18px 0 10px;display:block}
+  .ch p{font-size:11.5pt;margin:0;opacity:.92}
+  .ch1{background:var(--green)}.ch2{background:var(--green-2)}.ch3{background:var(--brown)}.ch4{background:#6d726a}
+
+  /* reach */
+  .reach{display:grid;grid-template-columns:repeat(4,1fr);margin:30px 0 26px;position:relative}
+  .reach::before{content:"";position:absolute;left:6%;right:6%;top:26px;height:4px;background:linear-gradient(90deg,var(--mint),var(--yellow));border-radius:2px}
+  .reach div{text-align:center;position:relative;padding-top:68px}
+  .reach div::before{content:"";position:absolute;top:12px;left:50%;transform:translateX(-50%);width:32px;height:32px;border-radius:50%;background:var(--green);border:5px solid var(--mint)}
+  .reach div:last-child::before{border-color:var(--yellow)}
+  .reach b{display:block;font-size:17pt;color:#fff}
+  .reach span{font-size:11pt;color:var(--mint)}
+
+  /* roadmap */
+  .road{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:10px}
+  .ph{background:var(--stone);border-radius:14px;padding:22px 20px;min-height:3.7in;border-top:6px solid var(--green);display:flex;flex-direction:column}
+  .ph .big{font-size:54pt;font-weight:800;line-height:.9;color:var(--brown);letter-spacing:-.04em;margin-bottom:14px}
+  .ph .k{font-size:9pt;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .ph h3{font-size:16pt;margin:6px 0 10px}
+  .ph p{font-size:12pt;color:var(--muted);margin:0;line-height:1.45}
+  .ph:nth-child(2){border-color:#155c2c}.ph:nth-child(3){border-color:var(--green-2)}.ph:nth-child(4){border-color:var(--green-3)}.ph:nth-child(5){border-color:var(--yellow)}
+  /* devices */
+  .devices{position:relative;height:4.9in}
+  .laptop{position:absolute;border-radius:12px;background:#1a1c19;padding:10px 10px 14px;box-shadow:0 24px 50px rgba(0,0,0,.25)}
+  .laptop img{display:block;width:100%;border-radius:4px}
+  .laptop::after{content:"";position:absolute;left:-6%;right:-6%;bottom:-14px;height:14px;background:#c9ccc7;border-radius:0 0 12px 12px}
+  .phone{position:absolute;border-radius:26px;background:#1a1c19;padding:9px;box-shadow:0 24px 50px rgba(0,0,0,.3)}
+  .phone img{display:block;width:100%;border-radius:18px}
+  .built-list{list-style:none;padding:0;margin:0}
+  .built-list li{padding:11px 0 11px 30px;border-top:1px solid var(--line);position:relative;font-size:12pt}
+  .built-list li::before{content:"";position:absolute;left:4px;top:17px;width:12px;height:12px;border-radius:3px;background:var(--green-2)}
+  .built-list b{color:var(--green)}
+
+  /* partnership */
+  .part{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:8px}
+  .part .side{border-radius:16px;padding:18px 24px}
+  .part .us{background:var(--green);color:#fff}
+  .part .us h3{color:#fff}
+  .part .them{background:var(--stone);border:1px solid var(--line)}
+  .part ul{list-style:none;padding:0;margin:12px 0 0}
+  .part li{padding:6px 0 6px 26px;position:relative;font-size:11.5pt;border-top:1px solid rgba(0,0,0,.08)}
+  .part .us li{border-top-color:rgba(255,255,255,.14);color:#e3efe5}
+  .part li::before{content:"";position:absolute;left:2px;top:15px;width:10px;height:10px;border-radius:50%;background:var(--brown)}
+  .part .us li::before{background:var(--yellow)}
+  .part .logohead{display:flex;align-items:center;gap:14px;margin-bottom:4px}
+  .part .logohead img{height:28px}
+  .loop4{display:flex;gap:10px;margin-top:12px}
+  .loop4 div{flex:1;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:10.5pt;color:var(--muted)}
+  .loop4 b{display:block;color:var(--green);font-size:12pt;margin-bottom:2px}
+
+
+  /* hub (discovery channels) */
+  .hubwrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:.4in;align-items:center;margin-top:4px}
+  .hub{position:relative;width:5.6in;height:4.3in;margin:0 auto}
+  .hub .core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:1.84in;height:1.84in;border-radius:50%;background:#fff;border:3px solid var(--brown);display:flex;align-items:center;justify-content:center;box-shadow:0 16px 36px rgba(3,56,28,.18);z-index:2}
+  .hub .core img{width:1.5in}
+  .hub svg.rays{position:absolute;inset:0;width:100%;height:100%;z-index:1}
+  .hub .ch{position:absolute;width:1.6in;text-align:center;z-index:2}
+  .hub .ic{width:.72in;height:.72in;border-radius:50%;background:var(--green);margin:0 auto 6px;display:flex;align-items:center;justify-content:center}
+  .hub .ic svg{width:.42in;height:.42in;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  .hub .ch b{display:block;font-size:10.5pt;color:var(--green);line-height:1.2}
+  .hub .ch:nth-of-type(odd) .ic{background:var(--brown)}
+
+  /* growth loop */
+  .loopwrap{display:grid;grid-template-columns:1.05fr .95fr;gap:.5in;align-items:center;margin-top:4px}
+  .cycle{position:relative;width:4.6in;height:4.6in;margin:0 auto}
+  .cycle svg{position:absolute;inset:0;width:100%;height:100%}
+  .cycle .nd{position:absolute;width:1.5in;height:1.5in;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#fff;font-weight:800;font-size:13pt;box-shadow:0 10px 24px rgba(0,0,0,.18)}
+  .cycle .nd small{font-size:8.5pt;font-weight:600;opacity:.85;margin-top:3px;max-width:1.2in;line-height:1.25}
+  .cycle .c1{left:50%;top:0;transform:translateX(-50%);background:var(--green)}
+  .cycle .c2{right:0;top:50%;transform:translateY(-50%);background:var(--green-2)}
+  .cycle .c3{left:50%;bottom:0;transform:translateX(-50%);background:var(--brown)}
+  .cycle .c4{left:0;top:50%;transform:translateY(-50%);background:#2f5a3a}
+  .cycle .mid{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);text-align:center;font-size:11pt;font-weight:800;color:var(--brown);letter-spacing:.06em;text-transform:uppercase;width:1.3in}
+  .bottomline{margin-top:12px;background:var(--green);color:#fff;border-radius:12px;padding:10px 20px;font-size:15pt;font-weight:800;letter-spacing:-.01em}
+  .bottomline span{color:var(--yellow)}
+
+  /* closing */
+  .closing{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+  .closing h1{font-size:50pt;max-width:10in}
+  .closing .logos{display:flex;gap:30px;align-items:center;margin-top:44px}
+  .closing .plate img{width:3.1in}
+  .closing .plate.ev img{width:2.7in}
+  .closing .made{margin-top:34px;display:flex;align-items:center;gap:12px;color:var(--mint);font-size:10pt;letter-spacing:.12em;text-transform:uppercase;font-weight:700}
+  .closing .made img{height:22px}
+
+  /* playbook */
+  table.xl{width:100%;border-collapse:collapse;font-size:10.5pt;background:#fff;box-shadow:0 10px 26px rgba(0,0,0,.08)}
+  .xl th{background:var(--green);color:#fff;font-weight:700;text-align:left;padding:9px 10px;border:1px solid #2b5a3c;font-size:10pt}
+  .xl td{border:1px solid #cfd6cb;padding:9px 10px;height:.42in;color:var(--ink)}
+  .xl .rn{width:.32in;background:#eef1ec;color:var(--muted);text-align:center;font-size:9pt}
+  .xl th.rn{background:#e3e8df}
+  .xl tbody tr:first-child td:not(.rn){background:#fff8e1}
+  .xl .dd{display:inline-block;border:1px solid #bbb;border-radius:4px;padding:1px 8px;color:var(--muted);font-size:9.5pt}
+  .steps{list-style:none;margin:6px 0 0;padding:0;counter-reset:s}
+  .steps li{counter-increment:s;position:relative;padding:13px 0 13px 58px;border-top:1px solid var(--line);font-size:14pt;line-height:1.4}
+  .steps li::before{content:counter(s);position:absolute;left:0;top:10px;width:38px;height:38px;border-radius:50%;background:var(--green);color:#fff;font-weight:800;font-size:13pt;display:flex;align-items:center;justify-content:center}
+  .steps li b{color:var(--green)}
+  .steps li small{display:block;font-size:11pt;color:var(--muted)}
+  .two{display:grid;grid-template-columns:1.15fr .85fr;gap:.55in;align-items:start}
+  .note{background:var(--sage);border-left:5px solid var(--brown);border-radius:0 12px 12px 0;padding:16px 20px;font-size:12.5pt;line-height:1.45}
+  .note b{color:var(--green)}
+  .big-name{background:var(--green);color:#fff;border-radius:16px;padding:26px 30px;margin-bottom:16px}
+  .big-name small{display:block;font-size:9pt;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--mint);margin-bottom:8px}
+  .big-name b{font-size:25pt;letter-spacing:-.02em;display:block}
+  .big-name.h{background:#fff;color:var(--green);border:2px solid var(--brown)}
+  .big-name.h small{color:var(--brown)}
+  .titlebar{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin:10px 0;display:flex;align-items:center;gap:18px;font-size:16pt;font-weight:800;color:var(--ink)}
+  .titlebar .yt{flex:none;width:52px;height:36px;border-radius:9px;background:#d4251c;display:flex;align-items:center;justify-content:center}
+  .titlebar .yt::after{content:"";border-left:14px solid #fff;border-top:9px solid transparent;border-bottom:9px solid transparent;margin-left:4px}
+  .titlebar.bad{opacity:.55;font-weight:600;text-decoration:line-through;text-decoration-color:#b23a2b}
+  .seg{display:flex;gap:10px;margin-top:6px}
+  .seg div{flex:1;border-radius:12px;padding:14px 16px;color:#fff;font-size:10.5pt}
+  .seg b{display:block;font-size:15pt;margin-bottom:2px}
+  .seg .a{background:var(--green)}.seg .b{background:var(--brown)}.seg .c{background:var(--green-2)}
+  .phonebox{position:relative;width:2.45in;margin:0 auto;border-radius:30px;background:#1a1c19;padding:10px;box-shadow:0 24px 50px rgba(0,0,0,.28)}
+  .phonebox img{display:block;width:100%;border-radius:22px}
+  .share{width:2.75in;margin:0 auto;border-radius:30px;background:#1a1c19;padding:10px;box-shadow:0 24px 50px rgba(0,0,0,.28)}
+  .share .scr{background:#fff;border-radius:22px;height:5.1in;overflow:hidden;display:flex;flex-direction:column}
+  .share .vid{height:1.55in;background:linear-gradient(135deg,#2f5a3a,#5A2E0C);display:flex;align-items:center;justify-content:center}
+  .share .vid::after{content:"";border-left:26px solid rgba(255,255,255,.9);border-top:16px solid transparent;border-bottom:16px solid transparent}
+  .share .t{padding:10px 14px 4px;font-weight:800;font-size:10.5pt;color:var(--ink)}
+  .share .acts{display:flex;gap:6px;padding:6px 12px 10px}
+  .share .acts span{border-radius:20px;background:#eee;padding:5px 10px;font-size:8.5pt;font-weight:700;color:#333}
+  .share .acts span.on{background:var(--yellow);color:#000;box-shadow:0 0 0 3px rgba(245,184,0,.35)}
+  .share .sheet{margin-top:auto;background:#f3f3f3;border-radius:18px 18px 0 0;padding:14px}
+  .share .sheet p{font-size:9pt;font-weight:800;margin:0 0 10px;color:#333}
+  .share .row{display:flex;gap:10px}
+  .share .row div{flex:1;text-align:center;font-size:8pt;color:#333}
+  .share .row i{display:block;width:40px;height:40px;border-radius:50%;background:#ddd;margin:0 auto 4px}
+  .share .row div.on i{background:var(--yellow);box-shadow:0 0 0 3px rgba(245,184,0,.35)}
+  .share .row div.on{font-weight:800}
+  .linkpill{display:inline-block;margin-top:14px;background:var(--green);color:#fff;border-radius:40px;padding:12px 24px;font-size:17pt;font-weight:800;letter-spacing:-.01em}
+  .linkpill span{color:var(--yellow)}
+  .dodont{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  .dodont .col{border-radius:16px;padding:20px 24px}
+  .dodont .yes{background:var(--sage)}
+  .dodont .no{background:#f6ece6}
+  .dodont h3{font-size:17pt;margin-bottom:8px}
+  .dodont .no h3{color:#8a2d1f}
+  .dodont ul{list-style:none;margin:0;padding:0}
+  .dodont li{padding:9px 0 9px 32px;position:relative;font-size:12.5pt;border-top:1px solid rgba(0,0,0,.08);line-height:1.4}
+  .dodont .yes li::before{content:"✓";position:absolute;left:4px;top:8px;font-weight:800;color:var(--green-2);font-size:14pt}
+  .dodont .no li::before{content:"✕";position:absolute;left:4px;top:8px;font-weight:800;color:#b23a2b;font-size:14pt}
+  .checks{list-style:none;margin:0;padding:0}
+  .checks li{padding:12px 0 12px 44px;position:relative;font-size:14pt;border-top:1px solid var(--line);font-weight:700;color:var(--green)}
+  .checks li::before{content:"";position:absolute;left:2px;top:13px;width:24px;height:24px;border:2.5px solid var(--brown);border-radius:6px}
+  .checks li small{display:block;font-weight:500;color:var(--muted);font-size:11pt}
+  .later{margin-top:16px;border:2px dashed var(--brown);border-radius:14px;padding:14px 20px;font-size:12pt;line-height:1.45;background:#fff}
+  .later b{color:var(--brown)}
+</style>
+</head>
+<body>
+
+<section class="slide title">
+  <div class="l">
+    <p class="eyebrow">YouTube Playbook</p>
+    <h1>Every Job You Film Becomes Proof</h1>
+    <p class="sub">How to set up the channel, post your videos and get them to us.</p>
+    <div class="meta">Prepared for Matt &amp; Sam · Everglades Restorations &amp; Land Clearing Inc. · October 2026 · Confidential</div>
+  </div>
+  <div class="r">
+    <div class="with">Your channel</div>
+    <div class="plate"><img src="img/everglades-logo.png" alt="Everglades Restorations &amp; Land Clearing Inc."></div>
+    <div class="m360"><img src="img/mediain360-logo-light.png" alt="MediaIn360"></div>
+  </div>
+</section>
+<section class="slide">
+  <p class="eyebrow">The whole idea</p>
+  <h2>You Film It. We Build the Page.</h2>
+  <div class="bar"></div>
+  <p class="lead">Five simple steps. Your part takes a couple of minutes per video. Everything after that is on us.</p>
+  <div class="flow">
+    <div class="st f1"><small>You</small><b>Film</b><span>Before, during and after on the job site.</span></div>
+    <div class="st f2"><small>You</small><b>Upload</b><span>Post it to the company YouTube channel.</span></div>
+    <div class="st f3"><small>You</small><b>Copy the Link</b><span>Share → Copy link. That's the short link.</span></div>
+    <div class="st f4"><small>You</small><b>Write It Down</b><span>Add one row to the Video Log spreadsheet.</span></div>
+    <div class="st f5"><small>MediaIn360</small><b>Job Page</b><span>We turn it into its own page on the website.</span></div>
+  </div>
+  <p class="loopline">Every video adds one more real, dated job to the website.</p>
+  <div class="foot"><span class="mark"><img src="img/everglades-logo.png" alt="">YouTube Playbook · Confidential</span><span class="num">02</span></div>
+</section>
+<section class="slide dark">
+  <p class="eyebrow">Why video</p>
+  <h2>Your Footage Is Your Biggest Advantage</h2>
+  <div class="bar"></div>
+  <div class="grid3" style="margin-top:20px">
+    <div class="tile"><h3>It Proves the Work</h3><p>Agencies, primes and owners want to see it done. A real job on video beats any brochure.</p></div>
+    <div class="tile"><h3>It Gets You Found</h3><p>YouTube is the world's second-biggest search engine, and its videos show up in Google too.</p></div>
+    <div class="tile"><h3>It Builds the Website</h3><p>Each video becomes a job page. Over time, hundreds of real jobs nobody else in the trade can show.</p></div>
+  </div>
+  <p class="lead" style="margin-top:30px">You've already got years of footage on your phones. This turns it into business.</p>
+  <div class="foot"><span>YouTube Playbook · Confidential</span><span class="num">03</span></div>
+</section>
+<section class="slide">
+  <p class="eyebrow">Step 1</p>
+  <h2>Create the Channel</h2>
+  <div class="bar"></div>
+  <div class="two">
+    <ol class="steps">
+      <li><b>Use a company Google account,</b> not a personal one.<small>Example: the company Gmail. The channel should belong to the business.</small></li>
+      <li><b>Go to youtube.com and sign in.</b><small>On a computer is easiest for setup.</small></li>
+      <li><b>Tap your profile picture → Create a channel.</b><small>If you already have one, go to Settings → Add or manage your channels.</small></li>
+      <li><b>Enter the name and handle</b> from the next slide.</li>
+      <li><b>Add the logo and the website link.</b><small>We'll send you the logo file sized for YouTube.</small></li>
+    </ol>
+    <div class="note"><b>Keep the login safe.</b><br>Write down which account owns the channel and turn on 2-step verification. Matt and Sam stay the owners.<br><br><b>You don't need to give us your password.</b> We only need the video links.</div>
+  </div>
+  <div class="foot"><span class="mark"><img src="img/everglades-logo.png" alt="">YouTube Playbook · Confidential</span><span class="num">04</span></div>
+</section>
+<section class="slide stone">
+  <p class="eyebrow">Step 2</p>
+  <h2>Name &amp; Handle</h2>
+  <div class="bar"></div>
+  <div class="two">
+    <div>
+      <div class="big-name"><small>Channel name</small><b>Everglades Restorations &amp; Land Clearing</b></div>
+      <div class="big-name h"><small>Handle (your @ name)</small><b>@EvergladesLandClearing</b></div>
+      <p style="font-size:11.5pt;color:var(--muted)">If that handle is taken, try @EvergladesRestorations or @EvergladesLandClearingInc.</p>
+    </div>
+    <div>
+      <div class="tile" style="margin-bottom:16px"><h3>Same Name Everywhere</h3><p>Match the website and the license paperwork, so people (and Google) know it's the same company.</p></div>
+      <div class="tile"><h3>Ready for TerraAll</h3><p>A channel can be renamed later. When TerraAll launches, every video, view and subscriber comes along.</p></div>
+    </div>
+  </div>
+  <div class="foot"><span class="mark"><img src="img/everglades-logo.png" alt="">YouTube Playbook · Confidential</span><span class="num">05</span></div>
+</section>
+<section class="slide">
+  <p class="eyebrow">Step 3</p>
+  <h2>Upload Everything, Once</h2>
+  <div class="bar"></div>
+  <div class="grid2">
+    <div class="tile"><h3>First: The Big Upload</h3><p style="margin-bottom:12px">Every past job video on your phones and drives.</p>
+      <ul class="built-list"><li>Upload them all, however long it takes</li><li>A computer is easiest for a big batch</li><li>Fill in the Video Log as you go, then email it to us</li></ul></div>
+    <div class="tile"><h3>Then: A Couple a Week</h3><p style="margin-bottom:12px">New jobs, as they happen.</p>
+      <ul class="built-list"><li>Upload from the YouTube app on your phone</li><li>Add a row at the bottom of the same Video Log</li><li>Email us the updated file</li></ul></div>
+  </div>
+  <p style="margin-top:20px;font-size:12pt;font-weight:700;color:var(--green)">Visibility</p>
+  <div class="seg">
+    <div class="a"><b>Public</b>Best choice. Anyone can find it on YouTube and on the website.</div>
+    <div class="c"><b>Unlisted</b>Fine for sensitive jobs. Works on the website, hidden from YouTube search.</div>
+    <div class="b"><b>Private</b>Don't use. Nobody can see it, including the website.</div>
+  </div>
+  <div class="foot"><span class="mark"><img src="img/everglades-logo.png" alt="">YouTube Playbook · Confidential</span><span class="num">06</span></div>
+</section>
+<section class="slide stone">
+  <p class="eyebrow">Step 4</p>
+  <h2>Title Every Video the Same Way</h2>
+  <div class="bar"></div>
+  <p class="lead">Type of work — City, State — Month Year</p>
+  <div class="titlebar"><span class="yt"></span>Land Clearing — City, State — March 2026</div>
+  <div class="titlebar"><span class="yt"></span>Canal Excavation — City, State — June 2025</div>
+  <div class="titlebar"><span class="yt"></span>Hurricane Debris Removal — City, State — October 2024</div>
+  <div class="titlebar bad"><span class="yt"></span>IMG_4471.MOV</div>
+  <p style="margin-top:14px;font-size:12pt;color:var(--muted)">Don't know the exact month? The year is fine. Can't name the place? Use the region or the state. The description can stay blank; we handle the rest.</p>
+  <div class="foot"><span class="mark"><img src="img/everglades-logo.png" alt="">YouTube Playbook · Confidential</span><span class="num">07</span></div>
+</section>
+<section class="slide">
+  <p class="eyebrow">Step 5</p>
+  <h2>Get the Short Link</h2>
+  <div class="bar"></div>
+  <div class="two" style="grid-template-columns:1.1fr .9fr">
+    <div>
+      <ol class="steps">
+        <li><b>Open the video</b> in the YouTube app.</li>
+        <li><b>Tap Share.</b></li>
+        <li><b>Tap Copy link.</b><small>On a computer: Share → Copy.</small></li>
+      </ol>
+      <p style="margin-top:16px;font-size:12.5pt">That copies the short link. It looks like this:</p>
+      <div class="linkpill">youtu.be/<span>A1b2C3d4E5f</span></div>
+      <p style="margin-top:14px;font-size:11.5pt;color:var(--muted)">That short code is all we need to put the video on its job page.</p>
+    </div>
+    <div class="share"><div class="scr">
+      <div class="vid"></div>
+      <div class="t">Land Clearing — City, State — March 2026</div>
+      <div class="acts"><span>Like</span><span class="on">Share</span><span>Save</span></div>
+      <div class="sheet"><p>Share</p><div class="row"><div><i></i>Messages</div><div><i></i>Email</div><div class="on"><i></i>Copy link</div></div></div>
+    </div></div>
+  </div>
+  <div class="foot"><span class="mark"><img src="img/everglades-logo.png" alt="">YouTube Playbook · Confidential</span><span class="num">08</span></div>
+</section>
+<section class="slide stone">
+  <p class="eyebrow">Step 6</p>
+  <h2>Fill In the Video Log</h2>
+  <div class="bar"></div>
+  <p class="lead" style="font-size:14pt;margin-bottom:16px">One spreadsheet. One row per video. We send you the file; you fill it in and email it back.</p>
+  <table class="xl">
+    <thead><tr><th class="rn"></th><th>Short link</th><th>Job title</th><th>Date filmed</th><th>Where</th><th>What we did</th><th>Who it was for</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td class="rn">1</td><td>youtu.be/A1b2C3d4E5f</td><td>Pond dig for a ranch</td><td>March 2026</td><td>City, State</td><td>Canal, Lake &amp; Pond Excavation</td><td>Private ranch owner</td><td>2-acre pond, 2 excavators</td></tr>
+      <tr><td class="rn">2</td><td>youtu.be/…</td><td></td><td></td><td></td><td><span class="dd">Choose ▾</span></td><td></td><td></td></tr>
+      <tr><td class="rn">3</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    </tbody>
+  </table>
+  <div class="grid3" style="margin-top:18px">
+    <div class="tile"><h3>Only the Link Is a Must</h3><p>Fill in what you know. A few words help a lot.</p></div>
+    <div class="tile"><h3>"Who It Was For" Stays Private</h3><p>It's for us only. We never name a client on the website without their OK.</p></div>
+    <div class="tile"><h3>Keep Adding to It</h3><p>New rows go at the bottom. Email the whole file each time.</p></div>
+  </div>
+  <div class="foot"><span class="mark"><img src="img/everglades-logo.png" alt="">YouTube Playbook · Confidential</span><span class="num">09</span></div>
+</section>
+<section class="slide dark">
+  <p class="eyebrow">For the website's opening video</p>
+  <h2>Send Us Your Best Clips</h2>
+  <div class="bar"></div>
+  <div class="two">
+    <div>
+      <p class="lead">The video at the top of the home page needs the <span class="accent">original files</span>, full quality, straight from the camera or phone.</p>
+      <ul class="built-list" style="margin-top:14px">
+        <li style="color:#e3efe5;border-color:rgba(255,255,255,.14)"><b style="color:#fff">Big machines, wide views, drone shots</b></li>
+        <li style="color:#e3efe5;border-color:rgba(255,255,255,.14)"><b style="color:#fff">Before-and-after from the same spot</b></li>
+        <li style="color:#e3efe5;border-color:rgba(255,255,255,.14)"><b style="color:#fff">Held sideways, steady, no text or music added</b></li>
+      </ul>
+    </div>
+    <div>
+      <div class="tile" style="margin-bottom:14px"><h3>How to Send</h3><p>Use WeTransfer (wetransfer.com): free, no account needed, handles big files. Add our email and hit Transfer.</p></div>
+      <div class="tile" style="margin-bottom:14px"><h3>Not by Text or YouTube</h3><p>Texting and YouTube shrink the quality. We need the originals.</p></div>
+      <div class="tile"><h3>Stored Safely</h3><p>MediaIn360 keeps them on our server and edits the website's opening video from them.</p></div>
+    </div>
+  </div>
+  <div class="foot"><span>YouTube Playbook · Confidential</span><span class="num">10</span></div>
+</section>
+<section class="slide">
+  <p class="eyebrow">On the job site</p>
+  <h2>Filming Tips</h2>
+  <div class="bar"></div>
+  <div class="grid3">
+    <div class="tile"><h3>📱 Hold It Sideways</h3><p>Horizontal fills the screen on YouTube and the website.</p></div>
+    <div class="tile"><h3>📍 Same Spot, Three Times</h3><p>Before, during and after from the same place. That's the shot that sells.</p></div>
+    <div class="tile"><h3>🌄 Start Wide</h3><p>Show the whole site first, then move in on the machines.</p></div>
+    <div class="tile"><h3>✋ Keep It Steady</h3><p>Slow pans. Brace your arm or set the phone on the truck.</p></div>
+    <div class="tile"><h3>⏱️ Short Is Fine</h3><p>Thirty seconds to a few minutes. Real beats polished.</p></div>
+    <div class="tile"><h3>🎙️ Say What It Is</h3><p>Optional: "Clearing ten acres of pepper trees for a new pond." It helps people follow along.</p></div>
+  </div>
+  <div class="foot"><span class="mark"><img src="img/everglades-logo.png" alt="">YouTube Playbook · Confidential</span><span class="num">11</span></div>
+</section>
+<section class="slide stone">
+  <p class="eyebrow">Before you post</p>
+  <h2>Privacy Do's &amp; Don'ts</h2>
+  <div class="bar"></div>
+  <div class="dodont">
+    <div class="col yes"><h3>Do</h3><ul>
+      <li>Ask the owner or agency before posting their job</li>
+      <li>Use Unlisted when a client wants it low-key</li>
+      <li>Show the crew in hard hats, vests and proper gear</li>
+      <li>Show the site cleaned up at the end</li>
+    </ul></div>
+    <div class="col no"><h3>Don't</h3><ul>
+      <li>Show house numbers, license plates or people's faces without their OK</li>
+      <li>Film where a contract or agency says no cameras</li>
+      <li>Post anything that looks unsafe or like an accident</li>
+      <li>Mention prices, bids or client disputes</li>
+    </ul></div>
+  </div>
+  <div class="foot"><span class="mark"><img src="img/everglades-logo.png" alt="">YouTube Playbook · Confidential</span><span class="num">12</span></div>
+</section>
+<section class="slide">
+  <p class="eyebrow">What happens next</p>
+  <h2>Your Checklist</h2>
+  <div class="bar"></div>
+  <div class="two">
+    <div>
+      <ul class="checks">
+        <li>Create the channel<small>Company Google account, 2-step verification on</small></li>
+        <li>Set the name and handle</li>
+        <li>Upload every past job video</li>
+        <li>Fill in the Video Log spreadsheet<small>One row per video, with its short link</small></li>
+        <li>Email us the Video Log</li>
+        <li>Send your best clips with WeTransfer</li>
+      </ul>
+    </div>
+    <div>
+      <div class="tile" style="margin-bottom:14px"><h3>Then MediaIn360</h3>
+        <ul class="built-list" style="margin-top:6px"><li>Builds a job page for every video</li><li>Links it to the right services and places</li><li>Edits the opening video for the home page</li></ul></div>
+      <div class="later"><b>Later (optional):</b> give MediaIn360 <b>Editor</b> access to the channel so we can add captions and links back to the website for you. Editor can't delete the channel or change who owns it, and you can remove it anytime.</div>
+    </div>
+  </div>
+  <div class="foot"><span class="mark"><img src="img/everglades-logo.png" alt="">YouTube Playbook · Confidential</span><span class="num">13</span></div>
+</section>
+<section class="slide dark closing">
+  <p class="eyebrow">YouTube Playbook</p>
+  <h1>Film the Work.<br><span class="accent">We'll Make It Count.</span></h1>
+  <p class="lead" style="margin-top:18px">Every video is one more real job the world can see.</p>
+  <div class="logos">
+    <div class="plate ev"><img src="img/everglades-logo.png" alt="Everglades Restorations &amp; Land Clearing Inc."></div>
+  </div>
+  <div class="made">Produced and powered by <img src="img/mediain360-logo-light.png" alt="MediaIn360"></div>
+</section>
+
+</body>
+</html>
