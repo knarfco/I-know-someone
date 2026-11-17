@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>TerraAll — The Digital Face of Everglades Restorations</title>
+<style>
+  @page { size: letter; margin: 0; }
+  :root{
+    --brown:#5A2E0C; --brown-soft:#F3ECE4; --green:#03381C; --green-mid:#0B6B1F; --green-soft:#E6EDE5;
+    --stone:#F5F5F1; --ink:#1E1E1C; --muted:#5B5F58; --line:#D7DCD3; --yellow:#F5B800;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:"Inter",Arial,sans-serif;color:var(--ink);font-size:10.5pt;line-height:1.5;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .page{width:8.5in;height:11in;position:relative;overflow:hidden;page-break-after:always;padding:.75in .8in .9in;background:#fff}
+  .page:last-child{page-break-after:auto}
+  .folio{position:absolute;left:.8in;right:.8in;bottom:.45in;display:flex;justify-content:space-between;font-size:8pt;color:var(--muted);border-top:1px solid var(--line);padding-top:8px}
+  .folio b{color:var(--brown);font-weight:700}
+  .kicker{font-size:8.5pt;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--brown);margin:0 0 6px}
+  h1{font-size:30pt;line-height:1.05;letter-spacing:-.02em;margin:0 0 14px;color:var(--green);font-weight:800}
+  h2{font-size:21pt;line-height:1.1;letter-spacing:-.015em;margin:0 0 12px;color:var(--green);font-weight:800}
+  h3{font-size:12pt;margin:0 0 4px;color:var(--green);font-weight:800}
+  p{margin:0 0 10px}
+  .lead{font-size:12.5pt;line-height:1.5;color:#333}
+  .rule{height:4px;width:64px;background:var(--brown);border-radius:2px;margin:0 0 18px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  .box{border:1px solid var(--line);border-radius:10px;padding:14px 16px;background:#fff}
+  .box.soft{background:var(--stone)}
+  .box.green{background:var(--green);color:#fff;border-color:var(--green)}
+  .box.green h3{color:#fff}
+  .box.brown{background:var(--brown-soft);border-color:#E3D5C6}
+  .box p:last-child{margin-bottom:0}
+  .tick{list-style:none;padding:0;margin:0}
+  .tick li{padding-left:20px;position:relative;margin-bottom:6px}
+  .tick li::before{content:"";position:absolute;left:2px;top:.55em;width:9px;height:9px;border-radius:2px;background:var(--green-mid)}
+  .big-quote{font-size:19pt;line-height:1.25;font-weight:800;color:var(--green);letter-spacing:-.01em;margin:18px 0}
+  .big-quote span{color:var(--brown)}
+  .note{border-left:4px solid var(--brown);background:var(--brown-soft);padding:10px 14px;border-radius:0 8px 8px 0;font-size:9.5pt}
+  .small{font-size:9pt;color:var(--muted)}
+
+  /* cover */
+  .cover{padding:0;background:var(--green);color:#fff}
+  .cover-top{background:#fff;padding:1.2in .8in .7in;text-align:center}
+  .cover-top img{width:5.6in}
+  .cover-tag{font-size:13pt;font-weight:700;color:var(--brown);margin-top:22px;letter-spacing:.02em}
+  .cover-body{padding:.7in .8in}
+  .cover-body h1{color:#fff;font-size:34pt}
+  .cover-body p{color:#d7eadb;font-size:13pt}
+  .cover-meta{position:absolute;left:.8in;right:.8in;bottom:.6in;display:flex;justify-content:space-between;align-items:flex-end;color:#b9d9bf;font-size:9pt}
+  .cover-meta .credit{background:#fff;border-radius:8px;padding:6px 10px}
+  .cover-meta .credit img{width:1.4in;display:block}
+  .pill{display:inline-block;border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:4px 12px;margin:0 6px 6px 0;font-size:9.5pt;color:#fff}
+
+  /* brand architecture */
+  .arch{display:flex;flex-direction:column;align-items:center;gap:0;margin:8px 0 14px}
+  .arch .tier{width:100%;border-radius:12px;padding:14px 18px;text-align:center}
+  .arch .t1{background:var(--brown-soft);border:2px solid var(--brown)}
+  .arch .t2{background:var(--green);color:#fff}
+  .arch .t3{background:var(--green-soft);border:1px solid var(--line)}
+  .arch .tier b{display:block;font-size:13pt}
+  .arch .tier span{font-size:9.5pt}
+  .arch .t2 b{color:#fff}
+  .arrow-down{width:2px;height:18px;background:var(--muted);position:relative;margin:2px 0}
+  .arrow-down::after{content:"";position:absolute;left:-5px;bottom:-2px;border-left:6px solid transparent;border-right:6px solid transparent;border-top:8px solid var(--muted)}
+
+  /* flow */
+  .flow{display:grid;grid-template-columns:1fr 18px 1fr 18px 1fr 18px 1fr 18px 1fr;align-items:stretch;margin:10px 0 18px}
+  .step{border-radius:10px;padding:12px 10px;text-align:center;font-size:9pt;line-height:1.35}
+  .step b{display:block;font-size:11pt;margin-bottom:4px}
+  .s1{background:var(--stone);border:1px solid var(--line)}
+  .s2{background:var(--brown-soft);border:2px solid var(--brown)}
+  .s3{background:var(--green-soft);border:1px solid var(--line)}
+  .s4{background:var(--green);color:#fff}
+  .s4 b{color:var(--yellow)}
+  .s5{background:var(--stone);border:1px solid var(--line)}
+  .arr{display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:14pt}
+  .loop{text-align:center;font-size:9pt;color:var(--brown);font-weight:700;margin-top:-6px}
+
+  /* choices */
+  .choice{border-radius:12px;padding:16px;border:1px solid var(--line);background:#fff;display:flex;flex-direction:column}
+  .choice .tag{font-size:8pt;font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px}
+  .choice h3{font-size:15pt;margin-bottom:6px}
+  .c1{border-top:6px solid var(--green)} .c1 .tag{color:var(--green-mid)}
+  .c2{border-top:6px solid var(--green-mid)} .c2 .tag{color:var(--green-mid)}
+  .c3{border-top:6px solid var(--brown)} .c3 .tag{color:var(--brown)}
+  .c4{border-top:6px solid #8a8f86} .c4 .tag{color:#6b7068}
+
+  /* timeline */
+  .phases{position:relative;margin:6px 0 0}
+  .phase{display:grid;grid-template-columns:34px 1fr;gap:14px;margin-bottom:14px;align-items:start}
+  .phase .n{width:34px;height:34px;border-radius:50%;background:var(--green);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:12pt}
+  .phase h3{margin-top:5px}
+  .reach{display:flex;gap:0;margin:10px 0 18px}
+  .reach div{flex:1;padding:12px;text-align:center;font-weight:700;font-size:10pt;color:#fff}
+  .reach div small{display:block;font-weight:500;font-size:8.5pt;opacity:.9}
+  .reach div:nth-child(1){background:#2f5a3a;border-radius:10px 0 0 10px}
+  .reach div:nth-child(2){background:#1f4a2c}
+  .reach div:nth-child(3){background:#123c20}
+  .reach div:nth-child(4){background:var(--green);border-radius:0 10px 10px 0}
+  table.roles{width:100%;border-collapse:collapse;font-size:10pt}
+  table.roles th,table.roles td{border-bottom:1px solid var(--line);padding:9px 10px;text-align:left;vertical-align:top}
+  table.roles th{width:30%;color:var(--green);background:var(--stone)}
+  .back{background:var(--green);color:#fff;display:flex;flex-direction:column;justify-content:center;text-align:center;padding:1in}
+  .back h2{color:#fff;font-size:26pt}
+  .back p{color:#d7eadb;font-size:12pt}
+  .back .plate{background:#fff;border-radius:14px;padding:20px 28px;display:inline-block;margin:24px auto 0}
+  .back .plate img{width:3.4in;display:block}
+  .back .credit{margin-top:40px;display:inline-block;background:#fff;border-radius:10px;padding:10px 16px}
+  .back .credit img{width:2in;display:block}
+</style>
+</head>
+<body>
+
+<!-- 1 COVER -->
+<section class="page cover">
+  <div class="cover-top">
+    <img src="terraall-logo.png" alt="TerraAll">
+    <div class="cover-tag">Every earthwork job. Any size. Anywhere.</div>
+  </div>
+  <div class="cover-body">
+    <p class="kicker" style="color:#b9d9bf">Strategy overview</p>
+    <h1>The Digital Face of Everglades Restorations</h1>
+    <p>Why we're building TerraAll, how it works, and why Everglades Restorations &amp; Land Clearing Inc. is uniquely positioned to multiply its reach — one job, one video, one page at a time.</p>
+    <div style="margin-top:18px"><span class="pill">Found</span><span class="pill">Trusted</span><span class="pill">Routed</span><span class="pill">Growing</span></div>
+  </div>
+  <div class="cover-meta">
+    <div>Prepared for Matt &amp; Sam<br>Everglades Restorations &amp; Land Clearing Inc.<br>October 2026</div>
+    <div class="credit"><img src="../site/assets/img/mediain360-credit.png" alt="Produced and Powered by MediaIn360"></div>
+  </div>
+</section>
+
+<!-- 2 THE IDEA -->
+<section class="page">
+  <p class="kicker">01 · The idea</p>
+  <h2>Every Job Gets the Call</h2>
+  <div class="rule"></div>
+  <p class="lead">From the $100 driveway culvert to the $100 billion restoration program, every earthwork request should come to one place first — and that place should be yours.</p>
+  <p class="big-quote">Nobody is going after the small jobs. Almost nobody can handle the giant ones. <span>Everglades can do both.</span></p>
+  <p>Today, most earthwork demand is scattered: homeowners search for "lot clearing near me," developers call whoever they used last time, agencies post bids on a dozen portals, and prime contractors scramble for qualified subs. No single company is set up to catch all of it.</p>
+  <p>TerraAll changes that. It's a digital front door built to catch <b>every</b> request — then put it in front of the one person who knows exactly what to do with it.</p>
+  <div class="grid3" style="margin-top:16px">
+    <div class="box soft"><h3>Found</h3><p>On Google, Maps, YouTube, AI assistants and government bid portals — for every service, every size of job.</p></div>
+    <div class="box soft"><h3>Trusted</h3><p>Real licenses, real job videos, real compliance — in plain view, the moment someone lands.</p></div>
+    <div class="box soft"><h3>Routed</h3><p>Every request sorted and put in front of Matt, who decides what happens to it.</p></div>
+  </div>
+  <div class="folio"><span><b>TerraAll</b> · Strategy overview</span><span>2</span></div>
+</section>
+
+<!-- 3 WHY TERRAALL -->
+<section class="page">
+  <p class="kicker">02 · The name</p>
+  <h2>Why "TerraAll"</h2>
+  <div class="rule"></div>
+  <div class="grid2">
+    <div>
+      <p class="lead"><b>Terra</b> means earth. <b>All</b> means every job, every size, every place.</p>
+      <p>The name says what the company does without boxing it into a region. It's short, easy to say, easy to remember and easy to type — the kind of name people repeat to each other.</p>
+      <h3 style="margin-top:14px">Why not just "Everglades"?</h3>
+      <ul class="tick">
+        <li><b>Everglades stays.</b> It's the licensed, bonded, insured company with 35 years of trust — and the name procurement officers see on SAM.gov, licenses and bonds.</li>
+        <li>But on its own, "Everglades" reads as one region, and online it competes with the government's massive "Everglades restoration" program for attention.</li>
+        <li>TerraAll is the wide-net front door; Everglades is the proven company behind it. Together they cover every buyer.</li>
+      </ul>
+    </div>
+    <div>
+      <div class="arch">
+        <div class="tier t1"><b>TerraAll</b><span>The digital front door — catches every request, any size, anywhere</span></div>
+        <div class="arrow-down"></div>
+        <div class="tier t2"><b>Everglades Restorations &amp; Land Clearing Inc.</b><span>The licensed company. Big jobs, government and prime work</span></div>
+        <div class="arrow-down"></div>
+        <div class="tier t3"><b>Vetted Partner Network</b><span>Licensed specialists for the jobs Matt chooses to route</span></div>
+      </div>
+      <div class="note"><b>Same company, different door.</b> TerraAll is a registered trade name of Everglades Restorations &amp; Land Clearing Inc. Every TerraAll page says so and shows the license number.</div>
+    </div>
+  </div>
+  <div class="folio"><span><b>TerraAll</b> · Strategy overview</span><span>3</span></div>
+</section>
+
+<!-- 4 WHY MATT & SAM -->
+<section class="page">
+  <p class="kicker">03 · The advantage</p>
+  <h2>Why Matt &amp; Sam Are Uniquely Positioned</h2>
+  <div class="rule"></div>
+  <p class="lead">A lead network is only as good as the judgment behind it. Most networks are run by marketers. TerraAll is run by people who have done the work for 35 years.</p>
+  <div class="grid2" style="margin-top:12px">
+    <div class="box"><h3>35 years in the field</h3><p>Since 1992 — the kind of history agencies, primes and owners trust immediately.</p></div>
+    <div class="box"><h3>The hardest ground there is</h3><p>Wetlands, canals, muck and mangrove edges. "Built in the Everglades. Ready for Anywhere." If the crew can work here, it can work anywhere.</p></div>
+    <div class="box"><h3>Their own equipment and crews</h3><p>Self-performing capability means real answers on scope, schedule and price — not guesses.</p></div>
+    <div class="box"><h3>Public-work credentials</h3><p>Army Corps project experience, FEMA-ready storm response, compliance programs (Drug-Free Workplace, E-Verify) and registrations that open government doors.</p></div>
+    <div class="box"><h3>Subject-matter judgment</h3><p>Matt can size up a job from plans, photos or a video — anywhere in the world — and know who should do it.</p></div>
+    <div class="box"><h3>Real footage</h3><p>Years of job videos: the proof most competitors simply don't have, and the raw material for thousands of pages.</p></div>
+  </div>
+  <p class="big-quote" style="font-size:15pt;margin-top:20px">The result: every request that comes through TerraAll is judged by an expert — <span>so the right jobs grow Everglades and the rest still earn.</span></p>
+  <div class="folio"><span><b>TerraAll</b> · Strategy overview</span><span>4</span></div>
+</section>
+
+<!-- 5 ECOSYSTEM -->
+<section class="page">
+  <p class="kicker">04 · How it works</p>
+  <h2>The TerraAll Ecosystem</h2>
+  <div class="rule"></div>
+  <p class="lead">One engine, many doors. Every request follows the same path — and every finished job makes the engine stronger.</p>
+  <div class="flow">
+    <div class="step s1"><b>Found</b>Google · Maps · YouTube · AI assistants · bid portals</div>
+    <div class="arr">›</div>
+    <div class="step s2"><b>TerraAll</b>One front door for every request, any size</div>
+    <div class="arr">›</div>
+    <div class="step s3"><b>Sorted</b>By size, type, buyer and location</div>
+    <div class="arr">›</div>
+    <div class="step s4"><b>Matt's Call</b>Take it · Team it · Route it · 86 it</div>
+    <div class="arr">›</div>
+    <div class="step s5"><b>Proof</b>Job video becomes a new page</div>
+  </div>
+  <p class="loop">↺ Every new page brings in more requests — the engine feeds itself.</p>
+  <div class="grid2" style="margin-top:14px">
+    <div>
+      <h3>1 · Found everywhere people look</h3>
+      <p>Pages built around the real words buyers use, short spoken-style answers for voice and AI assistants, YouTube job videos, and procurement-friendly pages for agencies and primes.</p>
+      <h3>2 · One front door</h3>
+      <p>Whether it's a homeowner's driveway or an agency solicitation, the request lands in the same place, with the details needed to judge it.</p>
+    </div>
+    <div>
+      <h3>3 · Sorted automatically</h3>
+      <p>Requests are scored behind the scenes — agency and large jobs flagged first, commercial next, small jobs ready to route — so nothing waits.</p>
+      <h3>4 · Matt decides, proof feeds back</h3>
+      <p>Matt makes the call on every job. Each completed job is filmed, dated and published as its own page, which brings in the next request.</p>
+    </div>
+  </div>
+  <div class="folio"><span><b>TerraAll</b> · Strategy overview</span><span>5</span></div>
+</section>
+
+<!-- 6 MATT'S CHOICE -->
+<section class="page">
+  <p class="kicker">05 · Every job, Matt's choice</p>
+  <h2>Take It. Team It. Route It. Or 86 It.</h2>
+  <div class="rule"></div>
+  <p class="lead">TerraAll never obligates Everglades to anything. It simply makes sure every opportunity gets the call — and Matt chooses what happens next.</p>
+  <div class="grid2" style="margin-top:14px">
+    <div class="choice c1"><span class="tag">Everglades does it</span><h3>Take It</h3><p>The jobs that fit Everglades best — large clearing, restoration, government and prime work, storm response. The crew does the work and the job becomes proof.</p></div>
+    <div class="choice c2"><span class="tag">Everglades leads</span><h3>Team It</h3><p>Everglades runs the job and brings in a licensed partner for a specialty or extra capacity. Bigger jobs, without turning anything away.</p></div>
+    <div class="choice c3"><span class="tag">A partner does it</span><h3>Route It</h3><p>Jobs that are too small, too far or too specialized go to a vetted, licensed, insured partner — and Everglades earns points on the work.</p></div>
+    <div class="choice c4"><span class="tag">No obligation</span><h3>86 It</h3><p>Not a fit? Pass. No cost, no commitment, no hard feelings. The request still taught the system what buyers want.</p></div>
+  </div>
+  <div class="box green" style="margin-top:18px">
+    <h3>Why this matters</h3>
+    <p>Today, the small jobs go nowhere and the far-away jobs go to someone else. With TerraAll, every request either grows Everglades directly, grows it through a partnership, or earns on someone else's work. Matt's expertise becomes revenue in more ways than one.</p>
+  </div>
+  <p class="small" style="margin-top:12px">The referral and partner structure (how points are earned, partner licensing and insurance requirements, and what's disclosed to customers) is set up once with the company's attorney before launch.</p>
+  <div class="folio"><span><b>TerraAll</b> · Strategy overview</span><span>6</span></div>
+</section>
+
+<!-- 7 WHERE & WHEN -->
+<section class="page">
+  <p class="kicker">06 · Where and when</p>
+  <h2>From Home Base to Anywhere</h2>
+  <div class="rule"></div>
+  <div class="reach">
+    <div>Home base<small>Where the reputation lives</small></div>
+    <div>Statewide<small>Every job, every county</small></div>
+    <div>National<small>As partners and jobs open each place</small></div>
+    <div>International<small>Projects Anywhere</small></div>
+  </div>
+  <p>A place goes on the map only when a real job has been done there. That keeps every location page honest — and keeps search engines rewarding it.</p>
+  <h3 style="margin:16px 0 10px">The phases</h3>
+  <div class="phases">
+    <div class="phase"><div class="n">0</div><div><h3>Launch Everglades</h3><p>Fill in real licenses, photos and videos. Go live on the real domain. Google Business Profile, reviews and directory listings.</p></div></div>
+    <div class="phase"><div class="n">1</div><div><h3>Turn on the content engine</h3><p>Every job video becomes a dated page. The most-asked questions get answered in Matt's words. Request sorting goes live.</p></div></div>
+    <div class="phase"><div class="n">2</div><div><h3>Stand up TerraAll</h3><p>Name and domain secured, trade name registered, partner standards set, and the TerraAll front door launched: "Any earthwork. Any size. Anywhere."</p></div></div>
+    <div class="phase"><div class="n">3</div><div><h3>Scale with real data</h3><p>Permit guides by county, cost guides from real jobs, hundreds of answered questions, partner job pages — tens of thousands of genuinely useful pages over time.</p></div></div>
+    <div class="phase"><div class="n">4</div><div><h3>Go wide</h3><p>Statewide, then national, then international — each place opening as jobs and partners exist there.</p></div></div>
+  </div>
+  <div class="folio"><span><b>TerraAll</b> · Strategy overview</span><span>7</span></div>
+</section>
+
+<!-- 8 WHY BUILT THIS WAY -->
+<section class="page">
+  <p class="kicker">07 · The thinking</p>
+  <h2>Why We're Building It This Way</h2>
+  <div class="rule"></div>
+  <div class="grid2">
+    <div class="box"><h3>Procurement first</h3><p>Big contracts are won on trust. Licenses, registrations, bonding, compliance and a one-page capability statement sit where contracting officers look — on every page.</p></div>
+    <div class="box"><h3>Real proof, not stock photos</h3><p>Every claim links to evidence: dated job videos, credentials and compliance policies. Buyers believe what they can see.</p></div>
+    <div class="box"><h3>Growth search engines reward</h3><p>Search engines penalize mass-produced, thin pages. Every TerraAll page is backed by a real job, a real answer or a real guide — so the library can grow very large, safely.</p></div>
+    <div class="box"><h3>Built for voice and AI</h3><p>Short, direct answers first, then the detail — the format voice assistants and AI tools use when they recommend a company.</p></div>
+    <div class="box"><h3>Video as the engine</h3><p>YouTube is one of the biggest places people search. Every video does double duty: proof for buyers and a new door for search.</p></div>
+    <div class="box"><h3>Clean, fast, accessible</h3><p>A calm, professional design that loads fast on any phone and meets accessibility standards (WCAG 2.1 AA) — something agencies increasingly expect.</p></div>
+    <div class="box"><h3>One engine, many doors</h3><p>One question bank, one video pipeline, one sorting system — powering both the Everglades site and TerraAll.</p></div>
+    <div class="box"><h3>Owned outright</h3><p>The site, the content, the videos and the domain belong to the company. Nothing is rented; everything compounds.</p></div>
+  </div>
+  <div class="folio"><span><b>TerraAll</b> · Strategy overview</span><span>8</span></div>
+</section>
+
+<!-- 9 ALREADY BUILT + ROLES -->
+<section class="page">
+  <p class="kicker">08 · Where we are</p>
+  <h2>Already Built</h2>
+  <div class="rule"></div>
+  <p class="lead">The foundation is in place on a preview address, ready for the real details.</p>
+  <div class="grid2" style="margin-bottom:18px">
+    <ul class="tick">
+      <li><b>Digital business card</b> with QR code, every license, capability statement and save-contact</li>
+      <li><b>Full preview website</b> built for procurement officers and every kind of buyer</li>
+      <li><b>Capability map</b> covering land, water, cleanup, infrastructure, disaster and rural work</li>
+      <li><b>Printable capability statement</b> on one page</li>
+    </ul>
+    <ul class="tick">
+      <li><b>Matt's service checklist</b> — tap "do it," "team it" or "not for us" for every service</li>
+      <li><b>Question bank</b> of real buyer questions for voice and AI search</li>
+      <li><b>Legal &amp; compliance pages</b> including Drug-Free Workplace and E-Verify</li>
+      <li><b>Accessibility audit</b> passed on every page</li>
+    </ul>
+  </div>
+  <h2 style="font-size:17pt">Who Does What</h2>
+  <table class="roles">
+    <tr><th>Matt &amp; Sam</th><td>The subject-matter experts. Approve concepts, supply footage, licenses and answers, and make the call on every job: take it, team it, route it or 86 it.</td></tr>
+    <tr><th>MediaIn360</th><td>Creative direction, brand strategy, development and launch of every signed-off concept — plus project management for all outside vendors (video, drone, legal review and more) until everything is built out and live.</td></tr>
+    <tr><th>Partner network</th><td>Vetted, licensed and insured specialists for the jobs Matt chooses to route.</td></tr>
+  </table>
+  <div class="folio"><span><b>TerraAll</b> · Strategy overview</span><span>9</span></div>
+</section>
+
+<!-- 10 NEXT STEPS -->
+<section class="page">
+  <p class="kicker">09 · Next steps</p>
+  <h2>What We Need to Go Live</h2>
+  <div class="rule"></div>
+  <div class="grid2">
+    <div class="box soft">
+      <h3>From Matt &amp; Sam</h3>
+      <ul class="tick">
+        <li>Every license and registration number</li>
+        <li>Phone, email, headquarters and hours</li>
+        <li>Job photos, especially before-and-afters</li>
+        <li>2–3 best clips for the homepage video, plus job videos with name, date and place</li>
+        <li>Service checklist answers</li>
+        <li>Answers to the most-asked buyer questions</li>
+        <li>The domain name(s)</li>
+      </ul>
+    </div>
+    <div class="box soft">
+      <h3>To set up TerraAll</h3>
+      <ul class="tick">
+        <li>Trademark search and domain secured</li>
+        <li>Trade name registered to the corporation</li>
+        <li>Attorney review of the partner and referral structure</li>
+        <li>Partner standards: licensing, insurance, quality</li>
+        <li>Launch the TerraAll front door</li>
+      </ul>
+    </div>
+  </div>
+  <div class="box green" style="margin-top:20px">
+    <h3>The goal</h3>
+    <p>Every earthwork request, from the smallest job to the largest program, gets the call — and Everglades decides what to do with it. Built in the Everglades. Ready for anywhere.</p>
+  </div>
+  <div class="folio"><span><b>TerraAll</b> · Strategy overview</span><span>10</span></div>
+</section>
+
+<!-- BACK -->
+<section class="page back">
+  <h2>Every Earthwork Job.<br>Any Size. Anywhere.</h2>
+  <p>TerraAll — a service of Everglades Restorations &amp; Land Clearing Inc.</p>
+  <div><span class="plate"><img src="terraall-logo.png" alt="TerraAll"></span></div>
+  <div><span class="credit"><img src="../site/assets/img/mediain360-credit.png" alt="Produced and Powered by MediaIn360"></span></div>
+</section>
+
+</body>
+</html>

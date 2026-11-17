@@ -1,0 +1,489 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>TerraAll — The Bid Finder App</title>
+<style>
+  @page { size: 13.333in 7.5in; margin: 0; }
+  :root{
+    --green:#03381C; --green-2:#0B6B1F; --green-3:#1E9A2E; --brown:#5A2E0C; --brown-2:#8A5A33;
+    --stone:#F5F5F1; --sage:#E4EAE0; --ink:#1A1C19; --muted:#5B6058; --line:#D5DBD1; --yellow:#F5B800; --mint:#B9D9BF;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:"Inter",Arial,sans-serif;color:var(--ink);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .slide{width:13.333in;height:7.5in;position:relative;overflow:hidden;page-break-after:always;background:#fff;padding:.7in .85in .8in}
+  .slide:last-child{page-break-after:auto}
+  .dark{background:var(--green);color:#fff}
+  .stone{background:var(--stone)}
+  .foot{position:absolute;left:.85in;right:.85in;bottom:.32in;display:flex;justify-content:space-between;align-items:center;font-size:8.5pt;color:var(--muted)}
+  .dark .foot{color:var(--mint)}
+  .foot .mark{display:flex;align-items:center;gap:10px}
+  .foot .mark img{height:14px}
+  .foot .num{font-weight:700;color:var(--brown)}
+  .dark .foot .num{color:#fff}
+  .eyebrow{font-size:10pt;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--brown);margin:0 0 14px}
+  .dark .eyebrow{color:var(--mint)}
+  h1{font-size:46pt;line-height:1.02;letter-spacing:-.03em;margin:0;font-weight:800;color:var(--green)}
+  h2{font-size:32pt;line-height:1.06;letter-spacing:-.025em;margin:0 0 18px;font-weight:800;color:var(--green)}
+  .dark h1,.dark h2{color:#fff}
+  h3{font-size:14pt;margin:0 0 6px;font-weight:800;color:var(--green);letter-spacing:-.01em}
+  .dark h3{color:#fff}
+  p{margin:0 0 10px;font-size:12.5pt;line-height:1.5}
+  .lead{font-size:16pt;line-height:1.45;color:#3a3d38;max-width:9.6in}
+  .dark .lead{color:#d7eadb}
+  .accent{color:var(--brown)}
+  .dark .accent{color:var(--yellow)}
+  .bar{width:70px;height:5px;background:var(--brown);border-radius:3px;margin:0 0 22px}
+  .dark .bar{background:var(--yellow)}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .tile{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 22px}
+  .stone .tile{background:#fff}
+  .tile p{font-size:12pt;color:var(--muted);margin:0;line-height:1.45}
+  .tile .n{font-size:30pt;font-weight:800;color:var(--brown);line-height:1;margin-bottom:10px;letter-spacing:-.02em}
+  .dark .tile{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.16)}
+  .dark .tile p{color:#cfe3d3}
+
+  /* title */
+  .title{display:grid;grid-template-columns:1.1fr .9fr;padding:0}
+  .title .l{background:#fff;padding:.9in .85in;display:flex;flex-direction:column;justify-content:center}
+  .title .r{background:var(--green);position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:28px;padding:.8in}
+  .title .l img.ta{width:5.4in;margin-bottom:34px}
+  .title h1{font-size:40pt}
+  .title .sub{font-size:15pt;color:var(--muted);margin-top:16px}
+  .plate{background:#F5F5F1;border-radius:18px;padding:22px 30px;box-shadow:0 18px 40px rgba(0,0,0,.3)}
+  .plate img{display:block;width:3.9in}
+  .title .r .with{color:var(--mint);font-size:10pt;letter-spacing:.16em;text-transform:uppercase;font-weight:700}
+  .title .meta{position:absolute;left:.85in;bottom:.45in;font-size:9.5pt;color:var(--muted)}
+  .title .m360{position:absolute;right:.6in;bottom:.4in}
+  .title .m360 img{height:22px;display:block}
+
+  /* statement */
+  .statement{display:flex;flex-direction:column;justify-content:center}
+  .statement h1{font-size:60pt;max-width:11in}
+  .range{display:flex;align-items:center;gap:22px;margin-top:40px;font-size:20pt;font-weight:800}
+  .range .line{flex:1;height:4px;background:linear-gradient(90deg,var(--mint),var(--yellow));border-radius:2px;position:relative}
+  .range .line::before,.range .line::after{content:"";position:absolute;top:-7px;width:18px;height:18px;border-radius:50%;background:var(--yellow)}
+  .range .line::before{left:-4px;background:var(--mint)}.range .line::after{right:-4px}
+  .range small{display:block;font-size:10pt;font-weight:600;color:var(--mint);letter-spacing:.06em;text-transform:uppercase}
+
+  /* agenda */
+  .agenda{list-style:none;margin:0;padding:0;columns:2;column-gap:.8in}
+  .agenda li{break-inside:avoid;display:flex;gap:18px;align-items:baseline;border-top:1px solid var(--line);padding:16px 0;font-size:15pt;font-weight:700;color:var(--green)}
+  .agenda li span{font-size:11pt;color:var(--brown);font-weight:800;width:28px}
+
+  /* audience columns */
+  .aud{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:10px}
+  .aud .col{border-top:5px solid var(--green);background:var(--stone);border-radius:0 0 14px 14px;padding:24px 24px;min-height:2.5in}
+  .aud .col.b{border-top-color:var(--brown)}
+  .aud .col.c{border-top-color:var(--green-3)}
+  .aud .col h3{font-size:17pt;margin-bottom:10px}
+  .aud .col p{font-size:13pt;color:var(--muted);line-height:1.5}
+  .gap{margin-top:24px;padding:18px 24px;border-radius:14px;background:var(--green);color:#fff;font-size:15pt;font-weight:700}
+  .gap span{color:var(--yellow)}
+
+  /* brand intro */
+  .brand{display:grid;grid-template-columns:1fr 1fr;gap:.6in;align-items:center;height:100%}
+  .brand img{width:5.2in}
+  .word{display:flex;gap:28px;margin-top:22px}
+  .word div{flex:1;border-left:4px solid var(--brown);padding-left:16px}
+  .word div:last-child{border-left-color:var(--green-2)}
+  .word b{display:block;font-size:24pt;color:var(--green);letter-spacing:-.02em}
+  .word span{font-size:11.5pt;color:var(--muted)}
+
+  /* architecture */
+  .arch{display:grid;grid-template-columns:1fr 60px 1.1fr 60px 1fr;align-items:center;margin-top:20px}
+  .arch .node{border-radius:16px;padding:22px;text-align:center;min-height:2.6in;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:12px}
+  .arch .n1{background:#fff;border:2px solid var(--brown)}
+  .arch .n2{background:var(--green);color:#fff}
+  .arch .n3{background:var(--sage)}
+  .arch .node img{max-width:2.6in;max-height:.8in}
+  .arch .n2 .plate{padding:10px 14px;box-shadow:none}
+  .arch .n2 .plate img{width:2.3in}
+  .arch .node p{font-size:11pt;margin:0}
+  .arch .n2 p{color:#d7eadb}
+  .arch .node b{font-size:12.5pt}
+  .arch .arrow{text-align:center;font-size:26pt;color:var(--brown);font-weight:300}
+
+  /* flow */
+  .flow{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-top:26px;position:relative}
+  .flow .st{position:relative;padding:22px 18px 22px 30px;min-height:2.4in;color:#fff;clip-path:polygon(0 0,88% 0,100% 50%,88% 100%,0 100%,12% 50%)}
+  .flow .st:first-child{clip-path:polygon(0 0,88% 0,100% 50%,88% 100%,0 100%)}
+  .flow .st b{display:block;font-size:15pt;margin-bottom:8px;letter-spacing:-.01em}
+  .flow .st span{display:block;font-size:10.5pt;line-height:1.4;max-width:1.65in;opacity:.92}
+  .flow .st small{display:block;font-size:9pt;font-weight:800;letter-spacing:.14em;text-transform:uppercase;opacity:.75;margin-bottom:10px}
+  .f1{background:#5b6b4f}.f2{background:var(--brown)}.f3{background:#2f5a3a}.f4{background:var(--green)}.f5{background:var(--green-2)}
+  .f4 b{color:var(--yellow)}
+  .loopline{margin-top:18px;display:flex;align-items:center;gap:14px;font-size:12.5pt;font-weight:700;color:var(--brown)}
+  .loopline::before{content:"↺";font-size:22pt;color:var(--green-2)}
+
+  /* choices */
+  .choices{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:20px}
+  .ch{border-radius:16px;padding:24px 22px;min-height:3.2in;display:flex;flex-direction:column;color:#fff}
+  .ch small{font-size:9pt;font-weight:800;letter-spacing:.14em;text-transform:uppercase;opacity:.8;margin-bottom:auto}
+  .ch b{font-size:28pt;letter-spacing:-.025em;margin:18px 0 10px;display:block}
+  .ch p{font-size:11.5pt;margin:0;opacity:.92}
+  .ch1{background:var(--green)}.ch2{background:var(--green-2)}.ch3{background:var(--brown)}.ch4{background:#6d726a}
+
+  /* reach */
+  .reach{display:grid;grid-template-columns:repeat(4,1fr);margin:30px 0 26px;position:relative}
+  .reach::before{content:"";position:absolute;left:6%;right:6%;top:26px;height:4px;background:linear-gradient(90deg,var(--mint),var(--yellow));border-radius:2px}
+  .reach div{text-align:center;position:relative;padding-top:68px}
+  .reach div::before{content:"";position:absolute;top:12px;left:50%;transform:translateX(-50%);width:32px;height:32px;border-radius:50%;background:var(--green);border:5px solid var(--mint)}
+  .reach div:last-child::before{border-color:var(--yellow)}
+  .reach b{display:block;font-size:17pt;color:#fff}
+  .reach span{font-size:11pt;color:var(--mint)}
+
+  /* roadmap */
+  .road{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:10px}
+  .ph{background:var(--stone);border-radius:14px;padding:22px 20px;min-height:3.7in;border-top:6px solid var(--green);display:flex;flex-direction:column}
+  .ph .big{font-size:54pt;font-weight:800;line-height:.9;color:var(--brown);letter-spacing:-.04em;margin-bottom:14px}
+  .ph .k{font-size:9pt;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .ph h3{font-size:16pt;margin:6px 0 10px}
+  .ph p{font-size:12pt;color:var(--muted);margin:0;line-height:1.45}
+  .ph:nth-child(2){border-color:#155c2c}.ph:nth-child(3){border-color:var(--green-2)}.ph:nth-child(4){border-color:var(--green-3)}.ph:nth-child(5){border-color:var(--yellow)}
+  /* devices */
+  .devices{position:relative;height:4.9in}
+  .laptop{position:absolute;border-radius:12px;background:#1a1c19;padding:10px 10px 14px;box-shadow:0 24px 50px rgba(0,0,0,.25)}
+  .laptop img{display:block;width:100%;border-radius:4px}
+  .laptop::after{content:"";position:absolute;left:-6%;right:-6%;bottom:-14px;height:14px;background:#c9ccc7;border-radius:0 0 12px 12px}
+  .phone{position:absolute;border-radius:26px;background:#1a1c19;padding:9px;box-shadow:0 24px 50px rgba(0,0,0,.3)}
+  .phone img{display:block;width:100%;border-radius:18px}
+  .built-list{list-style:none;padding:0;margin:0}
+  .built-list li{padding:11px 0 11px 30px;border-top:1px solid var(--line);position:relative;font-size:12pt}
+  .built-list li::before{content:"";position:absolute;left:4px;top:17px;width:12px;height:12px;border-radius:3px;background:var(--green-2)}
+  .built-list b{color:var(--green)}
+
+  /* partnership */
+  .part{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:8px}
+  .part .side{border-radius:16px;padding:18px 24px}
+  .part .us{background:var(--green);color:#fff}
+  .part .us h3{color:#fff}
+  .part .them{background:var(--stone);border:1px solid var(--line)}
+  .part ul{list-style:none;padding:0;margin:12px 0 0}
+  .part li{padding:6px 0 6px 26px;position:relative;font-size:11.5pt;border-top:1px solid rgba(0,0,0,.08)}
+  .part .us li{border-top-color:rgba(255,255,255,.14);color:#e3efe5}
+  .part li::before{content:"";position:absolute;left:2px;top:15px;width:10px;height:10px;border-radius:50%;background:var(--brown)}
+  .part .us li::before{background:var(--yellow)}
+  .part .logohead{display:flex;align-items:center;gap:14px;margin-bottom:4px}
+  .part .logohead img{height:28px}
+  .loop4{display:flex;gap:10px;margin-top:12px}
+  .loop4 div{flex:1;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:10.5pt;color:var(--muted)}
+  .loop4 b{display:block;color:var(--green);font-size:12pt;margin-bottom:2px}
+
+
+  /* hub (discovery channels) */
+  .hubwrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:.4in;align-items:center;margin-top:4px}
+  .hub{position:relative;width:5.6in;height:4.3in;margin:0 auto}
+  .hub .core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:1.84in;height:1.84in;border-radius:50%;background:#fff;border:3px solid var(--brown);display:flex;align-items:center;justify-content:center;box-shadow:0 16px 36px rgba(3,56,28,.18);z-index:2}
+  .hub .core img{width:1.5in}
+  .hub svg.rays{position:absolute;inset:0;width:100%;height:100%;z-index:1}
+  .hub .ch{position:absolute;width:1.6in;text-align:center;z-index:2}
+  .hub .ic{width:.72in;height:.72in;border-radius:50%;background:var(--green);margin:0 auto 6px;display:flex;align-items:center;justify-content:center}
+  .hub .ic svg{width:.42in;height:.42in;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  .hub .ch b{display:block;font-size:10.5pt;color:var(--green);line-height:1.2}
+  .hub .ch:nth-of-type(odd) .ic{background:var(--brown)}
+
+  /* growth loop */
+  .loopwrap{display:grid;grid-template-columns:1.05fr .95fr;gap:.5in;align-items:center;margin-top:4px}
+  .cycle{position:relative;width:4.6in;height:4.6in;margin:0 auto}
+  .cycle svg{position:absolute;inset:0;width:100%;height:100%}
+  .cycle .nd{position:absolute;width:1.5in;height:1.5in;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#fff;font-weight:800;font-size:13pt;box-shadow:0 10px 24px rgba(0,0,0,.18)}
+  .cycle .nd small{font-size:8.5pt;font-weight:600;opacity:.85;margin-top:3px;max-width:1.2in;line-height:1.25}
+  .cycle .c1{left:50%;top:0;transform:translateX(-50%);background:var(--green)}
+  .cycle .c2{right:0;top:50%;transform:translateY(-50%);background:var(--green-2)}
+  .cycle .c3{left:50%;bottom:0;transform:translateX(-50%);background:var(--brown)}
+  .cycle .c4{left:0;top:50%;transform:translateY(-50%);background:#2f5a3a}
+  .cycle .mid{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);text-align:center;font-size:11pt;font-weight:800;color:var(--brown);letter-spacing:.06em;text-transform:uppercase;width:1.3in}
+  .bottomline{margin-top:12px;background:var(--green);color:#fff;border-radius:12px;padding:10px 20px;font-size:15pt;font-weight:800;letter-spacing:-.01em}
+  .bottomline span{color:var(--yellow)}
+
+  /* closing */
+  .closing{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+  .closing h1{font-size:50pt;max-width:10in}
+  .closing .logos{display:flex;gap:30px;align-items:center;margin-top:44px}
+  .closing .plate img{width:3.1in}
+  .closing .plate.ev img{width:2.7in}
+  .closing .made{margin-top:34px;display:flex;align-items:center;gap:12px;color:var(--mint);font-size:10pt;letter-spacing:.12em;text-transform:uppercase;font-weight:700}
+  .closing .made img{height:22px}
+
+  /* bid intelligence */
+  .flow6{display:grid;grid-template-columns:repeat(6,1fr);gap:0;margin-top:18px}
+  .flow6 .st{position:relative;padding:18px 14px 18px 26px;min-height:1.75in;color:#fff;clip-path:polygon(0 0,88% 0,100% 50%,88% 100%,0 100%,12% 50%)}
+  .flow6 .st:first-child{clip-path:polygon(0 0,88% 0,100% 50%,88% 100%,0 100%)}
+  .flow6 .st b{display:block;font-size:13pt;margin-bottom:6px;letter-spacing:-.01em}
+  .flow6 .st span{display:block;font-size:9.5pt;line-height:1.35;max-width:1.35in;opacity:.92}
+  .flow6 .st small{display:block;font-size:8pt;font-weight:800;letter-spacing:.14em;text-transform:uppercase;opacity:.75;margin-bottom:8px}
+  .f6{background:#7a5a2c}.flow6 .f6 b{color:#fff}
+  .watch{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+  .watch span{background:var(--sage);color:var(--green);border-radius:30px;padding:7px 15px;font-size:10.5pt;font-weight:700}
+  .pkg{margin-top:16px;display:grid;grid-template-columns:1.1fr 1.9fr;gap:22px;align-items:stretch}
+  .pkg .big{background:var(--green);color:#fff;border-radius:14px;padding:18px 22px;font-size:15pt;font-weight:800;line-height:1.3;display:block}
+  .pkg .big span{color:var(--yellow)}
+  .pkg .ways{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  .pkg .ways div{background:#fff;border:1px solid var(--line);border-top:4px solid var(--brown);border-radius:0 0 12px 12px;padding:12px 14px;font-size:10pt;color:var(--muted);line-height:1.35}
+  .pkg .ways b{display:block;color:var(--green);font-size:11.5pt;margin-bottom:3px}
+  .progs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:6px}
+  .prog{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:16px 18px;display:flex;flex-direction:column}
+  .prog small{font-size:8.5pt;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--mint)}
+  .prog h3{font-size:14pt;margin:5px 0 6px}
+  .prog p{font-size:10.5pt;color:#cfe3d3;margin:0 0 10px;line-height:1.4}
+  .prog .in{margin-top:auto;border-top:1px solid rgba(255,255,255,.16);padding-top:8px;font-size:10pt;color:#fff}
+  .prog .in b{color:var(--yellow)}
+  .srcnote{margin-top:12px;font-size:9.5pt;color:var(--mint)}
+  .brief{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 18px 40px rgba(3,56,28,.12);overflow:hidden}
+  .brief .bh{background:var(--green);color:#fff;padding:12px 20px;display:flex;justify-content:space-between;align-items:center}
+  .brief .bh b{font-size:13pt}
+  .brief .bh span{font-size:9pt;color:var(--mint);letter-spacing:.08em;text-transform:uppercase;font-weight:700}
+  .brief .bh .ex{background:var(--yellow);color:#000;letter-spacing:.1em;border-radius:20px;padding:3px 10px;font-size:8.5pt;font-weight:800;letter-spacing:.1em;margin-left:10px}
+  .brief table{width:100%;border-collapse:collapse;font-size:10pt}
+  .brief th{text-align:left;font-size:8.5pt;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:9px 12px;border-bottom:1px solid var(--line);background:var(--stone)}
+  .brief td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.35}
+  .brief tr:last-child td{border-bottom:0}
+  .brief td b{color:var(--green);display:block}
+  .brief td small{color:var(--muted);font-size:9pt}
+  .lane{display:inline-block;border-radius:20px;padding:3px 10px;font-size:9pt;font-weight:800;color:#fff;white-space:nowrap}
+  .l-take{background:var(--green)}.l-team{background:var(--green-2)}.l-route{background:var(--brown)}.l-86{background:#6d726a}
+  .dots{letter-spacing:2px;color:var(--green-2);font-size:12pt;white-space:nowrap}
+  .dots i{color:#cfd6cb;font-style:normal}
+  .oversight{margin-top:12px;display:flex;gap:12px}
+  .oversight div{flex:1;background:var(--sage);border-radius:12px;padding:11px 16px;font-size:10.5pt;color:var(--ink);line-height:1.4}
+  .oversight b{color:var(--green)}
+  /* always on */
+  .svc{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:4px}
+  .svc .t{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;min-height:1.95in}
+  .svc .t .ico{width:.5in;height:.5in;border-radius:12px;background:var(--green);display:flex;align-items:center;justify-content:center;font-size:17pt;margin-bottom:10px}
+  .svc .t:nth-child(even) .ico{background:var(--brown)}
+  .svc .t h3{font-size:12.5pt;margin-bottom:5px}
+  .svc .t p{font-size:10pt;color:var(--muted);margin:0;line-height:1.4}
+  .svc .t.hl{background:var(--green);border-color:var(--green)}
+  .svc .t.hl h3{color:var(--yellow)}.svc .t.hl p{color:#d7eadb}.svc .t.hl .ico{background:var(--yellow)}
+
+  /* bid finder phone */
+  .bf-phone{width:2.75in;border-radius:34px;background:#1a1c19;padding:11px;box-shadow:0 26px 54px rgba(0,0,0,.3);margin:0 auto}
+  .bf-scr{background:#F5F5F1;border-radius:25px;overflow:hidden;height:4.5in;display:flex;flex-direction:column}
+  .bf-top{background:var(--green);color:#fff;padding:14px 14px 10px}
+  .bf-top small{display:block;font-size:7pt;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--mint)}
+  .bf-top b{font-size:13pt;display:block;margin-top:2px}
+  .bf-dials{display:flex;gap:5px;margin-top:8px;flex-wrap:wrap}
+  .bf-dials span{background:rgba(255,255,255,.14);border-radius:20px;padding:3px 8px;font-size:7pt;font-weight:700;color:#fff}
+  .bf-dials span.on{background:var(--yellow);color:#000}
+  .bf-list{padding:8px 9px;display:flex;flex-direction:column;gap:7px}
+  .bf-card{background:#fff;border-radius:12px;padding:9px 10px;box-shadow:0 2px 6px rgba(0,0,0,.06)}
+  .bf-card b{display:block;font-size:8.5pt;color:var(--green);line-height:1.25}
+  .bf-card .m{display:flex;justify-content:space-between;align-items:center;margin-top:4px;font-size:7pt;color:var(--muted)}
+  .bf-card .m .due{font-weight:800;color:var(--brown)}
+  .bf-card .d{color:var(--green-2);letter-spacing:1px;font-size:8pt}.bf-card .d i{color:#cfd6cb;font-style:normal}
+  .bf-btns{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-top:6px}
+  .bf-btns span{text-align:center;border-radius:7px;padding:4px 0;font-size:6.5pt;font-weight:800;color:#fff}
+  .bf-btns .a{background:var(--green)}.bf-btns .b{background:var(--green-2)}.bf-btns .c{background:var(--brown)}.bf-btns .x{background:#8b9088}
+  .bf-btns span.dim{opacity:.35}
+  .bf-ex{position:absolute;top:-10px;right:-14px;background:var(--yellow);color:#000;font-size:8pt;font-weight:800;letter-spacing:.1em;border-radius:20px;padding:4px 10px}
+  .three{list-style:none;margin:0;padding:0;counter-reset:t}
+  .three li{counter-increment:t;position:relative;padding:14px 0 14px 60px;border-top:1px solid var(--line);font-size:13pt;line-height:1.45}
+  .three li::before{content:counter(t);position:absolute;left:0;top:12px;width:42px;height:42px;border-radius:50%;background:var(--green);color:#fff;font-weight:800;font-size:15pt;display:flex;align-items:center;justify-content:center}
+  .three li:nth-child(2)::before{background:var(--brown)}.three li:nth-child(3)::before{background:var(--green-2)}
+  .three b{color:var(--green);display:block;font-size:14pt}
+  .made5{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+  .made5 span{border:2px solid var(--green);color:var(--green);border-radius:30px;padding:4px 10px;font-size:9.5pt;font-weight:800}
+  .made5 span:nth-child(even){border-color:var(--brown);color:var(--brown)}
+
+  .dial{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px 24px}
+  .dial .q{font-size:9pt;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--brown)}
+  .dial h3{font-size:19pt;margin:6px 0 12px;letter-spacing:-.02em}
+  .dial .set{display:flex;gap:10px;flex-wrap:wrap}
+  .dial .set span{background:var(--sage);border-radius:10px;padding:8px 12px;font-size:11pt;color:var(--ink)}
+  .dial .set span b{color:var(--green)}
+  .dial.big{background:var(--green);border-color:var(--green)}
+  .dial.big h3{color:#fff}.dial.big .q{color:var(--yellow)}
+  .dial.big .set span{background:rgba(255,255,255,.12);color:#e3efe5}.dial.big .set span b{color:#fff}
+  .any{margin-top:18px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  .any div{border-left:4px solid var(--brown);padding:4px 0 4px 14px;font-size:11pt;color:var(--muted)}
+  .any b{display:block;color:var(--green);font-size:12.5pt}
+  .pe{display:grid;grid-template-columns:1fr 70px 1.35fr;align-items:center;gap:0;margin-top:6px}
+  .stack{position:relative;height:4.2in}
+  .stack .pg{position:absolute;width:2.9in;height:3.7in;background:#fff;border:1px solid #cfd6cb;border-radius:6px;box-shadow:0 4px 12px rgba(0,0,0,.06);padding:18px 20px}
+  .stack .pg:nth-child(1){left:.5in;top:0;transform:rotate(-4deg)}
+  .stack .pg:nth-child(2){left:.35in;top:.15in;transform:rotate(2deg)}
+  .stack .pg:nth-child(3){left:.2in;top:.3in}
+  .stack .pg b{display:block;font-size:10pt;color:var(--ink);margin-bottom:10px}
+  .stack .ln{height:6px;background:#e5e8e2;border-radius:3px;margin:7px 0}
+  .stack .ln.s{width:70%}.stack .ln.t{width:85%}
+  .stack .cap{position:absolute;left:.2in;bottom:0;font-size:10.5pt;font-weight:700;color:var(--muted)}
+  .pe .arr{font-size:34pt;color:var(--brown);text-align:center}
+  .one{background:#fff;border:2px solid var(--green);border-radius:16px;box-shadow:0 18px 40px rgba(3,56,28,.12);overflow:hidden}
+  .one .oh{background:var(--green);color:#fff;padding:12px 20px;display:flex;justify-content:space-between;align-items:center}
+  .one .oh b{font-size:13pt}.one .oh span{background:var(--yellow);color:#000;border-radius:20px;padding:3px 10px;font-size:8pt;font-weight:800;letter-spacing:.1em}
+  .one .row{display:grid;grid-template-columns:1.25in 1fr;border-top:1px solid var(--line);padding:9px 20px;font-size:10.5pt;line-height:1.4}
+  .one .row:first-of-type{border-top:0}
+  .one .row b{color:var(--green);font-size:10pt;letter-spacing:.04em;text-transform:uppercase}
+  .one .ok::before{content:"✓ ";color:var(--green-2);font-weight:800}
+  .one .warn::before{content:"! ";color:#b23a2b;font-weight:800}
+  .tag{display:inline-block;background:var(--yellow);color:#000;border-radius:30px;padding:6px 16px;font-size:10pt;font-weight:800;letter-spacing:.06em;margin-bottom:14px}
+  .ring{position:relative;width:4.7in;height:4.7in;margin:0 auto}
+  .ring svg{position:absolute;inset:0;width:100%;height:100%}
+  .ring .nd{position:absolute;width:1.25in;height:1.25in;border-radius:50%;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;font-weight:800;font-size:12pt;box-shadow:0 10px 24px rgba(0,0,0,.18);transform:translate(-50%,-50%)}
+  .ring .mid{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);text-align:center;width:1.7in}
+  .ring .mid img{width:1.5in;display:block;margin:0 auto 6px}
+  .ring .mid small{font-size:9pt;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--brown)}
+</style>
+</head>
+<body>
+
+<section class="slide title">
+  <div class="l">
+    <img class="ta" src="img/terraall-logo.png" alt="TerraAll" style="width:3.6in;margin-bottom:26px">
+    <p class="eyebrow">Part of the TerraAll Digital Findability Network</p>
+    <h1>The Bid Finder App</h1>
+    <p class="sub">Every night it searches. Every morning you choose.</p>
+    <div class="meta">Prepared for Matt &amp; Sam · Everglades Restorations &amp; Land Clearing Inc. · October 2026 · Confidential</div>
+  </div>
+  <div class="r">
+    <div class="with">Built for</div>
+    <div class="plate"><img src="img/everglades-logo.png" alt="Everglades Restorations &amp; Land Clearing Inc."></div>
+    <div class="m360"><img src="img/mediain360-logo-light.png" alt="MediaIn360"></div>
+  </div>
+</section>
+
+<section class="slide">
+  <p class="eyebrow">In plain words</p>
+  <h2>What the Bid Finder Is</h2>
+  <div class="bar"></div>
+  <div style="display:grid;grid-template-columns:1.25fr .75fr;gap:.5in;align-items:center">
+    <div>
+      <p class="lead" style="font-size:15pt;margin-bottom:14px">A private app, built just for Everglades. Every night it searches public bids and programs across the country. Every morning it shows Matt only what's worth his time.</p>
+      <ol class="three">
+        <li><b>While you sleep, it searches.</b>Federal, state, county, city, water districts, utilities and the big prime contractors.</li>
+        <li><b>Every morning, you pick.</b>Tap Take it, Team it, Route it or 86 it. That's it.</li>
+        <li><b>We help with the legwork.</b>For the ones you pick, we can explain the bid in plain English and help write and produce it.</li>
+      </ol>
+    </div>
+    <div style="position:relative"><span class="bf-ex">EXAMPLE</span><div class="bf-phone"><div class="bf-scr"><div class="bf-top"><small>Bid Finder · MediaIn360</small><b>Tonight's Finds</b><div class="bf-dials"><span class="on">Nationwide · Biggest programs</span><span class="on">My area · $500K+</span></div></div><div class="bf-list"><div class="bf-card"><b>Reservoir embankment: clearing &amp; muck removal</b><div class="m"><span>Florida</span><span class="d">●●●●●<i></i></span><span class="due">Due in 18 days</span></div><div class="bf-btns"><span class="a dim">Take it</span><span class="b">Team it</span><span class="c dim">Route it</span><span class="x dim">86 it</span></div></div><div class="bf-card"><b>County disaster debris, standby contract</b><div class="m"><span>Gulf Coast</span><span class="d">●●●●<i>●</i></span><span class="due">Due in 9 days</span></div><div class="bf-btns"><span class="a">Take it</span><span class="b dim">Team it</span><span class="c dim">Route it</span><span class="x dim">86 it</span></div></div><div class="bf-card"><b>Marsh terracing &amp; shoreline</b><div class="m"><span>Louisiana</span><span class="d">●●●<i>●●</i></span><span class="due">Due in 30 days</span></div><div class="bf-btns"><span class="a">Take it</span><span class="b">Team it</span><span class="c">Route it</span><span class="x">86 it</span></div></div><div class="bf-card"><b>Specialty hazardous remediation</b><div class="m"><span>Midwest</span><span class="d">●<i>●●●●</i></span><span class="due">Due in 12 days</span></div><div class="bf-btns"><span class="a dim">Take it</span><span class="b dim">Team it</span><span class="c dim">Route it</span><span class="x">86 it</span></div></div></div></div></div></div>
+  </div>
+  <div class="foot"><span class="mark"><img src="img/terraall-logo.png" alt="">The Bid Finder App · Confidential</span><span class="num">02</span></div>
+</section>
+
+<section class="slide stone">
+  <p class="eyebrow">Your settings</p>
+  <h2>You Set the Dials</h2>
+  <div class="bar"></div>
+  <p class="lead" style="font-size:14pt;margin-bottom:18px">Any size. Any area. Any kind of work. Change it anytime. Two examples:</p>
+  <div class="grid2">
+    <div class="dial big"><div class="q">"Show me the biggest of the biggest"</div><h3>Major Programs, Nationwide</h3>
+      <div class="set"><span><b>Size:</b> the largest programs in the country</span><span><b>Where:</b> all 50 states</span><span><b>When:</b> every night</span></div></div>
+    <div class="dial"><div class="q">"Show me solid jobs close to home"</div><h3>Right-Sized, Nearby</h3>
+      <div class="set"><span><b>Size:</b> $500K and up</span><span><b>Where:</b> my area</span><span><b>Work:</b> clearing, excavation, restoration</span></div></div>
+  </div>
+  <div class="any">
+    <div><b>Size</b>From local jobs to billion-dollar programs</div>
+    <div><b>Area</b>A county, a state, a region or the whole country</div>
+    <div><b>Work</b>Only the services Everglades wants</div>
+    <div><b>Role</b>Prime, sub, teaming or standby</div>
+  </div>
+  <div class="foot"><span class="mark"><img src="img/terraall-logo.png" alt="">The Bid Finder App · Confidential</span><span class="num">03</span></div>
+</section>
+
+<section class="slide dark">
+  <p class="eyebrow">What it watches</p>
+  <h2>Where the Big Programs Are</h2>
+  <div class="bar" style="margin-bottom:14px"></div>
+  <div class="progs">
+    <div class="prog"><small>Florida</small><h3>Everglades Restoration</h3><p>Reservoirs, flow ways, pump stations and treatment areas, funded by federal and state partners.</p><div class="in"><b>Way in:</b> clearing, grubbing, muck removal and earthwork under the primes</div></div>
+    <div class="prog"><small>Nationwide</small><h3>Army Corps Award Pools</h3><p>Multi-year construction and environmental contracts by district, many set aside for small businesses.</p><div class="in"><b>Way in:</b> earn a seat in the pool, compete for each job</div></div>
+    <div class="prog"><small>Any state</small><h3>Disaster Debris</h3><p>Pre-arranged federal, state DOT and county contracts that switch on after storms.</p><div class="in"><b>Way in:</b> county contracts directly; subcontract to debris primes</div></div>
+    <div class="prog"><small>Nationwide</small><h3>Superfund &amp; Cleanup</h3><p>EPA and defense site cleanups, with steady federal funding every year.</p><div class="in"><b>Way in:</b> excavation and hauling, teamed with licensed cleanup firms</div></div>
+    <div class="prog"><small>Gulf Coast</small><h3>Coastal Restoration</h3><p>Marsh creation, terracing and shoreline protection across a large pipeline of state projects.</p><div class="in"><b>Way in:</b> earthwork packages and in-state partners</div></div>
+    <div class="prog"><small>Every region</small><h3>Flood Control &amp; Resilience</h3><p>Canals, drainage, levees and stormwater for water districts and resilience programs.</p><div class="in"><b>Way in:</b> prime the right-sized jobs; team on the large ones</div></div>
+  </div>
+  <p class="srcnote">Examples from public sources, October 2026. Each opportunity is verified against the actual solicitation before any decision.</p>
+  <div class="foot"><span>The Bid Finder App · Confidential</span><span class="num">04</span></div>
+</section>
+
+<section class="slide">
+  <p class="eyebrow">Your morning</p>
+  <h2>Pick the Ones You Want</h2>
+  <div class="bar"></div>
+  <div style="display:grid;grid-template-columns:.75fr 1.25fr;gap:.55in;align-items:center">
+    <div style="position:relative"><span class="bf-ex">EXAMPLE</span><div class="bf-phone"><div class="bf-scr"><div class="bf-top"><small>Bid Finder · MediaIn360</small><b>Tonight's Finds</b><div class="bf-dials"><span class="on">Nationwide · Biggest programs</span><span class="on">My area · $500K+</span></div></div><div class="bf-list"><div class="bf-card"><b>Reservoir embankment: clearing &amp; muck removal</b><div class="m"><span>Florida</span><span class="d">●●●●●<i></i></span><span class="due">Due in 18 days</span></div><div class="bf-btns"><span class="a dim">Take it</span><span class="b">Team it</span><span class="c dim">Route it</span><span class="x dim">86 it</span></div></div><div class="bf-card"><b>County disaster debris, standby contract</b><div class="m"><span>Gulf Coast</span><span class="d">●●●●<i>●</i></span><span class="due">Due in 9 days</span></div><div class="bf-btns"><span class="a">Take it</span><span class="b dim">Team it</span><span class="c dim">Route it</span><span class="x dim">86 it</span></div></div><div class="bf-card"><b>Marsh terracing &amp; shoreline</b><div class="m"><span>Louisiana</span><span class="d">●●●<i>●●</i></span><span class="due">Due in 30 days</span></div><div class="bf-btns"><span class="a">Take it</span><span class="b">Team it</span><span class="c">Route it</span><span class="x">86 it</span></div></div><div class="bf-card"><b>Specialty hazardous remediation</b><div class="m"><span>Midwest</span><span class="d">●<i>●●●●</i></span><span class="due">Due in 12 days</span></div><div class="bf-btns"><span class="a dim">Take it</span><span class="b dim">Team it</span><span class="c dim">Route it</span><span class="x">86 it</span></div></div></div></div></div></div>
+    <div>
+      <p class="lead" style="font-size:14pt;margin-bottom:12px">Each find shows what it is, where it is, how well it fits and how many days are left. One tap decides it.</p>
+      <div class="choices" style="grid-template-columns:repeat(2,1fr);margin-top:6px;gap:12px">
+        <div class="ch ch1" style="min-height:1.25in;padding:16px 18px"><b style="font-size:19pt;margin:0 0 4px">Take it</b><p>Everglades bids it as the prime.</p></div>
+        <div class="ch ch2" style="min-height:1.25in;padding:16px 18px"><b style="font-size:19pt;margin:0 0 4px">Team it</b><p>Join a prime or bring in a partner.</p></div>
+        <div class="ch ch3" style="min-height:1.25in;padding:16px 18px"><b style="font-size:19pt;margin:0 0 4px">Route it</b><p>Pass it to a qualified partner.</p></div>
+        <div class="ch ch4" style="min-height:1.25in;padding:16px 18px"><b style="font-size:19pt;margin:0 0 4px">86 it</b><p>Not for us. Gone.</p></div>
+      </div>
+      <p style="margin-top:14px;font-size:12pt;color:var(--muted)">Say Matt picks four this week. Those four go straight into bid support.</p>
+    </div>
+  </div>
+  <div class="foot"><span class="mark"><img src="img/terraall-logo.png" alt="">The Bid Finder App · Confidential</span><span class="num">05</span></div>
+</section>
+
+<section class="slide stone">
+  <p class="eyebrow">Bid support · Step one</p>
+  <h2>The Bid in Plain English</h2>
+  <div class="bar"></div>
+  <div class="pe">
+    <div class="stack">
+      <div class="pg"><b>Solicitation</b><div class="ln"></div><div class="ln t"></div><div class="ln s"></div><div class="ln"></div></div>
+      <div class="pg"><b>Specifications</b><div class="ln"></div><div class="ln t"></div><div class="ln"></div><div class="ln s"></div></div>
+      <div class="pg"><b>Request for Proposal</b><div class="ln"></div><div class="ln t"></div><div class="ln s"></div><div class="ln"></div><div class="ln t"></div><div class="ln"></div><div class="ln s"></div><div class="ln"></div><div class="ln t"></div><div class="ln"></div><div class="ln s"></div><div class="ln"></div><div class="ln t"></div><div class="ln"></div></div>
+      <div class="cap">Hundreds of pages of government language</div>
+    </div>
+    <div class="arr">→</div>
+    <div class="one">
+      <div class="oh"><b>Bid Summary: Canal Maintenance Task Order</b><span>EXAMPLE</span></div>
+      <div class="row"><b>What they want</b><span>Clean out and reshape canals; haul and dispose of the material.</span></div>
+      <div class="row"><b>Who can bid</b><span class="ok">Small businesses in the award pool. Everglades qualifies.</span></div>
+      <div class="row"><b>Must have</b><span class="ok">License, bonding, insurance, safety plan</span></div>
+      <div class="row"><b>Missing</b><span class="warn">Updated safety record letter</span></div>
+      <div class="row"><b>Key dates</b><span>Site visit XX/XX · Questions due XX/XX · Bid due XX/XX</span></div>
+      <div class="row"><b>Our take</b><span>Strong fit. Recommend Take it.</span></div>
+    </div>
+  </div>
+  <div class="foot"><span class="mark"><img src="img/terraall-logo.png" alt="">The Bid Finder App · Confidential</span><span class="num">06</span></div>
+</section>
+
+<section class="slide">
+  <p class="eyebrow">Bid support · Step two</p>
+  <span class="tag">Additional service · Terms discussed in person</span>
+  <h2>We Get You Almost All the Way There</h2>
+  <div class="bar"></div>
+  <div class="flow" style="margin-top:10px">
+    <div class="st f1"><small>MediaIn360</small><b>Organize</b><span>Every document, form and requirement in one place.</span></div>
+    <div class="st f2"><small>MediaIn360</small><b>Write</b><span>Draft the narrative, experience and capability sections.</span></div>
+    <div class="st f3"><small>MediaIn360</small><b>Produce</b><span>Assemble a clean, professional bid package.</span></div>
+    <div class="st f5"><small>MediaIn360</small><b>Track</b><span>Deadlines, questions, addenda and reminders.</span></div>
+    <div class="st f4"><small>Matt</small><b>Finalize &amp; Sign</b><span>Check pricing and facts, approve and submit.</span></div>
+  </div>
+  <div class="oversight" style="margin-top:22px">
+    <div><b>Matt stays in charge.</b> He sets every price, checks every statement and signs every bid. Agencies require the owner to certify it.</div>
+    <div><b>No guarantees.</b> We make every bid stronger and on time; awards are always the agency's decision.</div>
+  </div>
+  <div class="foot"><span class="mark"><img src="img/terraall-logo.png" alt="">The Bid Finder App · Confidential</span><span class="num">07</span></div>
+</section>
+
+<section class="slide stone">
+  <p class="eyebrow">Built and run by MediaIn360</p>
+  <h2>An App That Never Stops Improving</h2>
+  <div class="bar"></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5in;align-items:center">
+    <div>
+      <p class="lead" style="font-size:14pt">The Bid Finder isn't bought off a shelf. MediaIn360 designs it, develops it, perfects it, manages it and maintains it, for as long as it runs.</p>
+      <ul class="built-list" style="margin-top:12px">
+        <li><b>Smarter every month:</b> it learns what Matt takes and what he 86s</li>
+        <li><b>New sources added</b> as new programs and agencies appear</li>
+        <li><b>Part of one network:</b> the website, videos, hosting and support, all under TerraAll</li>
+        <li><b>Nothing technical for Matt:</b> he just opens it and picks</li>
+      </ul>
+      <div class="bottomline" style="margin-top:16px">The TerraAll Digital Findability Network. <span>Always on.</span></div>
+    </div>
+    <div class="ring"><svg viewBox="0 0 470 470"><defs><marker id="ah" markerWidth="10" markerHeight="10" refX="6" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#8A5A33"/></marker></defs><circle cx="235" cy="235" r="185" fill="none" stroke="#D5DBD1" stroke-width="6" stroke-dasharray="14 10"/></svg><div class="nd" style="left:2.350in;top:0.500in;background:var(--green)">Design</div><div class="nd" style="left:4.109in;top:1.778in;background:var(--brown)">Develop</div><div class="nd" style="left:3.437in;top:3.847in;background:var(--green-2)">Perfect</div><div class="nd" style="left:1.263in;top:3.847in;background:#2f5a3a">Manage</div><div class="nd" style="left:0.591in;top:1.778in;background:#7a5a2c">Maintain</div><div class="mid"><img src="img/mediain360-logo.png" alt="MediaIn360"><small>Never stops</small></div></div>
+  </div>
+  <div class="foot"><span class="mark"><img src="img/terraall-logo.png" alt="">The Bid Finder App · Confidential</span><span class="num">08</span></div>
+</section>
+
+</body>
+</html>

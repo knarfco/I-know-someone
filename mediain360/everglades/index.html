@@ -1,0 +1,742 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>TerraAll for Everglades | MediaIn360</title>
+<meta name="description" content="How TerraAll works for Everglades Restorations & Land Clearing Inc.">
+<link rel="icon" href="img/icon-32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--g:#03381C;--g2:#0B6B1F;--g3:#1E9A2E;--b:#5A2E0C;--b2:#8A5A33;--y:#F5B800;--s:#F5F5F1;--sage:#E4EAE0;--ink:#1A1C19;--mu:#4F544C;--ln:#D5DBD1;--mint:#B9D9BF;--r:16px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{margin:0;font-family:Inter,Arial,sans-serif;color:var(--ink);background:#fff;line-height:1.5;font-size:17px}
+img{max-width:100%;display:block}
+a{color:var(--g2)}
+:focus-visible{outline:3px solid var(--y);outline-offset:3px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:-9999px;top:8px;background:var(--y);color:#000;padding:8px 14px;border-radius:8px;z-index:50;font-weight:800}
+.skip:focus{left:8px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+section{padding:64px 0}
+.alt{background:var(--s)}
+.dark{background:var(--g);color:#fff}
+.eyebrow{font-size:.78rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--b);margin:0 0 10px}
+.dark .eyebrow{color:var(--mint)}
+h1,h2,h3{letter-spacing:-.02em;line-height:1.1;margin:0}
+h2{font-size:clamp(1.8rem,4vw,2.6rem);color:var(--g);margin-bottom:12px}
+.dark h2{color:#fff}
+h3{font-size:1.15rem;color:var(--g)}
+.lead{font-size:1.12rem;color:var(--mu);max-width:760px;margin:0 0 26px}
+.dark .lead{color:#d7eadb}
+.bar{width:64px;height:5px;border-radius:3px;background:var(--b);margin:0 0 18px}
+.dark .bar{background:var(--y)}
+.btn{display:inline-flex;align-items:center;gap:8px;font:inherit;font-weight:800;font-size:1rem;border:0;border-radius:12px;padding:13px 20px;cursor:pointer;text-decoration:none;min-height:48px}
+.btn-y{background:var(--y);color:#111}
+.btn-g{background:var(--g);color:#fff}
+.btn-o{background:#fff;color:var(--g);border:2px solid var(--g)}
+.btn:hover{filter:brightness(.95)}
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+@media (max-width:900px){.grid3,.grid4{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:620px){.grid2,.grid3,.grid4{grid-template-columns:1fr}section{padding:48px 0}body{font-size:16px}}
+.card{background:#fff;border:1px solid var(--ln);border-radius:var(--r);padding:20px}
+.alt .card{background:#fff}
+
+/* header */
+.top{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--ln)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;height:62px}
+.top img{height:30px;width:auto}
+.top nav{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+.top nav a{white-space:nowrap;text-decoration:none;color:var(--g);font-weight:700;font-size:.85rem;padding:8px 10px;border-radius:8px}
+.top nav a:hover{background:var(--sage)}
+@media (max-width:820px){.top nav{display:none}}
+
+/* hero */
+.hero{background:linear-gradient(135deg,var(--g) 0%,#062a17 100%);color:#fff;padding:70px 0 64px}
+.hero .wrap{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center}
+@media (max-width:820px){.hero .wrap{grid-template-columns:1fr}}
+.hero h1{font-size:clamp(2.2rem,5.5vw,3.8rem);font-weight:900;margin:8px 0 14px}
+.hero h1 span{color:var(--y)}
+.hero p{color:#d7eadb;font-size:1.15rem;margin:0 0 24px;max-width:600px}
+.plates{display:flex;flex-direction:column;gap:14px}
+.plate{background:var(--s);border-radius:18px;padding:18px 24px;box-shadow:0 18px 40px rgba(0,0,0,.3)}
+.plate img{margin:0 auto;max-height:110px;width:auto}
+.with{text-align:center;color:var(--mint);font-size:.75rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase}
+
+/* statement */
+.statement h2{font-size:clamp(2.2rem,6vw,4rem);font-weight:900}
+.tiles4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:6px}
+@media (max-width:900px){.tiles4{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:520px){.tiles4{grid-template-columns:1fr}}
+.tile{font:inherit;text-align:left;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.18);color:#fff;border-radius:var(--r);padding:20px;cursor:pointer;display:flex;flex-direction:column;gap:6px;min-height:150px}
+.tile:hover{background:rgba(255,255,255,.12)}
+.tile .k{font-size:1.8rem;font-weight:900;color:var(--mint)}
+.tile[aria-expanded="true"] .k{color:var(--b)}
+.tile b{font-size:1.2rem;color:var(--y)}
+.tile .more{font-size:.85rem;color:var(--mint);margin-top:auto}
+.tile[aria-expanded="true"]{background:#fff;color:var(--ink)}
+.tile[aria-expanded="true"] b{color:var(--g)}
+.tile[aria-expanded="true"] .more{color:var(--b)}
+.tile .detail{display:none;font-size:.95rem;line-height:1.45}
+.tile[aria-expanded="true"] .detail{display:block}
+.banner{margin-top:20px;border-radius:12px;padding:14px 20px;font-weight:800;font-size:1.05rem;background:rgba(255,255,255,.08)}
+.banner span{color:var(--y)}
+.lightbanner{margin-top:20px;border-radius:12px;padding:14px 20px;font-weight:800;font-size:1.05rem;background:var(--g);color:#fff}
+.lightbanner span{color:var(--y)}
+
+/* front door */
+.door{display:grid;grid-template-columns:1fr 40px 1fr 40px 1fr;align-items:stretch}
+.door .node{border-radius:var(--r);padding:22px;text-align:center;display:flex;flex-direction:column;gap:10px;justify-content:center;align-items:center}
+.door .n1{border:2px solid var(--b);background:#fff}
+.door .n2{background:var(--g);color:#fff}
+.door .n2 h3{color:#fff}
+.door .n3{background:var(--sage)}
+.door img{max-height:70px;width:auto}
+.door .n2 .pl{background:var(--s);border-radius:10px;padding:8px 12px}
+.door .arr{display:flex;align-items:center;justify-content:center;font-size:1.8rem;color:var(--b)}
+@media (max-width:820px){.door{grid-template-columns:1fr}.door .arr{transform:rotate(90deg);height:36px}}
+.terra{margin-top:18px;font-weight:800;color:var(--g);font-size:1.1rem}
+.terra b{color:var(--b)}
+
+/* bigger */
+.big .card .n{font-size:1.8rem;font-weight:900;color:var(--b);margin-bottom:4px}
+.big .card p{margin:4px 0 0;color:var(--mu);font-size:.98rem}
+
+/* engines */
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 18px}
+.tabs button{font:inherit;font-weight:800;border:2px solid var(--g);background:#fff;color:var(--g);border-radius:40px;padding:10px 18px;cursor:pointer;min-height:46px}
+.tabs button[aria-selected="true"]{background:var(--g);color:#fff}
+.tabpanel{background:#fff;border:1px solid var(--ln);border-left:6px solid var(--g);border-radius:0 var(--r) var(--r) 0;padding:22px}
+.tabpanel h3{font-size:1.3rem;margin-bottom:6px}
+.tabpanel h3 em{font-style:normal;color:var(--b);margin-left:6px}
+.tabpanel ul{margin:10px 0 0;padding-left:20px}
+.tabpanel li{margin-bottom:6px}
+.onebrain{font-weight:800;color:var(--b);letter-spacing:.02em;margin:0 0 12px}
+
+/* sweep */
+.sweep{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:start}
+@media (max-width:900px){.sweep{grid-template-columns:1fr}}
+.srclist{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.srclist li{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:10px 14px;transition:background .3s}
+.srclist .dot{flex:none;width:14px;height:14px;border-radius:50%;border:2px solid var(--mint)}
+.srclist .nm{flex:1}
+.srclist .nm small{display:block;color:var(--mint);font-size:.8rem}
+.srclist .st{font-size:.85rem;color:var(--mint);white-space:nowrap}
+.srclist li.active{background:rgba(245,184,0,.18);border-color:var(--y)}
+.srclist li.active .dot{border-color:var(--y);background:var(--y);animation:pulse .7s infinite alternate}
+.srclist li.done .dot{background:var(--g3);border-color:var(--g3)}
+.srclist li.done .st{color:#fff}
+@keyframes pulse{to{transform:scale(1.35)}}
+.counter{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.18);border-radius:var(--r);padding:22px;position:sticky;top:80px}
+.counter .row{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid rgba(255,255,255,.14);padding:10px 0}
+.counter .row b{font-size:2rem;font-weight:900;color:var(--y);font-variant-numeric:tabular-nums}
+.counter .moon{font-size:.85rem;color:var(--mint);margin:0 0 6px}
+.ready{display:none;margin-top:16px;background:var(--y);color:#111;border-radius:12px;padding:14px 16px;font-weight:800}
+.ready.show{display:block}
+.ready a{color:#111}
+.exnote{font-size:.8rem;color:var(--mint);margin-top:10px}
+
+/* report */
+.dials{display:grid;grid-template-columns:1fr 1fr 1.4fr;gap:16px;background:#fff;border:1px solid var(--ln);border-radius:var(--r);padding:18px;margin-bottom:18px}
+@media (max-width:900px){.dials{grid-template-columns:1fr}}
+.dials label,.dials legend{font-weight:800;color:var(--g);font-size:.9rem;display:block;margin-bottom:6px}
+.dials fieldset{border:0;margin:0;padding:0}
+.dials select{width:100%;font:inherit;padding:11px;border:1px solid #b9c0b4;border-radius:10px;background:#fff;min-height:46px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips label{display:inline-flex;align-items:center;gap:6px;font-weight:600;color:var(--ink);background:var(--s);border:1px solid var(--ln);border-radius:30px;padding:7px 12px;margin:0;cursor:pointer;font-size:.88rem}
+.chips input{accent-color:var(--g);width:16px;height:16px}
+.score{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;align-items:center}
+.score span{background:#fff;border:1px solid var(--ln);border-radius:30px;padding:7px 14px;font-weight:800;font-size:.9rem}
+.score .t{color:var(--g)}.score .tm{color:var(--g2)}.score .rt{color:var(--b)}.score .x{color:#6d726a}
+.score button{margin-left:auto}
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+@media (max-width:760px){.cards{grid-template-columns:1fr}}
+.bid{background:#fff;border:1px solid var(--ln);border-radius:var(--r);padding:16px 18px;display:flex;flex-direction:column;gap:8px}
+.bid h3{font-size:1.05rem;line-height:1.25}
+.meta{display:flex;flex-wrap:wrap;gap:6px 12px;font-size:.85rem;color:var(--mu)}
+.meta .due{font-weight:800;color:var(--b)}
+.fit{color:var(--g2);letter-spacing:2px}
+.fit i{font-style:normal;color:#c6ccc2}
+.acts{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.acts button{font:inherit;font-weight:800;font-size:.85rem;border:0;border-radius:9px;padding:10px 4px;color:#fff;cursor:pointer;min-height:44px}
+.a1{background:var(--g)}.a2{background:var(--g2)}.a3{background:var(--b)}.a4{background:#6d726a}
+.who{font:inherit;font-size:.85rem;font-weight:700;background:none;border:0;color:var(--g2);text-decoration:underline;cursor:pointer;padding:4px 0;text-align:left;align-self:flex-start;min-height:32px}
+.whobox{display:none;background:var(--sage);border-radius:10px;padding:10px 12px;font-size:.88rem}
+.whobox.show{display:block}
+.bid.decided{opacity:.92}
+.verdict{display:none;font-weight:800;border-radius:9px;padding:9px 12px;color:#fff}
+.bid.decided .acts{display:none}
+.bid.decided .verdict{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.verdict button{font:inherit;font-size:.8rem;font-weight:700;background:#fff;color:var(--ink);border:0;border-radius:6px;padding:6px 10px;cursor:pointer;min-height:32px}
+.empty{display:none;background:#fff;border:1px dashed var(--ln);border-radius:var(--r);padding:24px;text-align:center;color:var(--mu)}
+
+/* finish */
+.steps{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-bottom:16px}
+@media (max-width:900px){.steps{grid-template-columns:repeat(4,1fr)}}
+@media (max-width:520px){.steps{grid-template-columns:repeat(2,1fr)}}
+.steps button{font:inherit;text-align:left;border:0;border-radius:12px;padding:14px 12px;color:#fff;cursor:pointer;min-height:80px;display:flex;flex-direction:column;gap:2px}
+.steps button small{font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+.steps button b{font-size:1.05rem}
+.steps button[aria-pressed="true"]{outline:4px solid var(--y);outline-offset:2px}
+.s1{background:#4a5840}.s2{background:var(--b)}.s3{background:#2f5a3a}.s4{background:var(--g)}.s5{background:var(--g2)}.s6{background:#7a5a2c}.s7{background:#1f4d2e}
+.stepdetail{background:#fff;border:1px solid var(--ln);border-radius:var(--r);padding:20px;min-height:110px}
+.stepdetail .who2{display:inline-block;font-size:.75rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;background:var(--sage);color:var(--g);border-radius:20px;padding:4px 10px;margin-bottom:8px}
+.loop{margin-top:14px;font-weight:800;color:var(--b)}
+.guard{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+@media (max-width:620px){.guard{grid-template-columns:1fr}}
+.guard div{background:var(--sage);border-radius:12px;padding:12px 16px;font-size:.95rem}
+.guard b{color:var(--g)}
+
+/* plain english */
+.toggle{display:inline-flex;background:#fff;border:2px solid var(--g);border-radius:40px;padding:4px;margin-bottom:16px}
+.toggle button{font:inherit;font-weight:800;border:0;background:none;color:var(--g);border-radius:30px;padding:10px 18px;cursor:pointer;min-height:44px}
+.toggle button[aria-pressed="true"]{background:var(--g);color:#fff}
+.doc{background:#fff;border:1px solid var(--ln);border-radius:var(--r);padding:24px;max-width:820px}
+.legal{font-family:Georgia,serif;font-size:.85rem;color:#555;line-height:1.55;max-height:300px;overflow:auto}
+.legal p{margin:0 0 10px}
+.sum{display:none}
+.sum .r{display:grid;grid-template-columns:150px 1fr;gap:10px;border-top:1px solid var(--ln);padding:10px 0}
+.sum .r:first-of-type{border-top:0}
+.sum .r b{color:var(--g);font-size:.85rem;text-transform:uppercase;letter-spacing:.05em}
+@media (max-width:520px){.sum .r{grid-template-columns:1fr;gap:2px}}
+.ok::before{content:"✓ ";color:var(--g3);font-weight:900}
+.warn::before{content:"! ";color:#b23a2b;font-weight:900}
+.extag{display:inline-block;background:var(--y);color:#111;font-size:.72rem;font-weight:800;letter-spacing:.1em;border-radius:20px;padding:3px 9px;margin-left:8px;vertical-align:middle}
+
+/* network */
+.net .flip{font:inherit;text-align:left;background:#fff;border:1px solid var(--ln);border-radius:var(--r);padding:18px;cursor:pointer;min-height:150px;display:flex;flex-direction:column;gap:8px;width:100%}
+.net .flip .ic{font-size:1.6rem}
+.net .flip b{color:var(--g);font-size:1.05rem}
+.net .flip .back{display:none;color:var(--mu);font-size:.93rem}
+.net .flip .hint{margin-top:auto;font-size:.8rem;color:var(--b);font-weight:700}
+.net .flip[aria-expanded="true"]{background:var(--g);border-color:var(--g)}
+.net .flip[aria-expanded="true"] b{color:var(--y)}
+.net .flip[aria-expanded="true"] .back{display:block;color:#e3efe5}
+.net .flip[aria-expanded="true"] .hint{display:none}
+.net .flip.hl{border:2px solid var(--b)}
+
+/* your part */
+.parts{display:grid;grid-template-columns:1.25fr .75fr;gap:22px;align-items:start}
+@media (max-width:900px){.parts{grid-template-columns:1fr}}
+.prog{height:14px;background:var(--sage);border-radius:10px;overflow:hidden;margin:6px 0 4px}
+.prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--g3),var(--y));transition:width .4s}
+.progtxt{font-weight:800;color:var(--g);font-size:.95rem;margin-bottom:12px}
+.todo{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.todo li{background:#fff;border:1px solid var(--ln);border-radius:14px;padding:14px 16px}
+.todo label{display:flex;gap:12px;align-items:flex-start;cursor:pointer}
+.todo input{flex:none;width:24px;height:24px;margin-top:2px;accent-color:var(--g)}
+.todo .tx b{display:block;color:var(--g);font-size:1.02rem}
+.todo .tx span{color:var(--mu);font-size:.93rem}
+.todo li.done{background:var(--sage)}
+.todo li.done .tx b{text-decoration:line-through;text-decoration-color:var(--g3)}
+.todo .go{margin:10px 0 0 36px;display:flex;gap:8px;flex-wrap:wrap}
+.todo .go .btn{min-height:42px;padding:9px 14px;font-size:.9rem}
+.ours{background:var(--g);color:#fff;border-radius:var(--r);padding:22px;position:sticky;top:80px}
+.ours h3{color:var(--y);font-size:1.25rem;margin-bottom:10px}
+.ours ul{list-style:none;margin:0;padding:0}
+.ours li{padding:8px 0 8px 26px;border-top:1px solid rgba(255,255,255,.14);position:relative;color:#e3efe5;font-size:.97rem}
+.ours li::before{content:"✓";position:absolute;left:2px;color:var(--y);font-weight:900}
+
+/* closing */
+.closing{text-align:center}
+.closing h2{font-size:clamp(2rem,5vw,3.4rem);font-weight:900;color:#fff}
+.closing h2 span{color:var(--y)}
+.closing p{color:#d7eadb}
+.closing .tag{color:var(--y);font-weight:800}
+.closing .logos{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin:26px 0}
+.closing .logos .plate{padding:14px 20px}
+.closing .logos img{max-height:70px}
+footer{background:#fff;padding:14px 0}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:.8rem;color:var(--mu)}
+.credit img{width:80px;height:auto}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="top">
+  <div class="wrap">
+    <img src="img/terraall-logo.png" alt="TerraAll" width="900" height="263">
+    <nav aria-label="Sections">
+      <a href="#system">The system</a><a href="#terraall">TerraAll</a><a href="#bigger">Bigger</a><a href="#intelligence">Intelligence</a><a href="#sweep">Tonight's sweep</a><a href="#report">Morning report</a><a href="#finish">Find to finish</a><a href="#network">We run it all</a><a href="#yourpart">Your part</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<section class="hero" aria-labelledby="h-hero">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">Prepared for Matt &amp; Sam by MediaIn360</p>
+      <h1 id="h-hero">The Digital Infrastructure Behind <span>Everglades</span></h1>
+      <p>Every earthwork job. Any size. Anywhere. Scroll through, tap anything, and try it yourself.</p>
+      <a class="btn btn-y" href="#sweep">Run tonight's sweep ↓</a>
+    </div>
+    <div class="plates">
+      <div class="plate"><img src="img/terraall-logo.png" alt="TerraAll" width="900" height="263"></div>
+      <p class="with">A service of</p>
+      <div class="plate"><img src="img/everglades-logo.png" alt="Everglades Restorations &amp; Land Clearing Inc." width="700" height="316"></div>
+    </div>
+  </div>
+</section>
+
+<section id="system" class="dark statement" aria-labelledby="h-system">
+  <div class="wrap">
+    <p class="eyebrow">The whole system</p>
+    <h2 id="h-system">This Is Not a Website.</h2>
+    <p class="lead">It's a living, growing system that finds work, wins work and keeps feeding you. Built, housed and run entirely by MediaIn360. Tap each part.</p>
+    <div class="tiles4">
+      <button class="tile" aria-expanded="false"><span class="k">01</span><b>Be Found</b><span class="detail">Your website, job videos, Google, YouTube and AI assistants. When a buyer looks for earthwork, they find Everglades first.</span><span class="more">Tap to see more</span></button>
+      <button class="tile" aria-expanded="false"><span class="k">02</span><b>Find the Work</b><span class="detail">TerraAll Intelligence searches public bids every night: federal, state, counties, cities, schools, ports and more.</span><span class="more">Tap to see more</span></button>
+      <button class="tile" aria-expanded="false"><span class="k">03</span><b>Win the Work</b><span class="detail">The best bids dug into, explained in plain English, and packaged to send. You price it and sign.</span><span class="more">Tap to see more</span></button>
+      <button class="tile" aria-expanded="false"><span class="k">04</span><b>Keep It Running</b><span class="detail">Hosting, fixes, upgrades and new ideas. It never sits still, and you never have to chase anyone.</span><span class="more">Tap to see more</span></button>
+    </div>
+    <div class="banner">Not a bid feed. Not an agency. <span>The whole system, for one company.</span></div>
+  </div>
+</section>
+
+<section id="terraall" aria-labelledby="h-terra">
+  <div class="wrap">
+    <p class="eyebrow">Introducing TerraAll</p>
+    <h2 id="h-terra">Same Company. A Wider Front Door.</h2>
+    <div class="bar"></div>
+    <div class="door">
+      <div class="node n1"><img src="img/terraall-logo.png" alt="TerraAll" width="900" height="263"><h3>The digital front door</h3><p>Catches every request: any size, any buyer, anywhere.</p></div>
+      <div class="arr" aria-hidden="true">→</div>
+      <div class="node n2"><div class="pl"><img src="img/everglades-logo.png" alt="Everglades" width="700" height="316"></div><h3>The licensed company</h3><p>Licensed, bonded and insured. Government, prime and major work: the name government buyers check.</p></div>
+      <div class="arr" aria-hidden="true">→</div>
+      <div class="node n3"><h3>Vetted partner network</h3><p>Licensed, insured specialists for the jobs you choose to route.</p></div>
+    </div>
+    <p class="terra"><b>Terra</b> = earth, the work. <b>All</b> = every job, every size, everywhere.</p>
+    <p style="color:var(--mu)">TerraAll works under Everglades Restorations &amp; Land Clearing Inc. and carries its license number on every page, so it has Everglades' credibility from day one.</p>
+  </div>
+</section>
+
+<section id="bigger" class="alt big" aria-labelledby="h-big">
+  <div class="wrap">
+    <p class="eyebrow">Where we're taking it</p>
+    <h2 id="h-big">How We Make This Bigger</h2>
+    <div class="bar"></div>
+    <div class="grid3">
+      <div class="card"><div class="n">Proof</div><h3>Your videos become the proof</h3><p>Every job you've filmed becomes a page buyers can see.</p></div>
+      <div class="card"><div class="n">Found</div><h3>Everywhere buyers look</h3><p>Google, YouTube, AI assistants and bid portals all lead to Everglades.</p></div>
+      <div class="card"><div class="n">Listed</div><h3>On every list that matters</h3><p>Signed up with every agency and big contractor, so the call comes before the bid drops.</p></div>
+      <div class="card"><div class="n">Prime</div><h3>Go after the enormous ones</h3><p>TerraAll Intelligence spots the biggest projects for Everglades to lead.</p></div>
+      <div class="card"><div class="n">Sub</div><h3>Or find who's leading</h3><p>We track who's winning, and who needs an earthwork sub.</p></div>
+      <div class="card"><div class="n">Wide</div><h3>Any state, any country</h3><p>Growing one real job at a time.</p></div>
+    </div>
+    <div class="lightbanner">Nothing changes for you. <span>We run everything behind the scenes.</span></div>
+  </div>
+</section>
+
+<section id="intelligence" aria-labelledby="h-int">
+  <div class="wrap">
+    <p class="eyebrow">Find the work · Find the team · Win the work</p>
+    <h2 id="h-int">Meet TerraAll Intelligence</h2>
+    <div class="bar"></div>
+    <p class="onebrain">One app · One database · One dashboard · Three engines</p>
+    <div class="tabs" role="tablist" aria-label="The three engines">
+      <button role="tab" id="t1" aria-controls="p1" aria-selected="true">1 · Find</button>
+      <button role="tab" id="t2" aria-controls="p2" aria-selected="false" tabindex="-1">2 · Team</button>
+      <button role="tab" id="t3" aria-controls="p3" aria-selected="false" tabindex="-1">3 · Win</button>
+    </div>
+    <div class="tabpanel" role="tabpanel" id="p1" aria-labelledby="t1">
+      <h3>Project &amp; Bid Finder <em>Find the work.</em></h3>
+      <p>Every night it visits public bid sites, pulls the bid packets, and spots the requirements. Only earthwork makes the list: clearing, excavation, ponds and canals, restoration, debris, drainage.</p>
+      <ul><li>Federal, state, counties, cities, school boards, water districts, ports and airports</li><li>You set the dials: any size, any area, the kinds of work you want</li><li>Results land on your phone every morning</li></ul>
+    </div>
+    <div class="tabpanel" role="tabpanel" id="p2" aria-labelledby="t2" hidden>
+      <h3>Prime Contractor &amp; Relationship Finder <em>Find the team.</em></h3>
+      <p>Big programs are won by big prime contractors, and they need earthwork subs. This engine tracks who's winning the large contracts, where, and who needs help.</p>
+      <ul><li>Who won what, from public award records</li><li>Which primes need clearing, excavation and site work subs</li><li>Their sub sign-up lists and outreach days, plus every relationship we build</li></ul>
+    </div>
+    <div class="tabpanel" role="tabpanel" id="p3" aria-labelledby="t3" hidden>
+      <h3>Bid Builder <em>Win the work.</em></h3>
+      <p>Once you say "go," we turn the bid into a plan: a plain-English summary, a checklist of every form, the deadlines, and the first draft.</p>
+      <ul><li>Every requirement and deadline on one page</li><li>A document library that makes every bid faster than the last</li><li>You check the price, finalize and sign</li></ul>
+    </div>
+    <div class="lightbanner">Built from scratch, just for this. <span>Real build, real running costs. We'll work out the numbers together, in person.</span></div>
+  </div>
+</section>
+
+<section id="sweep" class="dark" aria-labelledby="h-sweep">
+  <div class="wrap">
+    <p class="eyebrow">Try it</p>
+    <h2 id="h-sweep">Tonight's Sweep</h2>
+    <p class="lead">This is what happens every night while you sleep. Press the button and watch it work. (Example numbers.)</p>
+    <p><button class="btn btn-y" id="runSweep">▶ Run tonight's sweep</button></p>
+    <div class="sweep">
+      <ol class="srclist" id="srcList" aria-label="Bid sources checked tonight">
+        <li data-n="38" data-k="2"><span class="dot" aria-hidden="true"></span><span class="nm">Federal: SAM.gov<small>Army Corps, FEMA and every federal agency</small></span><span class="st">Waiting</span></li>
+        <li data-n="64" data-k="1"><span class="dot" aria-hidden="true"></span><span class="nm">State of Florida<small>MyFloridaMarketPlace, all state agencies</small></span><span class="st">Waiting</span></li>
+        <li data-n="12" data-k="1"><span class="dot" aria-hidden="true"></span><span class="nm">FDOT road lettings<small>Monthly highway and site work</small></span><span class="st">Waiting</span></li>
+        <li data-n="9" data-k="2"><span class="dot" aria-hidden="true"></span><span class="nm">South Florida Water Management District<small>Everglades restoration work</small></span><span class="st">Waiting</span></li>
+        <li data-n="41" data-k="1"><span class="dot" aria-hidden="true"></span><span class="nm">Miami-Dade County<small>Plus its cities, schools, PortMiami and airports</small></span><span class="st">Waiting</span></li>
+        <li data-n="36" data-k="1"><span class="dot" aria-hidden="true"></span><span class="nm">Broward County<small>Plus its cities, schools and Port Everglades</small></span><span class="st">Waiting</span></li>
+        <li data-n="33" data-k="1"><span class="dot" aria-hidden="true"></span><span class="nm">Palm Beach County<small>Plus its cities, schools and airport</small></span><span class="st">Waiting</span></li>
+        <li data-n="11" data-k="0"><span class="dot" aria-hidden="true"></span><span class="nm">Monroe County<small>The Keys</small></span><span class="st">Waiting</span></li>
+        <li data-n="6" data-k="1"><span class="dot" aria-hidden="true"></span><span class="nm">Okeechobee, Hendry &amp; Glades<small>The lake and the western Everglades</small></span><span class="st">Waiting</span></li>
+        <li data-n="22" data-k="1"><span class="dot" aria-hidden="true"></span><span class="nm">Collier County<small>Plus Naples-area cities and schools</small></span><span class="st">Waiting</span></li>
+      </ol>
+      <div class="counter" aria-live="polite">
+        <p class="moon" id="sweepStatus">🌙 Ready when you are.</p>
+        <div class="row"><span>Bids checked</span><b id="cChecked">0</b></div>
+        <div class="row"><span>Earthwork matches kept</span><b id="cKept">0</b></div>
+        <div class="row"><span>Sources swept</span><b id="cSrc">0</b></div>
+        <div class="ready" id="ready">☀️ Your morning report is ready. <a href="#report">See it ↓</a></div>
+        <p class="exnote">Phase 1 starts with home ground, then all of Florida, national and beyond.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="report" class="alt" aria-labelledby="h-report">
+  <div class="wrap">
+    <p class="eyebrow">Try it</p>
+    <h2 id="h-report">Your Morning Report</h2>
+    <p class="lead">Set your dials, then decide on each one. Take it, team it, route it, or 86 it. <span class="extag">EXAMPLE BIDS</span></p>
+    <div class="dials">
+      <div><label for="dSize">Size</label>
+        <select id="dSize"><option value="0">Any size</option><option value="0.5">$500K and up</option><option value="5">$5M and up</option><option value="100">$100M and up</option><option value="1000">$1B and up</option></select></div>
+      <div><label for="dArea">Area</label>
+        <select id="dArea"><option value="4">Nationwide</option><option value="3" selected>All of Florida</option><option value="2">The eight home counties</option><option value="1">Miami-Dade &amp; Broward only</option></select></div>
+      <fieldset><legend>Type of work</legend>
+        <div class="chips" id="dWork">
+          <label><input type="checkbox" value="clear" checked> Clearing</label>
+          <label><input type="checkbox" value="dig" checked> Excavation &amp; ponds</label>
+          <label><input type="checkbox" value="restore" checked> Restoration</label>
+          <label><input type="checkbox" value="debris" checked> Storm debris</label>
+          <label><input type="checkbox" value="drain" checked> Drainage</label>
+        </div></fieldset>
+    </div>
+    <div class="score" aria-live="polite">
+      <span class="t">Take it: <b id="sTake">0</b></span><span class="tm">Team it: <b id="sTeam">0</b></span><span class="rt">Route it: <b id="sRoute">0</b></span><span class="x">86 it: <b id="s86">0</b></span>
+      <button class="btn btn-o" id="resetReport" style="min-height:40px;padding:8px 14px">Start over</button>
+    </div>
+    <div class="cards" id="cards"></div>
+    <p class="empty" id="emptyMsg">Nothing matches those dials today. Widen the size or area and new finds appear.</p>
+  </div>
+</section>
+
+<section id="finish" aria-labelledby="h-finish">
+  <div class="wrap">
+    <p class="eyebrow">Win the work</p>
+    <h2 id="h-finish">From Find to Finish</h2>
+    <p class="lead">Tap each step to see who does it. Most of it is us.</p>
+    <div class="steps" id="steps">
+      <button class="s1" aria-pressed="true" data-who="TerraAll Intelligence" data-d="Every night, the app checks every public bid source in your area and pulls in anything new."><small>Night</small><b>Find</b></button>
+      <button class="s2" aria-pressed="false" data-who="MediaIn360" data-d="We separate the worth-it from the waste of time, by your dials and what you're good at."><small>MediaIn360</small><b>Sort</b></button>
+      <button class="s3" aria-pressed="false" data-who="MediaIn360" data-d="For the good ones: who, what, where, when, why and how, and how we'd bid it."><small>MediaIn360</small><b>Dig in</b></button>
+      <button class="s4" aria-pressed="false" data-who="You" data-d="You tap Take it, Team it, Route it or 86 it. A few minutes, a few times a week."><small>You</small><b>Decide</b></button>
+      <button class="s5" aria-pressed="false" data-who="MediaIn360" data-d="We pull the documents, fill the forms, write the first draft and track every deadline."><small>MediaIn360</small><b>First draft</b></button>
+      <button class="s6" aria-pressed="false" data-who="You" data-d="You set the price and the financing touches. That's the part only you can do."><small>You</small><b>Price</b></button>
+      <button class="s7" aria-pressed="false" data-who="Together" data-d="You check it and sign. We assemble the final package and get it in on time."><small>Together</small><b>Send</b></button>
+    </div>
+    <div class="stepdetail" aria-live="polite" id="stepDetail"><span class="who2">TerraAll Intelligence</span><p>Every night, the app checks every public bid source in your area and pulls in anything new.</p></div>
+    <p class="loop">↺ Tomorrow night it starts again. Get ahead of the curve, and stay there.</p>
+    <div class="guard"><div><b>You stay in charge.</b> You set every price, check every statement and sign every bid.</div><div><b>No guarantees.</b> We make every bid stronger and get it in on time. Awards are always the agency's decision.</div></div>
+  </div>
+</section>
+
+<section class="alt" aria-labelledby="h-plain">
+  <div class="wrap">
+    <p class="eyebrow">Win the work</p>
+    <h2 id="h-plain">Dig In: The Bid in Plain English</h2>
+    <p class="lead">Bids come as hundreds of pages of government language. We turn them into one page you can read in a minute. Flip it.</p>
+    <div class="toggle" role="group" aria-label="Show the bid as">
+      <button id="vBefore" aria-pressed="true">Before</button><button id="vAfter" aria-pressed="false">After</button>
+    </div>
+    <div class="doc">
+      <div class="legal" id="legal">
+        <p><b>INVITATION TO BID NO. XX-XXXX. CANAL MAINTENANCE TASK ORDER</b></p>
+        <p>1.1 The Contractor shall furnish all labor, materials, equipment, supervision and incidentals necessary to perform the removal, reshaping and disposal of accumulated sediment and vegetative material within the designated conveyance segments, in accordance with the Contract Documents, the Technical Specifications and all applicable federal, state and local regulations...</p>
+        <p>2.4 Offerors shall be pre-qualified members of the Multiple Award Task Order Contract pool and shall maintain throughout the term all licenses, certifications, bonding capacity and insurance coverages as set forth in Section 7, including but not limited to Commercial General Liability...</p>
+        <p>3.2 A mandatory pre-bid site visit shall be held on the date indicated in the Schedule of Events. Failure to attend shall render the offer non-responsive. Questions shall be submitted in writing no later than the deadline set forth herein...</p>
+        <p>7.1 The Contractor shall submit a site-specific safety plan, an experience modification rate letter dated within twelve (12) months, and all forms identified in Attachment C...</p>
+        <p>(…continues for many more pages…)</p>
+      </div>
+      <div class="sum" id="sum">
+        <h3 style="margin-bottom:10px">Bid summary: Canal Maintenance Task Order <span class="extag">EXAMPLE</span></h3>
+        <div class="r"><b>What they want</b><span>Clean out and reshape canals; haul and dispose of the material.</span></div>
+        <div class="r"><b>Who can bid</b><span class="ok">Small businesses in the award pool.</span></div>
+        <div class="r"><b>Must have</b><span class="ok">License, bonding, insurance, safety plan</span></div>
+        <div class="r"><b>Missing</b><span class="warn">Updated safety record letter</span></div>
+        <div class="r"><b>Key dates</b><span>Site visit XX/XX (mandatory) · Questions due XX/XX · Bid due XX/XX</span></div>
+        <div class="r"><b>Our take</b><span>Strong fit. Recommend Take it.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="network" class="net" aria-labelledby="h-net">
+  <div class="wrap">
+    <p class="eyebrow">Keep it running</p>
+    <h2 id="h-net">The TerraAll Digital Findability Network</h2>
+    <p class="lead">Living, breathing, growing, smarter every month. Always on. Always expanding. Designed, developed, perfected, managed and maintained by MediaIn360. Tap any tile.</p>
+    <div class="grid4">
+      <button class="flip" aria-expanded="false"><span class="ic" aria-hidden="true">🛡️</span><b>Hosting &amp; Security</b><span class="back">Housed on MediaIn360's servers, with backups, security, monitoring and fast pages.</span><span class="hint">Tap</span></button>
+      <button class="flip" aria-expanded="false"><span class="ic" aria-hidden="true">🔧</span><b>Maintenance &amp; Support</b><span class="back">Fixes, updates and changes handled quickly. One call or text, and it's done.</span><span class="hint">Tap</span></button>
+      <button class="flip" aria-expanded="false"><span class="ic" aria-hidden="true">🚀</span><b>Upgrades &amp; New Features</b><span class="back">The system keeps growing: new pages, tools and ideas as the business grows.</span><span class="hint">Tap</span></button>
+      <button class="flip hl" aria-expanded="false"><span class="ic" aria-hidden="true">📡</span><b>TerraAll Intelligence</b><span class="back">Finds the work and the primes every night, filtered to the size, area and work you choose.</span><span class="hint">Tap</span></button>
+      <button class="flip" aria-expanded="false"><span class="ic" aria-hidden="true">🎬</span><b>Video &amp; Content</b><span class="back">Your job-video archive, a page for every job, the opening video and a short film for agencies.</span><span class="hint">Tap</span></button>
+      <button class="flip hl" aria-expanded="false"><span class="ic" aria-hidden="true">📝</span><b>Bid Builder</b><span class="back">Bid reviews, plain-English summaries, first drafts and final packages. You price and sign.</span><span class="hint">Tap</span></button>
+      <button class="flip" aria-expanded="false"><span class="ic" aria-hidden="true">🤝</span><b>Specialists Managed</b><span class="back">Outside vendors and experts brought in and directed, so you never have to chase anyone.</span><span class="hint">Tap</span></button>
+      <button class="flip" aria-expanded="false"><span class="ic" aria-hidden="true">📞</span><b>One Point of Contact</b><span class="back">One accountable partner for everything digital, with regular reviews of what's next.</span><span class="hint">Tap</span></button>
+    </div>
+    <div class="lightbanner">A living system we keep feeding. <span>It keeps feeding you work.</span></div>
+  </div>
+</section>
+
+<section id="yourpart" class="alt" aria-labelledby="h-part">
+  <div class="wrap">
+    <p class="eyebrow">Getting started</p>
+    <h2 id="h-part">Your Part, and Ours</h2>
+    <p class="lead">Your list is short. Tick each one off as you go; this page remembers your progress on this device.</p>
+    <div class="parts">
+      <div>
+        <div class="prog" aria-hidden="true"><i id="progBar"></i></div>
+        <p class="progtxt" id="progTxt" aria-live="polite">0 of 9 done</p>
+        <ul class="todo" id="todo">
+          <li><label><input type="checkbox" value="domain"><span class="tx"><b>1. Buy the domain name</b><span>The web address. We'll tell you exactly which one and where to buy it.</span></span></label></li>
+          <li><label><input type="checkbox" value="point"><span class="tx"><b>2. Point it to MediaIn360's server</b><span>A couple of clicks in your domain account, or give us access and we'll do it.</span></span></label></li>
+          <li><label><input type="checkbox" value="channel"><span class="tx"><b>3. Create the YouTube channel</b><span>The playbook walks you through it, step by step.</span></span></label>
+            <div class="go"><a class="btn btn-g" href="files/Everglades_YouTube_Playbook.pdf" target="_blank" rel="noopener">Open the YouTube Playbook (PDF)</a></div></li>
+          <li><label><input type="checkbox" value="upload"><span class="tx"><b>4. Upload the job videos from your phones</b><span>No editing needed. Raw footage is perfect.</span></span></label></li>
+          <li><label><input type="checkbox" value="log"><span class="tx"><b>5. Fill in the Video Log</b><span>One row per video with its short link, then email it to us.</span></span></label>
+            <div class="go"><a class="btn btn-g" href="files/Everglades_Video_Log.xlsx" download>Download the Video Log (spreadsheet)</a></div></li>
+          <li><label><input type="checkbox" value="clips"><span class="tx"><b>6. Send your best clips</b><span>Original files for the website's opening video, sent by WeTransfer, not by text.</span></span></label></li>
+          <li><label><input type="checkbox" value="checklist"><span class="tx"><b>7. Go through the service checklist</b><span>Mark each service: we do it, we team on it, or not for us. Tap Send at the end and it comes straight to us.</span></span></label>
+            <div class="go"><a class="btn btn-g" href="checklist/">Open your service checklist</a></div></li>
+          <li><label><input type="checkbox" value="vendor"><span class="tx"><b>8. Register as a vendor on the main bid sites and SAM.gov</b><span>Free. We'll walk you through each one.</span></span></label></li>
+          <li><label><input type="checkbox" value="licenses"><span class="tx"><b>9. License and registration numbers</b><span>We'll go over these together, in person.</span></span></label></li>
+        </ul>
+      </div>
+      <div class="ours">
+        <h3 id="h-ours">Our part (MediaIn360)</h3>
+        <ul>
+          <li>Build and host everything</li>
+          <li>Connect your domain, site and videos</li>
+          <li>Turn every job video into its own page</li>
+          <li>Run the nightly sweep</li>
+          <li>Send your morning report</li>
+          <li>Find the primes and build relationships</li>
+          <li>Dig into the good bids and prepare packages</li>
+          <li>Fix, upgrade and keep it all growing</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dark closing" aria-labelledby="h-close">
+  <div class="wrap">
+    <p class="eyebrow">TerraAll</p>
+    <h2 id="h-close">Every Earthwork Job.<br><span>Any Size. Anywhere.</span></h2>
+    <p>From the smallest job to the largest undertaking.</p>
+    <p class="tag">Built in the Everglades. Ready for Anywhere.</p>
+    <p>Not a website. A system that never stops growing.</p>
+    <div class="logos">
+      <div class="plate"><img src="img/terraall-logo.png" alt="TerraAll" width="900" height="263"></div>
+      <div class="plate"><img src="img/everglades-logo.png" alt="Everglades Restorations &amp; Land Clearing Inc." width="700" height="316"></div>
+    </div>
+    <p style="font-weight:800;color:#fff;font-size:1.15rem">Next step: let's sit down, talk it through and get started.</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Prepared for Everglades Restorations &amp; Land Clearing Inc. · Confidential</span>
+    <a class="credit" href="https://mediain360.com" target="_blank" rel="noopener"><img src="img/mediain360-credit.png" alt="Produced and powered by MediaIn360" width="80" height="21" style="width:80px;max-width:80px;height:auto"></a>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function $(s, r) { return (r || document).querySelector(s); }
+  function $$(s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); }
+
+  // Expanding tiles (system parts, network tiles)
+  $$(".tile, .flip").forEach(function (b) {
+    b.addEventListener("click", function () {
+      b.setAttribute("aria-expanded", b.getAttribute("aria-expanded") === "true" ? "false" : "true");
+    });
+  });
+
+  // Engine tabs
+  var tabs = $$('[role="tab"]');
+  function selectTab(t) {
+    tabs.forEach(function (x) {
+      var on = x === t;
+      x.setAttribute("aria-selected", on ? "true" : "false");
+      x.tabIndex = on ? 0 : -1;
+      document.getElementById(x.getAttribute("aria-controls")).hidden = !on;
+    });
+  }
+  tabs.forEach(function (t, i) {
+    t.addEventListener("click", function () { selectTab(t); });
+    t.addEventListener("keydown", function (e) {
+      var j = e.key === "ArrowRight" ? (i + 1) % tabs.length : e.key === "ArrowLeft" ? (i - 1 + tabs.length) % tabs.length : -1;
+      if (j >= 0) { e.preventDefault(); selectTab(tabs[j]); tabs[j].focus(); }
+    });
+  });
+
+  // Tonight's sweep
+  var running = false;
+  $("#runSweep").addEventListener("click", function () {
+    if (running) return;
+    running = true;
+    var items = $$("#srcList li"), checked = 0, kept = 0, i = 0, btn = this;
+    btn.disabled = true;
+    items.forEach(function (li) { li.className = ""; $(".st", li).textContent = "Waiting"; });
+    $("#ready").classList.remove("show");
+    $("#sweepStatus").textContent = "🌙 Sweeping…";
+    function step() {
+      if (i > 0) {
+        var prev = items[i - 1];
+        prev.className = "done";
+        $(".st", prev).textContent = prev.dataset.n + " checked · " + prev.dataset.k + " kept";
+      }
+      if (i >= items.length) {
+        $("#sweepStatus").textContent = "✅ Sweep complete.";
+        $("#ready").classList.add("show");
+        btn.disabled = false; btn.textContent = "▶ Run it again";
+        running = false; return;
+      }
+      var li = items[i];
+      li.className = "active";
+      $(".st", li).textContent = "Checking…";
+      checked += +li.dataset.n; kept += +li.dataset.k;
+      $("#cChecked").textContent = checked;
+      $("#cKept").textContent = kept;
+      $("#cSrc").textContent = (i + 1) + " of " + items.length;
+      i++;
+      setTimeout(step, reduce ? 0 : 650);
+    }
+    step();
+  });
+
+  // Morning report
+  var BIDS = [
+    { t: "Reservoir embankment: clearing & muck removal", who: "Federal restoration program", where: "Palm Beach County, FL", area: 2, size: 1200, w: "restore", fit: 5, due: 18,
+      team: "Likely leader: one of the large heavy-civil primes already on the reservoir. They need clearing and muck-removal subs. Next step: get on their sub list now." },
+    { t: "County disaster debris removal, standby contract", who: "County procurement", where: "Broward County, FL", area: 1, size: 8, w: "debris", fit: 4, due: 9,
+      team: "Everglades can bid this as the prime. Debris monitoring firms often team up; we'll line up a partner." },
+    { t: "Canal maintenance task order", who: "Army Corps award pool", where: "Miami-Dade County, FL", area: 1, size: 3, w: "dig", fit: 4, due: 21,
+      team: "Small-business pool: Everglades leads. No prime needed." },
+    { t: "Lot and right-of-way clearing for a new school", who: "School district", where: "Collier County, FL", area: 2, size: 0.8, w: "clear", fit: 4, due: 14,
+      team: "The general contractor building the school will need a clearing sub. We'll find who won and call them first." },
+    { t: "Stormwater pond and culvert improvements", who: "City public works", where: "Okeechobee, FL", area: 2, size: 1.6, w: "drain", fit: 3, due: 12,
+      team: "Right-sized to bid as the prime." },
+    { t: "Flow way construction: earthwork package", who: "Water management district", where: "Hendry County, FL", area: 2, size: 450, w: "restore", fit: 5, due: 30,
+      team: "Huge program: the prime will be a national firm. We track the award and pitch Everglades as the earthwork partner." },
+    { t: "Highway widening: clearing & grubbing", who: "FDOT road letting", where: "Polk County, FL", area: 3, size: 22, w: "clear", fit: 3, due: 16,
+      team: "Road contractors sub out clearing. We'll find the low bidder after the letting." },
+    { t: "Marsh terracing & shoreline protection", who: "State coastal program", where: "Louisiana", area: 4, size: 60, w: "restore", fit: 3, due: 28,
+      team: "Out of state: team with an in-state partner, or route it." },
+    { t: "Exotic plant removal on conservation land", who: "State agency", where: "Lee County, FL", area: 3, size: 0.4, w: "restore", fit: 4, due: 10,
+      team: "Small and quick. Take it, or route it to a partner for points." },
+    { t: "Specialty hazardous waste remediation", who: "Federal cleanup site", where: "Ohio", area: 4, size: 140, w: "dig", fit: 1, due: 12,
+      team: "Outside core work. Likely an 86." }
+  ];
+  var LABEL = { take: "Take it", team: "Team it", route: "Route it", x: "86 it" };
+  var COLOR = { take: "var(--g)", team: "var(--g2)", route: "var(--b)", x: "#6d726a" };
+  var decisions = {};
+  function money(m) { return m >= 1000 ? "$" + (m / 1000).toFixed(1).replace(".0", "") + "B" : m >= 1 ? "$" + m + "M" : "$" + Math.round(m * 1000) + "K"; }
+  function esc(s) { return s.replace(/&/g, "&amp;").replace(/</g, "&lt;"); }
+  function render() {
+    var minSize = +$("#dSize").value, maxArea = +$("#dArea").value;
+    var works = $$("#dWork input:checked").map(function (c) { return c.value; });
+    var html = "", shown = 0;
+    BIDS.forEach(function (b, i) {
+      if (b.size < minSize || b.area > maxArea || works.indexOf(b.w) < 0) return;
+      shown++;
+      var d = decisions[i];
+      html += '<article class="bid' + (d ? " decided" : "") + '" aria-labelledby="bt' + i + '">' +
+        '<h3 id="bt' + i + '">' + esc(b.t) + '</h3>' +
+        '<div class="meta"><span>' + esc(b.who) + '</span><span>' + esc(b.where) + '</span><span>About ' + money(b.size) + '</span>' +
+        '<span class="fit" aria-label="Fit ' + b.fit + ' of 5">' + "●".repeat(b.fit) + "<i>" + "●".repeat(5 - b.fit) + "</i></span>" +
+        '<span class="due">Due in ' + b.due + ' days</span></div>' +
+        '<button class="who" aria-expanded="false" aria-controls="wb' + i + '">Who\'s leading? Do they need a sub?</button>' +
+        '<div class="whobox" id="wb' + i + '">' + esc(b.team) + '</div>' +
+        '<div class="acts" role="group" aria-label="Decide on this bid">' +
+        '<button class="a1" data-i="' + i + '" data-d="take">Take it</button><button class="a2" data-i="' + i + '" data-d="team">Team it</button>' +
+        '<button class="a3" data-i="' + i + '" data-d="route">Route it</button><button class="a4" data-i="' + i + '" data-d="x">86 it</button></div>' +
+        '<div class="verdict" style="background:' + (d ? COLOR[d] : "#000") + '"><span>' + (d ? "You chose: " + LABEL[d] : "") + '</span><button data-undo="' + i + '">Change</button></div>' +
+        '</article>';
+    });
+    $("#cards").innerHTML = html;
+    $("#emptyMsg").style.display = shown ? "none" : "block";
+    var c = { take: 0, team: 0, route: 0, x: 0 };
+    Object.keys(decisions).forEach(function (k) { c[decisions[k]]++; });
+    $("#sTake").textContent = c.take; $("#sTeam").textContent = c.team; $("#sRoute").textContent = c.route; $("#s86").textContent = c.x;
+  }
+  $("#cards").addEventListener("click", function (e) {
+    var b = e.target.closest("button");
+    if (!b) return;
+    if (b.classList.contains("who")) {
+      var box = document.getElementById(b.getAttribute("aria-controls"));
+      var open = b.getAttribute("aria-expanded") === "true";
+      b.setAttribute("aria-expanded", open ? "false" : "true");
+      box.classList.toggle("show", !open);
+      return;
+    }
+    if (b.dataset.d) { decisions[b.dataset.i] = b.dataset.d; render(); var u = $('[data-undo="' + b.dataset.i + '"]'); if (u) u.focus(); return; }
+    if (b.dataset.undo) { var k = b.dataset.undo; delete decisions[k]; render(); var f = $('[data-i="' + k + '"][data-d="take"]'); if (f) f.focus(); }
+  });
+  ["#dSize", "#dArea"].forEach(function (s) { $(s).addEventListener("change", render); });
+  $("#dWork").addEventListener("change", render);
+  $("#resetReport").addEventListener("click", function () { decisions = {}; render(); });
+  render();
+
+  // Find to finish steps
+  $$("#steps button").forEach(function (b) {
+    b.addEventListener("click", function () {
+      $$("#steps button").forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+      $("#stepDetail").innerHTML = '<span class="who2">' + b.dataset.who + '</span><p>' + b.dataset.d + '</p>';
+    });
+  });
+
+  // Plain English toggle
+  function view(after) {
+    $("#vBefore").setAttribute("aria-pressed", after ? "false" : "true");
+    $("#vAfter").setAttribute("aria-pressed", after ? "true" : "false");
+    $("#legal").style.display = after ? "none" : "block";
+    $("#sum").style.display = after ? "block" : "none";
+  }
+  $("#vBefore").addEventListener("click", function () { view(false); });
+  $("#vAfter").addEventListener("click", function () { view(true); });
+
+  // Your part checklist (remembered on this device)
+  var KEY = "terraall-yourpart", saved = {};
+  try { saved = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) {}
+  var boxes = $$("#todo input");
+  function paint() {
+    var n = 0;
+    boxes.forEach(function (c) { c.closest("li").classList.toggle("done", c.checked); if (c.checked) n++; });
+    $("#progBar").style.width = (n / boxes.length * 100) + "%";
+    $("#progTxt").textContent = n === boxes.length ? "All " + n + " done. Let's go!" : n + " of " + boxes.length + " done";
+  }
+  boxes.forEach(function (c) {
+    c.checked = !!saved[c.value];
+    c.addEventListener("change", function () {
+      saved[c.value] = c.checked;
+      try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch (e) {}
+      paint();
+    });
+  });
+  paint();
+})();
+</script>
+</body>
+</html>
